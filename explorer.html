@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Explorer - RKTechGame</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: white;
+      text-align: center;
+    }
+    header {
+      padding: 40px;
+    }
+    header h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px cyan, 0 0 20px magenta;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #ffeb3b;
+    }
+    .content {
+      margin: 50px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+    .card {
+      background: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      color: #00e676;
+    }
+    .card p {
+      font-size: 1em;
+      color: #ddd;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 0 10px cyan;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Instagram Embed */
+    .instagram-feed {
+      margin: 40px auto;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(270deg, cyan, magenta, yellow, lime, cyan);
+      background-size: 600% 600%;
+      animation: neonMove 8s linear infinite;
+      text-shadow: 0 0 8px rgba(0,255,255,0.8), 0 0 20px rgba(255,0,255,0.6);
+    }
+    @keyframes neonMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Explore RKTechGame</h1>
+    <p>Uncover hidden gems, wallpapers & exclusive content</p>
+  </header>
+
+  <div class="content">
+    <div class="card">
+      <h3>🎮 Latest Games</h3>
+      <p>Stay tuned for exciting game launches right here!</p>
+    </div>
+    <div class="card">
+      <h3>🖼️ Wallpapers</h3>
+      <p>Download exclusive gaming wallpapers to style your device.</p>
+    </div>
+    <div class="card">
+      <h3>📖 Blog</h3>
+      <p>Read tips, tricks and stories from the gaming world.</p>
+    </div>
+
+    <!-- Instagram Feed Embed -->
+    <div class="instagram-feed">
+      <iframe 
+        src="https://www.instagram.com/_satan_12.12/embed" 
+        width="100%" 
+        height="500" 
+        frameborder="0" 
+        scrolling="no" 
+        allowtransparency="true">
+      </iframe>
+    </div>
+
+    <button onclick="window.location.href='index.html'">⬅ Back to Home</button>
+  </div>
+
+  <footer>
+    © 2025 RKTechGame | Explorer Section
+  </footer>
+
+</body>
+</html>
