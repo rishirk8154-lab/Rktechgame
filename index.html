@@ -3,252 +3,228 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RKTech Games</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>RKTechGame</title>
   <style>
-    /* Basic Body & Font */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0a0a0a;
-      color: white;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle at top, #000000, #0d0d0d, #1a1a1a);
+      color: #00ff99;
+      height: 100vh;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Header + Logo + Hamburger */
+    /* Snowflakes */
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0.5; }
+    }
+
+    /* Header */
     header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
-      background: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      top: 0;
-      width: 100%;
+      box-sizing: border-box;
       z-index: 1000;
     }
-    .logo {
+
+    /* Circle Logo */
+    .circle-logo {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: #ff4444;
+      background: #00ff99;
+      color: black;
+      font-weight: bold;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
-      color: white;
       font-size: 1.2rem;
-    }
-    header h1 {
-      font-size: 1.8rem;
-      margin: 0;
-    }
-    .menu-toggle {
-      font-size: 2rem;
-      cursor: pointer;
+      box-shadow: 0 0 10px #00ff99;
     }
 
-    /* Sidebar (slide-in menu) */
+    /* Hamburger */
+    .hamburger {
+      font-size: 2rem;
+      cursor: pointer;
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99;
+    }
+
+    /* Sidebar */
     .sidebar {
       position: fixed;
-      left: -250px;
       top: 0;
+      right: -250px;
       width: 250px;
       height: 100%;
       background: #111;
+      box-shadow: -2px 0 10px rgba(0, 255, 153, 0.5);
+      transition: 0.3s;
       padding: 20px;
-      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       z-index: 2000;
     }
-    .sidebar.active { left: 0; }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-    .sidebar ul li {
-      margin: 20px 0;
-    }
-    .sidebar ul li a {
-      color: white;
+    .sidebar.active { right: 0; }
+    .sidebar a {
+      color: #00ff99;
       text-decoration: none;
       font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-weight: bold;
+    }
+    .sidebar a:hover {
+      text-shadow: 0 0 10px #00ff99;
     }
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      text-align: center;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero h2 {
+    /* Title */
+    h1 {
       font-size: 3rem;
-      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+      margin-top: 100px;
+      text-align: center;
     }
-    .explore-btn {
-      padding: 12px 24px;
+    .tagline {
       font-size: 1.2rem;
-      background: red;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
+      color: #ff4444;
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    /* Explore Games Section */
+    /* Explore Section */
     .explore {
-      padding: 60px 20px;
       text-align: center;
+      padding: 50px 20px;
     }
     .explore h2 {
       font-size: 2rem;
       margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ff99;
     }
-    .game-buttons button {
-      margin: 10px;
-      padding: 15px 25px;
-      font-size: 1rem;
-      background: #ff4444;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* About Section */
-    .about {
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .about h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .cards {
+    .game-buttons {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
     }
-    .card {
-      width: 250px;
-      padding: 20px;
-      background: #222;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
-    }
-
-    /* Footer with Instagram Icon */
-    footer {
-      background: #111;
-      padding: 20px;
-      text-align: center;
-    }
-    .social-icons a {
+    .game-buttons button {
+      background: #ff4444;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
       color: white;
-      margin: 0 10px;
-      font-size: 1.5rem;
+      box-shadow: 0 0 10px #ff4444;
       transition: 0.3s;
     }
-    .social-icons a:hover {
-      color: #ff4444;
+    .game-buttons button:hover {
+      background: #ff2222;
+      box-shadow: 0 0 20px #ff4444;
     }
 
-    /* Snowflake Animation */
-    .snowflake {
+    /* Footer */
+    footer {
       position: absolute;
-      top: -10px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      pointer-events: none;
-      animation: fall linear forwards;
+      bottom: 20px;
+      font-size: 1rem;
+      color: #00ff99;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
+    footer a {
+      color: #00ff99;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    footer a:hover {
+      text-shadow: 0 0 10px #00ff99;
+    }
+    .insta-logo {
+      width: 20px;
+      height: 20px;
+      filter: drop-shadow(0 0 5px #00ff99);
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
-    <div class="logo">RK</div>
-    <h1>RKTech Games</h1>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="circle-logo">RK</div>
+    <div class="hamburger" onclick="toggleSidebar()">☰</div>
   </header>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="#hero"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="#explore"><i class="fas fa-gamepad"></i> Explore</a></li>
-      <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-      <li>
-        <a href="https://www.instagram.com/_satan_12.12/" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram
-        </a>
-      </li>
-    </ul>
+    <a href="#">Home</a>
+    <a href="#explore">Explore</a>
+    <a href="https://www.instagram.com/_satan_12.12/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+           alt="Instagram" class="insta-logo"> Instagram
+    </a>
   </div>
 
-  <section class="hero" id="hero">
-    <h2>Welcome to RKTech Games</h2>
-    <button class="explore-btn" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">
-      Explore Games
-    </button>
-  </section>
+  <!-- Title -->
+  <h1>RKTechGame</h1>
+  <p class="tagline">Best website for online games</p>
 
+  <!-- Explore -->
   <section class="explore" id="explore">
     <h2>Play Our Games</h2>
     <div class="game-buttons">
-      <button onclick="location.href='tictactoe.html'">Tic Tac Toe</button>
-      <button onclick="location.href='snake.html'">Snake & Ladder</button>
-      <button onclick="location.href='ludo.html'">Ludo</button>
+      <button>Coming Soon...</button>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <h2>About Us</h2>
-    <div class="cards">
-      <div class="card">🎮 We create fun browser games for everyone!</div>
-      <div class="card">🚀 Fast, responsive and mobile-friendly games.</div>
-      <div class="card">💡 New games added regularly to keep you entertained.</div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    <div class="social-icons">
-      <a href="https://www.instagram.com/_satan_12.12/" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-    </div>
-    <p>&copy; 2025 RKTech Games. All rights reserved.</p>
+    © 2025 RKTechGame | 
+    <a href="https://www.instagram.com/_satan_12.12/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+           alt="Instagram" class="insta-logo">
+      Instagram
+    </a>
   </footer>
 
+  <!-- JS -->
   <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("active");
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
     }
 
+    // Snowflakes generate
     function createSnowflake() {
-      const flake = document.createElement("div");
-      flake.classList.add("snowflake");
-      document.body.appendChild(flake);
-      const size = Math.random() * 5 + 5 + "px";
-      flake.style.width = flake.style.height = size;
-      flake.style.left = Math.random() * window.innerWidth + "px";
-      flake.style.animationDuration = Math.random() * 5 + 5 + "s";
-      setTimeout(() => flake.remove(), 10000);
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❄';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => { snowflake.remove(); }, 5000);
     }
     setInterval(createSnowflake, 200);
   </script>
