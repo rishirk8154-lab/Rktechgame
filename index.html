@@ -12,39 +12,20 @@
       color: #00ff99;
       overflow-x: hidden;
     }
-
-    /* 🎈 Balloons animation */
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 40px;
-      height: 50px;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: floatUp 12s linear infinite;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0.9; }
-      100% { transform: translateY(-120vh) scale(0.8); opacity: 0; }
-    }
-
-    /* Header */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 15px 20px;
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(6px);
       box-sizing: border-box;
-      z-index: 1000;
+      z-index: 10;
     }
-
-    /* Profile picture / RK circle */
     .profile-pic {
       width: 50px;
       height: 50px;
@@ -53,58 +34,22 @@
       box-shadow: 0 0 10px #00ff99;
       object-fit: cover;
     }
-    .profile-placeholder {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #00ff99;
-      color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-      box-shadow: 0 0 10px #00ff99;
-    }
-
-    /* Hamburger menu */
-    .menu-toggle {
-      font-size: 2rem;
-      cursor: pointer;
-      color: #00ff99;
-      display: block;
-    }
-
     nav {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 220px;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(6px);
-      padding-top: 70px;
       display: flex;
-      flex-direction: column;
       gap: 20px;
-      transition: left 0.3s ease;
-      z-index: 999;
     }
     nav a {
       color: #00ff99;
       text-decoration: none;
-      font-size: 1.2rem;
-      padding: 10px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
       text-shadow: 0 0 5px #00ff99;
+      transition: 0.3s;
     }
     nav a:hover {
-      background: rgba(0, 255, 153, 0.1);
+      color: #fff;
+      text-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
     }
-    nav.open {
-      left: 0;
-    }
-
-    /* Hero Section */
     .hero {
       height: 100vh;
       display: flex;
@@ -121,6 +66,7 @@
     }
     .tagline-box {
       border: 2px solid red;
+      color: #fff;
       background: rgba(255, 0, 0, 0.1);
       padding: 10px 25px;
       border-radius: 10px;
@@ -146,59 +92,8 @@
     .cta-btn:hover {
       background: #fff;
       color: #00cc77;
-    }
-
-    /* Features */
-    .features {
-      padding: 60px 20px;
-      background: #111;
-      text-align: center;
-    }
-    .features h2 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      text-shadow: 0 0 10px #00ff99;
-    }
-    .cards {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .card {
-      background: #1a1a1a;
-      border: 2px solid #00ff99;
-      border-radius: 15px;
-      padding: 25px;
-      width: 250px;
-      box-shadow: 0 0 10px #00ff99;
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-10px);
       box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
     }
-
-    /* About */
-    .about {
-      padding: 60px 20px;
-      background: #0d0d0d;
-      text-align: center;
-    }
-    .about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00ff99;
-    }
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #ccc;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
       padding: 20px;
@@ -215,87 +110,43 @@
       align-items: center;
       gap: 6px;
     }
+    footer a:hover {
+      text-shadow: 0 0 10px #00ff99;
+    }
     .insta-logo {
       width: 20px;
       height: 20px;
+      filter: drop-shadow(0 0 5px #00ff99);
     }
   </style>
 </head>
 <body>
-
-  <!-- Balloons container -->
-  <div id="balloons"></div>
-
-  <!-- Header -->
   <header>
-    <div class="profile-placeholder">RK</div>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <img src="your-photo.jpg" alt="Profile" class="profile-pic">
+    <nav>
+      <a href="#">Game</a>
+      <a href="#">Blog</a>
+      <a href="#">Quotes</a>
+      <a href="#">Contact Us</a>
+    </nav>
   </header>
 
-  <!-- Sidebar Menu -->
-  <nav id="sidebar">
-    <a href="#">Game</a>
-    <a href="#">Blog</a>
-    <a href="#">Quotes</a>
-    <a href="#">Contact Us</a>
-  </nav>
-
-  <!-- Hero -->
   <section class="hero">
     <h1>RKTechGame</h1>
-    <p class="tagline-box">Best website for online game 🎮 | Fun | Motivation | Blogs</p>
-    <button class="cta-btn">Explore Games</button>
+    <p class="tagline-box">Best website for online game</p>
+    <!-- Explore button takes user to tic-tac-toe.html -->
+    <a href="tic-tac-toe.html">
+      <button class="cta-btn">🎮 Explore Games</button>
+    </a>
   </section>
 
-  <!-- Features -->
-  <section class="features">
-    <h2>Why Choose Us?</h2>
-    <div class="cards">
-      <div class="card"><h3>⚡ Fast Games</h3><p>Play smooth, fast-loading games.</p></div>
-      <div class="card"><h3>📰 Daily Updates</h3><p>New blogs and trending games.</p></div>
-      <div class="card"><h3>🎉 Free to Play</h3><p>Enjoy games free of cost.</p></div>
-      <div class="card"><h3>💡 Quotes</h3><p>Daily dose of motivation.</p></div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="about">
-    <h2>About RKTechGame</h2>
-    <p>
-      RKTechGame is your hub for online entertainment – games, blogs, and quotes. 
-      We make gaming fun and accessible while keeping you inspired.
-    </p>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    © 2025 RKTechGame |
-    <a href="https://www.instagram.com/_satan_12.12" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="insta-logo"> Instagram
+    © 2025 RKTechGame | 
+    <a href="https://www.instagram.com/_satan_12.12?igsh=NTJkaDMxd2hrNjVq" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+           alt="Instagram" class="insta-logo">
+      Instagram
     </a>
   </footer>
-
-  <script>
-    // Sidebar toggle
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('open');
-    }
-
-    // Balloons generator
-    const balloonColors = ["#ff4d4d","#4dff4d","#4da6ff","#ffff4d","#ff66ff"];
-    function createBalloon() {
-      const balloon = document.createElement("div");
-      balloon.classList.add("balloon");
-      const size = Math.random() * 30 + 20;
-      balloon.style.width = size + "px";
-      balloon.style.height = size * 1.2 + "px";
-      balloon.style.left = Math.random() * 100 + "vw";
-      balloon.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
-      balloon.style.animationDuration = (Math.random() * 5 + 8) + "s";
-      document.getElementById("balloons").appendChild(balloon);
-      setTimeout(() => balloon.remove(), 12000);
-    }
-    setInterval(createBalloon, 800);
-  </script>
 </body>
 </html>
