@@ -42,18 +42,12 @@
     background: rgba(0,0,0,0.5);
     z-index: 150;
   }
-  .circle {
+  .logo-img {
     width: 60px;
     height: 60px;
-    background: #00e5ff;
     border-radius: 50%;
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: 0 0 25px #00e5ffaa;
+    object-fit: cover;
     user-select: none;
   }
   .logo-text {
@@ -251,7 +245,7 @@
 <body>
 
   <div class="top-bar">
-    <div class="circle">RK</div>
+    <img class="logo-img" src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/aa017e2f-bf5f-4bce-98ec-bfbaed8809f1.png" alt="RKTechGame Logo" />
     <div class="logo-text">RKTechGame</div>
     <div class="menu" onclick="toggleMenu()">
       <div></div>
@@ -273,6 +267,11 @@
 
     <button class="btn" onclick="window.location.href='tic-tac-toe.html'">
       <i class="fas fa-gamepad"></i> Play Tic Tac Toe
+    </button>
+
+    <button class="btn" onclick="window.location.href='chess.html'">
+      <img src="https://cdn-icons-png.flaticon.com/512/3386/3386764.png" alt="Chess Icon" style="width: 26px; height: 26px;" />
+      Play Chess
     </button>
 
     <div class="cards">
@@ -301,4 +300,5 @@
   </footer>
 
 </body>
-</html>
+ </html>
+ 
