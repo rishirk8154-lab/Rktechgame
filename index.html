@@ -3,148 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RKTechGame</title>
+  <title>RKTech Games</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    /* Basic Body & Font */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #0a0a0a;
       color: white;
-      text-align: center;
-      background: linear-gradient(to right, #000000, #1a1a1a);
       overflow-x: hidden;
     }
 
-    /* 🎈 Balloons animation */
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 40px;
-      height: 60px;
-      background-color: red;
+    /* Header + Logo + Hamburger */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      animation: float 10s infinite ease-in;
+      background: #ff4444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      font-size: 1.2rem;
     }
-    .balloon:after {
-      content: '';
-      position: absolute;
-      width: 2px;
-      height: 30px;
-      background: white;
-      top: 60px;
-      left: 50%;
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
     }
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-110vh); opacity: 0; }
+    .menu-toggle {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* Sidebar (slide-in menu) */
+    .sidebar {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 2000;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin: 20px 0;
+    }
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     /* Hero Section */
     .hero {
-      padding: 100px 20px;
-      background: linear-gradient(135deg, #0f0f0f, #2a2a2a);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      text-align: center;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
-    h1 {
-      font-size: 3.2rem;  /* 🔹 thoda chhota kar diya */
-      text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99;
+    .hero h2 {
+      font-size: 3rem;
       margin-bottom: 20px;
     }
-    p.tagline {
-      font-size: 1.5rem;
-      margin-bottom: 40px;
-    }
-
-    /* Explore Section */
-    .explore-section {
-      padding: 60px 20px;
-      background: #111;
-    }
-    .explore-buttons .btn {
-      display: inline-block;
-      margin: 15px;
-      padding: 15px 30px;
+    .explore-btn {
+      padding: 12px 24px;
       font-size: 1.2rem;
+      background: red;
       border: none;
-      border-radius: 12px;
-      background: #ff0066;
+      border-radius: 8px;
       color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .explore-buttons .btn:hover {
-      background: #cc0052;
+      cursor: pointer;
     }
 
-    /* Cards Section */
+    /* Explore Games Section */
+    .explore {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .explore h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .game-buttons button {
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 1rem;
+      background: #ff4444;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* About Section */
+    .about {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
     .cards {
       display: flex;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
-      padding: 60px 20px;
-      background: #1a1a1a;
+      gap: 20px;
     }
     .card {
-      background: #222;
-      padding: 20px;
-      border-radius: 15px;
       width: 250px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .card h3 {
-      margin-bottom: 15px;
-      color: #ffcc00;
+      padding: 20px;
+      background: #222;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
     }
 
-    /* Footer */
+    /* Footer with Instagram Icon */
     footer {
-      background: #000;
+      background: #111;
       padding: 20px;
-      margin-top: 40px;
+      text-align: center;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover {
+      color: #ff4444;
+    }
+
+    /* Snowflake Animation */
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 🎈 Floating balloons -->
-  <div class="balloon" style="left: 10%; background: red; animation-duration: 12s;"></div>
-  <div class="balloon" style="left: 30%; background: blue; animation-duration: 15s;"></div>
-  <div class="balloon" style="left: 50%; background: green; animation-duration: 18s;"></div>
-  <div class="balloon" style="left: 70%; background: yellow; animation-duration: 14s;"></div>
-  <div class="balloon" style="left: 90%; background: pink; animation-duration: 20s;"></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>RKTechGame</h1>
-    <p class="tagline">Best place to play fun games online 🎮</p>
+  <header>
+    <div class="logo">RK</div>
+    <h1>RKTech Games</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="#hero"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#explore"><i class="fas fa-gamepad"></i> Explore</a></li>
+      <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+      <li>
+        <a href="https://www.instagram.com/_satan_12.12/" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <section class="hero" id="hero">
+    <h2>Welcome to RKTech Games</h2>
+    <button class="explore-btn" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">
+      Explore Games
+    </button>
   </section>
 
-  <!-- Explore Section -->
-  <section id="explore" class="explore-section">
-    <h2>Explore Games</h2>
-    <div class="explore-buttons">
-      <a href="tic-tac-toe.html" class="btn">Play Tic Tac Toe</a>
-      <a href="snake-ladder.html" class="btn">Play Snake & Ladder</a>
+  <section class="explore" id="explore">
+    <h2>Play Our Games</h2>
+    <div class="game-buttons">
+      <button onclick="location.href='tictactoe.html'">Tic Tac Toe</button>
+      <button onclick="location.href='snake.html'">Snake & Ladder</button>
+      <button onclick="location.href='ludo.html'">Ludo</button>
     </div>
   </section>
 
-  <!-- Cards Section -->
-  <section class="cards">
-    <div class="card">
-      <h3>🎯 Challenge Friends</h3>
-      <p>Invite your friends and enjoy exciting games together.</p>
-    </div>
-    <div class="card">
-      <h3>⚡ Fast & Fun</h3>
-      <p>Play games instantly without downloads or setup.</p>
-    </div>
-    <div class="card">
-      <h3>🌍 Global Access</h3>
-      <p>Access from anywhere in the world on any device.</p>
+  <section class="about" id="about">
+    <h2>About Us</h2>
+    <div class="cards">
+      <div class="card">🎮 We create fun browser games for everyone!</div>
+      <div class="card">🚀 Fast, responsive and mobile-friendly games.</div>
+      <div class="card">💡 New games added regularly to keep you entertained.</div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 RKTechGame. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/_satan_12.12/" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 RKTech Games. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function createSnowflake() {
+      const flake = document.createElement("div");
+      flake.classList.add("snowflake");
+      document.body.appendChild(flake);
+      const size = Math.random() * 5 + 5 + "px";
+      flake.style.width = flake.style.height = size;
+      flake.style.left = Math.random() * window.innerWidth + "px";
+      flake.style.animationDuration = Math.random() * 5 + 5 + "s";
+      setTimeout(() => flake.remove(), 10000);
+    }
+    setInterval(createSnowflake, 200);
+  </script>
 </body>
 </html>
