@@ -12,6 +12,8 @@
       color: #00ff99;
       overflow-x: hidden;
     }
+
+    /* Header */
     header {
       position: fixed;
       top: 0;
@@ -26,6 +28,7 @@
       box-sizing: border-box;
       z-index: 10;
     }
+
     .profile-pic {
       width: 50px;
       height: 50px;
@@ -34,10 +37,12 @@
       box-shadow: 0 0 10px #00ff99;
       object-fit: cover;
     }
+
     nav {
       display: flex;
       gap: 20px;
     }
+
     nav a {
       color: #00ff99;
       text-decoration: none;
@@ -46,10 +51,13 @@
       text-shadow: 0 0 5px #00ff99;
       transition: 0.3s;
     }
+
     nav a:hover {
       color: #fff;
       text-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
     }
+
+    /* Hero */
     .hero {
       height: 100vh;
       display: flex;
@@ -59,11 +67,13 @@
       text-align: center;
       padding: 0 20px;
     }
+
     h1 {
       font-size: 4rem;
       text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99;
       margin-bottom: 20px;
     }
+
     .tagline-box {
       border: 2px solid red;
       color: #fff;
@@ -77,6 +87,7 @@
       margin-bottom: 30px;
       display: inline-block;
     }
+
     .cta-btn {
       padding: 12px 30px;
       background: #00ff99;
@@ -89,11 +100,75 @@
       box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
       transition: 0.3s;
     }
+
     .cta-btn:hover {
       background: #fff;
       color: #00cc77;
       box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
     }
+
+    /* Features Section */
+    .features {
+      padding: 60px 20px;
+      background: #111;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #00ff99;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 2px solid #00ff99;
+      border-radius: 15px;
+      padding: 25px;
+      width: 250px;
+      box-shadow: 0 0 10px #00ff99;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    /* About Section */
+    .about {
+      padding: 60px 20px;
+      background: #0d0d0d;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ff99;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 20px;
@@ -102,6 +177,7 @@
       background: #000;
       border-top: 1px solid #00ff99;
     }
+
     footer a {
       color: #00ff99;
       text-decoration: none;
@@ -110,9 +186,11 @@
       align-items: center;
       gap: 6px;
     }
+
     footer a:hover {
       text-shadow: 0 0 10px #00ff99;
     }
+
     .insta-logo {
       width: 20px;
       height: 20px;
@@ -121,6 +199,7 @@
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <img src="your-photo.jpg" alt="Profile" class="profile-pic">
     <nav>
@@ -131,18 +210,52 @@
     </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <h1>RKTechGame</h1>
     <p class="tagline-box">Best website for online game</p>
-    <!-- Explore button takes user to tic-tac-toe.html -->
     <a href="tic-tac-toe.html">
       <button class="cta-btn">🎮 Explore Games</button>
     </a>
   </section>
 
+  <!-- Features -->
+  <section class="features">
+    <h2>Why Choose Us?</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>⚡ Fast Games</h3>
+        <p>Play smooth and fast-loading online games without lag.</p>
+      </div>
+      <div class="card">
+        <h3>📰 Daily Updates</h3>
+        <p>Stay updated with new blogs and trending games every day.</p>
+      </div>
+      <div class="card">
+        <h3>🎉 Free to Play</h3>
+        <p>Enjoy exciting games completely free of cost, anytime.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Motivational Quotes</h3>
+        <p>Read and share the best inspiring quotes daily.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <h2>About RKTechGame</h2>
+    <p>
+      RKTechGame is your ultimate hub for online entertainment – from fun browser games 
+      to insightful blogs and motivational quotes. Our mission is to make gaming simple, 
+      enjoyable, and accessible to everyone while keeping you inspired along the way.
+    </p>
+  </section>
+
+  <!-- Footer -->
   <footer>
     © 2025 RKTechGame | 
-    <a href="https://www.instagram.com/_satan_12.12?igsh=NTJkaDMxd2hrNjVq" target="_blank">
+    <a href="https://www.instagram.com/_satan_12.12" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
            alt="Instagram" class="insta-logo">
       Instagram
