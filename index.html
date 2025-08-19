@@ -1,40 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>RKTechGame</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
-    }
-    header {
-      padding: 50px 20px;
-    }
-    header h1 {
-      font-size: 3.5em;
-      text-shadow: 0 0 15px cyan, 0 0 25px magenta;
-    }
-    header p {
-      font-size: 1.3em;
-      color: #ffeb3b;
-      margin-top: 10px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame</title>
 
-    /* Menu button */
-    .menu {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      cursor: pointer;
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; 
+    padding: 0;
+    height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+  }
+  body::before {
+    content: '';
+    position: fixed; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(10, 10, 25, 0.85);
+    z-index: -1;
+  }
+  .top-bar {
+    position: fixed;
+    width: 100%;
+    top: 0; left: 0;
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    background: rgba(0,0,0,0.5);
+    z-index: 150;
+  }
+  .circle {
+    width: 60px;
+    height: 60px;
+    background: #00e5ff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px #00e5ffaa;
+    user-select: none;
+  }
+  .logo-text {
+    font-size: 2rem;
+    color: #00e5ff;
+    margin-left: 16px;
+    text-shadow: 0 0 10px #00e5ff99;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .menu {
+    margin-left: auto;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 35px;
+  }
+  .menu div {
+    height: 4px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 0 8px #0ff;
+    transition: background-color 0.3s;
+  }
+  .menu:hover div {
+    background-color: #00e5ff;
+  }
+  .menu-options {
+    display: none;
+    position: fixed;
+    top: 85px;
+    right: 25px;
+    background: rgba(0,0,0,0.9);
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 0 20px #00e5ffcc;
+    width: 200px;
+    z-index: 160;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .menu-options a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #00e5ff;
+    padding: 10px 10px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .menu-options a:hover {
+    background-color: #002a3a;
+    color: #80dfff;
+    box-shadow: inset 6em 0 0 0 #80dfffaa;
+  }
+  main {
+    flex-grow: 1;
+    padding: 130px 20px 140px; /* Increased padding for longer look */
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Increased gap between cards & sections */
+  }
+  main header p#gamingText {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: black;
+    text-shadow: 0 0 8px #00e6ff44, 0 0 12px #00aabf22;
+    user-select: none;
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* ~0.5 inch gap */
+  }
+  .card {
+    background: rgba(15, 20, 35, 0.7);
+    padding: 26px 22px;
+    border-radius: 18px;
+    box-shadow: 0 0 22px #00bcff88;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    user-select: none;
+  }
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card p {
+    font-weight: 500;
+    color: #ddd;
+    margin: 5px 0 0;
+  }
+  /* Explore button with no shadow */
+  .btn {
+    align-self: center;
+    padding: 14px 32px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(45deg, #00b3ff, #007aff);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    user-select: none;
+    box-shadow: none !important; /* Shadow removed */
+  }
+  .btn:hover {
+    background: linear-gradient(45deg, #00d2ff, #0093ff);
+    transform: scale(1.1);
+  }
+  .btn i {
+    font-size: 1.5rem;
+  }
+  /* Privacy Policy Link below explore button */
+  .privacy-link {
+    align-self: center;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #00b3ffcc;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+  }
+  .privacy-link:hover {
+    color: #00e6ff;
+  }
+  footer {
+    background: rgba(0,0,0,0.8);
+    text-align: center;
+    padding: 20px 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    user-select: none;
+    color: #00b3ffcc;
+    box-shadow: none; /* Shadow removed */
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 120;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+</style>
+
+<script>
+  // Toggle menu
+  function toggleMenu() {
+    const menu = document.getElementById('menuOptions');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.2});
+    cards.forEach(card => observer.observe(card));
+  });
+  window.addEventListener('scroll', () => {
+    const footer = document.getElementById('pageFooter');
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+    if (scrollPosition > pageHeight - 120) {
+      footer.style.opacity = '1';
+    } else {
+      footer.style.opacity = '0';
     }
-    .circle {
-      width: 60px;
-      height: 60px;
+  });
+  window.onclick = function(e) {
+    const menu = document.getElementById('menuOptions');
+    const menuBtn = document.querySelector('.menu');
+    if(menu.style.display === 'block' && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
+      menu.style.display = 'none';
+    }
+  }
+</script>
+
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="circle">RK</div>
+    <div class="logo-text">RKTechGame</div>
+    <div class="menu" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="menu-options" id="menuOptions">
+      <a href="#"><i class="fas fa-blog"></i> Blog</a>
+      <a href="wallpapers.html" target="_blank"><i class="fas fa-image"></i> Wallpaper</a>
+      <a href="#"><i class="fas fa-envelope"></i> Contact Us</a>
+      <a href="https://www.instagram.com/_satan_12.12" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    </div>
+  </div>
+
+  <main>
+    <header>
+      <p id="gamingText">🎮 Level Up Your Gaming Experience 🚀</p>
+    </header>
+
+    <button class="btn" onclick="window.location.href='tic-tac-toe.html'">
+      <i class="fas fa-gamepad"></i> Play Tic Tac Toe
+    </button>
+
+    <div class="cards">
+      <div class="card">
+        <h3><i class="fas fa-bolt"></i> Fast & Fun</h3>
+        <p>Play exciting browser games instantly without downloads.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-fire"></i> Trending Games</h3>
+        <p>Stay ahead with the latest and most popular titles.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-star"></i> Exclusive Content</h3>
+        <p>Unlock hidden levels, wallpapers, and gaming secrets.</p>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.location.href='explorer.html'">
+      <i class="fas fa-rocket"></i> Explore
+    </button>
+    <a href="#" class="privacy-link">Privacy Policy</a>
+  </main>
+
+  <footer id="pageFooter">
+    © 2025 RKTechGame | All Rights Reserved
+  </footer>
+
+</body>
+</html>
+height: 60px;
       border-radius: 50%;
       background: #00e5ff;
       display: flex;
