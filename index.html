@@ -7,261 +7,144 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: radial-gradient(circle at top, #000000, #0d0d0d, #1a1a1a);
-      color: #00ff99;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      background: linear-gradient(to right, #000000, #1a1a1a);
       overflow-x: hidden;
     }
 
-    /* Balloon Animation */
+    /* 🎈 Balloons animation */
     .balloon {
       position: absolute;
-      bottom: -100px;
+      bottom: -150px;
+      width: 40px;
+      height: 60px;
+      background-color: red;
       border-radius: 50%;
-      opacity: 0.8;
-      animation: rise 10s infinite ease-in;
+      animation: float 10s infinite ease-in;
     }
-    @keyframes rise {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-110vh) scale(1.2); }
+    .balloon:after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: white;
+      top: 60px;
+      left: 50%;
     }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(6px);
-      z-index: 10;
-    }
-
-    /* Profile circle with initials */
-    .profile-pic {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 2px solid #00ff99;
-      box-shadow: 0 0 10px #00ff99;
-      background: #1a1a1a;
-      color: #00ff99;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    /* Navigation */
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      color: #00ff99;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: bold;
-      text-shadow: 0 0 5px #00ff99;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
     }
 
     /* Hero Section */
     .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-      overflow: hidden;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #0f0f0f, #2a2a2a);
     }
     h1 {
-      font-size: 3.2rem; /* Pehle 4rem tha ab thoda chhota */
+      font-size: 3.2rem;  /* 🔹 thoda chhota kar diya */
       text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99;
       margin-bottom: 20px;
     }
-
-    .tagline-box {
-      border: 2px solid red;
-      color: #fff;
-      background: rgba(255, 0, 0, 0.1);
-      padding: 10px 25px;
-      border-radius: 10px;
+    p.tagline {
       font-size: 1.5rem;
-      font-weight: bold;
-      text-shadow: 0 0 5px red, 0 0 10px #ff4d4d;
-      box-shadow: 0 0 15px red;
-      margin-bottom: 30px;
-      display: inline-block;
+      margin-bottom: 40px;
     }
 
-    .cta-btn {
-      padding: 12px 30px;
-      background: #00ff99;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
-      transition: 0.3s;
-    }
-    .cta-btn:hover {
-      background: #fff;
-      color: #00cc77;
-      box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
-    }
-
-    /* Features Section */
-    .features {
+    /* Explore Section */
+    .explore-section {
       padding: 60px 20px;
       background: #111;
-      text-align: center;
     }
-    .features h2 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      text-shadow: 0 0 10px #00ff99;
+    .explore-buttons .btn {
+      display: inline-block;
+      margin: 15px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background: #ff0066;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
     }
+    .explore-buttons .btn:hover {
+      background: #cc0052;
+    }
+
+    /* Cards Section */
     .cards {
       display: flex;
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      padding: 60px 20px;
+      background: #1a1a1a;
     }
     .card {
-      background: #1a1a1a;
-      border: 2px solid #00ff99;
+      background: #222;
+      padding: 20px;
       border-radius: 15px;
-      padding: 25px;
       width: 250px;
-      box-shadow: 0 0 10px #00ff99;
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
     .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    /* About Section */
-    .about {
-      padding: 60px 20px;
-      background: #0d0d0d;
-      text-align: center;
-    }
-    .about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00ff99;
-    }
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #ccc;
+      margin-bottom: 15px;
+      color: #ffcc00;
     }
 
     /* Footer */
     footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 1rem;
-      color: #00ff99;
       background: #000;
-      border-top: 1px solid #00ff99;
-    }
-    footer a {
-      color: #00ff99;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    footer a:hover {
-      text-shadow: 0 0 10px #00ff99;
-    }
-    .insta-logo {
-      width: 20px;
-      height: 20px;
-      filter: drop-shadow(0 0 5px #00ff99);
+      padding: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
+  <!-- 🎈 Floating balloons -->
+  <div class="balloon" style="left: 10%; background: red; animation-duration: 12s;"></div>
+  <div class="balloon" style="left: 30%; background: blue; animation-duration: 15s;"></div>
+  <div class="balloon" style="left: 50%; background: green; animation-duration: 18s;"></div>
+  <div class="balloon" style="left: 70%; background: yellow; animation-duration: 14s;"></div>
+  <div class="balloon" style="left: 90%; background: pink; animation-duration: 20s;"></div>
 
-  <!-- Balloons -->
-  <div class="balloon" style="left:10%; width:40px; height:50px; background:red; animation-duration:12s;"></div>
-  <div class="balloon" style="left:30%; width:30px; height:40px; background:blue; animation-duration:10s;"></div>
-  <div class="balloon" style="left:60%; width:50px; height:60px; background:green; animation-duration:14s;"></div>
-  <div class="balloon" style="left:80%; width:35px; height:45px; background:yellow; animation-duration:11s;"></div>
-
-  <!-- Header -->
-  <header>
-    <div class="profile-pic">RK</div>
-    <nav>
-      <a href="#">Game</a>
-      <a href="#">Blog</a>
-      <a href="#">Quotes</a>
-      <a href="#">Contact Us</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <h1>RKTechGame</h1>
-    <p class="tagline-box">Best website for online game</p>
-    <a href="tic-tac-toe.html"><button class="cta-btn">🎮 Play Tic Tac Toe</button></a>
-    <br><br>
-    <a href="snake-ladder.html"><button class="cta-btn">🎲 Play Snake & Ladder</button></a>
+    <p class="tagline">Best place to play fun games online 🎮</p>
   </section>
 
-  <!-- Features Section -->
-  <section class="features">
-    <h2>Why Choose Us?</h2>
-    <div class="cards">
-      <div class="card"><h3>⚡ Fast Games</h3><p>Play smooth and fast-loading online games without lag.</p></div>
-      <div class="card"><h3>📰 Daily Updates</h3><p>Stay updated with new blogs and trending games every day.</p></div>
-      <div class="card"><h3>🎉 Free to Play</h3><p>Enjoy exciting games completely free of cost, anytime.</p></div>
-      <div class="card"><h3>💡 Motivational Quotes</h3><p>Read and share the best inspiring quotes daily.</p></div>
+  <!-- Explore Section -->
+  <section id="explore" class="explore-section">
+    <h2>Explore Games</h2>
+    <div class="explore-buttons">
+      <a href="tic-tac-toe.html" class="btn">Play Tic Tac Toe</a>
+      <a href="snake-ladder.html" class="btn">Play Snake & Ladder</a>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="about">
-    <h2>About RKTechGame</h2>
-    <p>
-      RKTechGame is your ultimate hub for online entertainment – from fun browser games 
-      to insightful blogs and motivational quotes. Our mission is to make gaming simple, 
-      enjoyable, and accessible to everyone while keeping you inspired along the way.
-    </p>
+  <!-- Cards Section -->
+  <section class="cards">
+    <div class="card">
+      <h3>🎯 Challenge Friends</h3>
+      <p>Invite your friends and enjoy exciting games together.</p>
+    </div>
+    <div class="card">
+      <h3>⚡ Fast & Fun</h3>
+      <p>Play games instantly without downloads or setup.</p>
+    </div>
+    <div class="card">
+      <h3>🌍 Global Access</h3>
+      <p>Access from anywhere in the world on any device.</p>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    © 2025 RKTechGame | 
-    <a href="https://www.instagram.com/_satan_12.12?igsh=NTJkaDMxd2hrNjVq" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
-           alt="Instagram" class="insta-logo"> Instagram
-    </a>
+    <p>&copy; 2025 RKTechGame. All rights reserved.</p>
   </footer>
 </body>
 </html>
