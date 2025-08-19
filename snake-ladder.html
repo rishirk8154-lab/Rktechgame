@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake & Ladder</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-template-rows: repeat(10, 40px);
+      gap: 2px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      background: #222;
+      color: #ccc;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #444;
+    }
+    .player {
+      background: red;
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.7rem;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 1rem;
+      background: #00ff99;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #33ffbb;
+    }
+  </style>
+</head>
+<body>
+  <h1>Snake & Ladder</h1>
+  <div class="board" id="board"></div>
+  <p id="status">Player at 1</p>
+  <button onclick="rollDice()">🎲 Roll Dice</button>
+
+  <script>
+    const board = document.getElementById("board");
+    const statusText = document.getElementById("status");
+    let playerPos = 1;
+
+    const snakes = { 16: 6, 48: 30, 62: 19, 88: 24, 95: 56, 97: 78 };
+    const ladders = { 3: 22, 8: 26, 20: 41, 36: 55, 63: 81, 71: 92 };
+
+    function createBoard() {
+      board.innerHTML = "";
+      for (let i = 100; i > 0; i--) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.textContent = i;
+        if (i === playerPos) {
+          const player = document.createElement("div");
+          player.classList.add("player");
+          player.textContent = "P";
+          cell.appendChild(player);
+        }
+        board.appendChild(cell);
+      }
+    }
+
+    function rollDice() {
+      const dice = Math.floor(Math.random() * 6) + 1;
+      statusText.textContent = `Rolled: ${dice}`;
+      playerPos += dice;
+
+      if (playerPos in snakes) {
+        playerPos = snakes[playerPos];
+        statusText.textContent += " 🐍 Snake! Go down.";
+      } else if (playerPos in ladders) {
+        playerPos = ladders[playerPos];
+        statusText.textContent += " 🪜 Ladder! Go up.";
+      }
+
+      if (playerPos >= 100) {
+        statusText.textContent = "🎉 You Win!";
+        playerPos = 100;
+      }
+
+      createBoard();
+    }
+
+    createBoard();
+  </script>
+</body>
+</html>
