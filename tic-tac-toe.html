@@ -7,149 +7,136 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background: #111;
-      color: #00ff99;
-      text-align: center;
+      color: #ff3333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
     }
+
     h1 {
-      font-size: 3rem;
-      margin: 20px;
-      text-shadow: 0 0 10px #00ff99;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ff3333;
     }
-    #startBtn, #restartButton {
-      padding: 12px 30px;
-      margin: 20px;
+
+    .start-btn {
+      padding: 15px 40px;
+      background: #ff3333;
+      color: #fff;
       border: none;
-      border-radius: 8px;
-      background: #00ff99;
-      color: black;
-      font-size: 1.2rem;
+      border-radius: 10px;
+      font-size: 1.3rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 15px #00ff99;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px #ff3333, 0 0 30px #ff3333;
+      transition: 0.3s;
     }
-    #game {
+
+    .start-btn:hover {
+      background: #ff6666;
+      box-shadow: 0 0 20px #ff3333, 0 0 40px #ff3333;
+    }
+
+    .game-board {
       display: none;
-      grid-template-columns: repeat(3, 100px);
-      grid-template-rows: repeat(3, 100px);
-      gap: 5px;
-      justify-content: center;
-      margin: 20px auto;
+      grid-template-columns: repeat(3, 140px);
+      grid-template-rows: repeat(3, 140px);
+      gap: 8px;
     }
+
     .cell {
+      width: 140px;
+      height: 140px;
       background: #1a1a1a;
-      border: 2px solid #00ff99;
+      border: 3px solid #ff3333;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ff3333;
       cursor: pointer;
-      color: #fff;
+      transition: 0.2s;
+      border-radius: 10px;
     }
+
     .cell:hover {
       background: #222;
     }
-    #winningMessage {
-      font-size: 1.5rem;
-      margin: 20px 0;
+
+    .winner {
+      margin-top: 25px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-shadow: 0 0 15px #ff3333;
     }
-    .hidden { display: none; }
   </style>
 </head>
 <body>
-  <h1>Tic Tac Toe 🎮</h1>
-  <button id="startBtn">Start Game</button>
-
-  <div id="game">
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
+  <h1>Tic Tac Toe</h1>
+  <button class="start-btn" onclick="startGame()">Start Game</button>
+  <div class="game-board" id="board">
+    <div class="cell" onclick="makeMove(this, 0)"></div>
+    <div class="cell" onclick="makeMove(this, 1)"></div>
+    <div class="cell" onclick="makeMove(this, 2)"></div>
+    <div class="cell" onclick="makeMove(this, 3)"></div>
+    <div class="cell" onclick="makeMove(this, 4)"></div>
+    <div class="cell" onclick="makeMove(this, 5)"></div>
+    <div class="cell" onclick="makeMove(this, 6)"></div>
+    <div class="cell" onclick="makeMove(this, 7)"></div>
+    <div class="cell" onclick="makeMove(this, 8)"></div>
   </div>
-
-  <h3 id="winningMessage" class="hidden"></h3>
-  <button id="restartButton" class="hidden">Restart</button>
+  <div class="winner" id="winner"></div>
 
   <script>
-    const startBtn = document.getElementById('startBtn');
-    const gameBoard = document.getElementById('game');
-    const restartButton = document.getElementById('restartButton');
-    const winningMessageElement = document.getElementById('winningMessage');
-    const cells = document.querySelectorAll('[data-cell]');
-    const X_CLASS = 'X';
-    const O_CLASS = 'O';
-    let oTurn;
-
-    const WINNING_COMBINATIONS = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-
-    startBtn.addEventListener('click', () => {
-      startBtn.style.display = 'none';
-      gameBoard.style.display = 'grid';
-      restartButton.classList.remove('hidden');
-      startGame();
-    });
-
-    restartButton.addEventListener('click', startGame);
+    let currentPlayer = "X";
+    let gameActive = false;
+    let boardState = Array(9).fill("");
 
     function startGame() {
-      oTurn = false;
-      winningMessageElement.classList.add('hidden');
-      cells.forEach(cell => {
-        cell.innerText = '';
-        cell.removeEventListener('click', handleClick);
-        cell.addEventListener('click', handleClick, { once: true });
-      });
+      document.getElementById("board").style.display = "grid";
+      document.querySelector(".start-btn").style.display = "none";
+      gameActive = true;
+      currentPlayer = "X";
+      boardState = Array(9).fill("");
+      document.querySelectorAll(".cell").forEach(cell => cell.textContent = "");
+      document.getElementById("winner").textContent = "";
     }
 
-    function handleClick(e) {
-      const cell = e.target;
-      const currentClass = oTurn ? O_CLASS : X_CLASS;
-      placeMark(cell, currentClass);
-      if (checkWin(currentClass)) {
-        endGame(false);
-      } else if (isDraw()) {
-        endGame(true);
-      } else {
-        oTurn = !oTurn;
+    function makeMove(cell, index) {
+      if (!gameActive || boardState[index] !== "") return;
+
+      boardState[index] = currentPlayer;
+      cell.textContent = currentPlayer;
+
+      if (checkWinner()) {
+        document.getElementById("winner").textContent = currentPlayer + " Wins!";
+        gameActive = false;
+        return;
       }
-    }
 
-    function endGame(draw) {
-      if (draw) {
-        winningMessageElement.innerText = 'Draw!';
-      } else {
-        winningMessageElement.innerText = `${oTurn ? "O's" : "X's"} Wins!`;
+      if (!boardState.includes("")) {
+        document.getElementById("winner").textContent = "It's a Draw!";
+        gameActive = false;
+        return;
       }
-      winningMessageElement.classList.remove('hidden');
+
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
     }
 
-    function isDraw() {
-      return [...cells].every(cell => cell.innerText === 'X' || cell.innerText === 'O');
-    }
-
-    function placeMark(cell, currentClass) {
-      cell.innerText = currentClass;
-    }
-
-    function checkWin(currentClass) {
-      return WINNING_COMBINATIONS.some(combination => {
-        return combination.every(index => cells[index].innerText === currentClass);
-      });
+    function checkWinner() {
+      const winConditions = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+      ];
+      return winConditions.some(condition =>
+        condition.every(i => boardState[i] === currentPlayer)
+      );
     }
   </script>
 </body>
