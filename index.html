@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +38,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      z-index: 1000;
     }
     .circle {
       width: 60px;
@@ -97,19 +97,22 @@
       justify-content: center;
       gap: 30px;
       flex-wrap: wrap;
+      max-width: 1000px;
     }
     .card {
       background: #1f2833;
       padding: 30px;
       border-radius: 20px;
-      width: 220px;
+      width: 260px;
       text-align: center;
       box-shadow: 0 0 15px rgba(0,255,255,0.5);
-      transition: 0.3s;
+      transition: 0.6s;
+      opacity: 0;
+      transform: translateY(50px);
     }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px cyan;
+    .card h3 {
+      margin: 0 0 10px;
+      color: #45a29e;
     }
     .card button {
       margin-top: 15px;
@@ -125,6 +128,21 @@
     }
     .card button:hover {
       transform: scale(1.1);
+    }
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      text-align: center;
+      background: #0b0c10;
+      color: #66fcf1;
+      font-size: 1.2em;
+      text-shadow: 0 0 8px cyan;
     }
   </style>
 </head>
@@ -150,7 +168,7 @@
     <p>"Unleash Your Gaming World"</p>
   </header>
 
-  <!-- Cards -->
+  <!-- First Cards -->
   <div class="cards">
     <div class="card">
       <h3>Explore</h3>
@@ -164,11 +182,43 @@
     </div>
   </div>
 
+  <!-- Second Cards (New) -->
+  <div class="cards">
+    <div class="card">
+      <h3>🔥 Hardcore Gaming</h3>
+      <p>"Push your limits and rule the arena."</p>
+    </div>
+    <div class="card">
+      <h3>⚡ Fast & Furious</h3>
+      <p>"Speed, thrill and the ultimate rush."</p>
+    </div>
+    <div class="card">
+      <h3>🎯 Smart Moves</h3>
+      <p>"Strategy wins battles more than strength."</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 RKTechGame | All Rights Reserved
+  </footer>
+
   <script>
     function toggleMenu(){
       const menu = document.getElementById("menu");
       menu.style.display = menu.style.display==="flex" ? "none" : "flex";
     }
+
+    // Scroll animation for cards
+    const cards = document.querySelectorAll(".card");
+    window.addEventListener("scroll", () => {
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+          card.classList.add("show");
+        }
+      });
+    });
   </script>
 </body>
 </html>
