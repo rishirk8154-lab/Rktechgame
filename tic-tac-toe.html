@@ -1,95 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
+  <meta charset="UTF-8" />
+  <title>RKTechGame - Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      background: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
+    :root {
+      --prim: #66fcf1;
+      --bg: #0b0c10;
+      --panel: #1f2833;
+      --accent: #45a29e;
     }
-    h1 {
-      color: #ff3333;
-      text-shadow: 0 0 10px red;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 1200px at 50% -200px, #12232e 0%, #0b0c10 35%);
+      color: #fff;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* Background canvases */
+    #snow, #fireworks {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      display: block;
+    }
+    #fireworks { display: none; }
+
+    /* Start Screen */
+    #startScreen {
+      text-align: center;
+      animation: fadeIn 600ms ease-out both;
+    }
+    #title {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      margin: 0 0 10px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px cyan, 0 0 20px #0072ff;
+    }
+    #tag {
+      color: var(--prim);
+      margin: 0 0 24px;
+      font-style: italic;
+    }
+    .btn {
+      padding: 12px 28px;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #fff;
+      background: linear-gradient(90deg,#00c6ff,#0072ff);
+      box-shadow: 0 0 16px rgba(0,255,255,.35);
+      font-size: 1rem;
+      transition: transform .15s ease;
+    }
+    .btn:hover { transform: scale(1.05); }
+
+    /* Game Panel */
+    #game {
+      display: none;
+      width: min(92vw, 560px);
+      background: rgba(31,40,51,.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(102,252,241,.15);
+      border-radius: 20px;
+      padding: 18px 18px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5), 0 0 24px rgba(0,255,255,.12) inset;
+      animation: pop .35s ease-out both;
+    }
+    #game h2 {
+      margin: 0 0 10px;
+      text-align: center;
+      color: var(--prim);
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    #status {
+      text-align: center;
+      margin: 6px 0 18px;
+      color: #e8f6f6;
+      font-weight: 600;
     }
     .board {
+      width: 100%;
+      aspect-ratio: 1/1;
       display: grid;
-      grid-template-columns: repeat(3, 120px);
-      grid-template-rows: repeat(3, 120px);
-      gap: 5px;
-      margin-top: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
     .cell {
-      width: 120px;
-      height: 120px;
+      display: grid;
+      place-items: center;
+      font-size: clamp(2rem, 10vw, 3rem);
+      font-weight: 800;
+      height: 100%;
+      border-radius: 14px;
+      user-select: none;
+      cursor: pointer;
+      color: #e3fafa;
+      background: linear-gradient(180deg, #233142, #1b2838);
+      border: 1px solid rgba(102,252,241,.18);
+      box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 10px rgba(0,255,255,.08) inset;
+      transition: transform .08s ease, box-shadow .2s ease, background .3s ease;
+    }
+    .cell:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.4), 0 0 14px rgba(0,255,255,.15) inset;
+    }
+    .cell.win {
+      background: radial-gradient(100% 100% at 50% 0%, #274472 0%, #16324f 60%);
+      box-shadow: 0 0 24px rgba(255, 215, 0, .45), 0 0 40px rgba(255, 132, 0, .25);
+      outline: 2px solid rgba(255,215,0,.65);
+    }
+    .actions {
       display: flex;
+      gap: 10px;
       justify-content: center;
-      align-items: center;
-      font-size: 3rem;
-      cursor: pointer;
-      background: #222;
-      border: 3px solid red;
-      color: #00ff99;
+      margin-top: 16px;
+      flex-wrap: wrap;
     }
-    .cell.taken {
-      pointer-events: none;
+    .ghost {
+      background: transparent;
+      border: 1px solid rgba(102,252,241,.5);
+      color: var(--prim);
+      box-shadow: none;
     }
-    #restart {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      background: red;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    #restart:hover {
-      background: #ff6666;
-    }
+
+    @keyframes fadeIn { from {opacity:0; transform: translateY(6px)} to {opacity:1; transform:none} }
+    @keyframes pop { from {transform: scale(.98); opacity:.5} to {transform: scale(1); opacity:1} }
   </style>
 </head>
 <body>
-  <h1>Tic Tac Toe</h1>
-  <div class="board" id="board"></div>
-  <button id="restart">Restart Game</button>
+  <!-- Background Effects -->
+  <canvas id="snow"></canvas>
+  <canvas id="fireworks"></canvas>
+
+  <!-- Start Screen -->
+  <section id="startScreen">
+    <h1 id="title">RKTechGame</h1>
+    <p id="tag">"Unleash Your Gaming World"</p>
+    <button id="startBtn" class="btn">Start Game</button>
+  </section>
+
+  <!-- Game Panel -->
+  <section id="game" aria-live="polite">
+    <h2>Tic Tac Toe</h2>
+    <div id="status">Player X's Turn</div>
+    <div id="board" class="board" role="grid" aria-label="Tic Tac Toe Board"></div>
+    <div class="actions">
+      <button id="resetBtn" class="btn ghost">↻ Reset</button>
+      <button id="homeBtn" class="btn ghost">⌂ Home</button>
+    </div>
+  </section>
+
+  <!-- Sounds -->
+  <audio id="winSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c8ac7f6c2.mp3?filename=success-1-6297.mp3" preload="auto"></audio>
 
   <script>
-    const board = document.getElementById("board");
-    const restartBtn = document.getElementById("restart");
-    let currentPlayer = "X";
-
-    function createBoard() {
-      board.innerHTML = "";
-      for (let i = 0; i < 9; i++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
-        cell.addEventListener("click", () => handleClick(cell));
-        board.appendChild(cell);
-      }
+    /* ========== Snowflakes (slow) ========== */
+    const snowCanvas = document.getElementById('snow');
+    const sctx = snowCanvas.getContext('2d');
+    let snowflakes = [];
+    function resizeSnow() {
+      snowCanvas.width = window.innerWidth;
+      snowCanvas.height = window.innerHeight;
     }
+    window.addEventListener('resize', resizeSnow);
+    resizeSnow();
 
-    function handleClick(cell) {
-      if (!cell.textContent) {
-        cell.textContent = currentPlayer;
-        cell.classList.add("taken");
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
-      }
+    function makeFlake() {
+      const size = Math.random() * 2 + 1; // small & slow
+      const speed = Math.random() * 0.6 + 0.25; // very slow fall
+      const drift = (Math.random() - 0.5) * 0.4;
+      snowflakes.push({
+        x: Math.random() * snowCanvas.width,
+        y: -10,
+        size, speed, drift
+      });
     }
+    function drawSnow() {
+      sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+      sctx.fillStyle = 'rgba(255,255,255,0.9)';
+      sctx.beginPath();
+      for (const f of snowflakes) {
+        sctx.moveTo(f.x, f.y);
+        sctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+        f.y += f.speed;
+        f.x += f.drift;
+        if (f.y > snowCanvas.height + 8) {
+          f.y = -10;
+          f.x = Math.random() * snowCanvas.width;
+        }
+      }
+      sctx.fill();
+      requestAnimationFrame(drawSnow);
+    }
+    // keep flakes spawning slowly
+    setInterval(makeFlake, 120);
+    requestAnimationFrame(drawSnow);
 
-    restartBtn.addEventListener("click", () => {
-      currentPlayer = "X";
-      createBoard();
+    /* ========== Game Logic ========== */
+    const startScreen = document.getElementById('startScreen');
+    const startBtn = document.getElementById('startBtn');
+    const gamePanel = document.getElementById('game');
+    const boardDiv = document.getElementById('board');
+    const statusDiv = document.getElementById('status');
+    const resetBtn = document.getElementById('resetBtn');
+    const homeBtn = document.getElementById('homeBtn');
+    const winSound = document.getElementById('winSound');
+
+    let board = Array(9).fill('');
+    let currentPlayer = 'X';
+    let gameOver = false;
+
+    startBtn.addEventListener('click', () => {
+      startScreen.style.display = 'none';
+      gamePanel.style.display = 'block';
+      initBoard();
     });
 
-    createBoard();
+    function initBoard() {
+      boardDiv.innerHTML = '';
+      board = Array(9).fill('');
+      currentPlayer = 'X';
+      gameOver = false;
+      statusDiv.textContent = "Player X's Turn";
+
+      for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('button');
+        cell.className = 'cell';
+        cell.setAttribute('role', 'gridcell');
+        cell.setAttribute('aria-label', `Cell ${i+1}`);
+        cell.addEventListener('click', () => handleMove(i, cell));
+        boardDiv.appendChild(cell);
+      }
+    }
+
+    function handleMove(i, cellEl) {
+      if (board[i] !== '' || gameOver) return;
+      board[i] = currentPlayer;
+      cellEl.textContent = currentPlayer;
+
+      const winInfo = getWinInfo(board);
+      if (winInfo) {
+        gameOver = true;
+        statusDiv.textContent = `Player ${currentPlayer} Wins! 🎉`;
+        highlightWin(winInfo);
+        winSound.currentTime = 0;
+        winSound.play();          // 🔊 play on win
+        startFireworks();         // 🎆 Diwali fireworks
+        return;
+      }
+
+      if (board.every(c => c !== '')) {
+        statusDiv.textContent = "It's a Draw!";
+        gameOver = true;
+        startFireworks(1); // small celebration even on draw
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      statusDiv.textContent = `Player ${currentPlayer}'s Turn`;
+    }
+
+    function getWinInfo(b) {
+      const lines = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+      for (const [a,b1,c] of lines) {
+        if (board[a] && board[a] === board[b1] && board[a] === board[c]) {
+          return [a,b1,c];
+        }
+      }
+      return null;
+    }
+
+    function highlightWin(indexes) {
+      const cells = [...boardDiv.children];
+      indexes.forEach(i => cells[i].classList.add('win'));
+    }
+
+    resetBtn.addEventListener('click', initBoard);
+    homeBtn.addEventListener('click', () => {
+      gamePanel.style.display = 'none';
+      startScreen.style.display = 'block';
+    });
+
+    /* ========== Diwali Fireworks ========== */
+    const fwCanvas = document.getElementById('fireworks');
+    const fctx = fwCanvas.getContext('2d');
+    function resizeFW() { fwCanvas.width = innerWidth; fwCanvas.height = innerHeight; }
+    window.addEventListener('resize', resizeFW);
+    resizeFW();
+
+    let shells = [];
+    let sparks = [];
+    let fwAnimating = false;
+    function startFireworks(bursts = 3) {
+      fwCanvas.style.display = 'block';
+      fwAnimating = true;
+      // create multiple burst shells from random bottom positions
+      for (let i = 0; i < bursts; i++) {
+        scheduleBurst(i * 900 + 200); // staggered launches
+      }
+      // always add a couple extra for Diwali vibe
+      for (let i = 0; i < 4; i++) {
+        scheduleBurst(400 + i * 500);
+      }
+      animateFW();
+      // stop after 6s
+      setTimeout(() => {
+        fwAnimating = false;
+        fwCanvas.style.display = 'none';
+        shells = []; sparks = [];
+      }, 6000);
+    }
+
+    function scheduleBurst(delay) {
+      setTimeout(() => {
+        const x = Math.random() * fwCanvas.width * 0.8 + fwCanvas.width * 0.1;
+        const y = fwCanvas.height + 10;
+        const vy = -(Math.random() * 6 + 8);
+        shells.push({ x, y, vx: (Math.random()-0.5)*1.2, vy, fuse: Math.random()*300 + 400 });
+      }, delay);
+    }
+
+    function animateFW() {
+      if (!fwAnimating) return;
+      fctx.fillStyle = 'rgba(0,0,0,0.25)'; // motion trail
+      fctx.fillRect(0,0,fwCanvas.width,fwCanvas.height);
+
+      // update shells
+      const gravity = 0.12;
+      shells.forEach((s, idx) => {
+        s.x += s.vx; s.y += s.vy; s.vy += gravity; s.fuse -= 16;
+        // draw shell
+        fctx.beginPath();
+        fctx.arc(s.x, s.y, 2, 0, Math.PI*2);
+        fctx.fillStyle = '#fff';
+        fctx.fill();
+        if (s.vy > 0 || s.fuse <= 0) { // explode at apex or fuse end
+          explode(s.x, s.y);
+          shells.splice(idx, 1);
+        }
+      });
+
+      // update sparks
+      sparks.forEach((p, idx) => {
+        p.vy += gravity * 0.25;
+        p.x += p.vx; p.y += p.vy;
+        p.life -= 1;
+        // draw spark
+        fctx.beginPath();
+        fctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        fctx.fillStyle = `rgba(${p.color},${Math.max(p.life/ p.maxLife,0)})`;
+        fctx.fill();
+        if (p.life <= 0) sparks.splice(idx,1);
+      });
+
+      requestAnimationFrame(animateFW);
+    }
+
+    function explode(x, y) {
+      const palettes = [
+        '255,215,0',   // gold
+        '255,69,0',    // orange-red
+        '64,224,208',  // turquoise
+        '186,85,211',  // medium orchid
+        '135,206,250'  // light sky blue
+      ];
+      const color = palettes[Math.floor(Math.random()*palettes.length)];
+      const count = 90 + Math.floor(Math.random()*60);
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random()*Math.PI*2;
+        const speed = Math.random()*4 + 1.5;
+        sparks.push({
+          x, y,
+          vx: Math.cos(angle)*speed,
+          vy: Math.sin(angle)*speed,
+          size: Math.random()*2.2 + 1,
+          color,
+          life: 70 + Math.floor(Math.random()*30),
+          maxLife: 100
+        });
+      }
+      // add a small secondary glitter
+      setTimeout(() => {
+        const mini = 30;
+        for (let i=0;i<mini;i++){
+          const a = Math.random()*Math.PI*2;
+          const sp = Math.random()*2 + 0.8;
+          sparks.push({
+            x, y,
+            vx: Math.cos(a)*sp,
+            vy: Math.sin(a)*sp,
+            size: 1,
+            color: color,
+            life: 40,
+            maxLife: 40
+          });
+        }
+      }, 120);
+    }
   </script>
 </body>
 </html>
