@@ -62,7 +62,7 @@
     .sidebar {
       position: fixed;
       top: 0;
-      right: -260px;
+      right: -270px;
       width: 250px;
       height: 100%;
       background: #111;
@@ -89,14 +89,15 @@
     .hero {
       text-align: center;
       padding: 100px 20px;
-      background: url('https://wallpapercave.com/wp/wp7421713.jpg') no-repeat center/cover;
+      background: url('https://wallpapercave.com/wp/wp9637821.jpg') no-repeat center/cover;
       color: white;
       animation: fadeIn 1.5s ease-in;
     }
     .hero h1 {
-      font-size: 50px;
+      font-size: 48px;
       margin-bottom: 15px;
       animation: slideDown 1.2s ease;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
     }
     .hero p {
       font-size: 20px;
@@ -165,6 +166,85 @@
       font-size: 20px;
     }
 
+    /* Anime Wallpapers Section */
+    .anime {
+      padding: 60px 20px;
+      text-align: center;
+      background: #1a1a1a;
+    }
+    .anime h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .anime h2::after {
+      content: '';
+      width: 80px;
+      height: 3px;
+      background: #ff4757;
+      display: block;
+      margin: 10px auto 0;
+      border-radius: 2px;
+      animation: glowline 2s infinite alternate;
+    }
+    .anime-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .anime-gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+    }
+    .anime-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255,71,87,0.7);
+    }
+
+    /* Modal Fullscreen */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 2000;
+      animation: fadeIn 0.5s;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,71,87,0.8);
+      margin-bottom: 15px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+    .download-btn {
+      background: #ff4757;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background: #ff2e44;
+    }
+
     /* Footer */
     footer {
       background: #111;
@@ -201,7 +281,7 @@
     <a href="#">Blogs</a>
     <a href="#">Contact Us</a>
     <a href="#">Wallpapers</a>
-    <a href="#">Anime Wallpapers</a>
+    <a href="#anime">Anime Wallpapers</a>
   </div>
 
   <!-- Hero Section -->
@@ -229,6 +309,26 @@
     </div>
   </section>
 
+  <!-- Anime Wallpapers Section -->
+  <section class="anime" id="anime">
+    <h2>Anime Wallpapers</h2>
+    <div class="anime-gallery">
+      <img src="https://wallpapercave.com/wp/wp9261440.jpg" alt="Anime 1" onclick="openModal(this)">
+      <img src="https://wallpapercave.com/wp/wp10254638.jpg" alt="Anime 2" onclick="openModal(this)">
+      <img src="https://wallpapercave.com/wp/wp7421739.jpg" alt="Anime 3" onclick="openModal(this)">
+      <img src="https://wallpapercave.com/wp/wp9637821.jpg" alt="Anime 4" onclick="openModal(this)">
+      <img src="https://wallpapercave.com/wp/wp9174156.jpg" alt="Anime 5" onclick="openModal(this)">
+      <img src="https://wallpapercave.com/wp/wp7421721.jpg" alt="Anime 6" onclick="openModal(this)">
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <span class="close-btn" onclick="closeModal()">❌</span>
+    <img id="modalImg" src="" alt="Wallpaper">
+    <a id="downloadLink" class="download-btn" href="#" download>Download</a>
+  </div>
+
   <!-- Footer -->
   <footer>
     <a class="social-icon" href="https://www.instagram.com/_satan_12.12?igsh=NTJkaDMxd2hrNjVq" target="_blank">
@@ -240,6 +340,20 @@
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    function openModal(imgElement) {
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modalImg");
+      const downloadLink = document.getElementById("downloadLink");
+
+      modal.style.display = "flex";
+      modalImg.src = imgElement.src;
+      downloadLink.href = imgElement.src; // download link set
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
     }
   </script>
 
