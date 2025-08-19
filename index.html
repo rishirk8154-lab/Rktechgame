@@ -11,6 +11,21 @@
       background: radial-gradient(circle at top, #000000, #0d0d0d, #1a1a1a);
       color: #00ff99;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: floatUp 12s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
     }
 
     /* Header */
@@ -26,37 +41,78 @@
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(6px);
       box-sizing: border-box;
-      z-index: 10;
+      z-index: 20;
     }
 
-    /* Profile picture */
-    .profile-pic {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 2px solid #00ff99;
-      box-shadow: 0 0 10px #00ff99;
-      object-fit: cover;
-    }
-
-    /* Navigation */
-    nav {
+    /* Hamburger */
+    .hamburger {
+      width: 30px;
+      height: 22px;
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      height: 4px;
+      background: #00ff99;
+      border-radius: 5px;
+      box-shadow: 0 0 8px #00ff99;
     }
 
-    nav a {
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      box-shadow: 3px 0 15px rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      transition: 0.3s;
+      z-index: 30;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+
+    /* Profile Circle with RK */
+    .profile-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #00ff99;
+      box-shadow: 0 0 10px #00ff99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00ff99;
+      background: #000;
+      text-shadow: 0 0 10px #00ff99;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .sidebar nav a {
       color: #00ff99;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      text-shadow: 0 0 5px #00ff99;
       transition: 0.3s;
     }
-
-    nav a:hover {
+    .sidebar nav a:hover {
       color: #fff;
-      text-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+      text-shadow: 0 0 15px #00ff99;
     }
 
     /* Hero Section */
@@ -68,6 +124,8 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -88,7 +146,6 @@
       box-shadow: 0 0 15px red;
       margin-bottom: 30px;
       display: inline-block;
-      min-height: 50px;
     }
 
     .cta-btn {
@@ -103,72 +160,10 @@
       box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
       transition: 0.3s;
     }
-
     .cta-btn:hover {
       background: #fff;
       color: #00cc77;
       box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
-    }
-
-    /* Features Section */
-    .features {
-      padding: 60px 20px;
-      background: #111;
-      text-align: center;
-    }
-
-    .features h2 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      text-shadow: 0 0 10px #00ff99;
-    }
-
-    .cards {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: #1a1a1a;
-      border: 2px solid #00ff99;
-      border-radius: 15px;
-      padding: 25px;
-      width: 250px;
-      box-shadow: 0 0 10px #00ff99;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
-    }
-
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    /* About Section */
-    .about {
-      padding: 60px 20px;
-      background: #0d0d0d;
-      text-align: center;
-    }
-
-    .about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00ff99;
-    }
-
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #ccc;
     }
 
     /* Footer */
@@ -179,8 +174,9 @@
       color: #00ff99;
       background: #000;
       border-top: 1px solid #00ff99;
+      position: relative;
+      z-index: 2;
     }
-
     footer a {
       color: #00ff99;
       text-decoration: none;
@@ -189,11 +185,9 @@
       align-items: center;
       gap: 6px;
     }
-
     footer a:hover {
       text-shadow: 0 0 10px #00ff99;
     }
-
     .insta-logo {
       width: 20px;
       height: 20px;
@@ -205,83 +199,75 @@
 
   <!-- Header -->
   <header>
-    <img src="your-photo.jpg" alt="Profile" class="profile-pic">
+    <h2>RKTechGame</h2>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="profile-circle">RK</div>
     <nav>
       <a href="#">Game</a>
       <a href="#">Blog</a>
       <a href="#">Quotes</a>
       <a href="#">Contact Us</a>
     </nav>
-  </header>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
     <h1>RKTechGame</h1>
-    <p class="tagline-box" id="tagline">Best website for online game</p>
+    <p class="tagline-box">Best website for online game 🎮 | Fast, Fun & Free 🚀 | Entertainment + Motivation 💡</p>
     <button class="cta-btn">🎮 Explore Games</button>
-  </section>
-
-  <!-- Features Section -->
-  <section class="features">
-    <h2>Why Choose Us?</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>⚡ Fast Games</h3>
-        <p>Play smooth and fast-loading online games without lag.</p>
-      </div>
-      <div class="card">
-        <h3>📰 Daily Updates</h3>
-        <p>Stay updated with new blogs and trending games every day.</p>
-      </div>
-      <div class="card">
-        <h3>🎉 Free to Play</h3>
-        <p>Enjoy exciting games completely free of cost, anytime.</p>
-      </div>
-      <div class="card">
-        <h3>💡 Motivational Quotes</h3>
-        <p>Read and share the best inspiring quotes daily.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="about">
-    <h2>About RKTechGame</h2>
-    <p>
-      RKTechGame is your ultimate hub for online entertainment – from fun browser games 
-      to insightful blogs and motivational quotes. Our mission is to make gaming simple, 
-      enjoyable, and accessible to everyone while keeping you inspired along the way.
-    </p>
   </section>
 
   <!-- Footer -->
   <footer>
     © 2025 RKTechGame | 
-    <a href="https://www.instagram.com/_satan_12.12?igsh=NTJkaDMxd2hrNjVq" target="_blank">
+    <a href="https://www.instagram.com/_satan_12.12" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
            alt="Instagram" class="insta-logo">
       Instagram
     </a>
   </footer>
 
-  <!-- JavaScript for rotating tagline -->
+  <!-- JavaScript -->
   <script>
-    const taglines = [
-      "Best website for online game",
-      "Play Games 🎮 | Read Blogs ✍️ | Get Inspired 💡",
-      "Your Ultimate Gaming Hub 🚀 With Blogs & Quotes",
-      "Fun • Knowledge • Inspiration – All in One!",
-      "Explore Games, Discover Ideas, Stay Motivated"
-    ];
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
 
-    let index = 0;
-    const taglineElement = document.getElementById("tagline");
+    // Balloons create
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
 
-    setInterval(() => {
-      index = (index + 1) % taglines.length;
-      taglineElement.textContent = taglines[index];
-    }, 2500); // har 2.5 sec me tagline change hogi
+      // Random size and position
+      const size = Math.random() * 40 + 20; 
+      balloon.style.width = size + "px";
+      balloon.style.height = size + "px";
+      balloon.style.left = Math.random() * 100 + "vw";
+
+      // Random color
+      const colors = ["#ff4d4d", "#ffcc00", "#00ff99", "#3399ff", "#ff66cc"];
+      balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      // Animation duration
+      balloon.style.animationDuration = (Math.random() * 6 + 6) + "s";
+
+      document.body.appendChild(balloon);
+
+      // Remove after animation
+      setTimeout(() => {
+        balloon.remove();
+      }, 12000);
+    }
+
+    setInterval(createBalloon, 600);
   </script>
-
 </body>
 </html>
