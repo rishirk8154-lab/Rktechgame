@@ -11,251 +11,107 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
   body, html {
-    margin: 0; 
-    padding: 0;
-    height: 100%;
+    margin: 0; padding: 0; height: 100%;
     font-family: 'Orbitron', sans-serif;
     background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-    background-size: cover;
-    color: #eee;
-    display: flex;
-    flex-direction: column;
+    background-size: cover; color: #eee;
+    display: flex; flex-direction: column;
   }
   body::before {
-    content: '';
-    position: fixed; 
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(10, 10, 25, 0.85);
-    z-index: -1;
+    content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(10, 10, 25, 0.85); z-index: -1;
   }
   .top-bar {
-    position: fixed;
-    width: 100%;
-    top: 0; left: 0;
-    display: flex;
-    align-items: center;
-    padding: 12px 25px;
-    background: rgba(0,0,0,0.5);
-    z-index: 150;
+    position: fixed; width: 100%; top: 0; left: 0;
+    display: flex; align-items: center; padding: 12px 25px;
+    background: rgba(0,0,0,0.5); z-index: 150;
   }
   .logo-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    box-shadow: 0 0 25px #00e5ffaa;
-    object-fit: cover;
-    user-select: none;
+    width: 60px; height: 60px; border-radius: 50%;
+    box-shadow: 0 0 25px #00e5ffaa; object-fit: cover;
   }
   .logo-text {
-    font-size: 2rem;
-    color: #00e5ff;
-    margin-left: 16px;
-    text-shadow: 0 0 10px #00e5ff99;
-    user-select: none;
-    white-space: nowrap;
+    font-size: 2rem; color: #00e5ff; margin-left: 16px;
+    text-shadow: 0 0 10px #00e5ff99; white-space: nowrap;
   }
-  .menu {
-    margin-left: auto;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 35px;
-  }
-  .menu div {
-    height: 4px;
-    background: white;
-    border-radius: 3px;
-    box-shadow: 0 0 8px #0ff;
-    transition: background-color 0.3s;
-  }
-  .menu:hover div {
-    background-color: #00e5ff;
-  }
+  .menu { margin-left: auto; cursor: pointer; display: flex; flex-direction: column; gap: 5px; width: 35px; }
+  .menu div { height: 4px; background: white; border-radius: 3px; box-shadow: 0 0 8px #0ff; }
   .menu-options {
-    display: none;
-    position: fixed;
-    top: 85px;
-    right: 25px;
-    background: rgba(0,0,0,0.9);
-    border-radius: 12px;
-    padding: 15px 20px;
-    box-shadow: 0 0 20px #00e5ffcc;
-    width: 200px;
-    z-index: 160;
-    max-height: 320px;
-    overflow-y: auto;
+    display: none; position: fixed; top: 85px; right: 25px;
+    background: rgba(0,0,0,0.9); border-radius: 12px; padding: 15px 20px;
+    box-shadow: 0 0 20px #00e5ffcc; width: 200px; z-index: 160;
   }
   .menu-options a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #00e5ff;
-    padding: 10px 10px;
-    font-weight: 600;
-    font-size: 1.05rem;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
+    display: flex; align-items: center; gap: 12px;
+    color: #00e5ff; padding: 10px 10px; font-weight: 600;
+    font-size: 1.05rem; text-decoration: none; border-radius: 8px;
   }
-  .menu-options a:hover {
-    background-color: #002a3a;
-    color: #80dfff;
-    box-shadow: inset 6em 0 0 0 #80dfffaa;
-  }
+  .menu-options a:hover { background-color: #002a3a; color: #80dfff; }
+
   main {
-    flex-grow: 1;
-    padding: 130px 20px 140px;
-    max-width: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    flex-grow: 1; padding: 130px 20px 140px;
+    max-width: 700px; margin: 0 auto; display: flex;
+    flex-direction: column; gap: 40px;
   }
   main header p#gamingText {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin: 0 0 10px;
-    color: black;
-    text-shadow: 0 0 8px #00e6ff44, 0 0 12px #00aabf22;
-    user-select: none;
+    font-size: 1.3rem; font-weight: 700; margin: 0 0 10px;
+    color: black; text-shadow: 0 0 8px #00e6ff44;
   }
-  .cards {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  .card {
-    background: rgba(15, 20, 35, 0.7);
-    padding: 26px 22px;
-    border-radius: 18px;
-    box-shadow: 0 0 22px #00bcff88;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    user-select: none;
-  }
-  .card.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .card p {
-    font-weight: 500;
-    color: #ddd;
-    margin: 5px 0 0;
-  }
+
   .btn {
-    align-self: center;
-    padding: 14px 32px;
-    border-radius: 14px;
-    border: none;
-    background: linear-gradient(45deg, #00b3ff, #007aff);
-    color: white;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-    user-select: none;
-    box-shadow: none !important;
+    align-self: center; padding: 14px 32px; border-radius: 14px; border: none;
+    background: linear-gradient(45deg, #00b3ff, #007aff); color: white;
+    font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 1.25rem;
+    cursor: pointer; display: flex; align-items: center; gap: 12px;
+    transition: all 0.3s ease; text-decoration: none;
   }
-  .btn:hover {
-    background: linear-gradient(45deg, #00d2ff, #0093ff);
-    transform: scale(1.1);
+  .btn:hover { background: linear-gradient(45deg, #00d2ff, #0093ff); transform: scale(1.1); }
+  .btn i, .btn img { font-size: 1.5rem; width: 26px; height: 26px; }
+
+  .quiz-button { background: linear-gradient(45deg, #ff6600, #ff3300); }
+  .quiz-button:hover { background: linear-gradient(45deg, #ff8533, #ff471a); }
+
+  /* StudyZone Styles */
+  .studyzone-btn { background: linear-gradient(45deg, #00c853, #009624); }
+  .studyzone-btn:hover { background: linear-gradient(45deg, #00e676, #00b248); }
+  .studyzone-options {
+    display: none; flex-direction: column; gap: 12px; align-items: center;
   }
-  .btn i, .btn img {
-    font-size: 1.5rem;
-    width: 26px;
-    height: 26px;
-  }
-  /* New styles for Quiz button and Social icons */
-  .quiz-button {
-    align-self: center;
-    padding: 14px 32px;
-    border-radius: 14px;
-    border: none;
-    background: linear-gradient(45deg, #ff6600, #ff3300);
-    color: white;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-  }
-  .quiz-button:hover {
-    background: linear-gradient(45deg, #ff8533, #ff471a);
-    transform: scale(1.1);
-  }
+  .studyzone-options.show { display: flex; }
+  .studyzone-options .btn { background: linear-gradient(45deg, #00695c, #004d40); }
+  .studyzone-options .btn:hover { background: linear-gradient(45deg, #00897b, #00695c); }
+
+  .cards { display: flex; flex-direction: column; gap: 40px; }
+  .card { background: rgba(15, 20, 35, 0.7); padding: 26px 22px;
+    border-radius: 18px; box-shadow: 0 0 22px #00bcff88; opacity: 0;
+    transform: translateY(40px); transition: 0.6s ease; }
+  .card.visible { opacity: 1; transform: translateY(0); }
+  .card p { font-weight: 500; color: #ddd; margin: 5px 0 0; }
+
   .fixed-social-icons {
-    position: fixed;
-    bottom: 60px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    z-index: 200;
-    opacity: 0;
-    pointer-events: none;
+    position: fixed; bottom: 60px; right: 20px;
+    display: flex; flex-direction: column; gap: 25px;
+    z-index: 200; opacity: 0; pointer-events: none;
     transition: opacity 0.5s ease;
   }
-  .fixed-social-icons.visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  .fixed-social-icons.visible { opacity: 1; pointer-events: auto; }
   .fixed-social-icons a {
-    background-color: rgba(0, 179, 255, 0.75);
-    padding: 12px;
-    border-radius: 50%;
-    color: white;
-    font-size: 30px;
-    text-align: center;
-    display: inline-block;
-    box-shadow: 0 0 12px #00b3ffcc;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
+    background-color: rgba(0, 179, 255, 0.75); padding: 12px; border-radius: 50%;
+    color: white; font-size: 30px; text-align: center;
+    box-shadow: 0 0 12px #00b3ffcc; text-decoration: none;
   }
-  .fixed-social-icons a:hover {
-    background-color: #00e5ff;
-  }
-  .privacy-link {
-    align-self: center;
-    margin-top: 10px;
-    font-size: 0.95rem;
-    color: #00b3ffcc;
-    text-decoration: underline;
-    cursor: pointer;
-    user-select: none;
-    font-weight: 600;
-  }
-  .privacy-link:hover {
-    color: #00e6ff;
-  }
+  .fixed-social-icons a:hover { background-color: #00e5ff; }
+
+  .privacy-link { align-self: center; margin-top: 10px;
+    font-size: 0.95rem; color: #00b3ffcc; text-decoration: underline; font-weight: 600; }
+  .privacy-link:hover { color: #00e6ff; }
+
   footer {
-    background: rgba(0,0,0,0.8);
-    text-align: center;
-    padding: 20px 10px;
-    font-weight: 600;
-    font-size: 1rem;
-    user-select: none;
-    color: #00b3ffcc;
-    box-shadow: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    z-index: 120;
-    opacity: 0;
+    background: rgba(0,0,0,0.8); text-align: center; padding: 20px 10px;
+    font-weight: 600; font-size: 1rem; color: #00b3ffcc;
+    position: fixed; bottom: 0; left: 0; right: 0; opacity: 0;
     transition: opacity 1s ease;
   }
 </style>
@@ -265,14 +121,15 @@
     const menu = document.getElementById('menuOptions');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
+  // Toggle StudyZone
+  function toggleStudyzone(){
+    document.getElementById('studyzoneOptions').classList.toggle('show');
+  }
   document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
       });
     }, {threshold: 0.2});
     cards.forEach(card => observer.observe(card));
@@ -281,26 +138,10 @@
     const footer = document.getElementById('pageFooter');
     const scrollPosition = window.scrollY + window.innerHeight;
     const pageHeight = document.documentElement.scrollHeight;
-    if (scrollPosition > pageHeight - 120) {
-      footer.style.opacity = '1';
-    } else {
-      footer.style.opacity = '0';
-    }
-    // Show social icons when near bottom
+    footer.style.opacity = scrollPosition > pageHeight - 120 ? '1' : '0';
     const socialIcons = document.querySelector('.fixed-social-icons');
-    if (scrollPosition > pageHeight - 400) {
-      socialIcons.classList.add('visible');
-    } else {
-      socialIcons.classList.remove('visible');
-    }
+    socialIcons.classList.toggle('visible', scrollPosition > pageHeight - 400);
   });
-  window.onclick = function(e) {
-    const menu = document.getElementById('menuOptions');
-    const menuBtn = document.querySelector('.menu');
-    if(menu.style.display === 'block' && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
-      menu.style.display = 'none';
-    }
-  }
 </script>
 
 </head>
@@ -309,11 +150,7 @@
   <div class="top-bar">
     <img class="logo-img" src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/aa017e2f-bf5f-4bce-98ec-bfbaed8809f1.png" alt="RKTechGame Logo" />
     <div class="logo-text">RKTechGame</div>
-    <div class="menu" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <div class="menu" onclick="toggleMenu()"><div></div><div></div><div></div></div>
     <div class="menu-options" id="menuOptions">
       <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
       <a href="wallpapers.html" target="_blank"><i class="fas fa-image"></i> Wallpaper</a>
@@ -323,9 +160,7 @@
   </div>
 
   <main>
-    <header>
-      <p id="gamingText">🎮 Level Up Your Gaming Experience 🚀</p>
-    </header>
+    <header><p id="gamingText">🎮 Level Up Your Gaming Experience 🚀</p></header>
 
     <button class="btn" onclick="window.location.href='tic-tac-toe.html'">
       <i class="fas fa-gamepad"></i> Play Tic Tac Toe
@@ -335,23 +170,24 @@
       <img src="https://cdn-icons-png.flaticon.com/512/2040/2040919.png" alt="RPS Icon" /> Play Rock Paper Scissors
     </button>
 
-    <button class="quiz-button" onclick="window.location.href='quiz-game.html'">
+    <button class="quiz-button btn" onclick="window.location.href='quiz-game.html'">
       <i class="fas fa-gamepad"></i> Play Quiz Game
     </button>
 
+    <!-- ✅ New StudyZone Button -->
+    <button class="btn studyzone-btn" onclick="toggleStudyzone()">
+      <i class="fas fa-book"></i> StudyZone
+    </button>
+    <div class="studyzone-options" id="studyzoneOptions">
+      <a class="btn" href="question-paper.html"><i class="fas fa-file-alt"></i> Question Paper</a>
+      <a class="btn" href="mcq-practice.html"><i class="fas fa-check-square"></i> MCQ Practice</a>
+      <a class="btn" href="class-wise-notes.html"><i class="fas fa-book-reader"></i> Class Wise Notes</a>
+    </div>
+
     <div class="cards">
-      <div class="card">
-        <h3><i class="fas fa-bolt"></i> Fast & Fun</h3>
-        <p>Play exciting browser games instantly without downloads.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-fire"></i> Trending Games</h3>
-        <p>Stay ahead with the latest and most popular titles.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-star"></i> Exclusive Content</h3>
-        <p>Unlock hidden levels, wallpapers, and gaming secrets.</p>
-      </div>
+      <div class="card"><h3><i class="fas fa-bolt"></i> Fast & Fun</h3><p>Play exciting browser games instantly without downloads.</p></div>
+      <div class="card"><h3><i class="fas fa-fire"></i> Trending Games</h3><p>Stay ahead with the latest and most popular titles.</p></div>
+      <div class="card"><h3><i class="fas fa-star"></i> Exclusive Content</h3><p>Unlock hidden levels, wallpapers, and gaming secrets.</p></div>
     </div>
 
     <button class="btn" onclick="window.open('https://t.me/rktechgame', '_blank')">
@@ -365,9 +201,7 @@
     <a href="https://instagram.com/rktechgame" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
   </div>
 
-  <footer id="pageFooter">
-    © 2025 RKTechGame | All Rights Reserved
-  </footer>
+  <footer id="pageFooter">© 2025 RKTechGame | All Rights Reserved</footer>
 
 </body>
-  </html>
+</html>
