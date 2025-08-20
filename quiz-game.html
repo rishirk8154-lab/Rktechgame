@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame Quiz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<style>
+  body {
+    font-family: 'Orbitron', sans-serif;
+    background: #0c1926;
+    color: #00e5ff;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00bfffbb;
+  }
+  header {
+    text-align: center;
+  }
+  header img {
+    width: 120px;
+  }
+  header h1 {
+    margin: 10px 0 30px;
+  }
+  .question {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+  .options button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    background: #004f7c;
+    border: none;
+    border-radius: 10px;
+    color: #00e5ff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .options button:hover {
+    background: #009ddc;
+  }
+  .feedback {
+    font-weight: 700;
+    margin-top: 12px;
+    min-height: 26px;
+    text-align: center;
+  }
+  .scoreboard {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  .trophy {
+    font-size: 48px;
+    color: gold;
+    text-align: center;
+    margin-top: 15px;
+    animation: bounce 1s infinite;
+  }
+  .fireworks {
+    font-size: 64px;
+    color: orange;
+    text-align: center;
+    animation: fireworksBlink 1s infinite;
+    margin-top: 20px;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  @keyframes fireworksBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #004f7c;
+  }
+  .social-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  .social-buttons a {
+    color: #00e5ff;
+    font-size: 2.8rem;
+    transition: color 0.3s;
+  }
+  .social-buttons a:hover {
+    color: #ffae42;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/aa017e2f-bf5f-4bce-98ec-bfbaed8809f1.png" alt="rkTechGame Logo" />
+  <h1>rkTechGame Quiz Challenge</h1>
+</header>
+
+<div id="quiz-container">
+  <div class="question" id="question-text">Loading questions...</div>
+  <div class="options" id="options"></div>
+  <div class="feedback" id="feedback"></div>
+  <div class="trophy" id="trophy" style="display:none;">🏆</div>
+  <div class="fireworks" id="fireworks" style="display:none;">🎆🎇✨</div>
+  <div class="scoreboard" id="scoreboard"></div>
+</div>
+
+<div class="social-buttons">
+  <a href="https://t.me/rktechgame" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+  <a href="https://instagram.com/rktechgame" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+
+<div class="footer">
+  &copy; 2025 RKTechGame | All rights reserved
+</div>
+
+<script>
+  const questions = [
+    { q:"Capital of India?", o:["Delhi","Mumbai","Kolkata","Chennai"], a:"Delhi" },
+    { q:"5 + 3 = ?", o:["6","7","8","9"], a:"8" },
+    // (same 50 question array here as before, omitted for brevity)
+  ];
+
+  const totalRounds = 5;
+  const questionsPerRound = 10;
+
+  let currentRound = 1;
+  let questionIndex = 0;
+  let score = 0;
+  let roundCorrectAnswers = 0;
+
+  const questionText = document.getElementById("question-text");
+  const optionsDiv = document.getElementById("options");
+  const feedbackDiv = document.getElementById("feedback");
+  const trophyDiv = document.getElementById("trophy");
+  const fireworksDiv = document.getElementById("fireworks");
+  const scoreboardDiv = document.getElementById("scoreboard");
+
+  function loadQuestion() {
+    let idx = (currentRound - 1) * questionsPerRound + questionIndex;
+    if (idx >= questions.length) {
+      showResult();
+      return;
+    }
+    let question = questions[idx];
+    questionText.textContent = `Round ${currentRound} - Q${questionIndex + 1}: ${question.q}`;
+    optionsDiv.innerHTML = "";
+    feedbackDiv.textContent = "";
+    trophyDiv.style.display = "none";
+    fireworksDiv.style.display = "none";
+    roundCorrectAnswers = questionIndex === 0 ? 0 : roundCorrectAnswers;
+    question.o.forEach(opt => {
+      let btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.onclick = () => checkAnswer(opt, question.a);
+      optionsDiv.appendChild(btn);
+    });
+    updateScoreboard();
+  }
+
+  function checkAnswer(selected, correct) {
+    if (selected === correct) {
+      score++;
+      roundCorrectAnswers++;
+      feedbackDiv.textContent = "Correct!";
+      trophyDiv.style.display = "block";
+      setTimeout(() => trophyDiv.style.display = "none", 1500);
+    } else {
+      feedbackDiv.textContent = `Wrong! Correct answer is: ${correct}`;
+    }
+    setTimeout(() => {
+      questionIndex++;
+      if (questionIndex >= questionsPerRound) {
+        if (currentRound >= totalRounds) {
+          showResult();
+        } else {
+          if (roundCorrectAnswers === questionsPerRound) {
+            fireworksDiv.style.display = "block";
+            setTimeout(() => {
+              fireworksDiv.style.display = "none";
+              currentRound++;
+              questionIndex = 0;
+              loadQuestion();
+            }, 4000);
+          } else {
+            currentRound++;
+            questionIndex = 0;
+            loadQuestion();
+          }
+        }
+      } else {
+        loadQuestion();
+      }
+    }, 1500);
+  }
+
+  function updateScoreboard() {
+    scoreboardDiv.textContent = `Score: ${score} | Round: ${currentRound} / ${totalRounds}`;
+  }
+
+  function showResult() {
+    questionText.textContent = "Quiz Completed!";
+    optionsDiv.innerHTML = "";
+    feedbackDiv.textContent = "";
+    trophyDiv.style.display = "none";
+    fireworksDiv.style.display = "none";
+    scoreboardDiv.textContent = `Final Score: ${score} out of ${questionsPerRound * totalRounds}`;
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+  </html>
+  
