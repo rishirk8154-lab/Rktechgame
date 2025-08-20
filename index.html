@@ -38,6 +38,7 @@
   }
   .menu { margin-left: auto; cursor: pointer; display: flex; flex-direction: column; gap: 5px; width: 35px; }
   .menu div { height: 4px; background: white; border-radius: 3px; box-shadow: 0 0 8px #0ff; }
+  .menu:hover div { background-color: #00e5ff; }
   .menu-options {
     display: none; position: fixed; top: 85px; right: 25px;
     background: rgba(0,0,0,0.9); border-radius: 12px; padding: 15px 20px;
@@ -57,7 +58,7 @@
   }
   main header p#gamingText {
     font-size: 1.3rem; font-weight: 700; margin: 0 0 10px;
-    color: black; text-shadow: 0 0 8px #00e6ff44;
+    color: black; text-shadow: 0 0 8px #00e6ff44, 0 0 12px #00aabf22;
   }
 
   .btn {
@@ -160,7 +161,7 @@
   </div>
 
   <main>
-    <header><p id="gamingText">🎮Enjoy Both Worlds - Experience Gaming & Study Like Never Before! 🚀 </p></header>
+    <header><p id="gamingText">🎮 Enjoy Both Worlds - Experience Gaming & Study Like Never Before! 🚀</p></header>
 
     <button class="btn" onclick="window.location.href='tic-tac-toe.html'">
       <i class="fas fa-gamepad"></i> Play Tic Tac Toe
