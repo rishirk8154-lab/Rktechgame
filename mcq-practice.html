@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RKTechGame - 10th SSC MCQ Practice</title>
+<title>RKTechGame - MCQ Practice</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -20,59 +20,16 @@
     flex-direction: column;
   }
   header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 30px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 30px;
   }
   .logo-img {
     width: 60px; height: 60px; border-radius: 50%;
-    box-shadow: 0 0 20px #00e5ff99; object-fit: cover;
+    box-shadow: 0 0 20px #00e5ff99;
+    object-fit: cover;
   }
   h1 {
     color: #00e5ff;
     font-weight: 700;
-    margin-left: 10px;
-    flex-grow: 1;
-  }
-  .settings-btn {
-    background: #00b3ff;
-    border: none;
-    padding: 10px 14px;
-    border-radius: 50%;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #00aaff;
-  }
-  .settings-panel {
-    position: fixed;
-    top: 70px;
-    right: 30px;
-    background: rgba(0,0,0,0.9);
-    border-radius: 15px;
-    padding: 20px 30px;
-    box-shadow: 0 0 25px #00b3ffcc;
-    display: none;
-    z-index: 1000;
-  }
-  .settings-panel.show {
-    display: block;
-  }
-  .settings-panel label {
-    color: #00b3ff;
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  .settings-panel select {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-top: 10px;
-    padding: 6px 10px;
-    border-radius: 8px;
-    background: #002840;
-    border: none;
-    color: #00e5ff;
-    width: 100%;
   }
   .mcq-container {
     background: rgba(15, 20, 35, 0.9);
@@ -154,6 +111,7 @@
     margin-top: 50px;
     text-align: center;
     font-weight: 600;
+    font-size: 1rem;
     color: #00b3ffcc;
   }
   footer span {
@@ -164,21 +122,9 @@
 <body>
 
 <header>
-  <div style="display:flex; align-items:center;">
-    <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/aa017e2f-bf5f-4bce-98ec-bfbaed8809f1.png" alt="RKTechGame Logo" class="logo-img" />
-    <h1>RKTechGame - 10th SSC MCQ Practice</h1>
-  </div>
-  <button class="settings-btn" id="settingsBtn" title="Settings"><i class="fas fa-cog"></i></button>
+  <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/aa017e2f-bf5f-4bce-98ec-bfbaed8809f1.png" alt="RKTechGame Logo" class="logo-img" />
+  <h1>RKTechGame - MCQ Practice</h1>
 </header>
-
-<div class="settings-panel" id="settingsPanel">
-  <label for="languageSelect">Select Language</label>
-  <select id="languageSelect" aria-label="Select Language">
-    <option value="english" selected>English</option>
-    <option value="hindi">Hindi</option>
-    <option value="marathi">Marathi</option>
-  </select>
-</div>
 
 <div class="mcq-container">
   <div id="question" class="question"></div>
@@ -193,110 +139,59 @@
 </footer>
 
 <script>
-  // 20 sample MCQs repeated 10 times to make 200 in each language (For example)
-  const baseEnglishMCQs = [
-    { ques: "Who discovered gravity?", options: ["Newton", "Einstein", "Tesla", "Edison"], answer: 0 },
-    { ques: "Capital of Maharashtra?", options: ["Mumbai", "Pune", "Nagpur", "Aurangabad"], answer: 0 },
-    { ques: "Electrons have a charge of?", options: ["Positive", "Negative", "Neutral", "None"], answer: 1 },
-    { ques: "Which gas do plants absorb?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answer: 2 },
-    { ques: "Who wrote 'Wings of Fire'?", options: ["APJ Abdul Kalam", "Sachin Tendulkar", "Narendra Modi", "Sunil Gavaskar"], answer: 0 },
-    { ques: "Which planet is called the Red Planet?", options: ["Venus", "Jupiter", "Mars", "Saturn"], answer: 2 },
-    { ques: "Speed of light is approximately?", options: ["3x10^8 m/s", "5x10^8 m/s", "1x10^6 m/s", "1x10^9 m/s"], answer: 0 },
-    { ques: "Sound travels fastest in?", options: ["Air", "Water", "Steel", "Vacuum"], answer: 2 },
-    { ques: "H2O is chemical formula for?", options: ["Oxygen", "Hydrogen", "Water", "Helium"], answer: 2 },
-    { ques: "What is the full form of CPU?", options: ["Central Processing Unit", "Computer Power Unit", "Central Power Unit", "Computer Processing Unit"], answer: 0 },
-    { ques: "Sun rises from?", options: ["East", "West", "North", "South"], answer: 0 },
-    { ques: "Water freezes at?", options: ["0°C", "100°C", "-10°C", "50°C"], answer: 0 },
-    { ques: "Who is the Father of the Nation in India?", options: ["Mahatma Gandhi", "Nehru", "Patel", "Ambedkar"], answer: 0 },
-    { ques: "National animal of India?", options: ["Tiger", "Elephant", "Lion", "Peacock"], answer: 0 },
-    { ques: "Earth is the ___ planet from the Sun.", options: ["3rd", "2nd", "1st", "4th"], answer: 0 },
-    { ques: "The capital of India?", options: ["New Delhi", "Mumbai", "Kolkata", "Chennai"], answer: 0 },
-    { ques: "Which vitamin is from sunlight?", options: ["Vitamin D", "Vitamin C", "Vitamin A", "Vitamin B"], answer: 0 },
-    { ques: "Which ocean is the largest?", options: ["Pacific", "Atlantic", "Indian", "Arctic"], answer: 0 },
-    { ques: "Which continent is India in?", options: ["Asia", "Europe", "Africa", "Australia"], answer: 0 },
-    { ques: "Basic unit of life?", options: ["Cell", "Atom", "Molecule", "Organ"], answer: 0 }
-  ];
-  // Repeat 10 times for 200 questions total per language
-  function repeatMCQs(base, times) {
-    let arr = [];
-    for(let i=0; i<times; i++) {
-      arr = arr.concat(base.map(q => ({...q}))); // clone objects
-    }
-    return arr;
+  // MCQs per class stored in object
+  const mcqsData = {
+    "10": [
+      { ques: "Who discovered gravity?", options: ["Newton", "Einstein", "Tesla", "Edison"], answer: 0 },
+      { ques: "Capital of Maharashtra?", options: ["Mumbai", "Pune", "Nagpur", "Aurangabad"], answer: 0 },
+      { ques: "Electrons have a charge of?", options: ["Positive", "Negative", "Neutral", "None"], answer: 1 },
+      { ques: "Which gas do plants absorb?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answer: 2 },
+      { ques: "Who wrote 'Wings of Fire'?", options: ["APJ Abdul Kalam", "Sachin Tendulkar", "Narendra Modi", "Sunil Gavaskar"], answer: 0 },
+      { ques: "Which planet is called the Red Planet?", options: ["Venus", "Jupiter", "Mars", "Saturn"], answer: 2 },
+      { ques: "Speed of light is approximately?", options: ["3x10^8 m/s", "5x10^8 m/s", "1x10^6 m/s", "1x10^9 m/s"], answer: 0 },
+      { ques: "Sound travels fastest in?", options: ["Air", "Water", "Steel", "Vacuum"], answer: 2 },
+      { ques: "H2O is chemical formula for?", options: ["Oxygen", "Hydrogen", "Water", "Helium"], answer: 2 },
+      { ques: "What is the full form of CPU?", options: ["Central Processing Unit", "Computer Power Unit", "Central Power Unit", "Computer Processing Unit"], answer: 0 }
+    ],
+    "11": [
+      // Sample 11th class questions; add actual questions as needed
+    ],
+    "12": [
+      // Sample 12th class questions; add actual questions as needed
+    ]
+  };
+
+  // Get class from URL query param
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
   }
 
-  const mcqsData = {
-    english: repeatMCQs(baseEnglishMCQs, 10),
-    hindi: repeatMCQs([
-      { ques: "गुरुत्वाकर्षण का आविष्कार किसने किया?", options: ["न्यूटन", "आइंस्टीन", "टेस्ला", "एडिसन"], answer: 0 },
-      { ques: "महाराष्ट्र की राजधानी क्या है?", options: ["मुंबई", "पुणे", "नागपुर", "औरंगाबाद"], answer: 0 },
-      { ques: "इलेक्ट्रॉन का चार्ज क्या होता है?", options: ["धनात्मक", "ऋणात्मक", "तटस्थ", "कोई नहीं"], answer: 1 },
-      { ques: "पौधे कौन-सा गैस ग्रहण करते हैं?", options: ["ऑक्सीजन", "नाइट्रोजन", "कार्बन डायऑक्साइड", "हाइड्रोजन"], answer: 2 },
-      { ques: "कौन-सा ग्रह लाल ग्रह कहा जाता है?", options: ["शुक्र", "बृहस्पति", "मंगल", "शनि"], answer: 2 },
-      { ques: "प्रकाश की गति लगभग कितनी होती है?", options: ["3x10^8 मीटर/सेकंड", "5x10^8 मीटर/सेकंड", "1x10^6 मीटर/सेकंड", "1x10^9 मीटर/सेकंड"], answer: 0 },
-      { ques: "ध्वनि सबसे तेज किसमें यात्रा करती है?", options: ["हवा", "पानी", "इस्पात", "वैल्युम"], answer: 2 },
-      { ques: "CPU का पूरा नाम क्या है?", options: ["सेंट्रल प्रोसेसिंग यूनिट", "कंप्यूटर पावर यूनिट", "सेंट्रल पावर यूनिट", "कंप्यूटर प्रोसेसिंग यूनिट"], answer: 0 },
-      { ques: "सूरज पूर्व से निकलता है?", options: ["सही", "गलत", "मालूम नहीं", "कोई नहीं"], answer: 0 },
-      { ques: "जल बर्फ़ कब बनता है?", options: ["0 डिग्री सेल्सियस", "100 डिग्री सेल्सियस", "-10 डिग्री सेल्सियस", "50 डिग्री सेल्सियस"], answer: 0 },
-      //...add more unique Hindi MCQs here if needed
-    ], 20),
-    marathi: repeatMCQs([
-      { ques: "गुरुत्वाकर्षणाचे शोधक कोण?", options: ["न्यूटन", "आइन्स्टीन", "टेस्ला", "एडिसन"], answer: 0 },
-      { ques: "महाराष्ट्राची राजधानी काय आहे?", options: ["मुंबई", "पुणे", "नागपूर", "औरंगाबाद"], answer: 0 },
-      { ques: "इलेक्ट्रॉन्स चे चार्ज काय आहे?", options: ["धनात्मक", "ऋणात्मक", "तटस्थ", "काही नाही"], answer: 1 },
-      { ques: "झाडे कोणता गॅस शोषतात?", options: ["ऑक्सिजन", "नायट्रोजन", "कार्बन डायऑक्साईड", "हायड्रोजन"], answer: 2 },
-      { ques: "कोणता ग्रह लाल ग्रह म्हणून ओळखला जातो?", options: ["शुक्र", "बृहस्पति", "मंगल", "शनी"], answer: 2 },
-      { ques: "प्रकाशाची गती सुमारे किती आहे?", options: ["3x10^8 मीटर/सेकंद", "5x10^8 मीटर/सेकंद", "1x10^6 मीटर/सेकंद", "1x10^9 मीटर/सेकंद"], answer: 0 },
-      { ques: "ध्वनी सर्वात जलद कुठे प्रवास करते?", options: ["हवा", "पाणी", "स्टील", "वैक्यम"], answer: 2 },
-      { ques: "CPU चा पूर्ण अर्थ काय आहे?", options: ["सेंट्रल प्रोसेसिंग युनिट", "कॉम्प्युटर पॉवर युनिट", "सेंट्रल पॉवर युनिट", "कॉम्प्युटर प्रोसेसिंग युनिट"], answer: 0 },
-      //...add more Marathi MCQs here if needed
-    ], 20),
-  };
+  let selectedClass = getQueryParam("class") || "10";
+  let mcqs = mcqsData[selectedClass] || mcqsData["10"];
 
   let currentQues = 0;
   let score = 0;
-  let selectedLanguage = 'english';
-  let mcqs = [];
 
   const questionEl = document.getElementById('question');
   const optionsEl = document.getElementById('options');
   const nextBtn = document.getElementById('nextBtn');
   const scoreEl = document.getElementById('score');
   const trophyEl = document.getElementById('trophy');
-  const settingsBtn = document.getElementById('settingsBtn');
-  const settingsPanel = document.getElementById('settingsPanel');
-  const languageSelect = document.getElementById('languageSelect');
-
-  settingsBtn.onclick = () => settingsPanel.classList.toggle('show');
-
-  languageSelect.onchange = () => {
-    selectedLanguage = languageSelect.value;
-    startQuiz();
-  };
 
   function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+    for (let i = array.length -1; i >0; i--) {
+      const j = Math.floor(Math.random()*(i+1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
-  function startQuiz() {
-    score = 0;
-    currentQues = 0;
-    trophyEl.style.display = 'none';
-    scoreEl.style.display = 'none';
-    nextBtn.style.display = 'inline-block';
-    mcqs = [...mcqsData[selectedLanguage]];
-    shuffle(mcqs);
-    if(mcqs.length > 200) mcqs = mcqs.slice(0, 200);
-    loadQuestion();
-  }
+  shuffle(mcqs);
 
   function loadQuestion() {
     nextBtn.disabled = true;
     trophyEl.style.display = 'none';
-    if (currentQues >= mcqs.length) {
+    if(currentQues >= mcqs.length) {
       showResults();
       return;
     }
@@ -315,12 +210,12 @@
 
   function selectAnswer(selected) {
     const correct = mcqs[currentQues].answer;
-    if (selected === correct) score++;
+    if(selected === correct) score++;
     nextBtn.disabled = false;
     Array.from(optionsEl.children).forEach((li, i) => {
       li.firstChild.disabled = true;
-      if (i === correct) li.firstChild.classList.add('correct');
-      if (i === selected && i !== correct) li.firstChild.classList.add('incorrect');
+      if(i === correct) li.firstChild.classList.add('correct');
+      if(i === selected && i !== correct) li.firstChild.classList.add('incorrect');
     });
   }
 
@@ -330,7 +225,7 @@
   };
 
   function showResults() {
-    questionEl.textContent = `Test Complete! 🎉`;
+    questionEl.textContent = "Test Complete! 🎉";
     optionsEl.innerHTML = '';
     scoreEl.style.display = 'block';
     scoreEl.textContent = `Your Score: ${score} / ${mcqs.length}`;
@@ -338,10 +233,8 @@
     trophyEl.style.display = 'block';
   }
 
-  // Initial call
-  startQuiz();
+  loadQuestion();
 </script>
 
 </body>
-  </html>
-  
+</html>
