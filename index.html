@@ -158,67 +158,6 @@
       color: var(--kakashi-red);
       font-size: 1.2rem;
     }
-    /* Search container */
-    .search-container {
-      max-width: 450px;
-      margin: 0 auto 28px auto;
-      position: relative;
-    }
-    .search-container input {
-      width: 100%;
-      padding: 10px 40px 10px 14px;
-      font-size: 1rem;
-      border-radius: 10px;
-      border: 2px solid var(--kakashi-gray);
-      box-shadow: 0 0 8px #a3abc7cc inset;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .search-container input:focus {
-      border-color: var(--kakashi-red);
-      box-shadow: 0 0 12px var(--kakashi-red) inset;
-      outline: none;
-    }
-    .search-container .fa-search {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--kakashi-red);
-      pointer-events: none;
-      font-size: 1.2rem;
-    }
-    /* Search results dropdown */
-    .search-results {
-      max-width: 450px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 16px rgba(0,0,0,0.2);
-      max-height: 160px;
-      overflow-y: auto;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      color: var(--kakashi-dark);
-      position: relative;
-      z-index: 999;
-      display: none;
-    }
-    .search-results.visible {
-      display: block;
-    }
-    .search-results div {
-      padding: 10px 14px;
-      cursor: pointer;
-      border-bottom: 1px solid #ddd;
-      transition: background-color 0.2s;
-    }
-    .search-results div:last-child {
-      border-bottom: none;
-    }
-    .search-results div:hover {
-      background-color: var(--kakashi-gray);
-    }
     .section {
       max-width: 900px;
       margin: 100px auto 100px auto;
@@ -240,27 +179,6 @@
       margin-bottom: 18px;
       border-left: 6px solid var(--kakashi-red);
       padding-left: 16px;
-    }
-    .about-text {
-      font-size: 1.15rem;
-      color: #23243a;
-      line-height: 1.7;
-      font-weight: 500;
-      margin-bottom: 0;
-    }
-    .project-lightning {
-      position: absolute;
-      width: 50px; height: 70px;
-      right: -4px; top: -11px;
-      opacity: 0.18;
-      z-index: 0;
-      pointer-events: none;
-      animation: lightningBlink 4.7s infinite;
-    }
-    @keyframes lightningBlink {
-      0%,95% { opacity: 0.15;}
-      99% { opacity: 0.55;}
-      100% { opacity: 0.15;}
     }
     .projects {
       display: flex;
@@ -316,90 +234,6 @@
       flex-grow: 1;
       user-select: text;
     }
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 14px;
-      justify-content: flex-start;
-    }
-    .skills-list span {
-      background: var(--kakashi-blue);
-      color: #fff;
-      padding: 8px 19px;
-      border-radius: 18px 7px 18px 7px;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      box-shadow: 0 3px 14px #292a3644;
-      letter-spacing: 1.1px;
-      transition: background 0.25s, color 0.22s;
-      cursor: default;
-      user-select: text;
-      width: calc(25% - 12px);
-      box-sizing: border-box;
-      text-align: center;
-    }
-    .skills-list span:hover {
-      background: var(--tagline-color);
-      color: #fff;
-      box-shadow: 0 0 20px var(--tagline-shadow);
-    }
-    #contactForm {
-      display: flex;
-      flex-direction: column;
-      max-width: 430px;
-      margin: 0 auto;
-    }
-    #contactForm input, #contactForm textarea {
-      padding: 14px;
-      margin-bottom: 16px;
-      border: none;
-      border-radius: 10px 3px 10px 3px;
-      font-size: 1rem;
-      background: #e4e7f1;
-      color: #292a36;
-      resize: none;
-      font-family: inherit;
-      font-weight: 500;
-      box-shadow: 0 1px 8px #292a3622;
-    }
-    #contactForm input:focus, #contactForm textarea:focus {
-      outline: 2px solid var(--kakashi-red);
-      background: #ffff;
-    }
-    #contactForm button {
-      padding: 12px 0;
-      background: linear-gradient(96deg, var(--kakashi-blue) 60%, var(--kakashi-red) 100%);
-      color: #fff;
-      border: none;
-      border-radius: 17px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      box-shadow: 0 2px 12px #292a3622;
-      transition: background 0.19s;
-      cursor: pointer;
-      letter-spacing: 1px;
-      user-select: none;
-    }
-    #contactForm button:hover {
-      background: linear-gradient(96deg, var(--kakashi-red), var(--kakashi-blue));
-    }
-    #msgStatus {
-      color: var(--kakashi-red);
-      font-size: 1.1rem;
-      margin-top: 18px;
-      text-align: center;
-      min-height: 22px;
-    }
-    footer {
-      text-align: center;
-      margin: 64px 0 36px 0;
-      font-size: 1.13rem;
-      color: #333a4d88;
-      letter-spacing: 1px;
-      user-select: none;
-    }
     /* Responsive */
     @media (max-width:770px) {
       header h1 { font-size: 1.8rem; padding-left: 0;}
@@ -436,20 +270,6 @@
     <a href="#skills" id="linkStudyzone" role="link" tabindex="0"><i class="fas fa-book"></i>STUDYZONE</a>
     <a href="#contact" id="linkContact" role="link" tabindex="0"><i class="fas fa-envelope"></i>CONTACT US</a>
   </nav>
-
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search classes..." aria-label="Search classes" autocomplete="off" />
-    <i class="fas fa-search"></i>
-    <div id="searchResults" class="search-results" role="listbox" aria-label="Search results"></div>
-  </div>
-
-  <section class="section" id="about" tabindex="-1" aria-labelledby="about-title">
-    <h2 id="about-title">About Me</h2>
-    <p class="about-text">
-      Hi! I'm <b>Rishi</b>, a passionate Front End Developer. This website combines my love for web development with gaming and study material resources — offering an engaging experience that blends coding and fun.
-      <br><i>“Those who break the rules are scum, but those who abandon their users are worse than scum.”</i>
-    </p>
-  </section>
 
   <section class="section" id="projects" tabindex="-1" aria-labelledby="projects-title">
     <img src="https://pngimg.com/d/lightning_PNG29.png" class="project-lightning" alt="" aria-hidden="true"/>
@@ -579,4 +399,13 @@
       } else {
         matches.forEach(match => {
           const div = document.createElement('div');
-          div.tex
+          div.textContent = match.textContent || match;
+          searchResults.appendChild(div);
+        });
+      }
+      searchResults.classList.add('visible');
+    });
+  </script>
+</body>
+</html>
+
