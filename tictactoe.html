@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>rktechgame - Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Font Orbitron -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --prim: #66fcf1;
+      --bg: #0b0c10;
+      --panel: #1f2833;
+      --accent: #45a29e;
+      --kakashi-blue: #546285;
+      --kakashi-gray: #cfd2dc;
+      --kakashi-dark: #292a36;
+      --kakashi-red: #db1d29;
+      --kakashi-shadow: #42516f;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Orbitron', system-ui, sans-serif;
+      background: linear-gradient(120deg, var(--kakashi-dark) 20%, var(--kakashi-blue) 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-color: rgba(10,10,25,0.9);
+      z-index: -1;
+    }
+
+    /* Small RKTechGame header */
+    #small-header {
+      position: fixed;
+      top: 10px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      color: var(--prim);
+      text-shadow:
+        0 0 10px var(--prim),
+        0 0 25px var(--kakashi-blue);
+      user-select: none;
+      font-weight: 700;
+      z-index: 150;
+      letter-spacing: 2px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    #game {
+      background: rgba(31,40,51,0.85);
+      padding: 30px 36px 35px;
+      border-radius: 24px;
+      width: min(380px, 90vw);
+      box-shadow: 0 0 38px var(--kakashi-shadow);
+      text-align: center;
+      user-select: none;
+      animation: pop 0.35s ease-out forwards;
+      color: var(--kakashi-gray);
+    }
+
+    #game h2 {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      margin: 0 0 14px;
+      font-weight: 900;
+      color: var(--kakashi-red);
+      text-shadow:
+        0 0 12px var(--kakashi-red),
+        0 0 20px var(--kakashi-red);
+      user-select: none;
+    }
+    #status {
+      margin-bottom: 24px;
+      font-weight: 700;
+      color: var(--prim);
+      min-height: 28px;
+      user-select: none;
+    }
+
+    /* Board grid */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      aspect-ratio: 1;
+      width: 100%;
+    }
+    .cell {
+      background: linear-gradient(180deg, #233142, #1b2838);
+      border-radius: 20px;
+      border: 1.5px solid rgba(102,252,241,0.28);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.4), 0 0 12px rgba(0,255,255,0.15) inset;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 10vw, 3.6rem);
+      color: #a1f5f9;
+      display: grid;
+      place-items: center;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.24s ease, background 0.3s ease;
+    }
+    .cell:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 36px rgba(0,0,0,0.5), 0 0 22px rgba(0,255,255,0.25) inset;
+    }
+    .cell.win {
+      background: radial-gradient(100% 100% at 50% 0%, #ffcc00 0%, #aa8800 60%);
+      outline: 3px solid rgba(255,215,0,0.8);
+      box-shadow: 0 0 32px rgba(255, 215, 0, 0.55), 0 0 56px rgba(255, 140, 0, 0.35);
+      color: #5e4100;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border-radius: 14px;
+      border: none;
+      padding: 16px 36px;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.23s ease, box-shadow 0.32s ease;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      box-shadow: 0 0 26px rgba(0,198,255,0.85);
+      user-select: none;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 48px rgba(0,210,255,0.98);
+    }
+    .btn.ghost {
+      background: transparent;
+      border: 2px solid rgba(102,252,241,0.65);
+      box-shadow: none;
+      color: var(--prim);
+    }
+
+    @keyframes pop {
+      from {transform: scale(0.98); opacity: 0.5;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    #homeBtn {
+      background: linear-gradient(90deg, #ff5722, #ff3d00);
+      box-shadow: 0 0 24px #ff5722;
+    }
+    #homeBtn:hover {
+      box-shadow: 0 0 48px #ff3d00;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="small-header">rktechgame</div>
+
+  <section id="game" aria-live="polite">
+    <h2>Tic Tac Toe</h2>
+    <div id="status" aria-live="polite" aria-atomic="true">Player X's Turn</div>
+    <div id="board" class="board" role="grid" aria-label="Tic Tac Toe Board"></div>
+    <div class="actions">
+      <button id="resetBtn" class="btn ghost" aria-label="Reset game">↻ Reset</button>
+      <button id="homeBtn" class="btn" aria-label="Back to homepage">⌂ Home</button>
+    </div>
+  </section>
+
+  <audio id="winSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c8ac7f6c2.mp3?filename=success-1-6297.mp3" preload="auto"></audio>
+
+  <script>
+    const boardDiv = document.getElementById('board');
+    const statusDiv = document.getElementById('status');
+    const resetBtn = document.getElementById('resetBtn');
+    const homeBtn = document.getElementById('homeBtn');
+    const winSound = document.getElementById('winSound');
+
+    let board = Array(9).fill('');
+    let currentPlayer = 'X';
+    let gameOver = false;
+
+    function initBoard() {
+      boardDiv.innerHTML = '';
+      board = Array(9).fill('');
+      currentPlayer = 'X';
+      gameOver = false;
+      statusDiv.textContent = "Player X's Turn";
+
+      for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('button');
+        cell.className = 'cell';
+        cell.setAttribute('role', 'gridcell');
+        cell.setAttribute('aria-label', `Cell ${i + 1}`);
+        cell.addEventListener('click', () => handleMove(i, cell));
+        boardDiv.appendChild(cell);
+      }
+    }
+
+    function handleMove(i, cellEl) {
+      if (board[i] !== '' || gameOver) return;
+      board[i] = currentPlayer;
+      cellEl.textContent = currentPlayer;
+
+      const winInfo = getWinInfo();
+      if (winInfo) {
+        gameOver = true;
+        statusDiv.textContent = `Player ${currentPlayer} Wins! 🎉`;
+        highlightWin(winInfo);
+        winSound.currentTime = 0;
+        winSound.play();
+        return;
+      }
+
+      if (board.every(c => c !== '')) {
+        statusDiv.textContent = "It's a Draw!";
+        gameOver = true;
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      statusDiv.textContent = `Player ${currentPlayer}'s Turn`;
+    }
+
+    function getWinInfo() {
+      const lines = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+      ];
+      for (const [a, b, c] of lines) {
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          return [a, b, c];
+        }
+      }
+      return null;
+    }
+
+    function highlightWin(indexes) {
+      const cells = [...boardDiv.children];
+      indexes.forEach(i => cells[i].classList.add('win'));
+    }
+
+    resetBtn.addEventListener('click', initBoard);
+
+    homeBtn.addEventListener('click', () => {
+      window.location.href = 'index.html'; // Replace with your homepage filename if different
+    });
+
+    // Initialize game on page load
+    initBoard();
+  </script>
+</body>
+</html>
