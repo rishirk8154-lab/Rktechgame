@@ -13,7 +13,7 @@
       --kakashi-dark: #292a36;
       --kakashi-red: #db1d29;
       --kakashi-shadow: #42516f;
-      --tagline-color: #000000; /* tagline black */
+      --tagline-color: #000000;
       --tagline-shadow: #444444aa;
       --link-hover: #ff3a3a;
     }
@@ -221,7 +221,7 @@
     }
     .section {
       max-width: 900px;
-      margin: 120px auto 120px auto;
+      margin: 100px auto 100px auto;
       background: #f0f4faee;
       border-radius: 21px;
       box-shadow: 0 3px 18px #54628533;
@@ -418,7 +418,6 @@
 </head>
 <body>
   <header role="banner">
-    <!-- Kakashi's face (avatar) & Sharingan animation -->
     <div class="kakashi-face" role="img" aria-label="Kakashi styled avatar">
       <div class="circle-text" aria-hidden="true"></div>
     </div>
@@ -428,25 +427,22 @@
     <h1 id="headerName">RKTechGame</h1>
   </header>
 
-  <!-- Tagline under header -->
   <div class="tagline" aria-live="polite" role="region" aria-label="Website tagline" style="text-align:center; color: var(--tagline-color); text-shadow: 0 0 12px var(--tagline-shadow); font-weight: 600; font-size: 1.2rem; max-width: 450px; margin: 8px auto 8px auto; user-select:none;">
-    Passionate about Gaming &amp; StudyZone Innovation
+    Passionate about Gaming & StudyZone Innovation
   </div>
 
-  <!-- Shortcut Links below tagline -->
   <nav class="shortcut-links" aria-label="Quick navigation links">
     <a href="#projects" id="linkProjects" class="active" role="link" tabindex="0"><i class="fas fa-gamepad"></i>PROJECTS</a>
     <a href="#skills" id="linkStudyzone" role="link" tabindex="0"><i class="fas fa-book"></i>STUDYZONE</a>
     <a href="#contact" id="linkContact" role="link" tabindex="0"><i class="fas fa-envelope"></i>CONTACT US</a>
   </nav>
 
-  <!-- Search Box below shortcut links -->
   <div class="search-container">
     <input type="text" id="searchInput" placeholder="Search classes..." aria-label="Search classes" autocomplete="off" />
     <i class="fas fa-search"></i>
     <div id="searchResults" class="search-results" role="listbox" aria-label="Search results"></div>
   </div>
-  
+
   <section class="section" id="about" tabindex="-1" aria-labelledby="about-title">
     <h2 id="about-title">About Me</h2>
     <p class="about-text">
@@ -454,26 +450,32 @@
       <br><i>“Those who break the rules are scum, but those who abandon their users are worse than scum.”</i>
     </p>
   </section>
-  
+
   <section class="section" id="projects" tabindex="-1" aria-labelledby="projects-title">
     <img src="https://pngimg.com/d/lightning_PNG29.png" class="project-lightning" alt="" aria-hidden="true"/>
     <h2 id="projects-title">Projects</h2>
     <div class="projects" role="list">
       <div class="project-card" role="listitem" tabindex="0">
-        <h3><i class="fas fa-gamepad"></i> <a href="https://yourdomain.com/tictactoe" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Tic Tac Toe</a></h3>
+        <h3><i class="fas fa-gamepad"></i>
+          <a href="tictactoe.html" style="color: inherit; text-decoration: none;">Tic Tac Toe</a>
+        </h3>
         <p>Classic two-player game with a clean, responsive UI.</p>
       </div>
       <div class="project-card" role="listitem" tabindex="0">
-        <h3><i class="fas fa-hand-rock"></i> <a href="https://yourdomain.com/rockpaperscissors" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Rock Paper Scissors</a></h3>
+        <h3><i class="fas fa-hand-rock"></i>
+          <a href="rockpaperscissors.html" style="color: inherit; text-decoration: none;">Rock Paper Scissors</a>
+        </h3>
         <p>An interactive rock paper scissors game with real-time score tracking.</p>
       </div>
       <div class="project-card" role="listitem" tabindex="0">
-        <h3><i class="fas fa-question-circle"></i> <a href="https://yourdomain.com/quizgame" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Play Quiz Game</a></h3>
+        <h3><i class="fas fa-question-circle"></i>
+          <a href="quizgame.html" style="color: inherit; text-decoration: none;">Play Quiz Game</a>
+        </h3>
         <p>Challenge yourself with a trivia quiz game covering multiple topics.</p>
       </div>
     </div>
   </section>
-  
+
   <section class="section" id="skills" tabindex="-1" aria-labelledby="skills-title">
     <h2 id="skills-title">Class</h2>
     <div class="skills-list" id="class-list">
@@ -487,7 +489,7 @@
       <span tabindex="0">NEET Notes</span>
     </div>
   </section>
-  
+
   <section class="section" id="contact" tabindex="-1" aria-labelledby="contact-title">
     <h2 id="contact-title">Comment</h2>
     <form id="contactForm">
@@ -503,7 +505,7 @@
     <p style="text-align:center; margin-top: 10px; font-weight: 600; user-select: text;">Chatrapati Sambhajinagar 431001</p>
     <div id="msgStatus" role="alert" aria-live="polite"></div>
   </section>
-  
+
   <footer>
     <b>&copy; 2025 RKTechGame | All rights reserved</b>
   </footer>
@@ -570,4 +572,11 @@
       }
       const matches = classList.filter(cl => cl.textContent.toLowerCase().includes(query));
       if(matches.length === 0){
-     
+        const noResult = document.createElement('div');
+        noResult.textContent = 'No matches found';
+        noResult.setAttribute('role', 'alert');
+        searchResults.appendChild(noResult);
+      } else {
+        matches.forEach(match => {
+          const div = document.createElement('div');
+          div.textContent = match
