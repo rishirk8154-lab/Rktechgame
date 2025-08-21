@@ -12,6 +12,11 @@
       --bg: #0b0c10;
       --panel: #1f2833;
       --accent: #45a29e;
+      --kakashi-blue: #546285;
+      --kakashi-gray: #cfd2dc;
+      --kakashi-dark: #292a36;
+      --kakashi-red: #db1d29;
+      --kakashi-shadow: #42516f;
     }
     * {
       box-sizing: border-box;
@@ -19,7 +24,7 @@
     html, body {
       margin: 0; padding: 0;
       font-family: 'Orbitron', system-ui, sans-serif;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat fixed;
+      background: linear-gradient(120deg, var(--kakashi-dark) 20%, var(--kakashi-blue) 100%);
       color: white;
       min-height: 100vh;
       display: flex;
@@ -31,7 +36,7 @@
     body::before {
       content: "";
       position: fixed; inset: 0;
-      background-color: rgba(10,10,25,0.85);
+      background-color: rgba(10,10,25,0.9);
       z-index: -1;
     }
 
@@ -41,8 +46,10 @@
       top: 10px; left: 50%;
       transform: translateX(-50%);
       font-size: 1.2rem;
-      color: #00e5ff;
-      text-shadow: 0 0 10px #00e5ffaa, 0 0 25px #006f9c;
+      color: var(--prim);
+      text-shadow:
+        0 0 10px var(--prim),
+        0 0 25px var(--kakashi-blue);
       user-select: none;
       font-weight: 700;
       z-index: 150;
@@ -50,72 +57,33 @@
       font-family: 'Orbitron', sans-serif;
     }
 
-    /* Containers */
-    #startScreen, #game {
+    #game {
       background: rgba(31,40,51,0.85);
-      padding: 25px 30px 35px;
-      border-radius: 20px;
-      width: min(360px, 90vw);
-      box-shadow: 0 0 30px #00e6ffcc;
+      padding: 30px 36px 35px;
+      border-radius: 24px;
+      width: min(380px, 90vw);
+      box-shadow: 0 0 38px var(--kakashi-shadow);
       text-align: center;
       user-select: none;
-    }
-    #game {
-      display: none;
       animation: pop 0.35s ease-out forwards;
+      color: var(--kakashi-gray);
     }
 
-    /* Title and tagline */
-    #title {
-      font-size: clamp(2.2rem, 6vw, 3rem);
-      margin: 0 0 10px;
-      color: #00e5ff;
-      text-shadow: 0 0 15px #00c9ff, 0 0 30px #005688;
-      letter-spacing: 2px;
-      font-weight: 900;
-      font-family: 'Orbitron', sans-serif;
-    }
-    #tag {
-      font-style: italic;
-      font-weight: 600;
-      color: var(--prim);
-      margin-bottom: 24px;
-    }
-
-    /* Buttons */
-    .btn {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      border-radius: 12px;
-      border: none;
-      padding: 14px 30px;
-      font-size: 1.1rem;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 800;
-      box-shadow: 0 0 18px rgba(0,198,255,0.6);
-      user-select: none;
-    }
-    .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 38px rgba(0,210,255,0.95);
-    }
-
-    /* Game heading & status */
     #game h2 {
-      margin: 0 0 12px;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      margin: 0 0 14px;
       font-weight: 900;
-      font-size: 2rem;
-      color: var(--prim);
-      text-shadow: 0 0 12px #00e6ffaa;
+      color: var(--kakashi-red);
+      text-shadow:
+        0 0 12px var(--kakashi-red),
+        0 0 20px var(--kakashi-red);
       user-select: none;
     }
     #status {
       margin-bottom: 24px;
-      font-weight: 600;
-      color: #d9faff;
-      min-height: 24px;
+      font-weight: 700;
+      color: var(--prim);
+      min-height: 28px;
       user-select: none;
     }
 
@@ -123,84 +91,78 @@
     .board {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 14px;
       aspect-ratio: 1;
       width: 100%;
     }
     .cell {
       background: linear-gradient(180deg, #233142, #1b2838);
-      border-radius: 14px;
-      border: 1px solid rgba(102,252,241,0.18);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.35), 0 0 10px rgba(0,255,255,0.08) inset;
-      font-weight: 800;
-      font-size: clamp(2rem, 10vw, 3.5rem);
-      color: #e3fafa;
+      border-radius: 20px;
+      border: 1.5px solid rgba(102,252,241,0.28);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.4), 0 0 12px rgba(0,255,255,0.15) inset;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 10vw, 3.6rem);
+      color: #a1f5f9;
       display: grid;
       place-items: center;
       user-select: none;
       cursor: pointer;
-      transition: transform 0.08s ease, box-shadow 0.2s ease, background 0.3s ease;
+      transition: transform 0.12s ease, box-shadow 0.24s ease, background 0.3s ease;
     }
     .cell:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.4), 0 0 14px rgba(0,255,255,0.15) inset;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 36px rgba(0,0,0,0.5), 0 0 22px rgba(0,255,255,0.25) inset;
     }
     .cell.win {
-      background: radial-gradient(100% 100% at 50% 0%, #274472 0%, #16324f 60%);
-      outline: 2px solid rgba(255,215,0,0.65);
-      box-shadow: 0 0 24px rgba(255, 215, 0, 0.45), 0 0 40px rgba(255, 132, 0, 0.25);
+      background: radial-gradient(100% 100% at 50% 0%, #ffcc00 0%, #aa8800 60%);
+      outline: 3px solid rgba(255,215,0,0.8);
+      box-shadow: 0 0 32px rgba(255, 215, 0, 0.55), 0 0 56px rgba(255, 140, 0, 0.35);
+      color: #5e4100;
     }
 
     .actions {
-      margin-top: 24px;
+      margin-top: 28px;
       display: flex;
-      gap: 12px;
+      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
+    .btn {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border-radius: 14px;
+      border: none;
+      padding: 16px 36px;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.23s ease, box-shadow 0.32s ease;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      box-shadow: 0 0 26px rgba(0,198,255,0.85);
+      user-select: none;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 48px rgba(0,210,255,0.98);
+    }
     .btn.ghost {
       background: transparent;
-      border: 1px solid rgba(102,252,241,0.5);
+      border: 2px solid rgba(102,252,241,0.65);
       box-shadow: none;
       color: var(--prim);
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(6px);}
-      to {opacity: 1; transform: none;}
-    }
     @keyframes pop {
       from {transform: scale(0.98); opacity: 0.5;}
       to {transform: scale(1); opacity: 1;}
     }
 
-    /* Canvas styling for fireworks and snow */
-    #snow, #fireworks {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      display: block;
+    #homeBtn {
+      background: linear-gradient(90deg, #ff5722, #ff3d00);
+      box-shadow: 0 0 24px #ff5722;
     }
-    #fireworks {
-      display: none;
-    }
-
-    /* Responsive for phone screens */
-    @media (max-width: 450px) {
-      .board {
-        gap: 8px;
-      }
-      .cell {
-        font-size: clamp(1.8rem, 20vw, 3rem);
-      }
-      #small-header {
-        font-size: 1rem;
-        top: 5px;
-      }
+    #homeBtn:hover {
+      box-shadow: 0 0 48px #ff3d00;
     }
   </style>
 </head>
@@ -208,73 +170,20 @@
 
   <div id="small-header">rktechgame</div>
 
-  <canvas id="snow"></canvas>
-  <canvas id="fireworks"></canvas>
-
-  <section id="startScreen">
-    <h1 id="title">RKTechGame</h1>
-    <p id="tag">"Unleash Your Gaming World"</p>
-    <button id="startBtn" class="btn">Start Game</button>
-  </section>
-
   <section id="game" aria-live="polite">
     <h2>Tic Tac Toe</h2>
-    <div id="status">Player X's Turn</div>
+    <div id="status" aria-live="polite" aria-atomic="true">Player X's Turn</div>
     <div id="board" class="board" role="grid" aria-label="Tic Tac Toe Board"></div>
     <div class="actions">
-      <button id="resetBtn" class="btn ghost">↻ Reset</button>
-      <button id="homeBtn" class="btn ghost">⌂ Home</button>
+      <button id="resetBtn" class="btn ghost" aria-label="Reset game">↻ Reset</button>
+      <button id="homeBtn" class="btn" aria-label="Back to homepage">⌂ Home</button>
     </div>
   </section>
 
   <audio id="winSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c8ac7f6c2.mp3?filename=success-1-6297.mp3" preload="auto"></audio>
 
   <script>
-    // Snowflake animation
-    const snowCanvas = document.getElementById('snow');
-    const sctx = snowCanvas.getContext('2d');
-    let snowflakes = [];
-    function resizeSnow() {
-      snowCanvas.width = window.innerWidth;
-      snowCanvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeSnow);
-    resizeSnow();
-
-    function makeFlake() {
-      const size = Math.random() * 2 + 1;
-      const speed = Math.random() * 0.6 + 0.25;
-      const drift = (Math.random() - 0.5) * 0.4;
-      snowflakes.push({
-        x: Math.random() * snowCanvas.width,
-        y: -10,
-        size, speed, drift
-      });
-    }
-    function drawSnow() {
-      sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-      sctx.fillStyle = 'rgba(255,255,255,0.9)';
-      sctx.beginPath();
-      for (const f of snowflakes) {
-        sctx.moveTo(f.x, f.y);
-        sctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-        f.y += f.speed;
-        f.x += f.drift;
-        if (f.y > snowCanvas.height + 8) {
-          f.y = -10;
-          f.x = Math.random() * snowCanvas.width;
-        }
-      }
-      sctx.fill();
-      requestAnimationFrame(drawSnow);
-    }
-    setInterval(makeFlake, 120);
-    requestAnimationFrame(drawSnow);
-
-    // Game elements
-    const startScreen = document.getElementById('startScreen');
-    const startBtn = document.getElementById('startBtn');
-    const gamePanel = document.getElementById('game');
+    // Basic Tic Tac Toe Game Script with updated styling and text color
     const boardDiv = document.getElementById('board');
     const statusDiv = document.getElementById('status');
     const resetBtn = document.getElementById('resetBtn');
@@ -284,12 +193,6 @@
     let board = Array(9).fill('');
     let currentPlayer = 'X';
     let gameOver = false;
-
-    startBtn.addEventListener('click', () => {
-      startScreen.style.display = 'none';
-      gamePanel.style.display = 'block';
-      initBoard();
-    });
 
     function initBoard() {
       boardDiv.innerHTML = '';
@@ -313,21 +216,19 @@
       board[i] = currentPlayer;
       cellEl.textContent = currentPlayer;
 
-      const winInfo = getWinInfo(board);
+      const winInfo = getWinInfo();
       if (winInfo) {
         gameOver = true;
         statusDiv.textContent = `Player ${currentPlayer} Wins! 🎉`;
         highlightWin(winInfo);
         winSound.currentTime = 0;
         winSound.play();
-        startFireworks();
         return;
       }
 
       if (board.every(c => c !== '')) {
         statusDiv.textContent = "It's a Draw!";
         gameOver = true;
-        startFireworks(1);
         return;
       }
 
@@ -335,15 +236,15 @@
       statusDiv.textContent = `Player ${currentPlayer}'s Turn`;
     }
 
-    function getWinInfo(b) {
+    function getWinInfo() {
       const lines = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+        [0, 4, 8], [2, 4, 6]             // diagonals
       ];
-      for (const [a, b1, c] of lines) {
-        if (board[a] && board[a] === board[b1] && board[a] === board[c]) {
-          return [a, b1, c];
+      for (const [a, b, c] of lines) {
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          return [a, b, c];
         }
       }
       return null;
@@ -355,132 +256,12 @@
     }
 
     resetBtn.addEventListener('click', initBoard);
+
     homeBtn.addEventListener('click', () => {
-      gamePanel.style.display = 'none';
-      startScreen.style.display = 'block';
+      window.location.href = 'index.html'; // Change to your homepage filename/path
     });
 
-    // Fireworks animation
-    const fwCanvas = document.getElementById('fireworks');
-    const fctx = fwCanvas.getContext('2d');
-
-    function resizeFW() {
-      fwCanvas.width = innerWidth;
-      fwCanvas.height = innerHeight;
-    }
-    window.addEventListener('resize', resizeFW);
-    resizeFW();
-
-    let shells = [];
-    let sparks = [];
-    let fwAnimating = false;
-
-    function startFireworks(bursts = 3) {
-      fwCanvas.style.display = 'block';
-      fwAnimating = true;
-      for (let i = 0; i < bursts; i++) {
-        scheduleBurst(i * 900 + 200);
-      }
-      for (let i = 0; i < 4; i++) {
-        scheduleBurst(400 + i * 500);
-      }
-      animateFW();
-      setTimeout(() => {
-        fwAnimating = false;
-        fwCanvas.style.display = 'none';
-        shells = [];
-        sparks = [];
-      }, 6000);
-    }
-
-    function scheduleBurst(delay) {
-      setTimeout(() => {
-        const x = Math.random() * fwCanvas.width * 0.8 + fwCanvas.width * 0.1;
-        const y = fwCanvas.height + 10;
-        const vy = -(Math.random() * 6 + 8);
-        shells.push({ x, y, vx: (Math.random() - 0.5) * 1.2, vy, fuse: Math.random() * 300 + 400 });
-      }, delay);
-    }
-
-    function animateFW() {
-      if (!fwAnimating) return;
-      fctx.fillStyle = 'rgba(0,0,0,0.25)';
-      fctx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
-      const gravity = 0.12;
-
-      shells.forEach((s, idx) => {
-        s.x += s.vx;
-        s.y += s.vy;
-        s.vy += gravity;
-        s.fuse -= 16;
-
-        fctx.beginPath();
-        fctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
-        fctx.fillStyle = '#fff';
-        fctx.fill();
-
-        if (s.vy > 0 || s.fuse <= 0) {
-          explode(s.x, s.y);
-          shells.splice(idx, 1);
-        }
-      });
-
-      sparks.forEach((p, idx) => {
-        p.vy += gravity * 0.25;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= 1;
-
-        fctx.beginPath();
-        fctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        fctx.fillStyle = `rgba(${p.color},${Math.max(p.life / p.maxLife, 0)})`;
-        fctx.fill();
-
-        if (p.life <= 0) sparks.splice(idx, 1);
-      });
-
-      requestAnimationFrame(animateFW);
-    }
-
-    function explode(x, y) {
-      const palettes = ['255,215,0', '255,69,0', '64,224,208', '186,85,211', '135,206,250'];
-      const color = palettes[Math.floor(Math.random() * palettes.length)];
-      const count = 90 + Math.floor(Math.random() * 60);
-
-      for (let i = 0; i < count; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 4 + 1.5;
-
-        sparks.push({
-          x,
-          y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          size: Math.random() * 2.2 + 1,
-          color,
-          life: 70 + Math.floor(Math.random() * 30),
-          maxLife: 100,
-        });
-      }
-      setTimeout(() => {
-        const mini = 30;
-        for (let i = 0; i < mini; i++) {
-          const a = Math.random() * Math.PI * 2;
-          const sp = Math.random() * 2 + 0.8;
-          sparks.push({
-            x,
-            y,
-            vx: Math.cos(a) * sp,
-            vy: Math.sin(a) * sp,
-            size: 1,
-            color: color,
-            life: 40,
-            maxLife: 40,
-          });
-        }
-      }, 120);
-    }
+    initBoard();
   </script>
-
 </body>
 </html>
