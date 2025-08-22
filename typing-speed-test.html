@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Typing Speed Test with Highlight</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    margin: 0; padding: 10px;
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+  }
+  .container {
+    background: #f0f4faee;
+    border-radius: 20px;
+    box-shadow: 0 3px 28px #42516f88;
+    max-width: 700px;
+    width: 100%;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+  }
+  h1 {
+    color: #db1d29;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 18px;
+    text-shadow: 0 0 12px #db1d29, 0 0 18px #db1d29, 0 0 30px #db1d29;
+    user-select: none;
+    text-align: center;
+  }
+  #quoteDisplay {
+    font-size: 1.5rem;
+    margin: 25px 0 25px 0;
+    padding: 20px 28px;
+    background: white;
+    border-radius: 14px;
+    border: 2px solid #546285;
+    min-height: 160px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    text-align: left;
+    box-shadow: inset 0 0 10px #bbb;
+    user-select: none;
+    font-weight: 500;
+    overflow-wrap: break-word;
+  }
+  #inputArea {
+    width: 100%;
+    height: 140px;
+    padding: 14px;
+    font-size: 1.25rem;
+    border-radius: 14px;
+    border: 2px solid #546285;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 2px 12px #292a3620;
+    transition: border-color 0.3s;
+  }
+  #inputArea:focus {
+    border-color: #db1d29;
+    box-shadow: 0 0 20px #db1d29aa;
+    background: white;
+  }
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 22px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    user-select: none;
+    color: #546285;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stats div {
+    background: #db1d29cc;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 14px;
+    min-width: 90px;
+    box-shadow: 0 2px 10px #8b111aaa;
+    user-select: none;
+    flex-grow: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+  button {
+    margin-top: 28px;
+    background: linear-gradient(96deg, #546285 60%, #db1d29 100%);
+    color: white;
+    font-weight: 900;
+    font-size: 1.35rem;
+    padding: 16px 48px;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    box-shadow: 0 6px 22px #42516fbb;
+    user-select: none;
+    width: 100%;
+    max-width: 440px;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: linear-gradient(96deg, #db1d29, #546285);
+  }
+  #highlightedText {
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-height: 120px;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid #546285;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 8px #bbb;
+    user-select: none;
+  }
+  .correct {
+    color: #28a745;
+  }
+  .incorrect {
+    color: #db1d29;
+    text-decoration: underline;
+  }
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+    .stats {
+      font-size: 1rem;
+      gap: 8px;
+    }
+    .stats div {
+      padding: 10px 12px;
+      min-width: 70px;
+    }
+    #inputArea,
+    #highlightedText {
+      font-size: 1.1rem;
+      height: 110px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Typing speed test game with real-time highlight">
+    <h1>Typing Speed Test</h1>
+    <div id="quoteDisplay" aria-live="polite" aria-atomic="true">Click Start to begin the test.</div>
+    <textarea id="inputArea" disabled placeholder="Start typing here..." aria-label="Typing input area"></textarea>
+    <div id="highlightedText" aria-hidden="true"></div>
+    <div class="stats" aria-live="polite" aria-atomic="true">
+      <div>Time Left: <span id="timeLeft">60</span>s</div>
+      <div>Errors: <span id="errors">0</span></div>
+      <div>WPM: <span id="wpm">0</span></div>
+      <div>Accuracy: <span id="accuracy">100</span>%</div>
+    </div>
+    <button id="startBtn" aria-label="Start typing test">Start Test</button>
+  </div>
+
+  <script>
+    const quotes = [
+      "Push yourself, because no one else is going to do it for you. Take every chance to grow.",
+      "Failure is the condiment that gives success its flavor. Don't fear mistakes, learn from them.",
+      "Wake up with determination. Go to bed with satisfaction. Consistency is key to success.",
+      "It's going to be hard, but hard does not mean impossible. Keep pushing forward.",
+      "Learning never exhausts the mind. Embrace the challenge and keep moving.",
+      "The only way to do great work is to love what you do. Passion drives perfection."
+    ];
+
+    let timeLeft = 60;
+    let timer = null;
+    let errors = 0;
+    let totalCharsTyped = 0;
+    let currentQuote = "";
+    let quotedIndex = -1;
+    let isTestRunning = false;
+    let startTime = null;
+
+    const quoteDisplay = document.getElementById("quoteDisplay");
+    const inputArea = document.getElementById("inputArea");
+    const timeLeftSpan = document.getElementById("timeLeft");
+    const errorsSpan = document.getElementById("errors");
+    const wpmSpan = document.getElementById("wpm");
+    const accuracySpan = document.getElementById("accuracy");
+    const startBtn = document.getElementById("startBtn");
+    const highlightedText = document.getElementById("highlightedText");
+
+    function getRandomQuote() {
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * quotes.length);
+      } while (newIndex === quotedIndex);
+      quotedIndex = newIndex;
+      return quotes[newIndex];
+    }
+
+    function loadQuote() {
+      currentQuote = getRandomQuote();
+      quoteDisplay.textContent = currentQuote;
+      inputArea.value = "";
+      highlightedText.innerHTML = "";
+      errors = 0;
+      totalCharsTyped = 0;
+      errorsSpan.textContent = errors;
+      accuracySpan.textContent = 100;
+      wpmSpan.textContent = 0;
+      startTime = Date.now();
+    }
+
+    function startTest() {
+      if (isTestRunning) clearInterval(timer);
+      timeLeft = 60;
+      isTestRunning = true;
+      inputArea.disabled = false;
+      inputArea.value = "";
+      inputArea.focus();
+      startBtn.textContent = "Restart Test";
+      timeLeftSpan.textContent = timeLeft;
+      loadQuote();
+
+      timer = setInterval(() => {
+        const elapsedTime = (Date.now() - startTime) / 1000;
+        const remaining = Math.max(60 - elapsedTime, 0);
+        timeLeftSpan.textContent = Math.ceil(remaining);
+
+        if (remaining <= 0) {
+          clearInterval(timer);
+          endTest();
+          return;
+        }
+        calculateWPM(elapsedTime);
+      }, 100);
+    }
+
+    function calculateWPM(elapsedSec) {
+      let wordsTyped = 0;
+      if (elapsedSec > 0) {
+        wordsTyped = Math.round(
+          inputArea.value.trim().split(/\s+/).filter((w) => w).length /
+            (elapsedSec / 60)
+        );
+      }
+      wpmSpan.textContent = wordsTyped;
+    }
+
+    function updateAccuracy() {
+      if (totalCharsTyped === 0) {
+        accuracySpan.textContent = 100;
+        return;
+      }
+      const accuracy = Math.round(
+        ((totalCharsTyped - errors) / totalCharsTyped) * 100
+      );
+      accuracySpan.textContent = accuracy;
+    }
+
+    function highlightText() {
+      const input = inputArea.value;
+      const quote = currentQuote;
+
+      let resultHTML = "";
+
+      for (let i = 0; i < quote.length; i++) {
+        const char = quote[i];
+        if (i < input.length) {
+          if (input[i] === char) {
+            resultHTML += `<span class="correct">${char}</span>`;
+          } else {
+            resultHTML += `<span class="incorrect">${char}</span>`;
+          }
+        } else {
+          resultHTML += `<span>${char}</span>`;
+        }
+      }
+
+      highlightedText.innerHTML = resultHTML;
+    }
+
+    function processInput() {
+      const inputText = inputArea.value;
+      totalCharsTyped = inputText.length;
+      errors = 0;
+
+      for (let i = 0; i < inputText.length; i++) {
+        if (inputText[i] !== currentQuote[i]) errors++;
+      }
+      errorsSpan.textContent = errors;
+
+      highlightText();
+
+      if (inputText === currentQuote) {
+        loadQuote();
+        inputArea.value = "";
+        highlightedText.innerHTML = "";
+        totalCharsTyped = 0;
+        errors = 0;
+        errorsSpan.textContent = 0;
+      }
+      updateAccuracy();
+    }
+
+    function endTest() {
+      isTestRunning = false;
+      inputArea.disabled = true;
+      startBtn.textContent = "Start Test";
+      alert(`Time's up!\nWPM: ${wpmSpan.textContent}\nErrors: ${errors}`);
+    }
+
+    inputArea.addEventListener("input", () => {
+      if (!isTestRunning) return;
+      processInput();
+    });
+
+    startBtn.addEventListener("click", () => {
+      clearInterval(timer);
+      startTest();
+    });
+  </script>
+</body>
+</html>
