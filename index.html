@@ -303,13 +303,6 @@
     #contactForm button:hover {
       background: linear-gradient(96deg, var(--kakashi-red), var(--kakashi-blue));
     }
-    #msgStatus {
-      color: var(--kakashi-red);
-      font-size: 1.1rem;
-      margin-top: 18px;
-      text-align: center;
-      min-height: 22px;
-    }
     footer {
       text-align: center;
       margin: 64px 0 36px 0;
@@ -355,12 +348,6 @@
     <a href="#contact" id="linkContact" role="link" tabindex="0"><i class="fas fa-envelope"></i>CONTACT US</a>
   </nav>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search classes..." aria-label="Search classes" autocomplete="off" />
-    <i class="fas fa-search"></i>
-    <div id="searchResults" class="search-results" role="listbox" aria-label="Search results"></div>
-  </div>
-
   <section class="section" id="about" tabindex="-1" aria-labelledby="about-title">
     <h2 id="about-title">About Me</h2>
     <p class="about-text">
@@ -370,7 +357,6 @@
   </section>
 
   <section class="section" id="projects" tabindex="-1" aria-labelledby="projects-title">
-    <img src="https://pngimg.com/d/lightning_PNG29.png" class="project-lightning" alt="" aria-hidden="true"/>
     <h2 id="projects-title">Projects</h2>
     <div class="projects" role="list">
       <div class="project-card" role="listitem" tabindex="0">
@@ -380,16 +366,10 @@
         <p>Classic two-player game with a clean, responsive UI and AI opponent.</p>
       </div>
       <div class="project-card" role="listitem" tabindex="0">
-        <h3><i class="fas fa-hand-rock"></i>
-          <a href="rockpaperscissors.html" style="color: inherit; text-decoration: none;">Rock Paper Scissors</a>
+        <h3><i class="fas fa-gamepad"></i>
+          <a href="number-sequence-puzzle.html" style="color: inherit; text-decoration: none;">Number Sequence Puzzle</a>
         </h3>
-        <p>An interactive rock paper scissors game with real-time score tracking.</p>
-      </div>
-      <div class="project-card" role="listitem" tabindex="0">
-        <h3><i class="fas fa-question-circle"></i>
-          <a href="quizgame.html" style="color: inherit; text-decoration: none;">Play Quiz Game</a>
-        </h3>
-        <p>Challenge yourself with a trivia quiz game covering multiple topics.</p>
+        <p>A challenging logic game to find the next number and pattern in sequences.</p>
       </div>
     </div>
   </section>
@@ -429,7 +409,6 @@
   </footer>
 
   <script>
-    // Navigation active effect for shortcut links
     const navLinks = document.querySelectorAll('.shortcut-links a');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -437,8 +416,6 @@
         this.classList.add('active');
       });
     });
-
-    // Shortcut links scroll behavior
     document.getElementById('linkProjects').addEventListener('click', () => {
       document.getElementById('projects').scrollIntoView({behavior: 'smooth'});
     });
@@ -448,15 +425,12 @@
     document.getElementById('linkContact').addEventListener('click', () => {
       document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
     });
-
-    // Contact form fake submit
     document.getElementById('contactForm').onsubmit = function(e){
       e.preventDefault();
       document.getElementById('msgStatus').innerText = "Thanks! I'll respond with Kakashi-level speed!";
       document.getElementById('contactForm').reset();
     };
 
-    // Skills flicker effect
     let copySkills = document.querySelector('.skills-list');
     setInterval(() => {
       let spans = copySkills.querySelectorAll('span');
@@ -465,7 +439,6 @@
       spans[index].style.boxShadow = "0 0 16px 5px #db1d29aa, 0 2px 8px #42516f55";
     }, 850);
 
-    // Sharingan focus effect (extra glow on hover)
     const sharingan = document.querySelector('.sharingan');
     sharingan.addEventListener('mouseenter', () => {
       sharingan.style.boxShadow = "0 0 32px 11px #db1d29, 0 0 24px 17px #db1d2965 inset";
@@ -476,11 +449,9 @@
       sharingan.style.filter = "blur(0.5px)";
     });
 
-    // Search functionality for Class section
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     const classList = Array.from(document.querySelectorAll('#class-list span'));
-
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.trim().toLowerCase();
       searchResults.innerHTML = '';
