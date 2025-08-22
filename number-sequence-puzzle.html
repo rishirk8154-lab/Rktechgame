@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RKTechGame | Advanced Number Sequence Puzzle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --kakashi-blue: #546285;
+      --kakashi-gray: #cfd2dc;
+      --kakashi-dark: #292a36;
+      --kakashi-red: #db1d29;
+      --kakashi-shadow: #42516f;
+      --tagline-color: #000000;
+      --tagline-shadow: #444444aa;
+      --link-hover: #ff3a3a;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+      color: var(--kakashi-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 15px;
+    }
+    .game-container {
+      background: #f0f4faff;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 20px;
+      padding: 42px 36px 48px 36px;
+      box-shadow: 0 3px 28px var(--kakashi-shadow);
+      text-align: center;
+      box-sizing: border-box;
+      animation: fadeInUp 1.3s cubic-bezier(.42,0,.58,1) both;
+    }
+    @keyframes fadeInUp {
+      0% { transform: translateY(90px); opacity: 0;}
+      80% { opacity: 0.6;}
+      100% { transform: translateY(0); opacity:1;}
+    }
+    h1 {
+      color: var(--kakashi-red);
+      font-weight: 900;
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      letter-spacing: 2.3px;
+      user-select: none;
+      text-shadow:
+        0 0 12px var(--kakashi-red),
+        0 0 18px var(--kakashi-red),
+        0 0 30px var(--kakashi-red);
+    }
+    p {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin: 5px 0 20px 0;
+      user-select: none;
+    }
+    .sequence {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--kakashi-dark);
+      margin-bottom: 22px;
+      user-select: text;
+      min-height: 56px;
+    }
+    input[type="number"], select {
+      padding: 14px;
+      font-size: 1.05rem;
+      border-radius: 15px 7px 15px 7px;
+      border: 2px solid var(--kakashi-blue);
+      outline: none;
+      font-weight: 600;
+      box-shadow: 0 3px 10px #292a3633;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    input[type="number"] {
+      width: 170px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    select {
+      width: 210px;
+      margin: 0 0 16px 20px;
+      cursor: pointer;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: var(--kakashi-red);
+      box-shadow: 0 0 16px var(--kakashi-red);
+      background: #fff;
+    }
+    .flex-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    button {
+      margin-top: 24px;
+      background: linear-gradient(96deg, var(--kakashi-blue) 60%, var(--kakashi-red) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 22px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      padding: 16px 48px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px var(--kakashi-shadow);
+      letter-spacing: 1.1px;
+      transition: background 0.25s ease;
+      user-select: none;
+      width: 100%;
+      max-width: 440px;
+    }
+    button:hover {
+      background: linear-gradient(96deg, var(--kakashi-red), var(--kakashi-blue));
+    }
+    .result {
+      margin-top: 30px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      min-height: 52px;
+      user-select: text;
+      color: var(--kakashi-red);
+      text-shadow: 0 0 14px var(--kakashi-red);
+    }
+    .score {
+      margin-top: 32px;
+      font-size: 1.1rem;
+      color: var(--kakashi-dark);
+      user-select: none;
+    }
+    @media (max-width: 600px) {
+      .flex-row {
+        flex-direction: column;
+      }
+      select {
+        margin-left: 0 !important;
+        width: 100% !important;
+      }
+      input[type="number"] {
+        width: 100% !important;
+        margin-bottom: 20px;
+      }
+      button {
+        max-width: 100%;
+      }
+      .sequence {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="game-container" role="main" aria-label="RKTechGame Advanced Number Sequence Puzzle Game">
+    <h1>Advanced Number Sequence Puzzle</h1>
+    <p>Guess the next number, the sequence type, and the difficulty level:</p>
+    <div class="sequence" id="sequence"></div>
+
+    <div class="flex-row">
+      <input type="number" id="userInput" aria-label="Enter your answer" placeholder="Enter next number" />
+      <select id="patternSelect" aria-label="Select pattern type">
+        <option value="" disabled selected>Pattern type</option>
+        <option value="geometric">Geometric ( × / ÷ )</option>
+        <option value="fibonacci">Fibonacci-like</option>
+        <option value="square">Square Numbers</option>
+        <option value="cube">Cube Numbers</option>
+        <option value="alternating">Alternating Series</option>
+      </select>
+      <select id="difficultySelect" aria-label="Select difficulty level">
+        <option value="" disabled selected>Difficulty</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <button id="submitBtn" aria-label="Submit your answer">Check Answer</button>
+
+    <div class="result" id="result" aria-live="polite" aria-atomic="true"></div>
+    <div class="score" id="score"></div>
+  </main>
+
+  <script>
+    const sequences = [
+      { seq: [128, 256, 512, 1024], answer: 2048, type: 'geometric', difficulty: 'easy' },
+      { seq: [144, 169, 196, 225], answer: 256, type: 'square', difficulty: 'easy' },
+      { seq: [1000, 8000, 27000, 64000], answer:125000, type: 'cube', difficulty: 'medium' },
+      { seq: [144, 169, 196, 225], answer: 256, type: 'square', difficulty: 'medium' },
+      { seq: [233, 377, 610, 987], answer: 1597, type: 'fibonacci', difficulty: 'medium' },
+      { seq: [100, 200, 100, 400, 100, 800], answer: 100, type: 'alternating', difficulty: 'medium' },
+      { seq: [2187, 729, 243, 81], answer: 27, type: 'geometric', difficulty: 'hard' },
+      { seq: [529, 676, 841, 1024], answer: 1225, type: 'square', difficulty: 'hard' },
+      { seq: [1728, 2197, 2744, 3375], answer: 4096, type: 'cube', difficulty: 'hard' },
+      { seq: [1597, 2584, 4181, 6765], answer:10946, type: 'fibonacci', difficulty: 'hard' },
+      { seq: [121, 145, 121, 169, 121, 196, 121], answer: 225, type: 'alternating', difficulty: 'hard' }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+
+    const sequenceDiv = document.getElementById('sequence');
+    const userInput = document.getElementById('userInput');
+    const patternSelect = document.getElementById('patternSelect');
+    const difficultySelect = document.getElementById('difficultySelect');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+    const scoreDiv = document.getElementById('score');
+
+    function loadSequence() {
+      let currentSeq = sequences[currentIndex];
+      sequenceDiv.textContent = currentSeq.seq.join(', ') + ', ... ?';
+      resultDiv.textContent = '';
+      userInput.value = '';
+      patternSelect.value = '';
+      difficultySelect.value = '';
+      userInput.focus();
+    }
+
+    function checkAnswer() {
+      const userAnswer = Number(userInput.value);
+      const userPattern = patternSelect.value;
+      const userDifficulty = difficultySelect.value;
+
+      if (!userInput.value.trim()) {
+        resultDiv.textContent = 'Please enter the next number.';
+        return;
+      }
+      if (!userPattern) {
+        resultDiv.textContent = 'Please select a pattern type.';
+        return;
+      }
+      if (!userDifficulty) {
+        resultDiv.textContent = 'Please select difficulty level.';
+        return;
+      }
+
+      let correctAnswer = sequences[currentIndex].answer;
+      let correctPattern = sequences[currentIndex].type;
+      let correctDifficulty = sequences[currentIndex].difficulty;
+
+      let correctCount = 0;
+      if (userAnswer === correctAnswer) correctCount++;
+      if (userPattern === correctPattern) correctCount++;
+      if (userDifficulty === correctDifficulty) correctCount++;
+
+      if (correctCount === 3) {
+        resultDiv.textContent = 'Excellent! All answers are correct! 🎉';
+        score++;
+      } else if (correctCount === 2) {
+        resultDiv.textContent = `Almost there! You got ${correctCount} answers right.`;
+      } else if (correctCount === 1) {
+        resultDiv.textContent = `You got ${correctCount} answer right.`;
+      } else {
+        resultDiv.textContent = `Oops! None matched. Correct answer: ${correctAnswer}, Pattern: ${correctPattern}, Difficulty: ${correctDifficulty}.`;
+      }
+
+      scoreDiv.textContent = `Score: ${score} / ${sequences.length}`;
+
+      currentIndex++;
+      if (currentIndex >= sequences.length) {
+        submitBtn.disabled = true;
+        sequenceDiv.textContent = 'Game Over! Thanks for playing RKTechGame.';
+        resultDiv.textContent += ` Your final score is ${score}.`;
+      } else {
+        setTimeout(loadSequence, 3500);
+      }
+    }
+
+    submitBtn.addEventListener('click', checkAnswer);
+    userInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') checkAnswer(); });
+
+    loadSequence();
+  </script>
+</body>
+</html>
