@@ -230,62 +230,90 @@
       flex-grow: 1;
       user-select: text;
     }
-    .skills-list {
+
+    /* Class section styled like games */
+    #class-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 14px;
+      gap: 32px 24px;
       justify-content: flex-start;
+      min-height: 340px;
     }
-    .skills-list span {
-      background: var(--kakashi-blue);
-      color: #fff;
-      padding: 8px 19px;
-      border-radius: 18px 7px 18px 7px;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      box-shadow: 0 3px 14px #292a3644;
-      letter-spacing: 1.1px;
-      transition: background 0.25s, color 0.22s;
-      cursor: default;
-      user-select: text;
-      width: calc(25% - 12px);
+    #class-list a {
+      background: linear-gradient(120deg, #cfd2dc 82%, #a6b0cd 100%);
+      width: calc((100% / 3) - 24px);
+      min-width: 260px;
+      border-radius: 14px 32px 14px 32px;
+      padding: 22px 20px 18px 20px;
+      box-shadow: 0 3px 14px #292a3670;
+      margin-bottom: 20px;
+      color: #23243a;
+      position: relative;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       box-sizing: border-box;
-      text-align: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
-    .skills-list span:hover {
-      background: var(--tagline-color);
-      color: #fff;
-      box-shadow: 0 0 20px var(--tagline-shadow);
+    #class-list a:hover {
+      transform: scale(1.05) rotate(-1.5deg);
+      box-shadow: 0 7px 18px var(--kakashi-shadow);
+      background: linear-gradient(110deg, #e7eaf3 66%, #db1d2911 100%);
+      color: #23243a;
     }
+    #class-list a h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--kakashi-red);
+      margin: 0 0 7px 0;
+      font-size: 1.15rem;
+    }
+    #class-list a h3 i {
+      color: var(--kakashi-red);
+      font-size: 1.35rem;
+    }
+    #class-list a p {
+      margin: 0;
+      color: #233;
+      font-size: 1rem;
+      flex-grow: 1;
+      user-select: text;
+    }
+
+    /* Contact section fixes - input and textarea styling */
     #contactForm {
       display: flex;
       flex-direction: column;
       max-width: 430px;
       margin: 0 auto;
+      gap: 14px;
     }
     #contactForm input,
     #contactForm textarea {
-      padding: 14px;
-      margin-bottom: 16px;
-      border: none;
-      border-radius: 10px 3px 10px 3px;
+      padding: 14px 16px;
+      border: 2px solid #d0d4de;
+      border-radius: 10px 4px 10px 4px;
       font-size: 1rem;
-      background: #e4e7f1;
+      background: #f7f9fc;
       color: #292a36;
       resize: none;
       font-family: inherit;
       font-weight: 500;
-      box-shadow: 0 1px 8px #292a3622;
+      box-shadow: inset 0 1px 3px #c0c6d0;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     #contactForm input:focus,
     #contactForm textarea:focus {
-      outline: 2px solid var(--kakashi-red);
-      background: #ffff;
+      outline: none;
+      border-color: var(--kakashi-red);
+      box-shadow: 0 0 8px var(--kakashi-red);
+      background: #fff;
     }
     #contactForm button {
-      padding: 12px 0;
+      padding: 14px 0;
       background: linear-gradient(
         96deg,
         var(--kakashi-blue) 60%,
@@ -293,14 +321,15 @@
       );
       color: #fff;
       border: none;
-      border-radius: 17px;
+      border-radius: 20px;
       font-size: 1.15rem;
       font-weight: 700;
-      box-shadow: 0 2px 12px #292a3622;
-      transition: background 0.19s;
+      box-shadow: 0 4px 12px #292a3622;
+      transition: background 0.25s ease;
       cursor: pointer;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       user-select: none;
+      text-transform: uppercase;
     }
     #contactForm button:hover {
       background: linear-gradient(96deg, var(--kakashi-red), var(--kakashi-blue));
@@ -313,6 +342,7 @@
       letter-spacing: 1px;
       user-select: none;
     }
+
     /* Responsive */
     @media (max-width: 770px) {
       header h1 {
@@ -326,25 +356,19 @@
       .section {
         padding: 20px 5vw 18px 5vw;
       }
-      .projects {
+      .projects,
+      #class-list {
         flex-direction: column;
         align-items: center;
       }
-      .project-card {
+      .project-card,
+      #class-list a {
         width: 98%;
         max-width: 340px;
       }
       nav a {
         margin: 0 6px;
         font-size: 1rem;
-      }
-      .skills-list span {
-        width: 48%;
-      }
-    }
-    @media (max-width: 450px) {
-      .skills-list span {
-        width: 100%;
       }
     }
   </style>
@@ -413,23 +437,44 @@
   <section class="section" id="skills" tabindex="-1" aria-labelledby="skills-title">
     <h2 id="skills-title">Class</h2>
     <div class="skills-list" id="class-list">
-      <span tabindex="0">10th Question Paper</span>
-      <span tabindex="0">10th Quiz Question</span>
-      <span tabindex="0">11th Science Notes</span>
-      <span tabindex="0">11th Quiz Test</span>
-      <span tabindex="0">12th Question Paper</span>
-      <span tabindex="0">12th Science Notes</span>
-      <span tabindex="0">NEET Question Paper</span>
-      <span tabindex="0">NEET Notes</span>
+      <a href="10th_mcq_quiz.html" tabindex="0" aria-label="10th Quiz Question">
+        <h3><i class="fas fa-book"></i> 10th Quiz Question</h3>
+        <p>Practice your Class 10 MCQ quiz questions here.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="11th Science Notes">
+        <h3><i class="fas fa-book"></i> 11th Science Notes</h3>
+        <p>Explore notes and resources for 11th Science.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="11th Quiz Test">
+        <h3><i class="fas fa-book"></i> 11th Quiz Test</h3>
+        <p>Test your knowledge with 11th class quizzes.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="12th Question Paper">
+        <h3><i class="fas fa-book"></i> 12th Question Paper</h3>
+        <p>Download or view 12th class question papers.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="12th Science Notes">
+        <h3><i class="fas fa-book"></i> 12th Science Notes</h3>
+        <p>Learn and revise 12th Science notes easily.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="NEET Question Paper">
+        <h3><i class="fas fa-book"></i> NEET Question Paper</h3>
+        <p>Practice NEET past question papers.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="NEET Notes">
+        <h3><i class="fas fa-book"></i> NEET Notes</h3>
+        <p>Notes and preparation materials for NEET exam.</p>
+      </a>
     </div>
   </section>
 
   <section class="section" id="contact" tabindex="-1" aria-labelledby="contact-title">
     <h2 id="contact-title">Comment</h2>
-    <form id="contactForm">
-      <input type="text" placeholder="Your Name" aria-label="Your Name" required />
-      <input type="email" placeholder="Your Email" aria-label="Your Email" required />
+    <form id="contactForm" novalidate>
+      <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required />
       <textarea
+        name="message"
         placeholder="Your Message"
         aria-label="Your Message"
         required
@@ -460,7 +505,7 @@
     >
       Chatrapati Sambhajinagar 431001
     </p>
-    <div id="msgStatus" role="alert" aria-live="polite"></div>
+    <div id="msgStatus" role="alert" aria-live="polite" style="min-height: 1.2em; margin-top: 10px; font-weight: 600;"></div>
   </section>
 
   <footer>
@@ -491,13 +536,36 @@
         .scrollIntoView({ behavior: "smooth" });
     });
 
-    // Contact form fake submit
-    document.getElementById("contactForm").onsubmit = function (e) {
+    // Contact form submission handling with validation and message display
+    const contactForm = document.getElementById("contactForm");
+    const msgStatus = document.getElementById("msgStatus");
+
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      document.getElementById("msgStatus").innerText =
-        "Thanks! I'll respond with Kakashi-level speed!";
-      document.getElementById("contactForm").reset();
-    };
+
+      if (!contactForm.name.value.trim()) {
+        msgStatus.textContent = "Please enter your name.";
+        contactForm.name.focus();
+        return;
+      }
+      if (!contactForm.email.value.trim()) {
+        msgStatus.textContent = "Please enter your email.";
+        contactForm.email.focus();
+        return;
+      }
+      if (!contactForm.message.value.trim()) {
+        msgStatus.textContent = "Please enter your message.";
+        contactForm.message.focus();
+        return;
+      }
+
+      msgStatus.textContent = "Thanks! I'll respond with Kakashi-level speed!";
+
+      setTimeout(() => {
+        msgStatus.textContent = "";
+        contactForm.reset();
+      }, 3000);
+    });
   </script>
 </body>
 </html>
