@@ -230,7 +230,6 @@
       flex-grow: 1;
       user-select: text;
     }
-
     /* Class section styled like games */
     #class-list {
       display: flex;
@@ -282,8 +281,7 @@
       flex-grow: 1;
       user-select: text;
     }
-
-    /* Contact section fixes */
+    /* Contact section fixes - input and textarea styling */
     #contactForm {
       display: flex;
       flex-direction: column;
@@ -342,7 +340,6 @@
       letter-spacing: 1px;
       user-select: none;
     }
-
     /* Responsive */
     @media (max-width: 770px) {
       header h1 {
@@ -375,64 +372,137 @@
 </head>
 <body>
   <header role="banner">
-    <div class="kakashi-face" role="img" aria-label="Kakashi styled avatar"></div>
+    <div
+      class="kakashi-face"
+      role="img"
+      aria-label="Kakashi styled avatar"
+    ></div>
     <h1 id="headerName">RKTechGame</h1>
   </header>
 
-  <div class="tagline">Passionate about Gaming & StudyZone Innovation</div>
+  <div
+    class="tagline"
+    aria-live="polite"
+    role="region"
+    aria-label="Website tagline"
+    style="
+      text-align: center;
+      color: var(--tagline-color);
+      text-shadow: 0 0 12px var(--tagline-shadow);
+      font-weight: 600;
+      font-size: 1.2rem;
+      max-width: 450px;
+      margin: 8px auto 8px auto;
+      user-select: none;
+    "
+  >
+    Passionate about Gaming & StudyZone Innovation
+  </div>
 
-  <nav class="shortcut-links">
-    <a href="#projects" id="linkProjects" class="active"><i class="fas fa-gamepad"></i>GAMES</a>
-    <a href="#skills" id="linkStudyzone"><i class="fas fa-book"></i>STUDYZONE</a>
-    <a href="#contact" id="linkContact"><i class="fas fa-envelope"></i>CONTACT US</a>
+  <nav class="shortcut-links" aria-label="Quick navigation links">
+    <a href="#projects" id="linkProjects" class="active" role="link" tabindex="0"
+      ><i class="fas fa-gamepad"></i>GAMES</a
+    >
+    <a href="#skills" id="linkStudyzone" role="link" tabindex="0"
+      ><i class="fas fa-book"></i>STUDYZONE</a
+    >
+    <a href="#contact" id="linkContact" role="link" tabindex="0"
+      ><i class="fas fa-envelope"></i>CONTACT US</a
+    >
   </nav>
 
-  <section class="section" id="projects">
-    <h2>Games</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3><i class="fas fa-gamepad"></i><a href="typing-speed-test.html">Typing Speed Test</a></h3>
-        <p>Test and improve your typing speed with real-time highlighting and accuracy.</p>
+  <section class="section" id="projects" tabindex="-1" aria-labelledby="projects-title">
+    <h2 id="projects-title">Games</h2>
+    <div class="projects" role="list">
+      <div class="project-card" role="listitem" tabindex="0">
+        <h3>
+          <i class="fas fa-gamepad"></i>
+          <a
+            href="typing-speed-test.html"
+            style="color: inherit; text-decoration: none"
+            >Typing Speed Test</a
+          >
+        </h3>
+        <p>
+          Test and improve your typing speed with real-time highlighting and
+          accuracy.
+        </p>
       </div>
-      <div class="project-card">
-        <h3><i class="fas fa-gamepad"></i><a href="tictactoe.html">Tic Tac Toe</a></h3>
+      <div class="project-card" role="listitem" tabindex="0">
+        <h3>
+          <i class="fas fa-gamepad"></i>
+          <a href="tictactoe.html" style="color: inherit; text-decoration: none"
+            >Tic Tac Toe</a
+          >
+        </h3>
         <p>Classic two-player game with a clean, responsive UI and AI opponent.</p>
       </div>
-      <div class="project-card">
-        <h3><i class="fas fa-gamepad"></i><a href="number-sequence-puzzle.html">Number Sequence Puzzle</a></h3>
-        <p>A challenging logic game to find the next number and pattern in sequences.</p>
+      <div class="project-card" role="listitem" tabindex="0">
+        <h3>
+          <i class="fas fa-gamepad"></i>
+          <a
+            href="number-sequence-puzzle.html"
+            style="color: inherit; text-decoration: none"
+            >Number Sequence Puzzle</a
+          >
+        </h3>
+        <p>
+          A challenging logic game to find the next number and pattern in
+          sequences.
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="section" id="skills">
-    <h2>Class</h2>
-    <div id="class-list">
-      <a href="10th_mcq_quiz.html"><h3><i class="fas fa-book"></i> 10th Quiz Question</h3><p>Practice your Class 10 MCQ quiz questions here.</p></a>
-      <a href="#"><h3><i class="fas fa-book"></i> 11th Science Notes</h3><p>Explore notes and resources for 11th Science.</p></a>
-      <a href="#"><h3><i class="fas fa-book"></i> 11th Quiz Test</h3><p>Test your knowledge with 11th class quizzes.</p></a>
-      <a href="#"><h3><i class="fas fa-book"></i> 12th Question Paper</h3><p>Download or view 12th class question papers.</p></a>
-      <!-- ✅ Updated 12th Science Notes Link -->
-      <a href="12th-science-notes.html"><h3><i class="fas fa-book"></i> 12th Science Notes</h3><p>Learn and revise 12th Science notes easily.</p></a>
-      <a href="#"><h3><i class="fas fa-book"></i> NEET Question Paper</h3><p>Practice NEET past question papers.</p></a>
-      <a href="neet-books.html"><h3><i class="fas fa-book"></i> NEET Notes</h3><p>Notes and preparation materials for NEET exam.</p></a>
+  <section class="section" id="skills" tabindex="-1" aria-labelledby="skills-title">
+    <h2 id="skills-title">Class</h2>
+    <div class="skills-list" id="class-list">
+      <a href="10th_mcq_quiz.html" tabindex="0" aria-label="10th Quiz Question">
+        <h3><i class="fas fa-book"></i> 10th Quiz Question</h3>
+        <p>Practice your Class 10 MCQ quiz questions here.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="11th Science Notes">
+        <h3><i class="fas fa-book"></i> 11th Science Notes</h3>
+        <p>Explore notes and resources for 11th Science.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="11th Quiz Test">
+        <h3><i class="fas fa-book"></i> 11th Quiz Test</h3>
+        <p>Test your knowledge with 11th class quizzes.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="12th Question Paper">
+        <h3><i class="fas fa-book"></i> 12th Question Paper</h3>
+        <p>Download or view 12th class question papers.</p>
+      </a>
+      <!-- Physics link to chapter list page -->
+      <a href="12th-science-physics-notes.html" tabindex="0" aria-label="12th Science Physics Notes">
+        <h3><i class="fas fa-book"></i> 12th Science Physics Notes</h3>
+        <p>Learn and revise 12th Science Physics notes chapter-wise.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="NEET Question Paper">
+        <h3><i class="fas fa-book"></i> NEET Question Paper</h3>
+        <p>Practice NEET past question papers.</p>
+      </a>
+      <a href="neet-books.html" tabindex="0" aria-label="NEET Notes">
+        <h3><i class="fas fa-book"></i> NEET Notes</h3>
+        <p>Notes and preparation materials for NEET exam.</p>
+      </a>
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <h2>Comment</h2>
+  <section class="section" id="contact" tabindex="-1" aria-labelledby="contact-title">
+    <h2 id="contact-title">Comment</h2>
     <form id="contactForm" novalidate>
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" required rows="4"></textarea>
+      <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required />
+      <textarea name="message" placeholder="Your Message" aria-label="Your Message" required rows="4"></textarea>
       <div style="display: flex; gap: 20px; margin-bottom: 12px;">
-        <a href="https://t.me/rktechgame" target="_blank"><i class="fab fa-telegram"></i></a>
-        <a href="https://www.instagram.com/_satan_12.12?igsh=ODM4NjI4cG01djE4" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://t.me/rktechgame" target="_blank" rel="noopener noreferrer" aria-label="Telegram" style="color: var(--kakashi-red); font-size: 1.7rem"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.instagram.com/_satan_12.12?igsh=ODM4NjI4cG01djE4" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color: var(--kakashi-red); font-size: 1.7rem"><i class="fab fa-instagram"></i></a>
       </div>
-      <button type="submit">Send Message</button>
+      <button type="submit" aria-label="Send message">Send Message</button>
     </form>
-    <p style="text-align: center; margin-top: 10px; font-weight: 600;">Chatrapati Sambhajinagar 431001</p>
-    <div id="msgStatus" role="alert" style="min-height: 1.2em;"></div>
+    <p style="text-align: center; margin-top: 10px; font-weight: 600; user-select: text">Chatrapati Sambhajinagar 431001</p>
+    <div id="msgStatus" role="alert" aria-live="polite" style="min-height: 1.2em; margin-top: 10px; font-weight: 600;"></div>
   </section>
 
   <footer>
@@ -457,11 +527,12 @@
       document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Form Validation
     const contactForm = document.getElementById("contactForm");
     const msgStatus = document.getElementById("msgStatus");
+
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
       if (!contactForm.name.value.trim()) {
         msgStatus.textContent = "Please enter your name.";
         contactForm.name.focus();
@@ -477,7 +548,9 @@
         contactForm.message.focus();
         return;
       }
+
       msgStatus.textContent = "Thanks! I'll respond with Kakashi-level speed!";
+
       setTimeout(() => {
         msgStatus.textContent = "";
         contactForm.reset();
