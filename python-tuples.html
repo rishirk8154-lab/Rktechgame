@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python Tuples Detailed Guide | RKTechGame</title>
+<style>
+  :root {
+    --primary-red: #db1d29;
+    --primary-blue: #546285;
+    --background-light: #f0f4faee;
+    --text-dark: #292a36;
+    --shadow-color: #42516f;
+    --gray-bg: #cfd2dc;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--primary-blue) 20%, var(--gray-bg) 100%);
+    color: var(--text-dark);
+  }
+  main {
+    max-width: 920px;
+    margin: 40px auto;
+    background: var(--background-light);
+    padding: 40px 28px;
+    border-radius: 24px;
+    box-shadow: 0 3px 30px var(--shadow-color);
+  }
+  h1 {
+    color: var(--primary-red);
+    font-size: 3rem;
+    border-left: 8px solid var(--primary-red);
+    padding-left: 16px;
+    margin-bottom: 48px;
+    user-select: none;
+    font-weight: 900;
+  }
+  h2 {
+    color: var(--primary-red);
+    border-bottom: 4px solid var(--primary-red);
+    margin: 36px 0 28px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  h3 {
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    user-select: text;
+  }
+  ul {
+    padding-left: 28px;
+    margin-bottom: 24px;
+  }
+  li {
+    margin-bottom: 16px;
+  }
+  pre {
+    background: var(--gray-bg);
+    border-radius: 28px;
+    padding: 24px 32px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    box-shadow: 0 3px 18px var(--shadow-color);
+    overflow-x: auto;
+    user-select: text;
+    margin-bottom: 40px;
+  }
+  code {
+    font-weight: 700;
+    color: var(--primary-red);
+  }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Python Tuples - Ek Detailed Guide</h1>
+
+    <h2>Tuple Kya Hain?</h2>
+    <p>Python mein <strong>tuple</strong> ek ordered aur immutable data structure hai jisme multiple items ek saath store kiye jaate hain. Items ka order fix hota hai aur tuples me ek baar value set karne ke baad usme koi modification nahi kar sakte.</p>
+    <p>Tuples ko round brackets <code>()</code> se define kiya jata hai, aur items ko comma se separate kiya jata hai.</p>
+
+    <h3>Example:</h3>
+    <pre>my_tuple = (10, "Hello", 3.14)</pre>
+
+    <h2>Tuple Banane ke Alag Tarike</h2>
+    <ul>
+      <li><strong>Parentheses ke sath:</strong> <code>t = (1, 2, 3)</code></li>
+      <li><strong>Bina Parentheses ke:</strong> Python me parentheses optional hain agar commas sahi ho, jaise <code>t = 1, 2, 3</code></li>
+      <li><strong>Tuple Constructor se:</strong> <code>t = tuple([1, 2, 3])</code> (List ko tuple me convert kare)</li>
+      <li><strong>Empty Tuple:</strong> <code>empty = ()</code></li>
+      <li><strong>Single Element Tuple:</strong> <code>single = (10,)</code> (Comma jaruri hai single element ke liye)</li>
+    </ul>
+
+    <h2>Tuple ke Special Features</h2>
+    <ul>
+      <li><strong>Immutable:</strong> Tuple create hone ke baad uske elements ko change, add, ya delete nahi kar sakte.</li>
+      <li><strong>Ordered:</strong> Elements ka order fixed hota hai, pehla element index 0 par hota hai.</li>
+      <li><strong>Duplicates Allowed:</strong> Same value multiple times ho sakti hai.</li>
+      <li><strong>Heterogeneous:</strong> Different data types ek saath store kar sakte hain.</li>
+    </ul>
+
+    <h2>Tuple Access aur Indexing</h2>
+    <p>Tuple me elements ko index ki madad se access kiya jata hai. Negative indexing se last se count karte hain.</p>
+    <pre>colors = ("red", "green", "blue")
+print(colors[0])    # red
+print(colors[-1])   # blue</pre>
+
+    <h2>Tuple Slicing</h2>
+    <p>Tuple ke parts ko extract karne ke liye slicing use karte hain, jo ek naya tuple return karta hai.</p>
+    <pre>numbers = (1, 2, 3, 4, 5, 6)
+print(numbers[2:5])   # (3, 4, 5)
+print(numbers[:3])    # (1, 2, 3)
+print(numbers[4:])    # (5, 6)
+print(numbers[::2])   # (1, 3, 5)</pre>
+
+    <h2>Tuple ke Important Methods</h2>
+    <ul>
+      <li><code>count(x)</code>: Tuple me element x kitni baar aaya hai</li>
+      <li><code>index(x)</code>: Tuple me element x ka pehla index return kare</li>
+    </ul>
+    <pre>t = (1, 2, 2, 3, 4)
+print(t.count(2))   # 2
+print(t.index(3))   # 3</pre>
+
+    <h2>Tuple Packing aur Unpacking</h2>
+    <p><strong>Packing:</strong> Multiple values ko ek tuple me ek saath store karna.</p>
+    <p><strong>Unpacking:</strong> Tuple ke elements ko alag variables me assign karna.</p>
+    <pre>person = ("Amit", 25, "Delhi")
+name, age, city = person
+print(name)   # Amit
+print(age)    # 25
+print(city)   # Delhi</pre>
+
+    <h2>Tuple Concatenation aur Repetition</h2>
+    <pre>t1 = (1, 2)
+t2 = (3, 4)
+print(t1 + t2)  # (1, 2, 3, 4)
+print(t1 * 3)   # (1, 2, 1, 2, 1, 2)</pre>
+
+    <h2>Nested Tuples</h2>
+    <p>Tuple ke andar doosre tuples bhi ho sakte hain, jise nested tuples kehte hain.</p>
+    <pre>nested = ((1, 2), (3, 4), (5, 6))
+print(nested[1])     # (3, 4)
+print(nested[1][0])  # 3</pre>
+
+    <h2>Tuple vs List</h2>
+    <p>Tuple aur list dono ordered collections hain, lekin tuple immutable hota hai, matlab uske items badle nahi ja sakte, jabki list mutable hoti hai. Tuple ko aap secure data store karne ke liye prefer karte hain.</p>
+
+    <h2>Tuple me Immutability ka Matlab</h2>
+    <p>Tuple immutable hai, iska matlab ye nahi ki tuple me kahi nested objects na ho, jaise list. Agar tuple ke andar list ho to us list ko modify kar sakte hain, lekin tuple ka reference change nahi kar sakte.</p>
+    <pre>t = (1, [2, 3], 4)
+t[1].append(5)
+print(t)  # (1, [2, 3, 5], 4)</pre>
+
+    <h2>Why Tuples Use Karen?</h2>
+    <ul>
+      <li>Immutable hone ke karan data protection ke liye</li>
+      <li>Faster execution as compared to lists</li>
+      <li>Dictionary keys me tuples use kiye ja sakte hain, kyunki wo hashable hote hain</li>
+      <li>Data ko fixed structure me organize karne ke liye</li>
+    </ul>
+
+    <h2>Real-World Example</h2>
+    <p>Latitude aur longitude store karne ke liye tuple ache hain:</p>
+    <pre>location = (28.6139, 77.2090)
+print("Latitude:", location[0])
+print("Longitude:", location[1])</pre>
+
+    <h2>Conclusion</h2>
+    <p>Python tuples ek powerful data structure hain jo aapko immutable and ordered data store karne ka solution dete hain. Inka use karke aap apna data safe rakh sakte hain aur efficient code likh sakte hain. Tuple ke andar aap complex aur nested data bhi organize kar sakte hain. Yeh list ka ek complementary data type hai jiska apna sahi use case hai.</p>
+    
+    <p>Practice kar ke aap tuples me maharat haasil kar sakte hain, jisse aapke programs zyada robust aur maintenable banenge!</p>
+  </main>
+</body>
+</html>
