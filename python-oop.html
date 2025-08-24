@@ -1,0 +1,154 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Object Oriented Programming (OOP) - Complete Guide</title> <style> :root { --main-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-color: #0d1b2a; --code-bg: #f0f0f0; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-color); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 12px 30px var(--shadow-color); user-select: text; } h1 { color: var(--main-red); font-weight: 900; font-size: 3rem; border-left: 10px solid var(--main-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--main-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--main-red); margin: 40px 0 30px; padding-bottom: 8px; } p, li { font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { background: var(--code-bg); padding: 18px 22px; border-radius: 12px; font-family: "Courier New", Courier, monospace; font-size: 1.05rem; line-height: 1.4; box-shadow: 0 3px 15px rgb(0 0 0 / 0.1); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--main-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Object Oriented Programming (OOP) - Complete Guide</h1>
+text
+<h2>1. Object Oriented Programming Kya Hai?</h2>
+<p>OOP ek programming style hai jisme hum real-world entities ko classes aur objects ki madad se represent karte hain. Python me OOP ke basic concepts hain <strong>Classes, Objects, Inheritance, Encapsulation, Polymorphism</strong> aur <strong>Abstraction</strong>. OOP se aapka code modular, reusable aur easy to maintain hota hai.</p>
+
+<h2>2. Class Aur Object</h2>
+<p>Class ek blueprint hoti hai jisse hum objects banate hain. Object class ka ek instance hai jisme data (attributes) aur behaviour (methods) hota hai.</p>
+
+<pre>
+class Dog:
+# Constructor to initialize attributes
+def init(self, name, age):
+self.name = name
+self.age = age
+
+text
+# Method that describes the dog
+def description(self):
+    return f"{self.name} is {self.age} years old."
+
+def speak(self, sound):
+    return f"{self.name} says {sound}"
+Object banaye
+dog1 = Dog("Buddy", 4)
+dog2 = Dog("Lucy", 2)
+
+print(dog1.description()) # Buddy is 4 years old.
+print(dog2.speak("Woof")) # Lucy says Woof
+</pre>
+
+text
+<h2>3. Constructor (`__init__` Method)</h2>
+<p><code>__init__</code> method special method hota hai jo object creation ke samay call hota hai. Isme attributes initialize hote hain.</p>
+
+<h2>4. Instance Variable aur Class Variable</h2>
+<p>Instance variable har object ka apna hota hai, jabki class variable sab objects ke liye common hota hai.</p>
+
+<pre>
+class Car:
+wheels = 4 # class variable
+
+text
+def __init__(self, make, model):
+    self.make = make   # instance variable
+    self.model = model
+car1 = Car("Toyota", "Corolla")
+car2 = Car("Honda", "Civic")
+
+print(car1.wheels) # 4
+print(car2.model) # Civic
+</pre>
+
+text
+<h2>5. Inheritance</h2>
+<p>Inheritance ke through ek class dusri class ke features use kar sakti hai.</p>
+
+<pre>
+class Animal:
+def init(self, name):
+self.name = name
+def speak(self):
+pass
+
+class Dog(Animal):
+def speak(self):
+return f"{self.name} says Woof"
+
+class Cat(Animal):
+def speak(self):
+return f"{self.name} says Meow"
+
+dog = Dog("Buddy")
+cat = Cat("Kitty")
+
+print(dog.speak()) # Buddy says Woof
+print(cat.speak()) # Kitty says Meow
+</pre>
+
+text
+<h2>6. Encapsulation</h2>
+<p>Encapsulation se hum data ko private bana sakte hain jise direct access nahi kiya ja sakta. Python me iske liye double underscore prefix use hota hai.</p>
+
+<pre>
+class Person:
+def init(self, name, age):
+self.name = name
+self.__age = age # private attribute
+
+text
+def get_age(self):
+    return self.__age
+
+def set_age(self, age):
+    if age > 0:
+        self.__age = age
+    else:
+        print("Age should be positive.")
+p = Person("Neha", 25)
+print(p.get_age()) # 25
+p.set_age(30)
+print(p.get_age()) # 30
+p.set_age(-5) # Age should be positive.
+</pre>
+
+text
+<h2>7. Polymorphism</h2>
+<p>Polymorphism ka matlab hai alag-alag classes me ek hi function ka alag tarike se kaam karna.</p>
+
+<pre>
+class Bird:
+def fly(self):
+print("Flying in the sky")
+
+class Sparrow(Bird):
+def fly(self):
+print("Flying low")
+
+class Eagle(Bird):
+def fly(self):
+print("Flying high")
+
+for bird in (Bird(), Sparrow(), Eagle()):
+bird.fly()
+</pre>
+
+text
+<h2>8. Abstraction</h2>
+<p>Abstraction me hum complexity chhupakar sirf essential features dikhate hain. Python me iske liye <code>abc</code> module aur abstract classes use karte hain.</p>
+
+<pre>
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+@abstractmethod
+def wheels(self):
+pass
+
+class Bike(Vehicle):
+def wheels(self):
+return 2
+
+class Car(Vehicle):
+def wheels(self):
+return 4
+
+print(Bike().wheels()) # 2
+print(Car().wheels()) # 4
+</pre>
+
+text
+<h2>9. Summary</h2>
+<p>Python OOP se aap powerful modular code likh sakte hain jo reusable ho. Classes aur objects se real-world modeling asaan hoti hai. Inheritance aur polymorphism se code flexible banta hai. Encapsulation data protection deti hai aur abstraction complexity ko hide karta hai.</p>
+<p>Practice ke saath aap OOP ke in concepts me proficient ban sakte hain aur bade projects develop kar sakte hain.</p>
+</main> </body> </html>
