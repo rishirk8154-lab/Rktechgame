@@ -1,0 +1,104 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Matplotlib Visualization - Detailed Guide for Students</title> <style> :root { --primary-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-color: #0d1b2a; --code-bg: #f0f0f0; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-color); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 12px 30px var(--shadow-color); line-height: 1.8; user-select: text; } h1 { color: var(--primary-red); font-weight: 900; font-size: 3rem; border-left: 10px solid var(--primary-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--primary-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--primary-red); margin: 40px 0 30px; padding-bottom: 8px; } p { font-size: 1.1rem; margin-bottom: 20px; } ul { margin-left: 32px; margin-bottom: 28px; } pre { background: var(--code-bg); padding: 20px 28px; border-radius: 12px; font-family: "Courier New", Courier, monospace; font-size: 1.05rem; box-shadow: 0 3px 15px rgba(0,0,0,0.1); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--primary-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Matplotlib ke Saath Data Visualization - Detailed Guide</h1>
+text
+<h2>1. Matplotlib Kya Hai?</h2>
+<p>Matplotlib Python ki sabse popular library hai data visualization ke liye. Yeh flexible aur powerful hai jiske zariye aap different tarah ke graphs, plots aur charts create kar sakte hain jaise line plots, bar charts, scatter plots, histograms, aur pie charts.</p>
+<p>Iska "pyplot" module MATLAB jaise syntax deta hai jo beginners ke liye seekhna aasan banata hai.</p>
+
+<h2>2. Installation Aur Import</h2>
+<p>Pehle Matplotlib install karo apne environment me:</p>
+<pre>pip install matplotlib</pre>
+<p>Phir Python me import karo:</p>
+<pre>import matplotlib.pyplot as plt</pre>
+
+<h2>3. Basic Line Plot Banana</h2>
+<p>Aayiye ek simple line plot banate hain:</p>
+<pre>
+x = 
+y = 
+
+plt.plot(x, y)
+plt.title("Simple Line Plot")
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.show()
+</pre>
+<p>Yeh code x aur y ke data points ko line se jod kar plot karta hai. Titles aur axis labels se visualization ko samajhna aasan hota hai.</p>
+
+text
+<h2>4. Bar Chart Banana</h2>
+<p>Bar chart categorical data dikhane ke liye best hota hai:</p>
+<pre>
+categories = ['Apple', 'Banana', 'Cherry', 'Date']
+values = 
+
+plt.bar(categories, values, color='skyblue')
+plt.title("Fruit Count Bar Chart")
+plt.show()
+</pre>
+
+text
+<h2>5. Histogram Plot Karna</h2>
+<p>Histogram data distribution dikhata hai, matlab kis range me kitni values hain:</p>
+<pre>
+data =
+
+plt.hist(data, bins=5, color='green', edgecolor='black')
+plt.title("Histogram")
+plt.show()
+</pre>
+
+text
+<h2>6. Scatter Plot Banana</h2>
+<p>Scatter plot 2 variables ke beech relationship dikhata hai, jaise points ke form me:</p>
+<pre>
+x = 
+y =
+
+plt.scatter(x, y, color='red')
+plt.title("Scatter Plot")
+plt.show()
+</pre>
+
+text
+<h2>7. Pie Chart</h2>
+<p>Pie chart se apko pata chalta hai proportions (percentage) of categories:</p>
+<pre>
+labels = ['Python', 'Java', 'C++', 'JavaScript']
+sizes =
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+plt.title("Programming Languages Popularity")
+plt.show()
+</pre>
+
+text
+<h2>8. Multiple Graphs Ek Sath Plot Karna</h2>
+<p>Agar aapko plot me ek se zyada lines dikhani hai to:</p>
+<pre>
+x = 
+
+plt.plot(x, , label='Squared')
+plt.plot(x, , label='Cubed')
+
+plt.legend()
+plt.title("Multiple Lines Plot")
+plt.show()
+</pre>
+
+text
+<h2>9. Plot Customization</h2>
+<p>Matplotlib me aap color, line style, markers set kar sakte hain:</p>
+<pre>
+plt.plot(x, , color='purple', linestyle='--', marker='o')
+plt.title("Customized Line Plot")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.grid(True)
+plt.show()
+</pre>
+
+text
+<h2>10. Summary</h2>
+<p>Matplotlib Python programming ke liye ek fundamental visualization library hai. Iske functions aur methods se aap apne data ko visually samajh sakte hain aur communicate kar sakte hain. Line plots, bar charts, scatter plots, histograms, aur pie charts jaisi common visualizations ko itni flexibility ke saath banana iska strength hai. Beginners ke liye ise seekhna zaruri hai kyunki data science aur machine learning me visualization ek important skill hai.</p>
+<p>Practice karte rahein aur alag alag plots bana kar apni skill ko improve karein!</p>
+</main> </body> </html>
