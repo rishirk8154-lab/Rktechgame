@@ -61,8 +61,8 @@
       height: 110px;
       border-radius: 50%;
       background: url(
-          "https://api.dicebear.com/7.x/adventurer/svg?seed=Kakashi&skinColor=variant05&hairColor=gray&backgroundColor=white&hair=shortFlat&mouth=smirk&eyes=wink&eyebrows=variant06"
-        )
+        "https://api.dicebear.com/7.x/adventurer/svg?seed=Kakashi&skinColor=variant05&hairColor=gray&backgroundColor=white&hair=shortFlat&mouth=smirk&eyes=wink&eyebrows=variant06"
+      )
         center/cover no-repeat;
       box-shadow: 0 2px 19px #292a3640;
       border: 5px solid var(--kakashi-blue);
@@ -230,15 +230,16 @@
       flex-grow: 1;
       user-select: text;
     }
-    /* Class section styled like games */
-    #class-list {
+    #class-list,
+    #programming-list {
       display: flex;
       flex-wrap: wrap;
       gap: 32px 24px;
       justify-content: flex-start;
       min-height: 340px;
     }
-    #class-list a {
+    #class-list a,
+    #programming-list a {
       background: linear-gradient(120deg, #cfd2dc 82%, #a6b0cd 100%);
       width: calc((100% / 3) - 24px);
       min-width: 260px;
@@ -256,13 +257,15 @@
       box-sizing: border-box;
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
-    #class-list a:hover {
+    #class-list a:hover,
+    #programming-list a:hover {
       transform: scale(1.05) rotate(-1.5deg);
       box-shadow: 0 7px 18px var(--kakashi-shadow);
       background: linear-gradient(110deg, #e7eaf3 66%, #db1d2911 100%);
       color: #23243a;
     }
-    #class-list a h3 {
+    #class-list a h3,
+    #programming-list a h3 {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -270,18 +273,19 @@
       margin: 0 0 7px 0;
       font-size: 1.15rem;
     }
-    #class-list a h3 i {
+    #class-list a h3 i,
+    #programming-list a h3 i {
       color: var(--kakashi-red);
       font-size: 1.35rem;
     }
-    #class-list a p {
+    #class-list a p,
+    #programming-list a p {
       margin: 0;
       color: #233;
       font-size: 1rem;
       flex-grow: 1;
       user-select: text;
     }
-    /* Contact section fixes - input and textarea styling */
     #contactForm {
       display: flex;
       flex-direction: column;
@@ -340,7 +344,6 @@
       letter-spacing: 1px;
       user-select: none;
     }
-    /* Responsive */
     @media (max-width: 770px) {
       header h1 {
         font-size: 1.8rem;
@@ -354,12 +357,14 @@
         padding: 20px 5vw 18px 5vw;
       }
       .projects,
-      #class-list {
+      #class-list,
+      #programming-list {
         flex-direction: column;
         align-items: center;
       }
       .project-card,
-      #class-list a {
+      #class-list a,
+      #programming-list a {
         width: 98%;
         max-width: 340px;
       }
@@ -454,6 +459,24 @@
     </div>
   </section>
 
+  <section class="section" id="programming-course" tabindex="-1" aria-labelledby="programming-course-title">
+    <h2 id="programming-course-title">Programming Courses</h2>
+    <div class="skills-list" id="programming-list">
+      <a href="python-course.html" tabindex="0" aria-label="Python Programming Course">
+        <h3><i class="fas fa-code"></i> Python Programming Course</h3>
+        <p>Learn Python Programming step-by-step with notes and tutorials.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="Java Programming Course">
+        <h3><i class="fas fa-code"></i> Java Programming Course</h3>
+        <p>Comprehensive course on Java programming for beginners.</p>
+      </a>
+      <a href="#" tabindex="0" aria-label="Web Development Course">
+        <h3><i class="fas fa-code"></i> Web Development Course</h3>
+        <p>Learn HTML, CSS, and JavaScript for building websites.</p>
+      </a>
+    </div>
+  </section>
+
   <section class="section" id="skills" tabindex="-1" aria-labelledby="skills-title">
     <h2 id="skills-title">Class</h2>
     <div class="skills-list" id="class-list">
@@ -473,10 +496,9 @@
         <h3><i class="fas fa-book"></i> 12th Question Paper</h3>
         <p>Download or view 12th class question papers.</p>
       </a>
-      <!-- Physics link to chapter list page -->
-      <a href="12th-science-physics-notes.html" tabindex="0" aria-label="12th Science Physics Notes">
-        <h3><i class="fas fa-book"></i> 12th Science Physics Notes</h3>
-        <p>Learn and revise 12th Science Physics notes chapter-wise.</p>
+      <a href="python-course.html" tabindex="0" aria-label="Python Programming Course">
+        <h3><i class="fas fa-book"></i> Python Programming Course</h3>
+        <p>Learn Python Programming step-by-step with notes and tutorials.</p>
       </a>
       <a href="#" tabindex="0" aria-label="NEET Question Paper">
         <h3><i class="fas fa-book"></i> NEET Question Paper</h3>
