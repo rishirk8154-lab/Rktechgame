@@ -1,0 +1,97 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Exception Handling - Complete Guide with Code Examples</title> <style> :root { --primary-red: #e63946; --dark-blue: #1d3557; --white-bg: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-dark: #0d1b2a; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--white-bg); color: var(--text-dark); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--white-bg); border-radius: 20px; box-shadow: 0 10px 30px var(--shadow-color); user-select: text; } h1 { color: var(--primary-red); font-weight: 900; font-size: 3rem; border-left: 10px solid var(--primary-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--primary-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--primary-red); margin: 40px 0 30px; padding-bottom: 10px; } p, li { font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--light-gray); padding: 20px 28px; border-radius: 18px; font-size: 1.1rem; line-height: 1.5; box-shadow: 0 3px 20px var(--shadow-color); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--primary-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Exception Handling - Complete Guide</h1>
+text
+<h2>1. Exception Handling Kya Hai?</h2>
+<p>Exception handling programming ka ek technique hai jise hum runtime errors ko control karne ke liye use karte hain, jise exceptions kaha jata hai. Ye errors program ko abruptly rok dete hain agar handle na kiya jaye. Python me hum exceptions ko handle karne ke liye <code>try</code>, <code>except</code>, <code>else</code>, aur <code>finally</code> blocks ka use karte hain.</p>
+
+<h2>2. Try-Except Block Kaise Kaam Karta Hai?</h2>
+<p><code>try</code> block me wo code rakha jata hai jisme exception aane ki possibility hoti hai. Agar exception jata hai, to control turant <code>except</code> block me chala jata hai jahan hum error ko handle kar sakte hain. Agar exception nahi aata to <code>except</code> block skip hota hai.</p>
+
+<h3>Example:</h3>
+<pre>
+try:
+x = int(input("Koi number do: "))
+result = 10 / x
+print("Result =", result)
+except ZeroDivisionError:
+print("Error: Zero se bhaag nahi kar sakte!")
+except ValueError:
+print("Error: Valid number nahi diya!")
+</pre>
+
+text
+<h2>3. Multiple Except Blocks</h2>
+<p>Alag alag exceptions ke liye alag alag <code>except</code> blocks likh sakte hain:</p>
+<pre>
+try:
+num = int(input("Number daalo: "))
+print(10 / num)
+except ZeroDivisionError:
+print("Zero se divide nahi kar sakte.")
+except ValueError:
+print("Number nahi diya.")
+</pre>
+
+text
+<h2>4. Generic Exception Handle Karna</h2>
+<p>Agar kisi specific error ka pata nahi hai to generic <code>except Exception as e:</code> use kar sakte hain jisse sabhi exceptions catch ho jayenge:</p>
+<pre>
+try:
+# risky code
+except Exception as e:
+print("Error aaya:", e)
+</pre>
+
+text
+<h2>5. Else Block</h2>
+<p>Jab <code>try</code> block me koi exception nahi aata to <code>else</code> block execute hota hai:</p>
+<pre>
+try:
+num = int(input("Number do: "))
+except ValueError:
+print("Galat input!")
+else:
+print("Input sahi hai, number =", num)
+</pre>
+
+text
+<h2>6. Finally Block (Cleanup Code)</h2>
+<p><code>finally</code> block aise code ke liye hota hai jo chahe exception aaye ya na aaye, hamesha run hona chahiye. Jaise file close karna:</p>
+<pre>
+try:
+file = open("data.txt", "r")
+content = file.read()
+except FileNotFoundError:
+print("File nahi mili.")
+finally:
+file.close()
+print("File close kar diya.")
+</pre>
+
+text
+<h2>7. Raise Keyword (Apne Exceptions Banana)</h2>
+<p>Apne logic me bhi exceptions ko force kar sakte hain <code>raise</code> keyword ke zariye:</p>
+<pre>
+age = int(input("Age do: "))
+if age < 18:
+raise Exception("Sorry, age must be 18 or above.")
+</pre>
+
+text
+<h2>8. Custom Exception Banana</h2>
+<p>Python me apne custom exceptions class bana kar custom error messages generate kar sakte hain:</p>
+<pre>
+class AgeError(Exception):
+pass
+
+age = int(input("Age do: "))
+if age < 18:
+raise AgeError("Age should be at least 18.")
+</pre>
+
+text
+<h2>9. Summary</h2>
+<p>Exception handling Python programming me bahut zaroori hai kyunki ye program ko unexpected error se bachata hai aur user friendly messages dikhata hai. Isse program gracefully handle hota hai aur crash nahi karta.</p>
+<p>Python ke <code>try-except-else-finally</code> blocks ko seekh kar tum apne programs ko reliable aur robust bana sakte ho.</p>
+
+<p>Agar tum chaho to is page ke code ko apni website me easily link kar sakte ho taaki tumhare students ko detailed samajh aaye.</p>
+</main> </body> </html>
