@@ -230,7 +230,6 @@
       flex-grow: 1;
       user-select: text;
     }
-    #class-list,
     #programming-list {
       display: flex;
       flex-wrap: wrap;
@@ -238,7 +237,6 @@
       justify-content: flex-start;
       min-height: 340px;
     }
-    #class-list a,
     #programming-list a {
       background: linear-gradient(120deg, #cfd2dc 82%, #a6b0cd 100%);
       width: calc((100% / 3) - 24px);
@@ -257,14 +255,12 @@
       box-sizing: border-box;
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
-    #class-list a:hover,
     #programming-list a:hover {
       transform: scale(1.05) rotate(-1.5deg);
       box-shadow: 0 7px 18px var(--kakashi-shadow);
       background: linear-gradient(110deg, #e7eaf3 66%, #db1d2911 100%);
       color: #23243a;
     }
-    #class-list a h3,
     #programming-list a h3 {
       display: flex;
       align-items: center;
@@ -273,12 +269,10 @@
       margin: 0 0 7px 0;
       font-size: 1.15rem;
     }
-    #class-list a h3 i,
     #programming-list a h3 i {
       color: var(--kakashi-red);
       font-size: 1.35rem;
     }
-    #class-list a p,
     #programming-list a p {
       margin: 0;
       color: #233;
@@ -357,13 +351,11 @@
         padding: 20px 5vw 18px 5vw;
       }
       .projects,
-      #class-list,
       #programming-list {
         flex-direction: column;
         align-items: center;
       }
       .project-card,
-      #class-list a,
       #programming-list a {
         width: 98%;
         max-width: 340px;
@@ -408,7 +400,7 @@
     <a href="#projects" id="linkProjects" class="active" role="link" tabindex="0"
       ><i class="fas fa-gamepad"></i>GAMES</a
     >
-    <a href="#skills" id="linkStudyzone" role="link" tabindex="0"
+    <a href="#programming-course" id="linkStudyzone" role="link" tabindex="0"
       ><i class="fas fa-book"></i>STUDYZONE</a
     >
     <a href="#contact" id="linkContact" role="link" tabindex="0"
@@ -462,7 +454,7 @@
   <section class="section" id="programming-course" tabindex="-1" aria-labelledby="programming-course-title">
     <h2 id="programming-course-title">Programming Courses</h2>
     <div class="skills-list" id="programming-list">
-      <a href="python-course.html#intro" tabindex="0" aria-label="Python Programming Course">
+      <a href="python-topics.html" tabindex="0" aria-label="Python Programming Course">
         <h3><i class="fas fa-code"></i> Python Programming Course</h3>
         <p>Learn Python Programming step-by-step with notes and tutorials.</p>
       </a>
@@ -473,40 +465,6 @@
       <a href="#" tabindex="0" aria-label="Web Development Course">
         <h3><i class="fas fa-code"></i> Web Development Course</h3>
         <p>Learn HTML, CSS, and JavaScript for building websites.</p>
-      </a>
-    </div>
-  </section>
-
-  <section class="section" id="skills" tabindex="-1" aria-labelledby="skills-title">
-    <h2 id="skills-title">Class</h2>
-    <div class="skills-list" id="class-list">
-      <a href="10th_mcq_quiz.html" tabindex="0" aria-label="10th Quiz Question">
-        <h3><i class="fas fa-book"></i> 10th Quiz Question</h3>
-        <p>Practice your Class 10 MCQ quiz questions here.</p>
-      </a>
-      <a href="#" tabindex="0" aria-label="11th Science Notes">
-        <h3><i class="fas fa-book"></i> 11th Science Notes</h3>
-        <p>Explore notes and resources for 11th Science.</p>
-      </a>
-      <a href="#" tabindex="0" aria-label="11th Quiz Test">
-        <h3><i class="fas fa-book"></i> 11th Quiz Test</h3>
-        <p>Test your knowledge with 11th class quizzes.</p>
-      </a>
-      <a href="#" tabindex="0" aria-label="12th Question Paper">
-        <h3><i class="fas fa-book"></i> 12th Question Paper</h3>
-        <p>Download or view 12th class question papers.</p>
-      </a>
-      <a href="python-course.html#intro" tabindex="0" aria-label="Python Programming Course">
-        <h3><i class="fas fa-book"></i> Python Programming Course</h3>
-        <p>Learn Python Programming step-by-step with notes and tutorials.</p>
-      </a>
-      <a href="#" tabindex="0" aria-label="NEET Question Paper">
-        <h3><i class="fas fa-book"></i> NEET Question Paper</h3>
-        <p>Practice NEET past question papers.</p>
-      </a>
-      <a href="neet-books.html" tabindex="0" aria-label="NEET Notes">
-        <h3><i class="fas fa-book"></i> NEET Notes</h3>
-        <p>Notes and preparation materials for NEET exam.</p>
       </a>
     </div>
   </section>
@@ -543,7 +501,7 @@
       document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
     });
     document.getElementById("linkStudyzone").addEventListener("click", () => {
-      document.getElementById("skills").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("programming-course").scrollIntoView({ behavior: "smooth" });
     });
     document.getElementById("linkContact").addEventListener("click", () => {
       document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
