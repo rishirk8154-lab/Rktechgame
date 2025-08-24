@@ -1,0 +1,126 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python File Handling - Complete Guide with Code Examples</title> <style> :root { --main-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-color: #0d1b2a; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-color); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 10px 30px var(--shadow-color); user-select: text; } h1 { color: var(--main-red); font-weight: 900; font-size: 3.2rem; border-left: 10px solid var(--main-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--main-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--main-red); margin: 40px 0 30px; padding-bottom: 8px; } p, li { font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--light-gray); padding: 20px 28px; border-radius: 18px; font-size: 1.1rem; line-height: 1.5; box-shadow: 0 2px 18px var(--shadow-color); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--main-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python File Handling - Complete Guide with Examples</h1>
+text
+<h2>1. File Handling Kya Hai?</h2>
+<p>File Handling ka matlab hai program ke madhyam se files ko create, read, write, update, aur manage karna. Python me file handling bahut aasan hai, jisme hum built-in functions aur methods ka use karke text ya binary files ko efficiently manipulate kar sakte hain.</p>
+
+<h2>2. Python me File Open Karna</h2>
+<p>Sabse pehla step hota hai file ko open karna using <code>open()</code> function. Is function me hum file ka naam aur mode specify karte hain:</p>
+<pre>
+file_object = open("filename.txt", mode)
+</pre>
+<p>Yahan <code>mode</code> specify karta hai ki file ko hum kaise use karna chahte hain, jaise:</p>
+<ul>
+<li><code>"r"</code> - Read mode (default). File ko padhne ke liye kholta hai. Agar file nahi milegi to error aayega.</li>
+<li><code>"w"</code> - Write mode. File ke content ko overwrite karta hai ya nayi file banata hai agar file nahi hai.</li>
+<li><code>"a"</code> - Append mode. File ke end me naya data add karta hai, file nahi to banata hai.</li>
+<li><code>"x"</code> - Create mode. Nayi file create karta hai, agar file exist karti hai to error dega.</li>
+<li><code>"b"</code> - Binary mode, jaise images, audio files ke liye (r, w, a ke sath combine karte hain).</li>
+<li><code>"t"</code> - Text mode (default).</li>
+</ul>
+
+text
+<h2>3. File Reading</h2>
+<p>File ko read karne ke kai tareeke hain:</p>
+
+<h3>a) Puri File Read Karna</h3>
+<pre>
+with open("example.txt", "r") as file:
+content = file.read()
+print(content)
+</pre>
+
+text
+<h3>b) Line by Line Read Karna</h3>
+<pre>
+with open("example.txt", "r") as file:
+for line in file:
+print(line.strip())
+</pre>
+
+text
+<h3>c) <code>readline()</code> method</h3>
+<pre>
+with open("example.txt", "r") as file:
+line1 = file.readline()
+line2 = file.readline()
+print(line1.strip())
+print(line2.strip())
+</pre>
+
+text
+<h2>4. File Writing</h2>
+<p>File me text ya data likhne ke liye write mode ya append mode use karte hain.</p>
+
+<h3>a) Write Mode</h3>
+<p>Ye mode file ke purane content ko overwrite kar deta hai.</p>
+<pre>
+with open("output.txt", "w") as file:
+file.write("Hello, Python File Handling!\n")
+file.write("Writing to file mode 'w' example.\n")
+</pre>
+
+text
+<h3>b) Append Mode</h3>
+<p>Ye mode file ke end me naye content ko add karta hai bina purane content ko hataye.</p>
+<pre>
+with open("output.txt", "a") as file:
+file.write("This line is appended.\n")
+</pre>
+
+text
+<h2>5. File Closing</h2>
+<p>Jab hum <code>with</code> statement ka use karte hain to file automatically close ho jati hai. Agar bina <code>with</code> ke open karte hain to hume manually <code>file.close()</code> call karna padta hai.</p>
+
+<h2>6. Common File Handling Errors</h2>
+<ul>
+  <li><code>FileNotFoundError</code> - Jab file read mode me open karte hain aur wo file exist nahi karti.</li>
+  <li><code>PermissionError</code> - File operations ke liye proper permission nahi hone par.</li>
+</ul>
+<p>In errors ko handle karne ke liye <code>try-except</code> blocks use karte hain:</p>
+<pre>
+try:
+with open("non_existent.txt", "r") as f:
+print(f.read())
+except FileNotFoundError:
+print("File nahi mili! Please check name or path.")
+</pre>
+
+text
+<h2>7. File Cursor & <code>seek()</code> & <code>tell()</code> Methods</h2>
+<p>File read/write ke dauran cursor hota hai jo current position batata hai:</p>
+<pre>
+with open("example.txt", "r") as f:
+print(f.read(5)) # Pehle 5 characters read karo
+position = f.tell()
+print("Cursor position:", position)
+f.seek(0) # Cursor ko beginning pe le jao
+print(f.read(5))
+</pre>
+
+text
+<h2>8. Binary File Handling</h2>
+<p>Images, audio ya binary files ke liye <code>b</code> mode use hota hai:</p>
+<pre>
+with open("image.jpg", "rb") as file:
+data = file.read()
+print(type(data)) # <class 'bytes'>
+</pre>
+
+text
+<h2>9. File Rename and Delete</h2>
+<p>Python ka <code>os</code> module file manage karne ke liye use hota hai:</p>
+<pre>
+import os
+
+Rename file
+os.rename("oldname.txt", "newname.txt")
+
+Delete file
+os.remove("newname.txt")
+</pre>
+
+text
+<h2>10. Summary</h2>
+<p>Python file handling ke zariye hum apne program se files ko efficiently create, read, write, aur manage kar sakte hain. <code>open()</code> function sabse important hai jisme alag-alag modes ka use karke file operations hote hain. <code>with</code> statement safe file handling ke liye best tareeka hai, jisse file khud-b-khud close ho jati hai.</p>
+<p>File handling programming me data store aur access karne ke liye bahut zaruri skill hai, aur practice se isme mastery hasil ki ja sakti hai.</p>
+</main> </body> </html>
