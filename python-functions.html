@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python Functions - Detailed Guide with Examples | RKTechGame</title>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+  }
+  * { box-sizing: border-box; }
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #f0f4faee;
+    border-radius: 24px;
+    box-shadow: 0 3px 30px var(--kakashi-shadow);
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin-bottom: 32px;
+    border-left: 8px solid var(--kakashi-red);
+    padding-left: 16px;
+    font-size: 2.8rem;
+    user-select: none;
+  }
+  h2 {
+    color: var(--kakashi-red);
+    border-bottom: 4px solid var(--kakashi-red);
+    padding-bottom: 10px;
+    margin: 36px 0 22px 0;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    user-select: text;
+  }
+  ul { padding-left: 25px; }
+  li { margin-bottom: 14px; }
+  pre {
+    background: var(--kakashi-gray);
+    padding: 24px 28px;
+    border-radius: 22px;
+    box-shadow: 0 3px 18px var(--kakashi-shadow);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    user-select: text;
+    overflow-x: auto;
+    margin-bottom: 36px;
+  }
+  code { color: var(--kakashi-red); font-weight: 700; }
+  strong { font-weight: 700; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Python Functions - Detailed Guide with Examples</h1>
+
+  <h2>1. Functions kya hote hain?</h2>
+  <p><strong>Function</strong> ek reusable code block hai jo ek specific kaam karta hai. Jab bhi hume wo kaam karna hota hai, hum function ko call karte hain jisse baar-baar code likhne ki zarurat nahi padti.</p>
+  <p><strong>Faayde:</strong></p>
+  <ul>
+    <li>Code reuse karna aasaan hota hai</li>
+    <li>Program ko chhote aur manageable parts me todta hai</li>
+    <li>Code samajhne aur maintain karne me aasani hoti hai</li>
+    <li>Bugs easily track kar sakte hain</li>
+  </ul>
+
+  <h2>2. Function ka basic syntax</h2>
+  <p>Function define karne ke liye Python me <code>def</code> keyword lagate hain, uske baad function naam aur parentheses me parameters (agar hain) likhte hain. Function ka body indentation me hota hai.</p>
+  <pre>
+def function_name(parameters):
+    """Optional docstring explaining the function"""
+    # function ka main code yahan likhte hain
+    return value  # optional
+  </pre>
+
+  <h2>3. Simple function example</h2>
+  <p>Neeche ek simple function hai jo sirf console pe message print karta hai.</p>
+  <pre>
+def greet():
+    print("Hello, World!")
+
+greet()  # Function call; output: Hello, World!
+  </pre>
+
+  <h2>4. Function me parameters aur arguments</h2>
+  <p>Parameters function define karte waqt likhe jaate hain. Arguments wo actual values hain jo function call karte waqt diye jaate hain.</p>
+  <pre>
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Amit")  # Output: Hello, Amit!
+greet("Sita")  # Output: Hello, Sita!
+  </pre>
+
+  <h2>5. Return statement kaise kaam karta hai</h2>
+  <p>Return statement function ka result bahar bhejta hai jise hum variable me store karke baad me use kar sakte hain.</p>
+  <pre>
+def add(a, b):
+    return a + b
+
+result = add(10, 7)
+print("Sum is:", result)  # Output: Sum is: 17
+  </pre>
+
+  <h2>6. Default parameters</h2>
+  <p>Agar function call karte waqt argument na diya jaye to default value use hoti hai:</p>
+  <pre>
+def greet(name="Guest"):
+    print(f"Hello, {name}!")
+
+greet()        # Output: Hello, Guest!
+greet("Ravi")  # Output: Hello, Ravi!
+  </pre>
+
+  <h2>7. Variable-length arguments: *args aur **kwargs</h2>
+  <p>*args use hota hai jab hume unknown number of positional arguments leney ho, aur **kwargs use hota hai unknown number of keyword arguments lene ke liye.</p>
+  <pre>
+def add_all(*args):
+    total = 0
+    for num in args:
+        total += num
+    return total
+
+print(add_all(1, 2, 3))        # Output: 6
+print(add_all(4, 5, 6, 7, 8)) # Output: 30
+
+def show_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key} : {value}")
+
+show_info(name="Amit", age=25, city="Delhi")
+  </pre>
+
+  <h2>8. Recursive function ka example</h2>
+  <p>Recursive function apne aap ko call karta hai. Factorial function iska famous example hai:</p>
+  <pre>
+def factorial(n):
+    if n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print(factorial(5))  # Output: 120 (5 * 4 * 3 * 2 * 1)
+  </pre>
+
+  <h2>9. Lambda function (Anonymous function)</h2>
+  <p>Chhote simple functions ke liye hum lambda function use kar sakte hain jo ek line me likh jaata hai:</p>
+  <pre>
+square = lambda x: x * x
+print(square(6))  # Output: 36
+  </pre>
+
+  <h2>10. Local aur Global variables ka farak</h2>
+  <p>Jo variable function ke andar declare hota hai use local variable kehte hain. Wo function ke bahar accessible nahi hota. Jo variable function ke bahar declare ho wo global variable kehlata hai aur functions me accessible hota hai.</p>
+  <pre>
+x = 10  # Global variable
+
+def test():
+    y = 5  # Local variable
+    print("Inside function:", x, y)
+
+test()                # Output: Inside function: 10 5
+print("Outside function:", x)  # Output: Outside function: 10
+# print(y)  # Error: y is not defined outside the function
+  </pre>
+
+  <h2>11. Function Docstring</h2>
+  <p>Function ke starting me triple quotes ke andar likha gaya text docstring kehlata hai. Ye function ki purpose explain karta hai aur documentation me dikhta hai.</p>
+  <pre>
+def greet(name):
+    """Ye function user ko greet karta hai."""
+    print(f"Hello, {name}!")
+
+print(greet.__doc__)  # Output: Ye function user ko greet karta hai.
+  </pre>
+
+  <h2>12. Practical example: Rectangle area calculate karna</h2>
+  <p>Ek function banate hain jo rectangle ka area calculate karega:</p>
+  <pre>
+def calculate_area(length, width):
+    """Rectangle ka area calculate karta hai."""
+    return length * width
+
+l = 10
+w = 5
+area = calculate_area(l, w)
+print("Length:", l)
+print("Width:", w)
+print("Area:", area)  # Output: Area: 50
+  </pre>
+
+</main>
+</body>
+</html>
