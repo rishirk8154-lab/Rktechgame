@@ -1,0 +1,104 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python NumPy Introduction - Complete Guide with Code</title> <style> :root { --main-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-dark: #0d1b2a; --code-bg: #f0f0f0; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-dark); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 12px 30px var(--shadow-color); user-select: text; line-height: 1.7; } h1 { color: var(--main-red); font-weight: 900; font-size: 3rem; border-left: 10px solid var(--main-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--main-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--main-red); margin: 40px 0 30px; padding-bottom: 8px; } p, li { font-size: 1.1rem; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--code-bg); padding: 20px 28px; border-radius: 12px; font-size: 1.05rem; box-shadow: 0 3px 15px rgb(0 0 0 / 0.1); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--main-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python NumPy Introduction - Complete Guide</h1>
+text
+<h2>1. NumPy Kya Hai?</h2>
+<p>NumPy (Numerical Python) ek popular Python library hai jo high-performance multidimensional arrays aur matrices ke saath numerical computation provide karti hai. Ye scientific computing aur data science ke liye bahut important hai.</p>
+
+<h2>2. NumPy Kab Aur Kyun Use Karein?</h2>
+<ul>
+  <li>Python lists ke comparison me NumPy arrays kaafi faster hote hain.</li>
+  <li>Large numerical data efficiently handle karne ke liye optimized algorithms provide karta hai.</li>
+  <li>Linear algebra, statistical operations, Fourier transforms jaise features built-in available hain.</li>
+  <li>Data science, machine learning, image processing, simulations me extensively use hota hai.</li>
+</ul>
+
+<h2>3. NumPy Install Kaise Karein?</h2>
+<pre>
+pip install numpy
+</pre>
+
+text
+<h2>4. NumPy Import Karna</h2>
+<pre>
+import numpy as np
+</pre>
+
+text
+<h2>5. NumPy Arrays Banana</h2>
+<p>NumPy ka core object hai <code>ndarray</code> jo homogenous data store karta hai.</p>
+
+<pre>
+import numpy as np
+
+1D array
+a = np.array()
+print(a) # [1 2 3 4]
+print(type(a)) # <class 'numpy.ndarray'>
+
+2D array (matrix)
+b = np.array([, ])
+print(b)
+
+[[1 2 3]
+[4 5 6]]
+print(b.shape) # (2, 3) - 2 rows, 3 columns
+</pre>
+
+text
+<h2>6. Kuch Common NumPy Functions</h2>
+<pre>
+import numpy as np
+
+print(np.zeros((2, 3))) # 2x3 zero matrix
+print(np.ones((3, 2))) # 3x2 matrix of ones
+print(np.eye(3)) # 3x3 identity matrix
+print(np.arange(5)) # Array [0 1 2 3 4]
+print(np.linspace(0, 1, 5)) # 5 numbers from 0 to 1 evenly spaced
+</pre>
+
+text
+<h2>7. Array Operations</h2>
+<p>NumPy me arithmetic operations element-wise hote hain.</p>
+
+<pre>
+a = np.array()
+b = np.array()
+
+print(a + b) # [5 7 9]
+print(a * b) # [4 10 18]
+print(a ** 2) # [1 4 9]
+print(np.sqrt(a)) # [1. 1.414 1.732]
+</pre>
+
+text
+<h2>8. Array Indexing aur Slicing</h2>
+<pre>
+a = np.array()
+
+print(a) # 10
+print(a[1:4]) # [20 30 40]
+print(a[-1]) # 50
+
+b = np.array([, ])
+print(b) # 2
+print(b[:, 2]) # [3 6]
+</pre>
+
+text
+<h2>9. Practical Example: Matrix Multiplication</h2>
+<pre>
+A = np.array([,
+])
+B = np.array([,
+])
+
+C = np.dot(A, B) # Matrix multiplication
+print(C)
+
+[[19 22]
+[43 50]]
+text
+</pre>
+
+<h2>10. Summary</h2>
+<p>NumPy Python ke numerical computations ke liye ek powerful library hai jo efficient data processing aur scientific calculations me madad karti hai. Iska core object ndarray aapko multi-dimensional arrays create karne aur operations perform karne deta hai jo Python ke normal lists se kaafi faster aur optimized hote hain. Linear algebra aur statistical functions isko data science me bahut popular banate hain. NumPy seekhna data science ya scientific computing ke liye fundamental step hai.</p>
+</main> </body> </html>
