@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Dictionaries - Advanced Complete Guide | RKTechGame</title>
+  <style>
+    :root {
+      --red: #e63946;
+      --blue: #1d3557;
+      --light: #ffffff;
+      --gray: #a8dadc;
+      --shadow: rgba(70, 90, 120, 0.15);
+      --dark: #0d1b2a;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", Arial, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 40px 28px;
+      border-radius: 20px;
+      background: var(--light);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+    h1 {
+      color: var(--red);
+      font-size: 3rem;
+      font-weight: 900;
+      border-left: 10px solid var(--red);
+      padding-left: 16px;
+      margin-bottom: 32px;
+    }
+    h2 {
+      color: var(--red);
+      border-bottom: 4px solid var(--red);
+      padding-bottom: 6px;
+      margin: 36px 0 24px;
+      font-size: 1.9rem;
+    }
+    p, li {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    pre {
+      background: var(--gray);
+      border-radius: 18px;
+      padding: 18px 24px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1rem;
+      margin: 24px 0;
+      box-shadow: 0 2px 18px var(--shadow);
+      overflow-x: auto;
+    }
+    code {
+      color: var(--red);
+      font-weight: bold;
+    }
+    ul {
+      margin-bottom: 24px;
+      padding-left: 28px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Python Dictionaries - Advanced Guide with Examples (Hinglish)</h1>
+
+    <h2>Introduction</h2>
+    <p>Dictionary Python ka ek <strong>hash map</strong> jaisa data structure hai jo <strong>key-value pairs</strong> me data store karta hai. Ye super-fast lookup deta hai aur real-world projects me kaafi useful hai, specially jab data ko uniquely identify karna hota hai.</p>
+
+    <h2>Dictionary Create Karne ke Different Ways</h2>
+    <pre>
+# Method 1: Curly braces
+person1 = {"name": "Amit", "age": 30}
+
+# Method 2: dict() constructor
+person2 = dict(name="Neha", age=25)
+
+# Method 3: from list of tuples
+person3 = dict([("name", "Raj"), ("age", 28)])
+
+# Method 4: Dictionary comprehension
+squares = {x: x*x for x in range(1,6)}
+print(squares)  # {1:1, 2:4, 3:9, 4:16, 5:25}
+    </pre>
+
+    <h2>Keys and Values - Advanced Details</h2>
+    <ul>
+      <li><strong>Keys immutable hone chahiye:</strong> e.g. string, number, tuple.</li>
+      <li><strong>Values mutable bhi ho sakti hain:</strong> list, dict, set allowed hain.</li>
+      <li><strong>Duplicate keys overwrite karte hain:</strong> pehle value overwrite ho jati hai.</li>
+    </ul>
+
+    <h2>Safe Access with <code>get()</code> & <code>setdefault()</code></h2>
+    <pre>
+student = {"name": "Arun", "age": 21}
+
+print(student.get("grade", "Not Assigned"))  # Default value de sakte ho
+# Agar grade nahi mila to "Not Assigned" return hoga
+
+student.setdefault("grade", "Pending")
+print(student)  
+# {'name':'Arun','age':21,'grade':'Pending'}
+    </pre>
+
+    <h2>Dictionary Update Tricks</h2>
+    <pre>
+info = {"a": 1, "b": 2}
+extra = {"b": 3, "c": 4}
+
+info.update(extra)   # merge/update dict
+print(info)  # {'a':1, 'b':3, 'c':4}
+    </pre>
+
+    <h2>Deleting Elements</h2>
+    <pre>
+data = {"x": 10, "y": 20, "z": 30}
+
+val = data.pop("y")   # delete & return
+print(val)            # 20
+
+last = data.popitem() # remove last inserted
+print(last)           # ('z', 30)
+
+data.clear()          # puri dict empty kar do
+print(data)           # {}
+    </pre>
+
+    <h2>Checking Existence</h2>
+    <pre>
+student = {"name": "Karan", "age": 19}
+print("name" in student)   # True
+print("grade" not in student) # True
+    </pre>
+
+    <h2>Looping Advanced Examples</h2>
+    <pre>
+person = {"name":"Ravi", "age":24, "city":"Delhi"}
+
+# Keys loop
+for k in person.keys():
+    print("Key:", k)
+
+# Values loop
+for v in person.values():
+    print("Value:", v)
+
+# Items loop
+for k, v in person.items():
+    print(f"{k} -> {v}")
+    </pre>
+
+    <h2>Nested Dictionaries with Real Example</h2>
+    <pre>
+company = {
+  "emp1": {"name":"Rahul", "dept":"IT", "skills":["Python","SQL"]},
+  "emp2": {"name":"Sneha", "dept":"HR", "skills":["Excel","Recruitment"]}
+}
+
+print(company["emp1"]["skills"][0])  # Python
+    </pre>
+
+    <h2>Dictionary Comprehension - Advanced</h2>
+    <pre>
+# Mapping numbers to even/odd
+nums = {x: ("Even" if x%2==0 else "Odd") for x in range(1,8)}
+print(nums)
+# {1:'Odd', 2:'Even', 3:'Odd', ...}
+    </pre>
+
+    <h2>Practical Examples</h2>
+    <h3>1. Word Frequency Counter</h3>
+    <pre>
+text = "apple banana apple orange banana apple"
+counter = {}
+
+for word in text.split():
+    counter[word] = counter.get(word, 0) + 1
+
+print(counter)
+# {'apple':3, 'banana':2, 'orange':1}
+    </pre>
+
+    <h3>2. Student Record Management</h3>
+    <pre>
+students = {
+  101: {"name":"Anita","marks":85},
+  102: {"name":"Vikram","marks":92},
+  103: {"name":"Kiran","marks":78}
+}
+
+rollno = 102
+print(students[rollno]["name"])   # Vikram
+    </pre>
+
+    <h2>Dictionary vs Other Data Structures</h2>
+    <ul>
+      <li><strong>List:</strong> Ordered collection, index-based access.</li>
+      <li><strong>Set:</strong> Unique values only, no key-value relation.</li>
+      <li><strong>Dictionary:</strong> Key-based fast lookup, flexible values.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Dictionaries Python me ek <strong>super flexible aur optimized data structure</strong> hai jo real-world programming me bohot important hai. Agar aapko uniquely key-value relation maintain karna hai, to dictionary best choice hoti hai. Basic se leke advanced methods jaanna important hai taaki aap efficiently kaam kar saken.</p>
+  </main>
+</body>
+  </html>
+  
