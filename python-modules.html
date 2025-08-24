@@ -1,0 +1,128 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Modules and Packages - Detailed Guide</title> <style> :root { --main-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-color: #0d1b2a; --code-bg: #f0f0f0; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-color); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 12px 30px var(--shadow-color); user-select: text; } h1 { color: var(--main-red); font-weight: 900; font-size: 3rem; border-left: 10px solid var(--main-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--main-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--main-red); margin: 40px 0 30px; padding-bottom: 8px; } p, li { font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--code-bg); padding: 18px 22px; border-radius: 12px; font-size: 1.05rem; line-height: 1.4; box-shadow: 0 3px 15px rgb(0 0 0 / 0.1); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--main-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Modules and Packages - Detailed Guide</h1>
+text
+<h2>1. Python Module Kya Hai?</h2>
+<p>Module ek single Python file hoti hai jisme functions, variables, classes defined hote hain. Ye code ko organize karne ka simple tarika hai. Har .py file ek module hoti hai. Aap module ko import karke apne program me use kar sakte hain.</p>
+
+<h3>Example: Simple Module Banana</h3>
+<pre>
+mera_module.py
+def greet(name):
+return f"Namaste, {name}!"
+</pre>
+
+text
+<h3>Is Module ko Use Karna (Import Karna)</h3>
+<pre>
+import mera_module
+print(mera_module.greet("Ravi")) # Output: Namaste, Ravi!
+</pre>
+
+text
+<h2>2. Python Package Kya Hai?</h2>
+<p>Package modules ka collection hota hai jise ek folder me organize kiya jata hai. Package me ek special file <code>__init__.py</code> hoti hai jo Python ko batati hai ki ye folder package hai. Package ke andar multiple modules ya sub-packages ho sakte hain.</p>
+
+<h3>Package Structure Example</h3>
+<pre>
+my_package/
+|-- init.py
+|-- module1.py
+|-- module2.py
+</pre>
+
+text
+<h3>Package Se Module Import Karna</h3>
+<pre>
+from my_package import module1
+print(module1.some_function())
+</pre>
+
+text
+<h2>3. Module aur Package ka Difference</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Module</th>
+      <th>Package</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Definition</td>
+      <td>Ek single Python file (.py)</td>
+      <td>Modules ka collection (folder with __init__.py)</td>
+    </tr>
+    <tr>
+      <td>Structure</td>
+      <td>Single file</td>
+      <td>Folder jisme multiple modules aur sub-packages hote hain</td>
+    </tr>
+    <tr>
+      <td>Use</td>
+      <td>Functions, classes ko organize karta hai</td>
+      <td>Large projects ko hierarchically organize karta hai</td>
+    </tr>
+  </tbody>
+</table>
+text
+<h2>4. Module/Package Import Karne ke Tarike</h2>
+<ul>
+  <li><code>import module_name</code></li>
+  <li><code>from module_name import function_or_class</code></li>
+  <li><code>from package_name.module_name import function</code></li>
+  <li><code>import module_name as alias_name</code> (Alias ke liye)</li>
+</ul>
+
+<h3>Example</h3>
+<pre>
+import math
+print(math.sqrt(16)) # 4.0
+
+from math import sqrt
+print(sqrt(25)) # 5.0
+
+import numpy as np
+</pre>
+
+text
+<h2>5. Built-in Modules aur Popular Packages</h2>
+<p>Python ke saath kai useful built-in modules aate hain jaise <code>math</code>, <code>random</code>, <code>os</code>, <code>sys</code>, <code>datetime</code>, etc. Inke alawa bahut saare third-party packages hain jo PyPI se install hote hain jaise <code>numpy</code>, <code>pandas</code>, <code>matplotlib</code>.</p>
+text
+<h2>6. `__init__.py` File Kya Hai?</h2>
+<p>Ye file package ko Python ke liye recognize kara deta hai as a package. Isme initialization code ya empty file ho sakti hai. Python 3.3 ke baad ye optional hai, lekin conventionally use hoti hai.</p>
+text
+<h2>7. Apna Module aur Package Kaise Banayein?</h2>
+<pre>
+my_package/
+|-- init.py
+|-- greetings.py
+|-- calculations.py
+</pre>
+
+text
+<h3>greetings.py</h3>
+<pre>
+def say_hello(name):
+return f"Hello, {name}!"
+</pre>
+
+text
+<h3>calculations.py</h3>
+<pre>
+def add(a, b):
+return a + b
+</pre>
+
+text
+<h3>Use karna</h3>
+<pre>
+from my_package import greetings, calculations
+
+print(greetings.say_hello("Neha")) # Hello, Neha!
+print(calculations.add(5, 7)) # 12
+</pre>
+
+text
+<h2>8. Summary</h2>
+<p>Python modules aur packages code ko organize karne aur reuse karne ke bahut important tools hain. Module ek single Python file hai jabki package modules ka folder hota hai. Inka istemal karne se aapka code modular, readable aur manageable ban jata hai. Python ka standard library kaafi bada hai jisme built-in modules aur packages include hain jo aapke development ko fast aur efficient banate hain.</p>
+</main> </body> </html>
