@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python Lists Detailed Guide | RKTechGame</title>
+<style>
+  :root {
+    --primary-red: #db1d29;
+    --primary-blue: #546285;
+    --background-light: #f0f4faee;
+    --text-dark: #292a36;
+    --shadow-color: #42516f;
+    --gray-bg: #cfd2dc;
+  }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--primary-blue) 20%, var(--gray-bg) 100%);
+    color: var(--text-dark);
+  }
+  main {
+    max-width: 920px;
+    margin: 40px auto;
+    background: var(--background-light);
+    padding: 40px 28px;
+    border-radius: 24px;
+    box-shadow: 0 3px 30px var(--shadow-color);
+  }
+  h1 {
+    color: var(--primary-red);
+    font-size: 3rem;
+    border-left: 8px solid var(--primary-red);
+    padding-left: 16px;
+    margin-bottom: 48px;
+    user-select: none;
+    font-weight: 900;
+  }
+  h2 {
+    color: var(--primary-red);
+    border-bottom: 4px solid var(--primary-red);
+    margin: 36px 0 28px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  h3 {
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    user-select: text;
+  }
+  ul {
+    padding-left: 28px;
+    margin-bottom: 24px;
+  }
+  li {
+    margin-bottom: 16px;
+  }
+  pre {
+    background: var(--gray-bg);
+    border-radius: 28px;
+    padding: 24px 32px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    box-shadow: 0 3px 18px var(--shadow-color);
+    overflow-x: auto;
+    user-select: text;
+    margin-bottom: 40px;
+  }
+  code {
+    font-weight: 700;
+    color: var(--primary-red);
+  }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Python Lists - Detailed Guide </h1>
+
+    <h2>Python List Kya Hai?</h2>
+    <p>List Python ka ek built-in data structure hai, jo multiple values ko ek variable me store karne ke liye use hota hai. Ye ek ordered collection hota hai, jisme aap alag-alag data types ke elements ko store kar sakte hain, jaise numbers, strings, ya even doosri lists.</p>
+    <p>List ko aap square brackets <code>[]</code> ke andar values likh kar bana sakte hain, aur har item ko comma se alag kiya jata hai.</p>
+
+    <h3>Example:</h3>
+    <pre>
+fruits = ["apple", "banana", "cherry"]
+print(fruits)
+    </pre>
+
+    <h2>List ke Features</h2>
+    <ul>
+      <li><strong>Ordered:</strong> List ka har element ek specific position pe hota hai.</li>
+      <li><strong>Mutable:</strong> List ke elements ko hum change, add, ya delete kar sakte hain.</li>
+      <li><strong>Duplicate Elements:</strong> List me ek element kai baar aa sakta hai.</li>
+      <li><strong>Heterogeneous:</strong> List me alag-alag types ke elements ek sath ho sakte hain.</li>
+    </ul>
+
+    <h2>List ke Basic Operations</h2>
+
+    <h3>1. Element Access karna (Indexing)</h3>
+    <p>Python lists zero-based indexing follow karti hain. Matlab first element ka index 0 hai.</p>
+    <pre>
+fruits = ["apple", "banana", "cherry"]
+print(fruits[0])  # Output: apple
+print(fruits[2])  # Output: cherry
+    </pre>
+
+    <h3>2. List me Elements ko Change karna</h3>
+    <pre>
+fruits[1] = "orange"
+print(fruits)   # Output: ['apple', 'orange', 'cherry']
+    </pre>
+
+    <h3>3. Naye Element Add karna</h3>
+    <p><code>append()</code> method se list ke end me element add kar sakte hain.</p>
+    <pre>
+fruits.append("mango")
+print(fruits)
+    </pre>
+
+    <h3>4. List me Elements Insert karna</h3>
+    <p><code>insert()</code> method se kisi bhi position par element add kar sakte hain.</p>
+    <pre>
+fruits.insert(1, "blueberry")
+print(fruits)
+    </pre>
+
+    <h3>5. Element Remove karna</h3>
+    <p><code>remove()</code> method se first occurrence of element delete hota hai.</p>
+    <pre>
+fruits.remove("banana")
+print(fruits)
+    </pre>
+
+    <p><code>pop()</code> method se last element yahan tak remove kar sakte hain (ya specific index ka element agar index diya ho):</p>
+    <pre>
+last = fruits.pop()
+print(last)
+print(fruits)
+    </pre>
+
+    <h3>6. List ki Length Pata Karna</h3>
+    <pre>
+print(len(fruits))  # Prints number of elements
+    </pre>
+
+    <h2>Important List Methods with Examples</h2>
+
+    <h3>append()</h3>
+    <pre>
+numbers = [1, 2, 3]
+numbers.append(4)
+print(numbers)  # Output: [1, 2, 3, 4]
+    </pre>
+
+    <h3>extend()</h3>
+    <p>Ek list ke elements ko doosri list me add karta hai:</p>
+    <pre>
+a = [1, 2]
+b = [3, 4]
+a.extend(b)
+print(a)  # Output: [1, 2, 3, 4]
+    </pre>
+
+    <h3>insert()</h3>
+    <pre>
+a.insert(1, 100)
+print(a)  # Output: [1, 100, 2, 3, 4]
+    </pre>
+
+    <h3>count()</h3>
+    <p>Kitni baar ek element list me aaya hai wo batata hai.</p>
+    <pre>
+a = [1, 2, 2, 3, 2]
+print(a.count(2))  # Output: 3
+    </pre>
+
+    <h3>index()</h3>
+    <p>First occurrence ka index batata hai:</p>
+    <pre>
+print(a.index(3))  # Output: 3
+    </pre>
+
+    <h3>sort()</h3>
+    <p>List ko ascending order me sort kar deta hai:</p>
+    <pre>
+a.sort()
+print(a)  # Output: [1, 2, 2, 2, 3]
+    </pre>
+
+    <h3>reverse()</h3>
+    <pre>
+a.reverse()
+print(a)  # Output: [3, 2, 2, 2, 1]
+    </pre>
+
+    <h3>clear()</h3>
+    <p>Poore list ko empty kar deta hai.</p>
+    <pre>
+a.clear()
+print(a)  # Output: []
+    </pre>
+
+    <h3>copy()</h3>
+    <p>List ki shallow copy banata hai jo original list se alag hoti hai.</p>
+    <pre>
+b = numbers.copy()
+print(b)
+    </pre>
+
+    <h2>List Slicing</h2>
+    <p>List ke kuch elements ko extract karne ke liye slicing use karte hain:</p>
+    <pre>
+nums = [10, 20, 30, 40, 50]
+print(nums[1:4])  # Output: [20, 30, 40]
+print(nums[:3])   # Output: [10, 20, 30]
+print(nums[2:])   # Output: [30, 40, 50]
+    </pre>
+
+    <h2>Lists me Nested Lists</h2>
+    <p>Lists ke andar doosri lists bhi store kar sakte hain:</p>
+    <pre>
+matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+print(matrix[1][2])  # Output: 6 (second row, third column)
+    </pre>
+
+    <h2>Practical Example</h2>
+    <p>Student ke marks store karke average calculate karte hain:</p>
+    <pre>
+marks = [75, 82, 91, 68, 79]
+total = sum(marks)
+average = total / len(marks)
+print("Average marks:", average)
+    </pre>
+
+    <h2>Summary</h2>
+    <p>Python Lists ek powerful aur flexible data structure hain jo multiple values ko ek sath store aur manipulate karne ke liye banaye gaye hain. Inki madad se hum apne programs ko modular aur efficient bana sakte hain. List methods ka use karke hum easily data me elements add kar sakte hain, remove kar sakte hain, search kar sakte hain, sort kar sakte hain aur bahut kuch kar sakte hain.</p>
+    <p>Practice se aap lists ka use acche se seekh sakte hain. Har chhota ya bada task jo multiple data ko handle karta hai, usme lists bahut kaam aati hain.</p>
+
+  </main>
+</body>
+</html>
