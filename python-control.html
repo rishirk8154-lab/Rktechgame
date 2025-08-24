@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Control Flow Statements - Detailed Guide | RKTechGame</title>
+  <style>
+    :root {
+      --primary-red: #db1d29;
+      --primary-blue: #546285;
+      --background-light: #f0f4faee;
+      --text-dark: #292a36;
+      --shadow-color: #42516f;
+      --gray-bg: #cfd2dc;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: "Montserrat", Arial, sans-serif;
+      background: linear-gradient(120deg, var(--primary-blue) 20%, var(--gray-bg) 100%);
+      color: var(--text-dark);
+    }
+    main {
+      max-width: 920px;
+      margin: 40px auto;
+      background: var(--background-light);
+      padding: 40px 28px;
+      border-radius: 24px;
+      box-shadow: 0 3px 30px var(--shadow-color);
+    }
+    h1 {
+      color: var(--primary-red);
+      font-size: 2.8rem;
+      border-left: 8px solid var(--primary-red);
+      padding-left: 16px;
+      margin-bottom: 40px;
+      user-select: none;
+      font-weight: 900;
+    }
+    h2 {
+      color: var(--primary-red);
+      border-bottom: 3px solid var(--primary-red);
+      margin: 32px 0 24px;
+      padding-bottom: 8px;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    h3 {
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      user-select: text;
+    }
+    ul {
+      padding-left: 25px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 14px;
+    }
+    pre {
+      background: var(--gray-bg);
+      border-radius: 24px;
+      padding: 24px 30px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      box-shadow: 0 3px 18px var(--shadow-color);
+      overflow-x: auto;
+      user-select: text;
+      margin-bottom: 36px;
+    }
+    code {
+      font-weight: 700;
+      color: var(--primary-red);
+    }
+    strong {
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Python Control Flow Statements - Detailed Guide (Hinglish)</h1>
+
+    <h2>Control Flow Statements kya hoti hain?</h2>
+    <p>Control Flow Statements programming mein code ke execution ke order ko control karte hain. Matlab hum decide karte hain ki program me kaunsa code kab chalega. Yeh programming me bahut important hai kyunki real world problems me humko decisions lene hote hain, baar-baar kaam repeat karne hote hain, aur conditions ke hisaab se alag-alag action lena hota hai.</p>
+
+    <h2>1. Conditional Statements</h2>
+    <p>Conditional statements se hum apne program ko decisions lene laayak banate hain. Matlab kuch condition true hone par hi koi specific code chalta hai, warna dusra code. Python me conditional statements hain: <code>if</code>, <code>if-else</code>, aur <code>if-elif-else</code>.</p>
+    
+    <h3>If Statement</h3>
+    <p>Agar ek simple condition check karni ho jisme code tabhi chale jab condition true ho, to <code>if</code> ka use karte hain:</p>
+    <pre>
+temperature = 30
+if temperature > 25:
+    print("Garmiyon ka mausam hai.")
+    </pre>
+    <p>Yahan print tabhi chalega jab temperature 25 se bada ho.</p>
+    
+    <h3>If-Else Statement</h3>
+    <p>Agar do options me se ek choose karna ho, to <code>if-else</code> ka use hota hai:</p>
+    <pre>
+age = 17
+if age >= 18:
+    print("Aap vote de sakte hain.")
+else:
+    print("Aap abhi vote nahi de sakte.")
+    </pre>
+    
+    <h3>If-Elif-Else Chain</h3>
+    <p>Kabhi kabhi hume multiple conditions check karni hoti hain, to <code>elif</code> ka use karte hain:</p>
+    <pre>
+marks = 85
+if marks >= 90:
+    print("Grade: A")
+elif marks >= 75:
+    print("Grade: B")
+elif marks >= 60:
+    print("Grade: C")
+else:
+    print("Fail")
+    </pre>
+
+    <h2>2. Looping Statements (Repeating code)</h2>
+    <p>Loops se hum koi code block baar-baar chala sakte hain jab tak condition satisfy nahi hoti. Python me do prakar ke loops hote hain: <code>for</code> loop aur <code>while</code> loop.</p>
+
+    <h3>For Loop</h3>
+    <p>Jab humko pata ho kitni baar repeat karna hai ya kisi sequence pe repeat karna hai, tab <code>for</code> loop use karte hain:</p>
+    <pre>
+for i in range(1, 6):
+    print("Number:", i)
+    </pre>
+    <p>Yeh 1 se 5 tak numbers print karega.</p>
+
+    <h3>While Loop</h3>
+    <p>Jab humko repeat karna hai jab tak koi condition true hai, tab <code>while</code> loop use karte hain:</p>
+    <pre>
+count = 1
+while count <= 5:
+    print("Count:", count)
+    count += 1
+    </pre>
+
+    <h2>3. Loop Control Statements</h2>
+    <p>Loops ke andar kuch control statements bhi hote hain jo loop ke behaviour ko badalte hain:</p>
+
+    <h3>Break Statement</h3>
+    <p>Loop turant rokna ho kisi condition par, to <code>break</code> ka use karte hain:</p>
+    <pre>
+for i in range(1, 10):
+    if i == 5:
+        break
+    print(i)
+# Output: 1 2 3 4
+    </pre>
+
+    <h3>Continue Statement</h3>
+    <p>Loop ke current iteration ko skip karna ho aur next se continue karna ho, tab <code>continue</code> use hote hain:</p>
+    <pre>
+for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)
+# Output: 1 2 4 5
+    </pre>
+
+    <h3>Pass Statement</h3>
+    <p>Agar loop ya condition me abhi koi code nahi likhna chahe, par syntax error nahi chahiye to <code>pass</code> statement use karte hain:</p>
+    <pre>
+for i in range(1, 4):
+    if i == 2:
+        pass  # Yahan future me code add karenge
+    else:
+        print(i)
+# Output: 1 3
+    </pre>
+
+    <h2>4. Examples Milake Samajhte Hain</h2>
+    <p><strong>Example 1:</strong> Agar user se age le kar check karen ki wo vote de sakta hai ya nahi.</p>
+    <pre>
+age = int(input("Apni age batao: "))
+
+if age >= 18:
+    print("Aap vote dene ke liye eligible hain.")
+elif age > 12:
+    print("Abhi aap school jate honge.")
+else:
+    print("Aap abhi bahut chhote ho.")
+    </pre>
+
+    <p><strong>Example 2:</strong> 1 se 10 tak even numbers print karna for loop se:</p>
+    <pre>
+for num in range(1, 11):
+    if num % 2 == 0:
+        print(num, "ye even number hai")
+    </pre>
+
+    <p><strong>Example 3:</strong> Countdown while loop se:</p>
+    <pre>
+count = 5
+while count > 0:
+    print("Countdown:", count)
+    count -= 1
+print("Blast Off!")
+    </pre>
+    
+  </main>
+</body>
+  </html>
+  
