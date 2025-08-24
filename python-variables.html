@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Variables Complete Guide | RKTechGame</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 850px;
+      margin: 40px auto;
+      background: #f9f9f9;
+      color: #292a36;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #db1d29;
+      font-weight: 700;
+    }
+    h1 {
+      border-left: 6px solid #db1d29;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      border-bottom: 2px solid #db1d29;
+      margin-top: 30px;
+      padding-bottom: 6px;
+    }
+    pre {
+      background: #eee;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    p {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Python Variables - Complete Guide</h1>
+
+  <section id="basic">
+    <h2>Python Variables - Basic Concepts</h2>
+
+    <p><strong>Variable</strong> ek naam hai jo kisi value ko represent karta hai. Programming mein variables important hote hain kyunki ye data ko temporarily store karte hain jise hum program ke andar use kar sakte hain.</p>
+
+    <h3>Variable kaise banayein?</h3>
+    <p>Python mein aapko declare karne ki zarurat nahi hoti, bas aapko variable ko ek value deni hoti hai:</p>
+    <pre>age = 20
+name = "Anil"</pre>
+
+    <h3>Variable ka naam karna chahiye valid</h3>
+    <ul>
+      <li>Alphabet letters, numbers, aur underscore use kar sakte hain.</li>
+      <li>Variable naam number se shuru nahi hona chahiye.</li>
+      <li>Spaces nahi honi chahiye.</li>
+      <li>Keywords jese <code>if</code>, <code>for</code> variable name nahi ho sakte.</li>
+    </ul>
+
+    <h3>Python me data type samjho</h3>
+    <p>Python me variable data type change ho sakta hai dynamically. Kuch important data types hain:</p>
+    <ul>
+      <li><code>int</code> - Pura number, jaise <code>10</code></li>
+      <li><code>float</code> - Decimal number, jaise <code>3.14</code></li>
+      <li><code>str</code> - Text, jaise <code>"Hello"</code></li>
+      <li><code>bool</code> - True ya False</li>
+    </ul>
+
+    <h3>Example</h3>
+    <pre>name = "Anil"
+age = 20
+height = 5.8
+is_student = True
+
+print(name)
+print(age)
+print(height)
+print(is_student)</pre>
+
+    <h3>Output</h3>
+    <p>
+      Anil <br />
+      20 <br />
+      5.8 <br />
+      True
+    </p>
+
+    <p>Variables ko practice karna important hai! Aap alag alag values daal kar program chalaiye.</p>
+  </section>
+
+  <section id="detailed">
+    <h2>Python Variables - Detailed Explanation</h2>
+
+    <p>Python mein <strong>variable</strong> ek naam hai jo memory mein data value store karta hai. Programming mein har value ko uniquely identify karne ke liye variables ka use hota hai.</p>
+
+    <h3>Variable naming rules</h3>
+    <ul>
+      <li>Variable naam letters (A-Z/a-z), digits (0-9), aur underscore (_) include kar sakta hai.</li>
+      <li>Naam number se shuru nahi hona chahiye. (e.g., <code>1name</code> galat hai)</li>
+      <li>Spaces nahi honi chahiye variable name mein.</li>
+      <li>Keywords jaise <code>if</code>, <code>while</code> variable naam nahi hote.</li>
+      <li>Variable names case-sensitive hote hain, matlab <code>age</code> aur <code>Age</code> alag hain.</li>
+    </ul>
+
+    <h3>Value Assign karna</h3>
+    <p>Python mein value assign karne ke liye <code>=</code> operator ka use karte hain:</p>
+    <pre>count = 5
+name = "Rahul"
+price = 29.99</pre>
+
+    <h3>Dynamic typing ka matlab</h3>
+    <p>Python mein variables ko declare nahi karna padta; type runtime par value ke hisaab se ban jaata hai. Aap ek variable ki value baad mein bhi change kar sakte hain:</p>
+    <pre>var = 10   # var ab int hai
+var = "Hello"  # ab var string ho gaya</pre>
+
+    <h3>Common Data Types</h3>
+    <ul>
+      <li><strong>int:</strong> Pura number (e.g., 4, -10)</li>
+      <li><strong>float:</strong> Decimal number (e.g., 3.14, -0.5)</li>
+      <li><strong>str:</strong> Text data (e.g., "Python")</li>
+      <li><strong>bool:</strong> True ya False</li>
+    </ul>
+
+    <h3>Variables ka Scope</h3>
+    <p>Variable ka scope uske usage ki limit hoti hai. Do tarah ke scopes hote hain:</p>
+    <ul>
+      <li><strong>Local variables:</strong> Jo function ke andar banaye jate hain aur sirf usi function mein accessible hote hain.</li>
+      <li><strong>Global variables:</strong> Jo function ke bahar banaye jaate hain aur poore program mein accessible hote hain.</li>
+    </ul>
+
+    <h3>Multiple Variable Assignment</h3>
+    <p>Aap ek saath multiple variables ko values assign kar sakte hain:</p>
+    <pre>a, b, c = 5, 10, 15</pre>
+    <p>Ya sabko ek hi value de sakte hain:</p>
+    <pre>x = y = z = 0</pre>
+
+    <h3>Examples</h3>
+    <pre>name = "Sita"
+age = 22
+height = 5.6
+is_student = True
+
+print("Name:", name)
+print("Age:", age)
+print("Height:", height)
+print("Student:", is_student)</pre>
+
+    <h3>Output</h3>
+    <p>Name: Sita<br />
+    Age: 22<br />
+    Height: 5.6<br />
+    Student: True</p>
+
+    <h3>Conclusion</h3>
+    <p>Variables programming mein bahut important hain. Python kafi flexible aur easy language hai variables ko handle karne mein. Aap jitna practice karenge, utna achha samajh ayega.</p>
+  </section>
+
+</body>
+               </html>
+               
