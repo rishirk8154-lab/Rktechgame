@@ -1,0 +1,165 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Sets - Complete Detailed Guide for Website</title> <style> :root { --main-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-color: #0d1b2a; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-color); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 10px 30px var(--shadow-color); user-select: text; } h1 { color: var(--main-red); font-weight: 900; font-size: 3.2rem; border-left: 10px solid var(--main-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--main-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--main-red); margin: 40px 0 30px; padding-bottom: 8px; } p, li { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--light-gray); padding: 20px 28px; border-radius: 18px; font-size: 1.1rem; line-height: 1.5; box-shadow: 0 2px 18px var(--shadow-color); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--main-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Sets - Complete Detailed Guide</h1>
+text
+<h2>1. Python Sets Kya Hain?</h2>
+<p>Python sets ek built-in data structure hain jo unordered, unique elements ka collection hota hai. Set me sabhi elements <strong>unique</strong> hote hain, yaani duplicate allowed nahi hote. Python me sets mutable hote hain - matlab tum elements ko add, remove kar sakte ho, lekin set ke andar elements themselves immutable hone chahiye (e.g. numbers, strings, tuples).</p>
+
+<h2>2. Sets Kab Use Karte Hain?</h2>
+<ul>
+  <li>Jab hume multiple items ko store karna ho bina duplicates ke.</li>
+  <li>Fast membership testing karni ho - jaise kisi item ka hona ya na hona check karna.</li>
+  <li>Mathematical operations jaise union, intersection, difference karna ho.</li>
+</ul>
+
+<h2>3. Set Create Karna</h2>
+<p>Sets ko tum do tariko se bana sakte ho:</p>
+
+<h3>a) Curly Braces {} se:</h3>
+<pre>
+fruits = {"apple", "banana", "cherry", "apple"}
+print(fruits)
+
+Output: {'banana', 'apple', 'cherry'} # duplicate 'apple' hata diya jayega
+text
+</pre>
+
+<h3>b) <code>set()</code> Function se:</h3>
+<pre>
+empty_set = set()
+print(empty_set) # set()
+
+list_items = 
+unique_items = set(list_items)
+print(unique_items) # {1, 2, 3, 4}
+</pre>
+<p><strong>Note:</strong> Empty set banane ke liye <code>set()</code> use karo, <code>{}</code> nahi (kyunki wo dictionary hota hai).</p>
+
+text
+<h2>4. Set ke Basic Features</h2>
+<ul>
+  <li><strong>Unordered:</strong> Set me elements ka koi fixed order nahi hota.</li>
+  <li><strong>Unique elements:</strong> Duplicate automatic remove ho jaate hain.</li>
+  <li><strong>Mutable:</strong> Sets me elements add, remove kar sakte hain.</li>
+  <li><strong>Elements immutable hone chahiye:</strong> List, dict set ke elements nahi ho sakte kyunki wo mutable hain.</li>
+</ul>
+
+<h2>5. Common Set Operations</h2>
+
+<h3>a) Element Add Karna</h3>
+<pre>
+numbers = {1, 2, 3}
+numbers.add(4)
+print(numbers) # {1, 2, 3, 4}
+</pre>
+
+text
+<h3>b) Multiple Elements Add Karna</h3>
+<pre>
+numbers.update()
+print(numbers) # {1, 2, 3, 4, 5, 6, 7}
+</pre>
+
+text
+<h3>c) Element Remove Karna</h3>
+<pre>
+numbers.remove(2) # Element nahi mila to error dega
+numbers.discard(10) # Element nahi mila to error nahi dega
+print(numbers)
+</pre>
+
+text
+<h3>d) Random Element Remove Karna</h3>
+<pre>
+removed = numbers.pop()
+print("Removed:", removed)
+print(numbers)
+</pre>
+
+text
+<h3>e) Sab Elements Remove Karna</h3>
+<pre>
+numbers.clear()
+print(numbers) # set()
+</pre>
+
+text
+<h2>6. Set Elements Ko Access Kaise Karein?</h2>
+<p>Set unordered hota hai, isliye indexing ya slicing supported nahi hai. Lekin tum loops ke through elements ko access kar sakte ho:</p>
+<pre>
+myset = {"apple", "banana", "cherry"}
+for item in myset:
+print(item)
+</pre>
+
+text
+<h2>7. Membership Test</h2>
+<pre>
+fruits = {"apple", "banana", "cherry"}
+print("banana" in fruits) # True
+print("orange" in fruits) # False
+</pre>
+
+text
+<h2>8. Mathematical Set Operations</h2>
+
+<h3>a) Union (Dono sets ka combined unique elements)</h3>
+<pre>
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+print(set1.union(set2)) # {1, 2, 3, 4, 5}
+print(set1 | set2) # shorthand
+</pre>
+
+text
+<h3>b) Intersection (Dono sets ke common elements)</h3>
+<pre>
+print(set1.intersection(set2)) # {3}
+print(set1 & set2) # shorthand
+</pre>
+
+text
+<h3>c) Difference (Pehle set me se dusre set ke elements hatao)</h3>
+<pre>
+print(set1.difference(set2)) # {1, 2}
+print(set1 - set2) # shorthand
+</pre>
+
+text
+<h3>d) Symmetric Difference (Jo sirf ek set me hain)</h3>
+<pre>
+print(set1.symmetric_difference(set2)) # {1, 2, 4, 5}
+print(set1 ^ set2) # shorthand
+</pre>
+
+text
+<h2>9. Set Comparison Methods</h2>
+<pre>
+a = {1, 2}
+b = {1, 2, 3, 4}
+
+print(a.issubset(b)) # True (a, b ka subset hai)
+print(b.issuperset(a)) # True (b, a ka superset hai)
+print(a.isdisjoint({5})) # True, no common elements
+</pre>
+
+text
+<h2>10. Set Comprehension</h2>
+<pre>
+1 se 5 tak numbers ka square set banayen
+squares = {x*x for x in range(1, 6)}
+print(squares) # {1, 4, 9, 16, 25}
+</pre>
+
+text
+<h2>11. Real-Life Example: Duplicate Hatana</h2>
+<pre>
+nums = 
+unique_nums = set(nums)
+print(unique_nums) # {1, 2, 3, 4, 5}
+</pre>
+
+text
+<h2>12. Summary</h2>
+<p>Python sets ek unordered collection hote hain jisme unique elements store hote hain. Sets ko use karke tum duplicates hata sakte ho, fast membership test kar sakte ho aur sets ki mathematical operations perform kar sakte ho. Ye programming me ek bahut powerful aur efficient tool hai, jise beginners ko achhe se samajhna chahiye!</p>
+
+<p>Is guide ka example code tum apni website me link karke students ko aasani se sikha sakte ho. Agar tum chahte ho, to main is page ke liye downloadable code file bhi bana sakta hoon.</p>
+</main> </body> </html>
