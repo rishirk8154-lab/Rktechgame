@@ -1,0 +1,62 @@
+<!DOCTYPE html> <html lang="hi"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Flask Web Framework - Detailed 1000 Words Guide</title> <style> :root { --primary-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-dark: #0d1b2a; --code-bg: #f0f0f0; } body { margin: 0; padding: 0; font-family: "Montserrat", Arial, sans-serif; background: var(--background-white); color: var(--text-dark); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 12px 30px var(--shadow-color); user-select: text; line-height: 1.7; } h1 { color: var(--primary-red); border-left: 10px solid var(--primary-red); padding-left: 18px; margin-bottom: 36px; font-weight: 900; font-size: 3rem; user-select: none; } h2 { color: var(--primary-red); border-bottom: 4px solid var(--primary-red); padding-bottom: 10px; margin: 40px 0 30px; font-weight: 700; font-size: 2rem; } p, li { font-size: 1.1rem; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--code-bg); padding: 20px 28px; border-radius: 12px; font-size: 1.05rem; box-shadow: 0 3px 15px rgb(0 0 0 / 0.1); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--primary-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Flask Web Framework - Detailed Complete Guide</h1> <h2>1. Flask Framework Parichay</h2> <p>Flask ek lightweight web framework hai jo Python me web applications banane ke liye use kiya jata hai. Flask ko micro-framework bhi kaha jata hai kyunki yeh minimalistic hai aur developers ko freedom deta hai apne application ko customize karne ke liye.</p> <p>Werkzeug web server aur Jinja2 templating engine use karta hai, jo web requests handle karna aur HTML rendering me madad karte hain.</p> <h2>2. Flask Installation</h2> <p>Flask install karne ke liye aap command line me ye command run karein:</p> <pre>pip install flask</pre> <h2>3. Flask Application Structure</h2> <p>Flask application ka simple structure is prakar hota hai:</p> <pre> /project_folder /app.py /templates/ home.html /static/ style.css </pre> <p>Ye folder structure basic hai jisme application ka main code <code>app.py</code> me hota hai, HTML templates <code>templates</code> folder me, aur CSS/JS images <code>static</code> folder me.</p> <h2>4. Flask Application Banana</h2> <p>Sabse pehla Flask program kaisa hota hai dekhein:</p> <pre> from flask import Flask
+app = Flask(name)
+
+@app.route("/")
+def home():
+return "Hello, Flask!"
+
+if name == "main":
+app.run(debug=True)
+</pre>
+
+<p>Yah code ek basic web server banata hai jo root URL <code>/</code> ke liye "Hello, Flask!" return karta hai. <code>debug=True</code> se development mode on hota hai, jo code me changes detect karke automatic reload karta hai aur detailed error messages dikhata hai.</p> <h2>5. Routing Kaise Kaam Karta Hai?</h2> <p>Routing se hum URL ko functions ke sath map karte hain. Har route ek URL path ko represent karta hai.</p> <pre> @app.route("/about") def about(): return "About Page" </pre> <p>Isse agar user <code>/about</code> URL par jaye to "About Page" display hoga.</p> <h2>6. URL Variable Rules</h2> <p>Aap URL me variables bhi rakh sakte hain:</p> <pre> @app.route("/user/<username>") def show_user(username): return f"User: {username}" </pre> <p>Yeh dynamic route ko support karta hai jahan username URL se liya jata hai.</p> <h2>7. Templates Aur Dynamic Content</h2> <p>Flask me HTML pages ko alag template files me store karte hain jo <code>templates</code> folder me rahte hain. Jinja2 engine ke zariye dynamic data bheja jata hai.</p> <p><strong>Example:</strong></p> <pre> # app.py me from flask import Flask, render_template app = Flask(__name__)
+@app.route("/")
+def home():
+return render_template("home.html", name="Student")
+
+templates/home.html
+<html>
+<body>
+<h1>Welcome, {{ name }}!</h1>
+</body>
+</html>
+</pre>
+
+<h2>8. Static Files (CSS, JS, Images)</h2> <p>CSS, JavaScript aur images ko <code>static</code> folder me rakha jata hai. Ye url se accessible hote hain.</p> <p>Template me CSS link karne ka tarika:</p> <pre> &lt;link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"&gt; </pre> <h2>9. Forms Aur HTTP Methods</h2> <p>Flask me forms submit karne ke liye aap <code>GET</code> aur <code>POST</code> methods ka use karte hain.</p> <pre> from flask import Flask, request, render_template
+app = Flask(name)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+if request.method == "POST":
+username = request.form["username"]
+return f"Welcome, {username}!"
+return render_template("login.html")
+
+login.html me form:
+<form method="POST">
+<input type="text" name="username"/>
+<input type="submit"/>
+</form>
+</pre> <h2>10. Redirects aur URL Building</h2> <p>Requests ke baad user ko redirect karne ke liye <code>redirect</code> aur <code>url_for</code> ka use hota hai.</p> <pre> from flask import redirect, url_for
+@app.route("/submit", methods=["POST"])
+def submit():
+# process
+return redirect(url_for('home'))
+</pre>
+
+<h2>11. Flask me Session Management</h2> <p>Session data user ke browser me temporary store karne ke liye Flask ka <code>session</code> object use hota hai, jisme secret key zaruri hoti hai.</p> <pre> from flask import Flask, session
+app = Flask(name)
+app.secret_key = "supersecretkey"
+
+@app.route("/set/")
+def set_session():
+session["user"] = "Student"
+return "Session Set"
+
+@app.route("/get/")
+def get_session():
+user = session.get("user", "Not set")
+return f"User is {user}"
+</pre>
+
+<h2>12. Flask Extensions</h2> <p>Flask ki functionality badhane ke liye bahut saare extensions available hain:</p> <ul> <li><strong>Flask-SQLAlchemy:</strong> Database ORM support ke liye.</li> <li><strong>Flask-WTF:</strong> Forms ko handle karne ke liye.</li> <li><strong>Flask-Login:</strong> User authentication ke liye.</li> </ul> <h2>13. Debugging Aur Testing</h2> <p>Development ke dauran <code>debug=True</code> rakhna chaiye jisse error messages aur auto reload milta hai.</p> <p>Unit testing ke liye Flask ka test client use kar sakte hain.</p> <h2>14. Deployment</h2> <p>Flask applications ko production me deploy karne ke liye aap Gunicorn jaise WSGI servers aur platforms jese Heroku, AWS, DigitalOcean use kar sakte hain.</p> <h2>15. Summary</h2> <p>Flask ek lightweight powerful framework hai jo beginners ke liye ideal hai simple se complex web apps banane ke liye. Iska flexibility aur simplicity explain karta hai ki kaise aap fast web development kar sakte hain. Routing, templating, forms, sessions jese core features se aap full-fledged apps bana sakte hain. Extensions aur deployment options se Flask professional projects me bhi fit baithta hai. Dhyan se seekhkar aur practice karke aap Flask me expert ban sakte hain!</p> </main> </body> </html>
