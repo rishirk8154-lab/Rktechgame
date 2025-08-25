@@ -1,0 +1,131 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Python Projects and Practice - Guide</title> <style> :root { --main-red: #e63946; --dark-blue: #1d3557; --background-white: #ffffff; --light-gray: #f8f9fa; --shadow-color: rgba(70, 90, 120, 0.15); --text-dark: #0d1b2a; --code-bg: #f0f0f0; } body { margin: 0; padding: 0; font-family: 'Montserrat', Arial, sans-serif; background: var(--background-white); color: var(--text-dark); } main { max-width: 960px; margin: 40px auto; padding: 40px 32px; background: var(--background-white); border-radius: 20px; box-shadow: 0 12px 30px var(--shadow-color); user-select: text; line-height: 1.7; } h1 { color: var(--main-red); font-weight: 900; font-size: 3rem; border-left: 10px solid var(--main-red); padding-left: 18px; margin-bottom: 36px; user-select: none; } h2 { color: var(--main-red); font-weight: 700; font-size: 2rem; border-bottom: 4px solid var(--main-red); margin: 40px 0 30px; padding-bottom: 8px; } h3 { color: var(--main-red); font-size: 1.3rem; margin-bottom: 18px; } p, li { font-size: 1.1rem; margin-bottom: 20px; } ul { padding-left: 32px; margin-bottom: 28px; } pre { font-family: "Courier New", Courier, monospace; background: var(--code-bg); padding: 16px 22px; border-radius: 12px; font-size: 1.05rem; box-shadow: 0 3px 15px rgb(0 0 0 / 0.1); overflow-x: auto; margin-bottom: 36px; user-select: text; } code { color: var(--main-red); font-weight: 700; } </style> </head> <body> <main> <h1>Python Projects aur Practice - Hinglish Guide</h1> <p>Agar tumhe Python achhi tarah sikhni hai, toh chhote-chhote projects banana aur regular practice karna bahut zaroori hai. Niche kuch aasan project ideas, exercises aur unke code diye gaye hain—practice karo aur python master bano!</p>
+text
+<h2>Beginner Python Projects Ideas</h2>
+<ul>
+  <li><b>Text Encryption Generator:</b> Apne messages ko encrypt karo (matlab letter/symbol badal do).</li>
+  <li><b>Countdown Calculator:</b> Do dates ke beech kitna time bacha hai—<code>datetime</code> se nikalo.</li>
+  <li><b>Sort Without sort():</b> List ko sort karna bina built-in <code>sort()</code> ke.</li>
+  <li><b>Interactive Quiz:</b> User ke answers ke basis pe quiz ka result nikaalo.</li>
+  <li><b>Tic-Tac-Toe Game:</b> Console pe playable—har move ke baad board dikhao.</li>
+  <li><b>Measurement Converter:</b> Fahrenheit to Celsius, inches to cm, etc.</li>
+  <li><b>Number Guessing Game:</b> Computer ek random number choose kare aur user guess kare.</li>
+</ul>
+
+<h2>Mini Project Code Examples</h2>
+
+<h3>1. Number Guessing Game</h3>
+<pre>
+import random
+
+number = random.randint(1, 100)
+attempts = 0
+
+while True:
+guess = int(input("Guess a number (1-100): "))
+attempts += 1
+if guess < number:
+print("Too low!")
+elif guess > number:
+print("Too high!")
+else:
+print(f"Congratulations! {attempts} attempts me sahi guess kiya!")
+break
+</pre>
+
+text
+<h3>2. Text-Based Tic Tac Toe</h3>
+<pre>
+def print_board(board):
+for row in board:
+print("|".join(row))
+print("-"*5)
+
+def check_winner(board, player):
+for row in board:
+if all([spot == player for spot in row]):
+return True
+for col in range(3):
+if all([board[row][col] == player for row in range(3)]):
+return True
+if all([board[i][i] == player for i in range(3)]):
+return True
+if all([board[i][2-i] == player for i in range(3)]):
+return True
+return False
+
+board = [[" " for _ in range(3)] for _ in range(3)]
+turn = "X"
+for _ in range(9):
+print_board(board)
+row = int(input(f"Player {turn}, enter row (0-2): "))
+col = int(input(f"Player {turn}, enter col (0-2): "))
+if board[row][col] == " ":
+board[row][col] = turn
+if check_winner(board, turn):
+print_board(board)
+print(f"Player {turn} jeet gaya!")
+break
+turn = "O" if turn == "X" else "X"
+else:
+print("Spot already taken, try again.")
+else:
+print_board(board)
+print("Draw ho gaya!")
+</pre>
+
+text
+<h3>3. Measurement Converter (Fahrenheit to Celsius)</h3>
+<pre>
+def f_to_c(far):
+return (far - 32) * 5/9
+
+fahrenheit = float(input("Fahrenheit me temp do: "))
+celsius = f_to_c(fahrenheit)
+print(f"{fahrenheit}°F = {celsius:.2f}°C")
+</pre>
+
+text
+<h3>4. Simple Quiz App</h3>
+<pre>
+questions = {
+"Capital of India?": "New Delhi",
+"Largest ocean?": "Pacific",
+"Python creator?": "Guido van Rossum"
+}
+score = 0
+for question, answer in questions.items():
+user = input(question + " ")
+if user.strip().lower() == answer.lower():
+score += 1
+print("Sahi Jawab!")
+else:
+print(f"Galat. Sahi answer: {answer}")
+
+print(f"Your score: {score}/{len(questions)}")
+</pre>
+
+text
+<h2>Practice Ke Category Ideas</h2>
+<ul>
+  <li>Conditional Statements (if, else)</li>
+  <li>Strings, Lists, Tuples, Dictionaries, Sets</li>
+  <li>Functions aur Recursion Problems</li>
+  <li>OOP (Object Oriented Programming)</li>
+  <li>File Handling & JSON</li>
+  <li>Basic Data Structures (Stack, Queue)</li>
+  <li>Searching & Sorting</li>
+</ul>
+<p>Practice ke liye GeeksforGeeks, CodeChef, Hackerrank jaisi sites pe coding questions solve karo—ye sab practical learning ke liye best hain. [11][12][13]</p>
+
+<h2>Practice aur Learning Tips</h2>
+<ul>
+  <li>Chhote codes se start karo, dheere-dheere features add karo.</li>
+  <li>Github pe open-source projects padh ke samjho aur badhao.</li>
+  <li>Daily life ke problems uthao (calculator, alarms, to-do lists).</li>
+  <li>Time-time pe coding contests me try karo.</li>
+  <li>Rozana code likho. Practice hee python expert banati hai.</li>
+</ul>
+
+<h2>Summary</h2>
+<p>Python projects aur regular practice se hi real mastery aati hai. Mini-projects se strong base banao, rozana code likho, aur kuch time baad tum bade-bade problems bhi confidently solve kar paoge. Coding ka mazaa real practice me hi hai!</p>
+</main> </body> </html>
