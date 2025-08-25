@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Java Polymorphism - Compile-Time & Runtime | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet"/>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%; width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.75;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 35px 40px;
+    border-radius: 22px;
+    box-shadow: 0 3px 18px #394e7d55;
+    min-height: calc(100vh - 180px);
+    overflow-x: auto;
+  }
+  h2 {
+    border-left: 8px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+    color: #39568c;
+  }
+  h3 {
+    color: #b22a2a;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  p, ul {
+    margin-bottom: 26px;
+  }
+  ul {
+    padding-left: 24px;
+  }
+  code {
+    background-color: #e7ebf1;
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+  }
+  pre {
+    background-color: #f4f6fb;
+    color: #212121;
+    padding: 22px 25px;
+    border-radius: 11px;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 6px #b0bec5;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+    font-weight: 700;
+  }
+  footer {
+    text-align: center;
+    margin: 50px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 700;
+    user-select: none;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 25px 28px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+    }
+    pre {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Polymorphism - Compile-Time & Runtime</h1>
+</header>
+<main>
+  <section>
+    <h2>What is Polymorphism?</h2>
+    <p>
+      Polymorphism ka matlab hota hai "bahuroopiya" — yani kisi ek cheez ka kai roop hona. Java me ye object-oriented programming ka ek mool tatva hai jisme ek method ya object alag alag tarike se behave kar sakta hai.
+    </p>
+  </section>
+
+  <section>
+    <h2>1. Compile-Time Polymorphism (Static Polymorphism)</h2>
+    <p>
+      Compile-time polymorphism method overloading ke zariye achieve hota hai. Ek hi class me multiple methods same naam ke lekin alag parameters ke saath hote hain. Compiler decide karta hai konsa method call karna hai.
+    </p>
+    <pre><code>class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    double add(double a, double b) {
+        return a + b;
+    }
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(5, 10));       // Output: 15
+        System.out.println(calc.add(5, 10, 15));   // Output: 30
+        System.out.println(calc.add(3.5, 2.7));    // Output: 6.2
+    }
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Runtime Polymorphism (Dynamic Polymorphism)</h2>
+    <p>
+      Runtime polymorphism method overriding ke dwara hota hai. Subclass parent class ke method ko override karta hai aur run-time mein actual object ke type ke hisaab se method call hota hai.
+    </p>
+    <pre><code>class Animal {
+    void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+public class TestPolymorphism {
+    public static void main(String[] args) {
+        Animal a;
+        a = new Dog();
+        a.makeSound();  // Output: Dog barks
+
+        a = new Cat();
+        a.makeSound();  // Output: Cat meows
+    }
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>Key Differences Between Compile-Time and Runtime Polymorphism</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Compile-Time Polymorphism</th>
+          <th>Runtime Polymorphism</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Also Known As</td>
+          <td>Static Binding</td>
+          <td>Dynamic Binding</td>
+        </tr>
+        <tr>
+          <td>Achieved By</td>
+          <td>Method Overloading</td>
+          <td>Method Overriding</td>
+        </tr>
+        <tr>
+          <td>Binding Time</td>
+          <td>Compile Time</td>
+          <td>Run Time</td>
+        </tr>
+        <tr>
+          <td>Performance</td>
+          <td>Faster</td>
+          <td>Relatively Slower</td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td>Less Flexible</td>
+          <td>More Flexible</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
