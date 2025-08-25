@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Writing, Compiling & Running Simple Java Program | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    margin: 0;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    color: #292a36;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin-bottom: 40px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 3px 18px #54628533;
+  }
+  code {
+    background-color: #e8e8e8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  pre {
+    background-color: #2f3c58;
+    color: #cfcfcf;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 1rem;
+  }
+  h2 {
+    color: #546285;
+    border-left: 6px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  p, ul {
+    margin-bottom: 15px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    color: #333a4d88;
+    font-weight: 600;
+    user-select: none;
+  }
+  @media (max-width: 600px) {
+    main {
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Writing, Compiling & Running Simple Java Program</h1>
+</header>
+<main>
+  <section>
+    <h2>1. Writing a Simple Java Program</h2>
+    <p>
+      Java program likhne ke liye pahla step ek class banana hai. Java me har program me kam se kam ek class hona zaroori hai.
+      Yahan ek simple "HelloWorld" program diya gaya hai jo console me "Hello, World!" print karta hai:
+    </p>
+    <pre>
+<code>
+// File name: HelloWorld.java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+</code>
+    </pre>
+    <p>
+      Important points:
+      <ul>
+        <li><code>public class HelloWorld</code> se class declare hoti hai, jiska naam file ke naam se match karna chahiye.</li>
+        <li><code>main</code> method se program start hota hai.</li>
+        <li><code>System.out.println()</code> console par message print karta hai.</li>
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Compiling the Program</h2>
+    <p>
+      Java code ko run karne ke liye pahle ise compile karna hota hai. Compilation source code (Java file) ko bytecode (.class file) me convert karta hai. Yeh step terminal ya command prompt me hota hai.
+    </p>
+    <p>
+      Steps to compile:
+      <ul>
+        <li>Terminal (command prompt) kholen.</li>
+        <li>Jis folder me <code>HelloWorld.java</code> file saved hai, us folder me navigate karein using <code>cd</code> command.</li>
+        <li>Command type kare:
+          <br /><code>javac HelloWorld.java</code>
+        </li>
+        <li>Agar koi errors nahi hain, to compiler koi output nahi deta, lekin <code>HelloWorld.class</code> file create ho jayegi.</li>
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>3. Running the Program</h2>
+    <p>
+      Compile hone ke baad program ko run karna hota hai. Run karne ka matlab Java Virtual Machine (JVM) ko bytecode execute karna hota hai.
+    </p>
+    <p>
+      Steps to run:
+      <ul>
+        <li>Command prompt ya terminal me ye command type karein:
+          <br /><code>java HelloWorld</code>
+        </li>
+        <li>Output me dikhai dega: <code>Hello, World!</code></li>
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>4. Important Notes</h2>
+    <ul>
+      <li>Java file ka naam <code>.java</code> extension ke saath hona chahiye aur public class ka naam usi file ke naam se match karna chahiye.</li>
+      <li>Compile karne ke baad .class file generate hoti hai jisme bytecode hota hai.</li>
+      <li>Run command me .class extension nahi lagate, sirf class ka naam likhte hain.</li>
+      <li>Agar multiple files hain, to unhe sahi classpath ke sath proper order me compile karna hota hai.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
