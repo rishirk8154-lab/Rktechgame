@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Sorting and Searching in Collections</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Sorting and Searching in Collections</h1>
+</header>
+
+<section id="sorting">
+  <h2>Sorting in Collections</h2>
+  <p>
+    Java Collections Framework mein <strong>sorting</strong> ke liye sabse common method hota hai <code>Collections.sort()</code>. Ye method kisi bhi List ko natural ascending order mein arrange karta hai.
+  </p>
+  <p>
+    Internally TimSort algorithm use hota hai, jo merge sort aur insertion sort ka combination hai, efficient aur stable sorting provide karta hai.
+  </p>
+  <p>Example:</p>
+  <pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Geeks");
+list.add("For");
+list.add("Geeks");
+list.add("Example");
+
+Collections.sort(list);
+System.out.println(list);  // Output: [Example, For, Geeks, Geeks]</code></pre>
+
+  <p>
+    Agar aap descending order chahte hain to use kar sakte hain:
+  </p>
+  <pre><code>Collections.sort(list, Collections.reverseOrder());
+System.out.println(list);  // Output: [Geeks, Geeks, For, Example]</code></pre>
+
+  <p>
+    Custom sorting ke liye Comparator interface ka istemal karte hain jahan aap apni order logic define kar sakte hain:
+  </p>
+  <pre><code>Collections.sort(list, (a, b) -> b.compareTo(a)); // Descending order with lambda</code></pre>
+</section>
+
+<section id="searching">
+  <h2>Searching in Collections</h2>
+  <p>
+    Collections mein kisi element ko dhundhne ke liye simple <code>contains()</code> method use karte hain jo linear search karta hai.
+  </p>
+  <p>
+    Jab aapki list sorted ho, tab aap <code>Collections.binarySearch()</code> ka use karke fast searching kar sakte hain.
+  </p>
+  <p>Example:</p>
+  <pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Apple");
+list.add("Banana");
+list.add("Orange");
+
+Collections.sort(list);
+int index = Collections.binarySearch(list, "Banana");
+
+if(index &gt;= 0) {
+  System.out.println("Banana found at index: " + index);
+} else {
+  System.out.println("Banana not found");
+}</code></pre>
+
+  <p>
+    Agar element nahi milta toh binarySearch negative value return karta hai jo insertion point se related hoti hai.
+  </p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
