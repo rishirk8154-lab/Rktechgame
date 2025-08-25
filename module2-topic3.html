@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Type Casting & Conversion - In-depth Guide | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0; padding: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.7;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 0 40px 0;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+    padding: 0 10px;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 3px 18px #54628533;
+    overflow-x: auto;
+    min-height: calc(100vh - 180px);
+  }
+  h2 {
+    color: #546285;
+    border-left: 6px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    font-size: 2rem;
+  }
+  h3 {
+    color: #db1d29;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  p, ul {
+    margin-bottom: 25px;
+  }
+  ul {
+    padding-left: 22px;
+  }
+  code {
+    background-color: #e8e8e8;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-family: monospace;
+  }
+  pre {
+    background-color: #2f3c58;
+    color: #cfcfcf;
+    padding: 20px;
+    border-radius: 9px;
+    overflow-x: auto;
+    font-size: 1rem;
+    margin-bottom: 35px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+  }
+  footer {
+    text-align: center;
+    margin: 40px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 600;
+    user-select: none;
+    padding: 0 10px;
+  }
+  @media (max-width: 700px) {
+    main {
+      padding: 25px 25px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    table, th, td {
+      font-size: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Type Casting & Conversion - In-depth Guide</h1>
+</header>
+<main>
+  <section aria-labelledby="intro">
+    <h2 id="intro">Introduction</h2>
+    <p>
+      Java me Type Casting aur Type Conversion do important concepts hain jo data types ke beech value transfer karne ke liye use hote hain. 
+      Type Casting me value ko explicitly ek type se dusre type me convert kiya jata hai jabki Type Conversion automatically hoti hai.
+    </p>
+  </section>
+
+  <section aria-labelledby="type-casting-definition">
+    <h2 id="type-casting-definition">Type Casting: Detailed Explanation</h2>
+    <p>
+      Type Casting ek manual conversion process hai jisme aap programmer ke dwara explicitly value ka type badalna hota hai.
+      Ye important hota hai jab aapko kisi bade data type ko chhote data type me convert karna ho, jaise <code>double</code> se <code>int</code>.
+    </p>
+    <p><strong>Syntax:</strong></p>
+    <pre><code>targetType variable = (targetType) value;</code></pre>
+    <p>
+      <strong>Example:</strong>
+    </p>
+    <pre><code>double price = 99.99;
+int intPrice = (int) price;  // Fractional part truncate ho gaya, intPrice = 99
+System.out.println("Price as int: " + intPrice);</code></pre>
+    <p>
+      Type Casting me data truncation ya data loss ho sakta hai, isliye careful rahna chahiye.
+    </p>
+  </section>
+
+  <section aria-labelledby="type-conversion-definition">
+    <h2 id="type-conversion-definition">Type Conversion (Type Promotion): Detailed Explanation</h2>
+    <p>
+      Type Conversion automatically JVM ya compiler karta hai jab ek chhote data type ko bade data type me convert karna ho, jaise <code>int</code> se <code>double</code>.
+      Is process me data loss nahi hota.
+    </p>
+    <p><strong>Example:</strong></p>
+    <pre><code>int quantity = 100;
+double totalPrice = quantity;  // Automatic conversion int to double
+System.out.println("Total price: " + totalPrice);  // Output: 100.0</code></pre>
+    <p>
+      Java me Type Promotion arithmetic operations ke dauran bhi hoti hai, jaise <code>byte</code>, <code>short</code> operands ko <code>int</code> me convert karna.
+    </p>
+  </section>
+
+  <section aria-labelledby="widening-narrowing">
+    <h2 id="widening-narrowing">Widening vs Narrowing Casting</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example</th>
+          <th>Safety</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Widening Casting</td>
+          <td>Chhota data type automatically bada data type me convert ho jata hai.</td>
+          <td><code>int i = 10; long l = i;</code></td>
+          <td>Safe, no data loss</td>
+        </tr>
+        <tr>
+          <td>Narrowing Casting</td>
+          <td>Bada data type manually chhota data type me converted hota hai.</td>
+          <td><code>double d = 9.99; int i = (int) d;</code></td>
+          <td>Risk of data loss</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section aria-labelledby="type-promotion">
+    <h2 id="type-promotion">Type Promotion in Expressions</h2>
+    <p>
+      Java arithmetic expressions me chhote types (byte, short, char) ko automatic <code>int</code> me promote karta hai jisse calculations accurately hoti hain. 
+      Agar koi operand bada (long, float, double) hota hai to promotions aur bhi logically apply hote hain.
+    </p>
+    <pre><code>byte b = 10;
+short s = 20;
+int result = b + s;  // b and s promoted to int before addition
+System.out.println(result);  // 30
+</code></pre>
+  </section>
+
+  <section aria-labelledby="common-errors">
+    <h2 id="common-errors">Common Errors & Tips</h2>
+    <ul>
+      <li>Type casting karte waqt data truncation se bachne ke liye types ka size samajhna zaroori hai.</li>
+      <li>Auto type conversion sirf widening conversions me hota hai.</li>
+      <li>Casting invalid types me compile-time error ya runtime exception aa sakta hai.</li>
+      <li>Explicit casting me operator ko parentheses ke andar aur value ke aage lagana hota hai.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="summary">
+    <h2 id="summary">Summary</h2>
+    <p>
+      Type Casting aur Type Conversion dono hi jaruri concepts hain Java programming me, jinhone data types ke beech safe aur effective conversion possible banaya hai.
+      Manual (explicit) aur automatic (implicit) conversions ka sahi gyaan efficient programming ke liye essential hai.
+    </p>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
