@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Setting Up JDK and IDEs | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    margin:0;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    color: #292a36;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin-bottom: 40px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 3px 18px #54628533;
+  }
+  section {
+    margin-bottom: 30px;
+  }
+  h2 {
+    color: #546285;
+    border-left: 6px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ol {
+    padding-left: 20px;
+  }
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    color: #333a4d88;
+    font-weight: 600;
+    user-select: none;
+  }
+  p, li {
+    margin-bottom: 15px;
+  }
+  a {
+    color: #db1d29;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    main {
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Step-by-Step Guide: Setting Up JDK and IDEs</h1>
+</header>
+<main>
+  <section>
+    <h2>1. What is JDK?</h2>
+    <p>
+      JDK (Java Development Kit) Java applications banane ke liye zaroori tools ka set hai, jisme compiler, java runtime, libraries aur debugging tools shamil hain.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Downloading and Installing JDK</h2>
+    <ol>
+      <li>Apne browser me <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noopener">Oracle Java Downloads</a> ki official website kholen.</li>
+      <li>Windows, Mac, ya Linux ke hisab se sahi JDK version download karein.</li>
+      <li>Downloaded installer ko run karein aur installation prompts follow karein.</li>
+      <li>Installation complete hone ke baad, JDK ka install location dhyaan se note karein.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3. Setting Environment Variables (Windows)</h2>
+    <ol>
+      <li>Windows Start menu me "Environment Variables" search karein aur "Edit the system environment variables" kholen.</li>
+      <li>"Environment Variables" button par click karein.</li>
+      <li>"System variables" me "New" par click karein, name me <code>JAVA_HOME</code> dalein aur value me JDK ka installation path (jaise <code>C:\Program Files\Java\jdk-XX.X.X</code>) daliye.</li>
+      <li>System variable `Path` ko select karein, "Edit" par click karein, aur naya entry add karein: <code>%JAVA_HOME%\bin</code>.</li>
+      <li>Sab OK kar ke windows close karein.</li>
+      <li>Command Prompt open karke <code>java -version</code> aur <code>javac -version</code> command chalakar verify karein ki JDK sahi se install hua hai.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>4. Setting Environment Variables (Mac/Linux)</h2>
+    <ol>
+      <li>Terminal kholen.</li>
+      <li>Apne shell configuration file me (jaise <code>~/.bash_profile</code>, <code>~/.zshrc</code>) niche lines add karein:
+        <pre>
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=$JAVA_HOME/bin:$PATH
+        </pre>
+      </li>
+      <li>File save kar ke terminal ko restart karein ya <code>source ~/.bash_profile</code> chalayein.</li>
+      <li><code>java -version</code> command chalakar installation verify karein.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>5. Installing IDEs</h2>
+    <p>JDK install karne ke baad, aap apne pasand ki IDE install kar sakte hain. Kuch popular IDEs hain:</p>
+    <ul>
+      <li><strong>IntelliJ IDEA:</strong> Powerful Java IDE with smart coding assistance. Download at <a href="https://www.jetbrains.com/idea/download/" target="_blank" rel="noopener">jetbrains.com</a></li>
+      <li><strong>Eclipse IDE:</strong> Open source IDE widely used for Java development. Visit <a href="https://www.eclipse.org/downloads/" target="_blank" rel="noopener">eclipse.org</a></li>
+      <li><strong>NetBeans IDE:</strong> Another popular open-source IDE by Apache. Available at <a href="https://netbeans.apache.org/download/index.html" target="_blank" rel="noopener">netbeans.apache.org</a></li>
+    </ul>
+    <p>Installation steps har IDE me thode alag ho sakte hain, par generally downloaded installer ko run karke standard prompts ko follow karna hota hai.</p>
+  </section>
+
+  <section>
+    <h2>6. Verifying Setup and Creating First Java Program</h2>
+    <ol>
+      <li>IDE open kar ke naye Java project create karein.</li>
+      <li>Simple <code>HelloWorld.java</code> class banayein:
+        <pre>
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+        </pre>
+      </li>
+      <li>Program run karke output verify karein.</li>
+    </ol>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
