@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Collection Interfaces Detailed</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(
+      120deg,
+      var(--kakashi-blue) 20%,
+      var(--kakashi-gray) 100%
+    );
+    color: var(--kakashi-dark);
+    transition: background 0.6s;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 40px 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+    letter-spacing: 3px;
+    font-weight: 900;
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p {
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+    margin: 12px 0;
+  }
+  ul {
+    margin: 12px 0 22px 30px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    color: #2d3a67;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 12px;
+    }
+    section {
+      padding: 20px 25px;
+      margin-bottom: 28px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java Collection Interfaces Detailed</h1>
+</header>
+
+<section id="collection-interface">
+  <h2>Collection Interface</h2>
+  <p>
+    The <strong>Collection</strong> interface is the root interface in the Java Collections Framework hierarchy representing a group of objects known as elements.
+  </p>
+  <p>
+    It defines basic operations such as adding, removing, clearing, checking elements, and iteration. It extends the <code>Iterable</code> interface, enabling traversal of elements.
+  </p>
+  <p>It has many implementations, but <strong>List</strong>, <strong>Set</strong>, and <strong>Queue</strong> are its main subinterfaces.</p>
+  <p><strong>Common Methods:</strong></p>
+  <ul>
+    <li><code>add(E e)</code>: Adds an element to the collection.</li>
+    <li><code>remove(Object o)</code>: Removes a single instance of the element if present.</li>
+    <li><code>contains(Object o)</code>: Checks if an element is present.</li>
+    <li><code>size()</code>: Returns the number of elements.</li>
+    <li><code>clear()</code>: Removes all elements.</li>
+    <li><code>iterator()</code>: Obtains an iterator to traverse elements.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>Collection&lt;String&gt; fruits = new ArrayList&lt;&gt;();
+fruits.add("Apple");
+fruits.add("Banana");
+System.out.println(fruits); // Output: [Apple, Banana]</code></pre>
+</section>
+
+<section id="list-interface">
+  <h2>List Interface</h2>
+  <p>
+    The <strong>List</strong> interface extends Collection and represents an <em>ordered</em> collection that allows duplicate elements.
+  </p>
+  <p>
+    Elements can be accessed by their integer index (position in the list). Common implementations include <code>ArrayList</code>, <code>LinkedList</code>, and <code>Vector</code>.
+  </p>
+  <p><strong>Key Features:</strong></p>
+  <ul>
+    <li>Maintains insertion order.</li>
+    <li>Allows duplicate elements.</li>
+    <li>Supports positional access and insertion.</li>
+  </ul>
+  <p>Frequently used implementations:</p>
+  <ul>
+    <li><strong>ArrayList</strong>: Backed by a resizable array; fast access, slower insert/delete in middle.</li>
+    <li><strong>LinkedList</strong>: Doubly linked list; slower access by index, faster insert/delete.</li>
+    <li><strong>Vector</strong>: Thread-safe variant of ArrayList (less common nowadays).</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>List&lt;String&gt; colors = new ArrayList&lt;&gt;();
+colors.add("Red");
+colors.add("Blue");
+colors.add("Red");
+System.out.println(colors); // Output: [Red, Blue, Red]</code></pre>
+</section>
+
+<section id="set-interface">
+  <h2>Set Interface</h2>
+  <p>
+    The <strong>Set</strong> interface extends Collection and represents an <em>unordered</em> collection that does not allow duplicate elements.
+  </p>
+  <p>Common implementations include <code>HashSet</code>, <code>LinkedHashSet</code>, and <code>TreeSet</code>.</p>
+  <p><strong>Key Features:</strong></p>
+  <ul>
+    <li>Does not allow duplicate elements.</li>
+    <li>Does not guarantee insertion order (except <code>LinkedHashSet</code>).</li>
+    <li>Efficient for membership checks.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>Set&lt;String&gt; fruits = new HashSet&lt;&gt;();
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.add("Apple"); // Duplicate ignored
+System.out.println(fruits); // Output: [Apple, Banana]</code></pre>
+</section>
+
+<section id="map-interface">
+  <h2>Map Interface</h2>
+  <p>
+    The <strong>Map</strong> interface is part of the Java Collections Framework but is not a subinterface of Collection. It represents a collection of key-value pairs.
+  </p>
+  <p>Keys must be unique, but values can be duplicated.</p>
+  <p>Common implementations include <code>HashMap</code>, <code>TreeMap</code>, and <code>LinkedHashMap</code>.</p>
+  <p><strong>Key Features:</strong></p>
+  <ul>
+    <li>Stores key-value pairs.</li>
+    <li>Keys are unique; values can be duplicated.</li>
+    <li>Useful for efficient lookups by key.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+capitals.put("USA", "Washington DC");
+capitals.put("India", "New Delhi");
+System.out.println(capitals.get("India")); // Output: New Delhi</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+  </html>
+  
