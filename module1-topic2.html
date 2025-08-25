@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Editions: SE, EE & ME | Features & Use Cases | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.6;
+  }
+ *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    padding: 20px 15px 10px 15px;
+    color: #db1d29;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 3px 18px #54628533;
+    min-height: calc(100vh - 130px);
+    overflow-y: auto;
+  }
+  h2 {
+    color: #546285;
+    border-left: 6px solid #db1d29;
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    word-wrap: break-word;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  footer {
+    text-align: center;
+    padding: 15px 10px;
+    color: #333a4d88;
+    font-weight: 600;
+    user-select: none;
+  }
+  @media (max-width: 700px) {
+    main {
+      padding: 20px 20px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    table, th, td {
+      font-size: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Editions: SE, EE & ME</h1>
+</header>
+<main>
+  <section aria-labelledby="editions-intro">
+    <h2 id="editions-intro">Introduction to Java Editions</h2>
+    <p>
+      Java ke teen mukhya editions available hain jo alag-alag tarah ke applications develop karne ke liye banaye gaye hain:
+    </p>
+    <ul>
+      <li><strong>Java Standard Edition (Java SE):</strong> Core Java language aur libraries jisse desktop aur simple applications banaye jate hain.</li>
+      <li><strong>Java Enterprise Edition (Java EE):</strong> Enterprise-level, distributed aur web based applications ke liye advanced platform.</li>
+      <li><strong>Java Micro Edition (Java ME):</strong> Mobile aur embedded systems jaise resource-constrained devices ke liye light version.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="java-se-details">
+    <h2 id="java-se-details">Java Standard Edition (Java SE)</h2>
+    <p>
+      Java SE core platform hai jo language ke basic features, standard APIs, aur Java Virtual Machine provide karta hai. Iska use standalone desktop applications, utilities aur server backend ke liye hota hai.
+    </p>
+    <h3>Features:</h3>
+    <ul>
+      <li>Core Java language constructs like classes, inheritance, interfaces</li>
+      <li>Multithreading and concurrency utilities</li>
+      <li>Input-output streams, data structures, networking APIs</li>
+      <li>GUI creation using JavaFX and Swing</li>
+      <li>Exception handling aur memory management mechanisms</li>
+    </ul>
+    <h3>Use Cases:</h3>
+    <ul>
+      <li>Desktop applications and utilities</li>
+      <li>Basic server-side backend</li>
+      <li>Foundation for Java EE and ME</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="java-ee-details">
+    <h2 id="java-ee-details">Java Enterprise Edition (Java EE)</h2>
+    <p>
+      Java EE, Java SE ke extensions provide karta hai jo large scale enterprise applications aur web services banane mein madad karta hai. Isme business components aur web components ke liye APIs shamil hain.
+    </p>
+    <h3>Features:</h3>
+    <ul>
+      <li>Servlets, JavaServer Pages (JSP) for building web applications</li>
+      <li>Enterprise JavaBeans (EJB) for distributed business logic</li>
+      <li>Java Persistence API (JPA) for object-relational mapping</li>
+      <li>Messaging using Java Message Service (JMS)</li>
+      <li>Transaction management and distributed computing support</li>
+      <li>Advanced security and authentication frameworks</li>
+    </ul>
+    <h3>Use Cases:</h3>
+    <ul>
+      <li>Enterprise web and business applications</li>
+      <li>Banking, e-commerce, CRM, ERP software</li>
+      <li>Cloud-based scalable solutions</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="java-me-details">
+    <h2 id="java-me-details">Java Micro Edition (Java ME)</h2>
+    <p>
+      Java ME, Java ka lightweight subset hai jo mobile phones, set-top boxes, aur embedded device jaise resource-constrained hardware ke liye tayar kiya gaya hai.
+    </p>
+    <h3>Features:</h3>
+    <ul>
+      <li>Lightweight JVM and runtime environment</li>
+      <li>Subset of Java SE APIs customized for limited devices</li>
+      <li>Specific configurations and profiles like CLDC and MIDP</li>
+      <li>APIs for user interface, messaging, multimedia, and security</li>
+    </ul>
+    <h3>Use Cases:</h3>
+    <ul>
+      <li>Feature phones and basic mobile devices</li>
+      <li>Embedded systems (healthcare devices, IoT sensors, etc.)</li>
+      <li>Small footprint devices requiring efficient resource use</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="editions-comparison">
+    <h2 id="editions-comparison">Comparison Table: Java SE vs Java EE vs Java ME</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Java SE</th>
+          <th>Java EE</th>
+          <th>Java ME</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Full Form</td>
+          <td>Standard Edition</td>
+          <td>Enterprise Edition</td>
+          <td>Micro Edition</td>
+        </tr>
+        <tr>
+          <td>Purpose</td>
+          <td>General-purpose desktop and server applications</td>
+          <td>Large-scale, multi-tier web and enterprise applications</td>
+          <td>Mobile and embedded devices with limited resources</td>
+        </tr>
+        <tr>
+          <td>Core Libraries</td>
+          <td>Basic Java APIs, collections, concurrency, IO</td>
+          <td>Includes Java SE + web, enterprise, messaging, transaction APIs</td>
+          <td>Subset of Java SE customized for mobile/embedded</td>
+        </tr>
+        <tr>
+          <td>Platform</td>
+          <td>Desktop & server machines</td>
+          <td>Application servers and enterprise systems</td>
+          <td>Mobile phones, embedded devices, IoT gadgets</td>
+        </tr>
+        <tr>
+          <td>Typical Use Cases</td>
+          <td>Desktop apps, utilities, backend services</td>
+          <td>Enterprise web apps, banking, ERP systems</td>
+          <td>Feature phones, IoT, embedded sensors</td>
+        </tr>
+        <tr>
+          <td>Complexity Level</td>
+          <td>Low to medium</td>
+          <td>High (complex distributed applications)</td>
+          <td>Low (resource constrained)</td>
+        </tr>
+        <tr>
+          <td>Example Applications</td>
+          <td>Text editors, IDEs, desktop games</td>
+          <td>Online banking, customer relation management</td>
+          <td>Mobile games, device controllers, sensor monitoring</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+    </html>
+    
