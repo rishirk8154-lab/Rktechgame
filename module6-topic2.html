@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Try, Catch, Finally Blocks - Detailed Explanation | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.8;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 50px auto;
+    background: #f0f4faee;
+    padding: 40px 50px;
+    border-radius: 22px;
+    box-shadow: 0 3px 20px #394e7d77;
+    min-height: calc(100vh - 210px);
+    overflow-x: auto;
+  }
+  h2 {
+    border-left: 8px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 2.6rem;
+    color: #39568c;
+  }
+  h3 {
+    color: #b22a2a;
+    margin-top: 45px;
+    margin-bottom: 22px;
+  }
+  p, ul {
+    margin-bottom: 30px;
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 28px;
+  }
+  code {
+    background-color: #e7ebf1;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+  }
+  pre {
+    background-color: #f4f6fb;
+    color: #212121;
+    padding: 28px 30px;
+    border-radius: 14px;
+    font-size: 1.18rem;
+    margin-bottom: 45px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 9px #b0bec5;
+    overflow-x: auto;
+  }
+  footer {
+    text-align: center;
+    margin: 60px auto 40px auto;
+    color: #333a4d99;
+    font-weight: 700;
+    user-select: none;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 35px 30px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.3rem;
+      letter-spacing: 2.5px;
+    }
+    h2 {
+      font-size: 2rem;
+      padding-left: 12px;
+      border-left-width: 6px;
+    }
+    pre {
+      font-size: 1rem;
+      padding: 20px 22px;
+      border-radius: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Try, Catch and Finally Blocks - Detailed Explanation</h1>
+</header>
+<main>
+
+  <section>
+    <h2>Try Block</h2>
+    <p>
+      <strong>Try</strong> block mein aise code likhte hain jisme exceptions ke chances hote hain. Java runtime jab try block ke code ko execute karta hai aur koi exception aata hai to turant try block ka execution ruk jata hai, aur exception handling block (catch) ki taraf control chala jata hai.
+    </p>
+    <pre><code>try {
+    // Code that may throw an exception
+    int result = 10 / 0; // ArithmeticException
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>Catch Block</h2>
+    <p>
+      <strong>Catch</strong> block try me aaye exception ko handle karta hai. Agar exception throw hota hai, to catch block ka code execute hota hai. Catch ke andar hum exception object use kar sakte hain jaise error messages print karne ke liye.
+    </p>
+    <pre><code>try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Cannot divide by zero.");
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>Finally Block</h2>
+    <p>
+      <strong>Finally</strong> block aisi code ko rakha jata hai jo try aur catch blocks ke baad hamesha execute hota hai chaahe exception aaye ya naa aaye. Iska use zyadaatar cleanup kaam ke liye hota hai jaise file close karna ya resource release karna.
+    </p>
+    <pre><code>try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Cannot divide by zero.");
+} finally {
+    System.out.println("This will always execute.");
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>Flow of Control</h2>
+    <ul>
+      <li>Agar try block me exception nahi aata to catch block skip hota hai aur finally block execute hota hai.</li>
+      <li>Agar try me exception aata hai aur catch block us exception ko handle karta hai to catch block execute hota hai, phir finally block bhi.</li>
+      <li>Agar exception catch block me handle nahi hota to program terminate hota hai, par finally block tab bhi execute hota hai.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Example: Try-Catch-Finally</h2>
+    <pre><code>public class TryCatchFinallyDemo {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[5]); // ArrayIndexOutOfBoundsException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index is out of bounds!");
+        } finally {
+            System.out.println("Finally block executed.");
+        }
+        System.out.println("Program continues...");
+    }
+}</code></pre>
+    <p>Output:</p>
+    <pre><code>Array index is out of bounds!
+Finally block executed.
+Program continues...</code></pre>
+  </section>
+
+  <section>
+    <h2>Important Notes</h2>
+    <ul>
+      <li>Try block ke bina catch ya finally block use nahi kar sakte.</li>
+      <li>Catch block multiple bhi ho sakte hain.</li>
+      <li>Finally block optional hai, lekin agar diya gaya hai to try-catch ke baad hi hona chahiye.</li>
+      <li>Finally block me jo code hota hai vo hamesha execute hota hai, even if return statement try ya catch me ho.</li>
+    </ul>
+  </section>
+
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
