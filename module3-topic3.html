@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Break and Continue Statements - Advanced Guide | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet"/>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.75;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 35px 40px;
+    border-radius: 20px;
+    box-shadow: 0 3px 20px #3f517788;
+    overflow-x: auto;
+    min-height: calc(100vh - 180px);
+  }
+  h2 {
+    border-left: 8px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: #3e597a;
+  }
+  h3 {
+    color: #b22a2a;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  p, ul {
+    margin-bottom: 25px;
+  }
+  ul {
+    padding-left: 24px;
+  }
+  code {
+    background-color: #e7ebf2;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+  }
+  pre {
+    background-color: #f7f9fc;
+    color: #1a1a1a;
+    padding: 24px 28px;
+    border-radius: 11px;
+    overflow-x: auto;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 10px #a0b5cd;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 16px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+    font-weight: 700;
+  }
+  footer {
+    text-align: center;
+    margin: 50px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 700;
+    user-select: none;
+    padding: 0 15px;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 30px 28px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+    pre {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Break and Continue Statements - Advanced Guide</h1>
+</header>
+<main>
+  <section aria-labelledby="break-statement">
+    <h2 id="break-statement">The break Statement in Depth</h2>
+    <p>
+      <code>break</code> ka prayog loops (for, while, do-while) aur switch-case statements ko turant rokne ke liye hota hai. Yeh loop ya switch ke andar se control ko baahar le jaata hai.
+    </p>
+    <h3>How break works:</h3>
+    <ul>
+      <li>Loop ya switch me <code>break</code> mellne par uska execution wahin ruk jaata hai.</li>
+      <li>Nested loops me <code>break</code> sirf sabse andar wale loop ko rokta hai.</li>
+      <li>Conditional <code>break</code> se aap specific condition par loop ko terminate kar sakte hain.</li>
+    </ul>
+    <p><strong>Example (for loop aur break):</strong></p>
+    <pre><code>for (int i = 0; i < 10; i++) {
+    if (i == 6) {
+        break;  // Loop ab yahan se ruk jayega
+    }
+    System.out.println("Value: " + i);
+}
+System.out.println("Loop terminated early.");</code></pre>
+  </section>
+
+  <section aria-labelledby="continue-statement">
+    <h2 id="continue-statement">The continue Statement in Depth</h2>
+    <p>
+      <code>continue</code> current iteration ko chhod kar loop ke agle iteration par chala jaata hai. Loop khatam nahi hota, sirf remaining statements skip kiye jaate hain.
+    </p>
+    <h3>How continue works:</h3>
+    <ul>
+      <li>Kisi bhi current iteration me agar continue hota hai to us iteration ka remaining code execute nahi hota.</li>
+      <li>Next iteration ko turant start karta hai.</li>
+      <li>Nested loops me continue sirf current inner loop par apply hota hai.</li>
+    </ul>
+    <p><strong>Example (for loop aur continue):</strong></p>
+    <pre><code>for (int i = 0; i < 10; i++) {
+    if (i % 2 == 0) {
+        continue;  // Even numbers skip kar do
+    }
+    System.out.println("Odd number: " + i);
+}</code></pre>
+  </section>
+
+  <section aria-labelledby="nested-break-continue">
+    <h2 id="nested-break-continue">Using break and continue in Nested Loops</h2>
+    <p>
+      Nested loops me break aur continue ka effect sirf jis loop me yeh likhe gaye hain, us par hota hai. Outer loops alag rehte hain.
+    </p>
+    <p><strong>Example:</strong></p>
+    <pre><code>for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 5; j++) {
+        if (j == 3) {
+            break;  // Inner loop ruk jayega jab j = 3
+        }
+        System.out.println("i = " + i + ", j = " + j);
+    }
+}</code></pre>
+  </section>
+
+  <section aria-labelledby="common-mistakes">
+    <h2 id="common-mistakes">Common Mistakes and Tips</h2>
+    <ul>
+      <li>Break aur continue ko bahut jyada use karne se code complex aur hard to debug ho sakta hai.</li>
+      <li>Break ka use switch statements me bhi hota hai; bina break ke sab cases execute ho sakte hain.</li>
+      <li>Continue se infinite loops ban sakte hain agar loop counters update na hon.</li>
+      <li>Code me comments likhna helpful hota hai jab aap break aur continue use karte hain.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="summary">
+    <h2 id="summary">Summary</h2>
+    <p>
+      Java me break aur continue statements aapko loop ke flow ko control karne me flexibility dete hain. Yeh dono statements complex logic ko simplify karne ke liye bahut useful hote hain.
+    </p>
+  </section>
+</main>
+<footer>&copy; 2025 RKTechGame StudyZone - All Rights Reserved</footer>
+</body>
+</html>
