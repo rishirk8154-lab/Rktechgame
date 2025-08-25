@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Exception Handling Best Practices | RKTechGame StudyZone</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #292a36;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background-color: #db1d29;
+    padding: 25px 20px;
+    text-align: center;
+    color: #fff;
+    user-select: none;
+    font-weight: 700;
+  }
+  header h1 {
+    font-size: 2.6rem;
+    letter-spacing: 2.5px;
+  }
+  main {
+    flex: 1;
+    max-width: 960px;
+    margin: 30px auto 50px;
+    background: white;
+    padding: 50px 50px 70px; /* Extra bottom padding to prevent content cutoff */
+    border-radius: 20px;
+    box-shadow: 0 5px 24px rgba(0,0,0,0.1);
+    overflow-wrap: break-word; /* Fix text overflow */
+  }
+  h2 {
+    border-left: 8px solid #db1d29;
+    padding-left: 18px;
+    margin-bottom: 28px;
+    font-size: 2.3rem;
+    color: #39568c;
+  }
+  p, ul {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  ul {
+    padding-left: 28px;
+  }
+  li {
+    margin-bottom: 14px;
+  }
+  code {
+    background: #ececec;
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    color: #000;
+    display: block;
+    white-space: pre-wrap; /* Allows wrapping without breaking */
+    margin-bottom: 30px;
+  }
+  pre {
+    background-color: #f0f4fa;
+    padding: 25px 25px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 45px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    color: #000;
+    max-width: 100%;
+  }
+  footer {
+    text-align: center;
+    padding: 18px 10px;
+    background-color: #f1f1f1;
+    color: #777;
+    font-weight: 700;
+    user-select: none;
+    flex-shrink: 0;
+    border-top: 1px solid #ddd;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 30px 25px 60px;
+      margin: 20px auto 40px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+    }
+    h2 {
+      font-size: 1.9rem;
+      border-left-width: 6px;
+    }
+    p, ul {
+      font-size: 1.05rem;
+    }
+    code, pre {
+      font-size: 1rem;
+      padding: 20px 22px;
+      margin-bottom: 25px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Exception Handling Best Practices</h1>
+</header>
+<main>
+  <section>
+    <h2>1. Specific Exceptions Catch Karo</h2>
+    <p>Generic <code>Exception</code> ke bajaye specific exception types ko catch karo, taaki error ki prakriti samajhna aur debug karna aasan ho.</p>
+    <code>
+try {<br>
+&nbsp;&nbsp;// Risky code<br>
+} catch (IOException e) {<br>
+&nbsp;&nbsp;System.out.println("File error: " + e.getMessage());<br>
+} catch (NumberFormatException e) {<br>
+&nbsp;&nbsp;System.out.println("Number format error: " + e.getMessage());<br>
+}
+    </code>
+  </section>
+
+  <section>
+    <h2>2. Sirf Samajh Ke Exceptions Handle Karo</h2>
+    <p>Empty catch blocks se bacho, jisme exception ignore kiya jata hai. Ye bugs ko chhupata hai aur debugging mushkil kar deta hai.</p>
+    <code>
+try {<br>
+&nbsp;&nbsp;int result = 10 / 0;<br>
+} catch (ArithmeticException e) {<br>
+&nbsp;&nbsp;System.out.println("Zero se divide allowed nahi hai!");<br>
+}
+    </code>
+  </section>
+
+  <section>
+    <h2>3. Resources Close Karna Na Bhulo</h2>
+    <p>File aur database connections jaise resources ko try-with-resources ya finally block me close karo taaki resource leak naa ho.</p>
+    <code>
+try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {<br>
+&nbsp;&nbsp;String line = br.readLine();<br>
+&nbsp;&nbsp;System.out.println(line);<br>
+} catch (IOException e) {<br>
+&nbsp;&nbsp;e.printStackTrace();<br>
+}
+    </code>
+  </section>
+
+  <section>
+    <h2>4. Clear Aur Useful Exception Messages</h2>
+    <p>Exception messages ko clear aur detailed rakho jisse samasya ko jaldi samjha ja sake.</p>
+  </section>
+
+  <section>
+    <h2>5. Exceptions Ko Sahi Level Par Handle Karo</h2>
+    <p>Exceptions ko us jagah handle karo jaha recovery possible ho ya user ko sahi message diya ja sake. Agar handle na kar pao to caller tak propagate karo.</p>
+  </section>
+
+  <section>
+    <h2>6. Logging Ka Prayog Karo</h2>
+    <p>System.out.println se acha logging framework (SLF4J, Log4J) use karo jisse ki logs structured aur trackable rahe.</p>
+  </section>
+
+  <section>
+    <h2>7. Global Exception Handler Karo Setup</h2>
+    <p>Application me centralized global exception handler rakho jo uncaught exceptions ko gracefully handle kare.</p>
+  </section>
+
+  <section>
+    <h2>8. Checked aur Unchecked Exceptions Ka Sahi Prayog</h2>
+    <p>Checked exceptions sqlalchemy situations ke liye hain jahan seekh milti hai ki exceptions ko handle karna hai; unchecked exceptions programming mistakes ko detect karte hain.</p>
+  </section>
+
+  <section>
+    <h2>Example Code:</h2>
+    <pre>
+import java.io.*;
+
+public class ExceptionBestPractice {
+    public static void readFile(String filename) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line = br.readLine();
+            System.out.println("First line: " + line);
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            readFile("data.txt");
+        } catch (FileNotFoundException e) {
+            System.err.println("File nahi mila: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("IO exception aayi: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Unknown error: " + e.getMessage());
+        } finally {
+            System.out.println("Exception handling complete hua.");
+        }
+    }
+}
+    </pre>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
