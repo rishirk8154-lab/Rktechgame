@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Basics Detailed: Data Types, Variables & Constants | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.65;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 0 40px 0;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+    padding: 0 10px;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 20px 25px;
+    border-radius: 20px;
+    box-shadow: 0 3px 18px #54628533;
+    overflow-x: auto;
+  }
+  h2 {
+    color: #546285;
+    border-left: 6px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    font-size: 2rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    min-width: 600px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+  }
+  p, ul {
+    margin-bottom: 20px;
+  }
+  ul {
+    padding-left: 22px;
+  }
+  code {
+    background-color: #e8e8e8;
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-family: monospace;
+  }
+  .example-code {
+    background-color: #2f3c58;
+    color: #cfcfcf;
+    padding: 18px;
+    border-radius: 9px;
+    overflow-x: auto;
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+  footer {
+    text-align: center;
+    margin: 40px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 600;
+    user-select: none;
+    padding: 0 10px;
+  }
+  @media (max-width: 650px) {
+    main {
+      padding: 15px 15px;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    table, th, td {
+      font-size: 14px;
+      min-width: unset;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Basics Detailed: Data Types, Variables & Constants</h1>
+</header>
+<main>
+  <section aria-labelledby="intro">
+    <h2 id="intro">Introduction</h2>
+    <p>
+      Java ek statically-typed aur strongly-typed programming language hai, jisme har variable ke liye uska data type fix hota hai. Programming karte waqt sahi data types ka chunav aur unka sahi istemal bahut zaruri hai.
+    </p>
+  </section>
+
+  <section aria-labelledby="primitive-types">
+    <h2 id="primitive-types">Primitive Data Types</h2>
+    <p>Java me total 8 primitive data types hote hain. Yeh simple values store karte hain.</p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Description</th>
+            <th>Size (in bytes)</th>
+            <th>Default Value</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>byte</td><td>Integer value -128 to 127</td><td>1</td><td>0</td><td>byte b = 100;</td></tr>
+          <tr><td>short</td><td>Integer value -32,768 to 32,767</td><td>2</td><td>0</td><td>short s = 10000;</td></tr>
+          <tr><td>int</td><td>Integer value -2,147,483,648 to 2,147,483,647</td><td>4</td><td>0</td><td>int i = 50000;</td></tr>
+          <tr><td>long</td><td>Integer value -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807</td><td>8</td><td>0L</td><td>long l = 15000000000L;</td></tr>
+          <tr><td>float</td><td>Decimal value upto 6-7 decimal digits</td><td>4</td><td>0.0f</td><td>float f = 5.75f;</td></tr>
+          <tr><td>double</td><td>Decimal value upto 15 decimal digits</td><td>8</td><td>0.0d</td><td>double d = 19.99d;</td></tr>
+          <tr><td>char</td><td>Single 16-bit Unicode character</td><td>2</td><td>'\u0000'</td><td>char c = 'A';</td></tr>
+          <tr><td>boolean</td><td>True or False</td><td>1 (size not precisely defined)</td><td>false</td><td>boolean b = true;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="variables">
+    <h2 id="variables">Variables in Java</h2>
+    <p>
+      Variables memory locations hoti hain jisme program ke dauran data store kiya jata hai. Java me variables declare karne ke liye data type ke sath naam specify karte hain.
+    </p>
+    <p><strong>Variable Types:</strong></p>
+    <ul>
+      <li><strong>Local Variables:</strong> Methods ke andar declare hote hain, sirf method ke andar accessible.</li>
+      <li><strong>Instance Variables:</strong> Class ke object-specific variables hote hain.</li>
+      <li><strong>Static Variables:</strong> Class ka shared variable jo sabhi objects ke liye common hota hai.</li>
+    </ul>
+    <p><strong>Example of variable declaration:</strong></p>
+    <div class="example-code">
+<pre><code>int age = 25;
+float salary = 55000.50f;
+char grade = 'A';
+boolean isActive = true;
+String name = "RKTechGame";
+</code></pre>
+    </div>
+  </section>
+
+  <section aria-labelledby="constants">
+    <h2 id="constants">Constants in Java</h2>
+    <p>
+      Constant variables wo hote hain jinki value ek baar assign hone ke baad change nahi ho sakti. Java me inhe declare karne ke liye <code>final</code> keyword ka use hota hai.
+    </p>
+    <p><strong>Example of constant declaration:</strong></p>
+    <div class="example-code">
+<pre><code>final double PI = 3.14159;
+final int MAX_USERS = 100;
+</code></pre>
+    </div>
+    <p><strong>Important Notes:</strong></p>
+    <ul>
+      <li>Constants ka naam usually uppercase letters me likhte hain taaki easily identify kiya ja sake.</li>
+      <li>Constants ko initialize karna zaruri hota hai, varna compile-time error aayega.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
