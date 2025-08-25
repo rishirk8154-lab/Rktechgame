@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Encapsulation and Abstraction - Advanced Guide | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.75;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 35px 40px;
+    border-radius: 22px;
+    box-shadow: 0 3px 18px #394e7d55;
+    min-height: calc(100vh - 180px);
+    overflow-x: auto;
+  }
+  h2 {
+    border-left: 8px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+    color: #39568c;
+  }
+  h3 {
+    color: #b22a2a;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  p, ul {
+    margin-bottom: 26px;
+  }
+  ul {
+    padding-left: 24px;
+  }
+  code {
+    background-color: #e7ebf1;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+  }
+  pre {
+    background-color: #f4f6fb;
+    color: #212121;
+    padding: 22px 25px;
+    border-radius: 11px;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 6px #b0bec5;
+    overflow-x: auto;
+  }
+  footer {
+    text-align: center;
+    margin: 50px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 700;
+    user-select: none;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 30px 28px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+    pre {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Encapsulation and Abstraction - Advanced Guide</h1>
+</header>
+<main>
+  <section>
+    <h2>Encapsulation: Detailed Explanation</h2>
+    <p>
+      Encapsulation ek aisa OOP principle hai jisme data members (variables) aur methods ko ek class ke andar bundle kiya jata hai, 
+      aur bahar ke direct access se roka jata hai, jo data security aur integrity ke liye zaroori hai.
+    </p>
+    <ul>
+      <li><strong>Private variables:</strong> Data ko private declare karke direct access ko roka jata hai.</li>
+      <li><strong>Public getter-setter methods:</strong> Data members ko safely access aur modify karne ke liye methods provide kiye jate hain.</li>
+      <li><strong>Benefits:</strong> Data hiding, code maintainability, improved security, aur modularity.</li>
+    </ul>
+  
+    <h3>Encapsulation Example with Explanation</h3>
+    <pre><code>class BankAccount {
+    private String accountNumber;
+    private double balance;
+
+    // Getter method
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    // Setter method with validation
+    public void setAccountNumber(String accNo) {
+        if(accNo != null && accNo.length() == 10) {
+            this.accountNumber = accNo;
+        } else {
+            System.out.println("Invalid account number");
+        }
+    }
+
+    // Getter for balance
+    public double getBalance() {
+        return balance;
+    }
+
+    // Deposit method
+    public void deposit(double amount) {
+        if(amount > 0) {
+            balance += amount;
+        }
+    }
+
+    // Withdraw method with condition
+    public boolean withdraw(double amount) {
+        if(amount > 0 && amount <= balance) {
+            balance -= amount;
+            return true;
+        } else {
+            System.out.println("Insufficient Balance or Invalid amount");
+            return false;
+        }
+    }
+}
+
+public class TestBankAccount {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount();
+        acc.setAccountNumber("1234567890");
+        System.out.println("Account Number: " + acc.getAccountNumber());
+
+        acc.deposit(5000);
+        System.out.println("Balance after deposit: " + acc.getBalance());
+
+        boolean success = acc.withdraw(2000);
+        System.out.println("Withdraw success: " + success);
+        System.out.println("Balance after withdrawal: " + acc.getBalance());
+    }
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>Abstraction: Detailed Explanation</h2>
+    <p>
+      Abstraction mein internal complex details hide karke sirf essential features ko show kiya jata hai, jisse software simpler bana hai.
+      Java me abstraction either abstract classes ya interfaces ke madhyam se achieve hota hai.
+    </p>
+    <ul>
+      <li><strong>Abstract Classes:</strong> Kuch methods declare kiye jate hain bina implementation ke, jo subclasses implement karte hain.</li>
+      <li><strong>Interfaces:</strong> Completely abstract method ka contract define karte hain.</li>
+      <li><strong>Advantages:</strong> Flexibility in code, easier maintenance, loose coupling between components.</li>
+    </ul>
+    
+    <h3>Abstraction Example with Abstract Class</h3>
+    <pre><code>abstract class Vehicle {
+    abstract void start();
+
+    void stop() {
+        System.out.println("Vehicle stopped");
+    }
+}
+
+class Car extends Vehicle {
+    @Override
+    void start() {
+        System.out.println("Car started");
+    }
+}
+
+public class TestVehicle {
+    public static void main(String[] args) {
+        Vehicle v = new Car();
+        v.start();
+        v.stop();
+    }
+}</code></pre>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
