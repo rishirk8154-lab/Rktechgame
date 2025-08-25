@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | File Reading and Writing in Java</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java FileReader & FileWriter</h1>
+</header>
+
+<section id="file-reading">
+  <h2>File Reading using FileReader</h2>
+  <p>
+    Java me <strong>FileReader</strong> class ka use karke hum kisi bhi text file ka content character-wise read kar sakte hain. Ye character stream class hai.
+  </p>
+  <p><strong>Basic methods:</strong></p>
+  <ul>
+    <li><code>read()</code>: Ek-ek character read karta hai.</li>
+    <li><code>read(char[] cbuf)</code>: Character array me ek saath multiple characters read karta hai.</li>
+    <li><code>close()</code>: File stream ko band karta hai.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>try {
+  FileReader fr = new FileReader("input.txt");
+  int ch;
+  while ((ch = fr.read()) != -1) {
+    System.out.print((char) ch);
+  }
+  fr.close();
+} catch (Exception e) {
+  e.printStackTrace();
+}</code></pre>
+  <p>
+    Is example me <code>input.txt</code> file character by character read kar ke console me print ho rahi hai.
+  </p>
+</section>
+
+<section id="file-writing">
+  <h2>File Writing using FileWriter</h2>
+  <p>
+    <strong>FileWriter</strong> class ka use karke hum kisi file me character data write kar sakte hain. Agar file exist nahi karti to ye new file bana deta hai.
+  </p>
+  <p><strong>Basic methods:</strong></p>
+  <ul>
+    <li><code>write(String str)</code>: String ko file me likhta hai.</li>
+    <li><code>write(char[] cbuf)</code>: Character array ko write karta hai.</li>
+    <li><code>close()</code>: File stream ko close karta hai.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>try {
+  FileWriter fw = new FileWriter("output.txt");
+  fw.write("Yeh text output file me likha ja raha hai.");
+  fw.close();
+} catch (Exception e) {
+  e.printStackTrace();
+}</code></pre>
+  <p>
+    Is example me <code>output.txt</code> file create hoti hai aur usmein diya gaya text likha jata hai.
+  </p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
