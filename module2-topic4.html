@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Input and Output Basics - Advanced | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(130deg, #546285 25%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.75;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 30px 40px;
+    border-radius: 22px;
+    box-shadow: 0 3px 18px #394e7d55;
+    overflow-x: auto;
+    min-height: calc(100vh - 180px);
+  }
+  h2 {
+    color: #39568c;
+    border-left: 8px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+  }
+  h3 {
+    color: #db1d29;
+    margin-top: 35px;
+    margin-bottom: 20px;
+  }
+  pre {
+    background-color: #f4f6fb;
+    color: #212121;
+    padding: 22px 25px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 5px #b0bec5;
+  }
+  p, ul {
+    margin-bottom: 25px;
+  }
+  ul {
+    padding-left: 24px;
+  }
+  code {
+    background-color: #e0e7f1;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+  }
+  footer {
+    text-align: center;
+    margin: 40px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 700;
+    user-select: none;
+    padding: 0 15px;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 25px 25px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+    }
+    pre {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Input and Output Basics - Advanced</h1>
+</header>
+<main>
+  <section aria-labelledby="io-overview">
+    <h2 id="io-overview">Overview of Input and Output in Java</h2>
+    <p>
+      Java me Input aur Output (I/O) programming ka ek bahut important hissa hai jo user se data lene aur processed data ko display karne me madad karta hai.
+      Java me standard streams use kiye jaate hain jo keyboard input, console output aur error output ke liye predefined hote hain.
+    </p>
+  </section>
+
+  <section aria-labelledby="standard-streams">
+    <h2 id="standard-streams">Standard Streams</h2>
+    <ul>
+      <li><strong>Standard Input (System.in):</strong> Keyboard se data read karta hai. Ye byte stream hai.</li>
+      <li><strong>Standard Output (System.out):</strong> Console par normal output display karta hai.</li>
+      <li><strong>Standard Error (System.err):</strong> Program ke errors ko display karta hai.</li>
+    </ul>
+    <p>Example jisme teeno streams ka use dikhaya gaya hai:</p>
+    <pre><code>import java.util.Scanner;
+
+public class IOStreamsExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Enter a number: ");
+            int num = scanner.nextInt();
+            System.out.println("You entered: " + num);
+            System.err.println("This is an error message.");
+        } catch (Exception e) {
+            System.err.println("Invalid input!");
+        } finally {
+            scanner.close();
+        }
+    }
+}</code></pre>
+  </section>
+
+  <section aria-labelledby="scanner-class">
+    <h2 id="scanner-class">Scanner Class for User Input</h2>
+    <p>The standard way to read user input in Java is by using the <code>Scanner</code> class from <code>java.util</code> package.</p>
+    <ul>
+      <li>Import karne ke liye: <code>import java.util.Scanner;</code></li>
+      <li>Input ke liye different methods: <code>nextInt()</code>, <code>nextLine()</code>, <code>nextDouble()</code>, etc.</li>
+      <li>User input ko handle karna easy aur readable hota hai.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="printing-methods">
+    <h2 id="printing-methods">Printing Output in Java</h2>
+    <p>
+      Output dikhane ke liye Java me teen main methods hai:
+    </p>
+    <ul>
+      <li><code>System.out.print()</code> - Text print karta hai cursor ke next line par na jaakar.</li>
+      <li><code>System.out.println()</code> - Text print karta hai aur cursor ko next line par le jata hai.</li>
+      <li><code>System.out.printf()</code> - Format specified output ke liye, jaise integer, decimal formatting.</li>
+    </ul>
+    <pre><code>System.out.print("Hello ");
+System.out.print("World!");
+System.out.println(" Welcome.");
+System.out.printf("Pi value: %.2f", 3.14159);</code></pre>
+  </section>
+
+  <section aria-labelledby="important-notes">
+    <h2 id="important-notes">Important Notes</h2>
+    <ul>
+      <li><code>System.in</code> ek byte stream hai, isliye Scanner ka use karke hi user-friendly input lena chahiye.</li>
+      <li>User se input lene ke baad input stream ko <code>close()</code> karna best practice hai.</li>
+      <li><code>nextInt()</code> ke baad agar <code>nextLine()</code> use karna ho to ek extra <code>nextLine()</code> lagana padta hai buffer clear karne ke liye.</li>
+      <li><code>System.err</code> errors ko alag dikhane ke liye use hota hai jisse debugging easy hoti hai.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
