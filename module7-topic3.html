@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Iterators & Enhanced For Loop - Hinglish</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java Iterators & Enhanced For Loop</h1>
+</header>
+
+<section id="iterators">
+  <h2>Iterator Interface Kya Hai?</h2>
+  <p>
+    <strong>Iterator</strong> interface Java Collections Framework me elements ko sequentially traverse karne ka tarika provide karta hai.
+    Matlab ke aap collection ke items ko ek ek kar ke access kar sakte hain bina collection ke andar ki implementation jaane.
+  </p>
+  <p><strong>Mukhya methods:</strong></p>
+  <ul>
+    <li><code>hasNext()</code>: Check karta hai ki koi agla element available hai ya nahi.</li>
+    <li><code>next()</code>: Agla element return karta hai.</li>
+    <li><code>remove()</code>: Jo element last return hua hai use collection se hata deta hai (optional method).</li>
+  </ul>
+  <p><strong>Example (ArrayList ke saath):</strong></p>
+  <pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Java");
+list.add("Python");
+list.add("C++");
+
+Iterator&lt;String&gt; it = list.iterator();
+while (it.hasNext()) {
+  System.out.println(it.next());
+}
+</code></pre>
+</section>
+
+<section id="enhanced-for-loop">
+  <h2>Enhanced For Loop (For-Each Loop) Kya Hai?</h2>
+  <p>
+    Java 5 me introduce hua, <strong>Enhanced For Loop</strong> iterating ko asaan aur readable banata hai, especially jab aapko sirf elements ko access karna ho bina collection ko modify kiye.
+  </p>
+  <p><strong>Syntax:</strong></p>
+  <pre><code>for (ElementType element : collection) {
+    // Yahan element ko use karo
+}</code></pre>
+  <p><strong>Example:</strong></p>
+  <pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Java");
+list.add("Python");
+list.add("C++");
+
+for (String lang : list) {
+  System.out.println(lang);
+}</code></pre>
+  <p>
+    Yeh syntax cleaner hai aur iterator ko internally use karta hai. Lekin agar aapko iteration ke dauran elements ko remove karna hai toh iterator use karna better hai.
+  </p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+
+</body>
+</html>
