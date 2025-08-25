@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java Arrays - Advanced Concepts | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.75;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+    background: #f0f4faee;
+    padding: 35px 40px;
+    border-radius: 22px;
+    box-shadow: 0 3px 18px #394e7d55;
+    overflow-x: auto;
+    min-height: calc(100vh - 180px);
+  }
+  h2 {
+    border-left: 8px solid #db1d29;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+    color: #39568c;
+  }
+  h3 {
+    color: #b22a2a;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  p, ul {
+    margin-bottom: 26px;
+  }
+  ul {
+    padding-left: 24px;
+  }
+  code {
+    background-color: #e7ebf1;
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+  }
+  pre {
+    background-color: #f4f6fb;
+    color: #212121;
+    padding: 22px 25px;
+    border-radius: 11px;
+    overflow-x: auto;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 6px #b0bec5;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+    font-weight: 700;
+  }
+  footer {
+    text-align: center;
+    margin: 50px auto 30px auto;
+    color: #333a4d88;
+    font-weight: 700;
+    user-select: none;
+    padding: 0 15px;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 30px 28px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+    pre {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Java Arrays - Advanced Concepts</h1>
+</header>
+<main>
+  <section aria-labelledby="advanced-single">
+    <h2 id="advanced-single">Advanced Single Dimensional Arrays</h2>
+    <p>
+      Java me arrays fixed size ke hote hain, lekin aap dynamic operations ke liye alag approach use kar sakte hain. Dekhiye kuch advanced points:
+    </p>
+    <ul>
+      <li>Array ka size fix hota hai create karte waqt, badal nahi sakte.</li>
+      <li>Arrays can hold primitive types or objects.</li>
+      <li>Elements default values se initialize hote hain (0, false, null).</li>
+      <li>Aap ek array ka reference doosri variable me assign kar sakte hain.</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>int[] numbers = new int[3];
+numbers[0] = 10;
+numbers[1] = 20;
+numbers[2] = 30;
+
+// Copy reference
+int[] another = numbers;
+another[0] = 100;
+
+System.out.println(numbers[0]);  // Output: 100 (same array referenced)</code></pre>
+  </section>
+
+  <section aria-labelledby="array-of-objects">
+    <h2 id="array-of-objects">Array of Objects</h2>
+    <p>
+      Java array me aap custom objects bhi store kar sakte hain. Pehle object banakar, phir array ke elements ko assign karte hain.
+    </p>
+    <pre><code>class Student {
+    String name;
+    int rollNo;
+    Student(String name, int rollNo) {
+        this.name = name;
+        this.rollNo = rollNo;
+    }
+}
+
+public class ObjArrayExample {
+    public static void main(String[] args) {
+        Student[] students = new Student[3];
+        students[0] = new Student("Alice", 1);
+        students[1] = new Student("Bob", 2);
+        students[2] = new Student("Charlie", 3);
+        for (Student s : students) {
+            System.out.println(s.rollNo + ": " + s.name);
+        }
+    }
+}</code></pre>
+  </section>
+
+  <section aria-labelledby="jagged-arrays">
+    <h2 id="jagged-arrays">Jagged Arrays (Ragged Arrays)</h2>
+    <p>
+      Multidimensional arrays me har row ki length alag hoti hai to ise jagged ya ragged array kehte hain.
+    </p>
+    <pre><code>int[][] jagged = new int[3][];
+jagged[0] = new int[2]; // first row length 2
+jagged[1] = new int[4]; // second row length 4
+jagged[2] = new int[3]; // third row length 3
+
+jagged[0][0] = 1;
+jagged[1][3] = 5;</code></pre>
+  </section>
+
+  <section aria-labelledby="array-operations">
+    <h2 id="array-operations">Common Operations on Arrays</h2>
+    <ul>
+      <li>Length check karne ke liye <code>array.length</code> property ka upyog hota hai.</li>
+      <li>Traversal ke liye for loop ya enhanced for loop (for-each) use karte hain.</li>
+      <li>Array ko copy karne ke liye <code>System.arraycopy()</code>, <code>Arrays.copyOf()</code> methods available hain.</li>
+      <li>Sorting aur searching ke liye java.util.Arrays class ka use hota hai.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="advanced-comparison">
+    <h2 id="advanced-comparison">Comparison Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Single Dimensional Array</th>
+          <th>Multidimensional / Jagged Array</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Structure</td>
+          <td>Linear list of elements</td>
+          <td>2D or more dimensions, possibly non-uniform lengths</td>
+        </tr>
+        <tr>
+          <td>Declaration</td>
+          <td><code>int[] arr = new int[size];</code></td>
+          <td><code>int[][] arr = new int[rows][];</code></td>
+        </tr>
+        <tr>
+          <td>Memory</td>
+          <td>Contiguous block</td>
+          <td>Array of references to arrays</td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td>Fixed size</td>
+          <td>Jagged arrays allow variable row sizes</td>
+        </tr>
+        <tr>
+          <td>Use Cases</td>
+          <td>Simple storage and iteration</td>
+          <td>Tables, grids, matrices, sparse data</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+<footer>&copy; 2025 RKTechGame StudyZone - All Rights Reserved</footer>
+</body>
+                                       </html>
+                                       
