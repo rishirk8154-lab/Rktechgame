@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Common Collection Classes</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(
+      120deg,
+      var(--kakashi-blue) 20%,
+      var(--kakashi-gray) 100%
+    );
+    color: var(--kakashi-dark);
+    transition: background 0.6s;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 40px 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+    letter-spacing: 3px;
+    font-weight: 900;
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p {
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+    margin: 12px 0;
+  }
+  ul {
+    margin: 12px 0 22px 30px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    color: #2d3a67;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 12px;
+    }
+    section {
+      padding: 20px 25px;
+      margin-bottom: 28px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java Common Collection Classes</h1>
+</header>
+
+<section id="arraylist">
+  <h2>ArrayList</h2>
+  <p>
+    ArrayList is a resizable array implementation of the List interface. It stores elements in 
+    index-based order and allows duplicates. It provides fast random access.
+  </p>
+  <p><strong>Key features:</strong></p>
+  <ul>
+    <li>Dynamic resizing as elements are added or removed.</li>
+    <li>Allows duplicate elements.</li>
+    <li>Provides constant-time positional access (get and set).</li>
+    <li>Slower insertions and removals in the middle due to array shifting.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Apple");
+list.add("Banana");
+list.add("Cherry");
+System.out.println(list.get(1)); // Output: Banana</code></pre>
+</section>
+
+<section id="linkedlist">
+  <h2>LinkedList</h2>
+  <p>
+    LinkedList implements the List and Deque interfaces. It uses a doubly-linked list under the hood. 
+    It allows duplicate elements and insertion order is maintained.
+  </p>
+  <p><strong>Key features:</strong></p>
+  <ul>
+    <li>Faster insertions and removals compared to ArrayList, especially in the middle of the list.</li>
+    <li>Slower random access compared to ArrayList as it requires traversal.</li>
+    <li>Can be used as list, stack, or queue.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>LinkedList&lt;String&gt; ll = new LinkedList&lt;&gt;();
+ll.add("Dog");
+ll.add("Cat");
+ll.add("Bird");
+System.out.println(ll.remove()); // Removes first element: Dog</code></pre>
+</section>
+
+<section id="hashset">
+  <h2>HashSet</h2>
+  <p>
+    HashSet implements the Set interface backed by a hash table. It stores unique elements and does 
+    not maintain any order.
+  </p>
+  <p><strong>Key features:</strong></p>
+  <ul>
+    <li>No duplicate elements allowed.</li>
+    <li>Does not guarantee order of elements.</li>
+    <li>Provides constant-time performance for add, remove, contains operations.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>HashSet&lt;String&gt; hs = new HashSet&lt;&gt;();
+hs.add("Java");
+hs.add("Python");
+hs.add("Java"); // Duplicate ignored
+System.out.println(hs); // Output: [Java, Python]</code></pre>
+</section>
+
+<section id="hashmap">
+  <h2>HashMap</h2>
+  <p>
+    HashMap implements the Map interface and stores key-value pairs. Keys are unique but values can be duplicated.
+  </p>
+  <p><strong>Key features:</strong></p>
+  <ul>
+    <li>Provides constant-time performance for basic operations (get and put).</li>
+    <li>Does not guarantee any order of keys or values.</li>
+    <li>Allows one null key and multiple null values.</li>
+  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>HashMap&lt;Integer, String&gt; map = new HashMap&lt;&gt;();
+map.put(1, "Red");
+map.put(2, "Green");
+map.put(3, "Blue");
+System.out.println(map.get(2)); // Output: Green</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
