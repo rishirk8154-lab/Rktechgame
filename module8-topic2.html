@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Buffered Streams Details</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java BufferedReader & BufferedWriter</h1>
+</header>
+
+<section id="bufferedreader">
+  <h2>BufferedReader kya hai?</h2>
+  <p>
+    BufferedReader ek character input stream hai jo ek buffer ka use karta hai characters, arrays, ya lines ko efficiently read karne ke liye.
+    Ye FileReader ya kisi bhi Reader stream ke saath wrap kiya ja sakta hai performance improve karne ke liye.
+  </p>
+  <p><strong>Kuch important methods:</strong></p>
+  <ul>
+    <li><code>read()</code>: Ek character read karta hai.</li>
+    <li><code>readLine()</code>: Ek poori line ko string ke roop me read karta hai.</li>
+    <li><code>close()</code>: Stream close karta hai.</li>
+  </ul>
+  <p><strong>Example (File se line by line padna):</strong></p>
+  <pre><code>try {
+  FileReader fr = new FileReader("input.txt");
+  BufferedReader br = new BufferedReader(fr);
+
+  String line;
+  while ((line = br.readLine()) != null) {
+    System.out.println(line);
+  }
+
+  br.close();
+  fr.close();
+} catch (Exception e) {
+  e.printStackTrace();
+}</code></pre>
+</section>
+
+<section id="bufferedwriter">
+  <h2>BufferedWriter kya hai?</h2>
+  <p>
+    BufferedWriter ek character output stream hai jo characters, arrays, ya strings ko buffer karke efficiently file me write karta hai.
+    Ye FileWriter stream ke around wrap kiya jata hai taaki multiple writes ki jagah ek baar mein data likha jaye.
+  </p>
+  <p><strong>Kuch important methods:</strong></p>
+  <ul>
+    <li><code>write(String s)</code>: String ko write karta hai.</li>
+    <li><code>newLine()</code>: Nayi line me jump karta hai (platform specific line separator).</li>
+    <li><code>flush()</code>: Buffer ka data disk par write kar deta hai without closing.</li>
+    <li><code>close()</code>: Stream close karta hai aur buffer clear karta hai.</li>
+  </ul>
+  <p><strong>Example (File me data likhna):</strong></p>
+  <pre><code>try {
+  FileWriter fw = new FileWriter("output.txt");
+  BufferedWriter bw = new BufferedWriter(fw);
+
+  bw.write("Yeh pehli line hai");
+  bw.newLine();
+  bw.write("Yeh doosri line hai");
+
+  bw.close();
+  fw.close();
+} catch (Exception e) {
+  e.printStackTrace();
+}</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
