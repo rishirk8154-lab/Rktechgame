@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advanced Java throw and throws Keywords | RKTechGame StudyZone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, #546285 20%, #cfd2dc 100%);
+    color: #292a36;
+    box-sizing: border-box;
+    line-height: 1.85;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  header {
+    text-align: center;
+    color: #db1d29;
+    margin: 20px 15px 40px 15px;
+    text-shadow: 0 0 8px #db1d29, 0 0 14px #db1d29, 0 0 24px #db1d29;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 50px auto;
+    background: #f0f4faee;
+    padding: 40px 50px;
+    border-radius: 25px;
+    box-shadow: 0 3px 25px #394e7d77;
+    min-height: calc(100vh - 210px);
+    overflow-x: auto;
+  }
+  h2 {
+    border-left: 9px solid #db1d29;
+    padding-left: 18px;
+    margin-bottom: 28px;
+    font-size: 2.6rem;
+    color: #39568c;
+  }
+  h3 {
+    color: #b22a2a;
+    margin-top: 45px;
+    margin-bottom: 22px;
+  }
+  p, ul {
+    margin-bottom: 30px;
+    font-size: 1.15rem;
+  }
+  ul {
+    padding-left: 28px;
+  }
+  code {
+    background-color: #e7ebf1;
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+  }
+  pre {
+    background-color: #f4f6fb;
+    color: #212121;
+    padding: 28px 30px;
+    border-radius: 14px;
+    font-size: 1.18rem;
+    margin-bottom: 45px;
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 9px #b0bec5;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 45px;
+    font-size: 1.15rem;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 16px 22px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #db1d29;
+    color: white;
+    font-weight: 700;
+  }
+  footer {
+    text-align: center;
+    margin: 60px auto 35px auto;
+    color: #333a4d88;
+    font-weight: 700;
+    user-select: none;
+  }
+  @media (max-width: 720px) {
+    main {
+      padding: 35px 30px;
+      min-height: auto;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2.8px;
+    }
+    h2 {
+      font-size: 2.2rem;
+      padding-left: 15px;
+      border-left-width: 8px;
+    }
+    pre {
+      font-size: 1.05rem;
+      padding: 22px 24px;
+      border-radius: 13px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Advanced Explanation of throw and throws Keywords in Java</h1>
+</header>
+<main>
+  <section>
+    <h2>1. throw Keyword (Exception Throwing)</h2>
+    <p>
+      <code>throw</code> keyword se hum manually ek specific exception object ko throw karte hain jisse program execution turant ruk jata hai aur nearest matching catch block ko control pass hota hai.
+      <br>Ye runtime me ek exception ko generate karne ke liye use hota hai.
+    </p>
+    <h3>Example:</h3>
+    <pre><code>public class ThrowExample {
+    static void validate(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or above");
+        } else {
+            System.out.println("Valid age");
+        }
+    }
+    public static void main(String[] args) {
+        validate(15); // Throws IllegalArgumentException
+        System.out.println("End of program");
+    }
+}</code></pre>
+    <p>
+      Is example me agar age 18 se kam hogi to <code>IllegalArgumentException</code> manually throw kiya jayega jo program ko interrupt karega.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. throws Keyword (Exception Declaration)</h2>
+    <p>
+      <code>throws</code> keyword method ki declaration me use hota hai jisme method ke dwara throw kiye gaye exceptions ko specify kiya jata hai.
+      Isse Java compiler ko pata chalta hai ki caller ko un exceptions ka handling karna hoga ya unhe propagate karna hoga.
+    </p>
+    <h3>Example:</h3>
+    <pre><code>import java.io.*;
+public class ThrowsExample {
+    static void readFile() throws IOException {
+        FileReader file = new FileReader("textfile.txt");
+        file.close();
+    }
+    public static void main(String[] args) {
+        try {
+            readFile();  // IOException can be thrown here
+        } catch (IOException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}</code></pre>
+    <p>
+      Yahan <code>readFile</code> method ke signature me <code>throws IOException</code> diya hai taaki caller is exception ko handle ya propagate kare.
+    </p>
+  </section>
+
+  <section>
+    <h2>3. Major Differences Between throw and throws</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>throw</th>
+          <th>throws</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Purpose</td>
+          <td>Explicitly throws a single exception from a method/block</td>
+          <td>Declares multiple exceptions a method might throw</td>
+        </tr>
+        <tr>
+          <td>Usage Location</td>
+          <td>Inside method or block</td>
+          <td>Method signature declaration</td>
+        </tr>
+        <tr>
+          <td>Exception Handling</td>
+          <td>Controls the flow by throwing exception to nearest catch</td>
+          <td>Informs caller to handle or declare exceptions</td>
+        </tr>
+        <tr>
+          <td>Number of Exceptions</td>
+          <td>One exception at a time</td>
+          <td>Multiple exceptions separated by commas</td>
+        </tr>
+        <tr>
+          <td>Exception Types</td>
+          <td>Checked and Unchecked exceptions</td>
+          <td>Usually Checked exceptions</td>
+        </tr>
+        <tr>
+          <td>Effect on Program Flow</td>
+          <td>Interrupts normal flow</td>
+          <td>Does not interrupt flow, only declaration</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>4. Best Practices</h2>
+    <ul>
+      <li>Only throw exceptions when truly exceptional situations occur.</li>
+      <li>Use throws in method signature to document possible exceptions for maintainability.</li>
+      <li>Catch and handle exceptions higher up the call stack, not necessarily close to where they occur.</li>
+      <li>Avoid throwing generic Exception class; specify precise exception types.</li>
+      <li>Always clean up resources in finally blocks or use try-with-resources.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  &copy; 2025 RKTechGame StudyZone - All Rights Reserved
+</footer>
+</body>
+</html>
