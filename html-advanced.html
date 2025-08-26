@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Advanced HTML Topics</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Advanced HTML Topics</h1>
+  <p>
+    Jab aap basic HTML seekh lete hain, tab aage badhne ke liye kuch advanced topics ko samajhna zaruri hota hai. Ye topics web pages ko zyada interactive, efficient, aur user-friendly banate hain.
+  </p>
+  
+  <h2>1. Semantic HTML5 Elements</h2>
+  <p>
+    Semantic tags jaise &lt;header&gt;, &lt;article&gt;, &lt;section&gt;, &lt;footer&gt; website structure ko samajhna aasan banate hain aur SEO improve karte hain.
+  </p>
+  
+  <h2>2. Multimedia Integration</h2>
+  <p>
+    HTML5 me &lt;video&gt; aur &lt;audio&gt; tags ke through bina kisi plugin ke media embed karna bahut aasan hai.
+  </p>
+
+  <h2>3. Canvas API</h2>
+  <p>
+    &lt;canvas&gt; element script ke zariye graphics, animations, games, aur visualizations banane me madad karta hai.
+  </p>
+  <pre><code>&lt;canvas id="myCanvas" width="300" height="150"&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.fillStyle = "#FF0000";
+  ctx.fillRect(20, 20, 150, 100);
+&lt;/script&gt;
+</code></pre>
+  
+  <h2>4. Web Storage APIs</h2>
+  <p>
+    LocalStorage aur SessionStorage se browser me data temporarily ya permanently store kar sakte hain, jo faster aur offline experience deta hai.
+  </p>
+  
+  <h2>5. Geolocation API</h2>
+  <p>
+    User ke location ko access karke location-based services provide karna aasan hota hai.
+  </p>
+
+  <h2>6. Drag and Drop API</h2>
+  <p>
+    Web pages par items ko drag aur drop karna possible banata hai, jo UI ko interactive banata hai.
+  </p>
+
+  <h2>7. Advanced Form Controls</h2>
+  <p>
+    Naye input types jaise <code>email</code>, <code>date</code>, <code>color</code>, <code>range</code> forms me user experience ko improve karte hain.
+  </p>
+
+  <h2>8. Responsive Design Features</h2>
+  <p>
+    Viewport meta tag aur media queries se websites har device par achhe se dikh sakti hain.
+  </p>
+
+  <h2>9. Web Workers</h2>
+  <p>
+    Background me heavy tasks chalakar UI ko responsive banane me madad karta hai.
+  </p>
+
+  <h2>Summary</h2>
+  <p>
+    Ye advanced HTML topics web development ko next level le jaate hain jisme multimedia, graphics, storage, location, aur interactive UI ke liye powerful features hote hain. Inhe seekhkar aap modern aur efficient websites bana sakte hain.
+  </p>
+</main>
+</body>
+</html>
