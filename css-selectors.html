@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | CSS Selectors</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS Selectors kya hain?</h1>
+  <p>CSS selectors wo special patterns hote hain jo HTML elements ko select karte hain jinko style dena hota hai.</p>
+  
+  <h2>CSS Selectors ke Prakar</h2>
+  <ul>
+    <li><strong>1. Element Selector:</strong> Direct HTML tag ko select karta hai. Jaise <code>p</code>, <code>h1</code>, <code>div</code> etc.</li>
+    <li><strong>2. Class Selector:</strong> Kisi particular class wale element ko select karta hai. CSS me class selector ke aage <code>.</code> lagate hain. Jaise <code>.menu</code>.</li>
+    <li><strong>3. ID Selector:</strong> Kisi specific element jiska unique ID hai usko select karta hai. ID selector ke aage <code>#</code> lagate hain. Jaise <code>#header</code>.</li>
+    <li><strong>4. Universal Selector:</strong> Sabhi elements ko select karta hai. Iske liye <code>*</code> symbol ka use hota hai.</li>
+    <li><strong>5. Attribute Selector:</strong> Kisi element ke kisi attribute ke basis par select karta hai. Jaise <code>a[href]</code> selects sabhi links.</li>
+    <li><strong>6. Descendant Selector:</strong> Kisi element ke andar ke kisi child element ko select karta hai. Jaise <code>div p</code> selects div ke andar jo p hain.</li>
+    <li><strong>7. Child Selector:</strong> Direct child elements ko select karta hai. Jaise <code>ul > li</code>.</li>
+    <li><strong>8. Pseudo-class Selector:</strong> Elements ke special states ko select karta hai, jaise <code>a:hover</code>.</li>
+    <li><strong>9. Pseudo-element Selector:</strong> Element ke kisi hisse ko select karta hai, jaise <code>p::first-letter</code>.</li>
+  </ul>
+
+  <h2>Examples:</h2>
+  <pre><code>/* Element Selector */
+p {
+  color: blue;
+}
+
+/* Class Selector */
+.menu {
+  background-color: lightgray;
+}
+
+/* ID Selector */
+#header {
+  font-weight: bold;
+}
+
+/* Universal Selector */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Attribute Selector */
+a[target="_blank"] {
+  color: red;
+}
+
+/* Descendant Selector */
+div p {
+  font-style: italic;
+}
+
+/* Child Selector */
+ul > li {
+  list-style-type: square;
+}
+
+/* Pseudo-class Selector */
+a:hover {
+  color: green;
+}
+
+/* Pseudo-element Selector */
+p::first-letter {
+  font-size: 2rem;
+  font-weight: bold;
+}
+</code></pre>
+
+  <p>CSS selectors se aap apni website ke design ko bahut hi flexible aur powerful tarike se control kar sakte hain.</p>
+</main>
+</body>
+</html>
