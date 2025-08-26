@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Executing Queries and Updates in JDBC</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Executing Queries and Updates in JDBC</h1>
+</header>
+
+<section>
+  <h2>JDBC me SQL Queries aur Updates Execute Karna</h2>
+  <p>JDBC me SQL queries aur updates chalane ke liye commonly do methods ka use hota hai:</p>
+  <ul>
+    <li><b>executeQuery(String sql):</b> Ye method SELECT queries chalata hai jiska output hota hai data rows yani <code>ResultSet</code>. Ye tab use karte hain jab data fetch karna ho.</li>
+    <li><b>executeUpdate(String sql):</b> Ye method INSERT, UPDATE, DELETE jaise statements chalata hai jo database me data modify karte hain. Ye affected rows ka count return karta hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Example: executeQuery() aur executeUpdate() ka Use</h2>
+  <pre><code>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JdbcQueryUpdateExample {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/mydatabase?serverTimezone=UTC";
+        String user = "root";
+        String password = "yourpassword";
+
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            // Insert record using executeUpdate()
+            String insert = "INSERT INTO employees (id, name, email) VALUES (1, 'Amit Sharma', 'amit@example.com')";
+            int insertCount = stmt.executeUpdate(insert);
+            System.out.println("Number of rows inserted: " + insertCount);
+
+            // Update record using executeUpdate()
+            String update = "UPDATE employees SET email = 'amit.sharma@example.com' WHERE id = 1";
+            int updateCount = stmt.executeUpdate(update);
+            System.out.println("Number of rows updated: " + updateCount);
+
+            // Select records using executeQuery()
+            String select = "SELECT id, name, email FROM employees";
+            ResultSet rs = stmt.executeQuery(select);
+
+            System.out.println("Employee Records:");
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email);
+            }
+            rs.close();
+
+        } catch (SQLException e) {
+            System.err.println("Database error: " + e.getMessage());
+        }
+    }
+}
+</code></pre>
+<p>Is program me:</p>
+<ul>
+  <li>Pehle rows insert kiya gaye `executeUpdate()` se.</li>
+  <li>Phir ek row ko update kiya.</li>
+  <li>Aur finally sari rows query karke print ki gayi.</li>
+</ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
