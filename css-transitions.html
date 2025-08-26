@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | CSS Transition & Animation</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .transition-box {
+    width: 200px;
+    height: 100px;
+    background-color: var(--kakashi-red);
+    margin: 20px 0;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: background-color 1.5s ease, transform 1s ease;
+    cursor: pointer;
+  }
+  .transition-box:hover {
+    background-color: var(--kakashi-blue);
+    transform: scale(1.1);
+  }
+
+  /* Animation example */
+  .animation-box {
+    width: 150px;
+    height: 150px;
+    background-color: var(--kakashi-red);
+    margin: 20px 0;
+    border-radius: 15px;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    animation: bounce 2s infinite alternate ease-in-out;
+  }
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+      background-color: var(--kakashi-red);
+    }
+    50% {
+      transform: translateY(-30px);
+      background-color: var(--kakashi-blue);
+    }
+    100% {
+      transform: translateY(0);
+      background-color: var(--kakashi-red);
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS Transition aur Animation</h1>
+
+  <h2>CSS Transition kya hai?</h2>
+  <p>
+    Transition property CSS me ek smooth effect create karti hai jab kisi property ke value change ho.
+    Jaise button ke hover effect me color dheere-dheere change hona instead of ek dum se.
+  </p>
+  <h3>Example:</h3>
+  <div class="transition-box">Hover karo mujh par</div>
+  <pre><code>.transition-box {
+  transition: background-color 1.5s ease, transform 1s ease;
+}
+.transition-box:hover {
+  background-color: #546285;
+  transform: scale(1.1);
+}
+</code></pre>
+
+  <h2>Transition ke important properties</h2>
+  <ul>
+    <li><strong>transition-property:</strong> Kaunsi property animate hogi.</li>
+    <li><strong>transition-duration:</strong> Duration (kitni der tak transition chalega).</li>
+    <li><strong>transition-timing-function:</strong> Speed curve (ease, linear, etc.).</li>
+    <li><strong>transition-delay:</strong> Transition start hone me kitna time lagega.</li>
+  </ul>
+
+  <h2>CSS Animation kya hai?</h2>
+  <p>
+    Animation me aap complex aur multi-stage visual effects create kar sakte hain.
+    Ye keyframes ke zariye define hota hai ki animation ki starting, middle aur end states kya hongi.
+  </p>
+  <h3>Example:</h3>
+  <div class="animation-box">Bounce</div>
+  <pre><code>@keyframes bounce {
+  0% {
+    transform: translateY(0);
+    background-color: #db1d29;
+  }
+  50% {
+    transform: translateY(-30px);
+    background-color: #546285;
+  }
+  100% {
+    transform: translateY(0);
+    background-color: #db1d29;
+  }
+}
+.animation-box {
+  animation: bounce 2s infinite alternate ease-in-out;
+}
+</code></pre>
+
+  <h2>Animation ke important properties</h2>
+  <ul>
+    <li><strong>animation-name:</strong> Keyframe animation ka naam.</li>
+    <li><strong>animation-duration:</strong> Animation kitni der chalega.</li>
+    <li><strong>animation-iteration-count:</strong> Kitni baar repeat hoga.</li>
+    <li><strong>animation-timing-function:</strong> Speed curve.</li>
+    <li><strong>animation-delay:</strong> Delay before animation starts.</li>
+    <li><strong>animation-direction:</strong> Normal, reverse, alternate etc.</li>
+  </ul>
+
+  <p>CSS Transitions aur Animations se apne web elements ko interactive aur visually appealing banayein.</p>
+</main>
+</body>
+</html>
