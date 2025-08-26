@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Introduction to JUnit</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul, pre {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width:768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Introduction to JUnit</h1>
+</header>
+
+<section>
+  <h2>JUnit kya hai?</h2>
+  <p>
+    JUnit ek open-source testing framework hai jo Java programs ke liye unit testing support karta hai. Iska use test-driven development (TDD) me hota hai jisme code likhne se pehle tests likhe jate hain.
+  </p>
+</section>
+
+<section>
+  <h2>JUnit ke Fayde</h2>
+  <ul>
+    <li>Automated testing karna asaan hota hai.</li>
+    <li>Bugs ko development cycle ke early phase me pakad sakte hain.</li>
+    <li>Code ka maintainability aur quality badhta hai.</li>
+    <li>Build tools aur CI/CD pipelines ke saath asaani se integrate hota hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Basic JUnit Test Structure</h2>
+  <p>JUnit me test likhne ke liye ek class create karte hain jisme test methods ko <code>@Test</code> annotation diya jata hai:</p>
+  <pre><code>import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class CalculatorTest {
+   @Test
+   public void testAdd() {
+       Calculator calc = new Calculator();
+       int result = calc.add(5, 3);
+       assertEquals(8, result);
+   }
+}
+</code></pre>
+  <p>Is example me testAdd method Calculator class ke add method ko test kar raha hai.</p>
+</section>
+
+<section>
+  <h2>JUnit Annotations ke Types</h2>
+  <ul>
+    <li><code>@Test</code>: Test method ko mark karta hai.</li>
+    <li><code>@Before</code>: Har test ke pehle run hota hai, setup ke liye.</li>
+    <li><code>@After</code>: Har test ke baad run hota hai, cleanup ke liye.</li>
+    <li><code>@BeforeClass</code>: Test class ke start me ek baar run hota hai.</li>
+    <li><code>@AfterClass</code>: Test class ke end me ek baar run hota hai.</li>
+    <li><code>@Ignore</code>: Kisi test ko temporarily disable karta hai.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
