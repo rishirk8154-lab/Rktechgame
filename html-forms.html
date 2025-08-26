@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | HTML Forms & Input Controls Detailed</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.6rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  form {
+    margin-top: 20px;
+  }
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--kakashi-blue);
+  }
+  input, textarea, select {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    border: 2px solid var(--kakashi-gray);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--kakashi-red);
+    outline: none;
+  }
+  button {
+    padding: 14px 28px;
+    background: linear-gradient(96deg, var(--kakashi-blue) 60%, var(--kakashi-red) 100%);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.15rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.25s ease;
+  }
+  button:hover {
+    background: linear-gradient(96deg, var(--kakashi-red), var(--kakashi-blue));
+  }
+  .inline-label {
+    display: inline-block;
+    margin-right: 16px;
+    color: var(--kakashi-dark);
+    font-weight: 500;
+  }
+  .checkbox-group, .radio-group {
+    margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>HTML Forms aur Input Controls - Detailed Guide</h1>
+
+  <p>HTML forms web pages par user se data collect karne ka sabse important tareeka hain. Forms me kai tarah ke input controls use hote hain jinhe samajhna jaruri hai.</p>
+
+  <h2>Form Tag</h2>
+  <p><code>&lt;form&gt;</code> tag HTML me ek form ko define karta hai. Isme action aur method attributes important hain:</p>
+  <ul>
+    <li><code>action</code> : Form data bhejne wali URL ya file specify karta hai.</li>
+    <li><code>method</code> : Data bhejne ka tareeka batata hai, jaise <code>GET</code> ya <code>POST</code>.</li>
+  </ul>
+  <pre><code>&lt;form action="submit.php" method="post"&gt;
+  <!-- form fields yahan -->
+&lt;/form&gt;
+</code></pre>
+
+  <h2>Common Input Types aur Controls</h2>
+  <p>Forms me input fields kai tarah ke hote hain, jinhe user ki zarurat ke hisaab se use kiya jata hai:</p>
+  <ul>
+    <li><strong>Text Box:</strong> <code>&lt;input type="text"&gt;</code>, single line text ke liye.</li>
+    <li><strong>Password:</strong> <code>&lt;input type="password"&gt;</code>, confidential text ke liye jise chhupaya jata hai.</li>
+    <li><strong>Email:</strong> <code>&lt;input type="email"&gt;</code>, email validation ke sath.</li>
+    <li><strong>Number:</strong> <code>&lt;input type="number"&gt;</code>, sirf numbers ke liye.</li>
+    <li><strong>Textarea:</strong> <code>&lt;textarea&gt;</code>, multiline text ke liye.</li>
+    <li><strong>Radio Buttons:</strong> <code>&lt;input type="radio"&gt;</code>, options me se ek select karne ke liye.</li>
+    <li><strong>Checkboxes:</strong> <code>&lt;input type="checkbox"&gt;</code>, multiple options select karne ke liye.</li>
+    <li><strong>Dropdown List:</strong> <code>&lt;select&gt;</code> aur <code>&lt;option&gt;</code> for select box.</li>
+    <li><strong>Buttons:</strong> Submit, Reset, aur normal buttons ke liye <code>&lt;input type="submit"&gt;</code>, <code>&lt;input type="reset"&gt;</code>, aur <code>&lt;button&gt;</code>.</li>
+  </ul>
+
+  <h2>Labels ka Importance</h2>
+  <p><code>&lt;label&gt;</code> tag har input field ko describe karta hai, jo accessibility ke liye bahut zaruri hai. Label ko input se link karne ke liye <code>for</code> attribute use hota hai jo input ke <code>id</code> se match kare.</p>
+
+  <h2>Example: Detailed Form with Different Input Controls</h2>
+  <form action="#" method="post">
+    <label for="fname">First Name:</label>
+    <input type="text" id="fname" name="firstname" placeholder="Apna naam likhein" required />
+
+    <label for="lname">Last Name:</label>
+    <input type="text" id="lname" name="lastname" placeholder="Apka surname" />
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" placeholder="Apka email yahan dalein" required />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="1" max="100" placeholder="Apki umr" />
+
+    <label>Gender:</label>
+    <div class="radio-group" role="radiogroup" aria-labelledby="gender-label">
+      <input type="radio" id="male" name="gender" value="male" />
+      <label for="male" class="inline-label">Male</label>
+      <input type="radio" id="female" name="gender" value="female" />
+      <label for="female" class="inline-label">Female</label>
+      <input type="radio" id="other" name="gender" value="other" />
+      <label for="other" class="inline-label">Other</label>
+    </div>
+
+    <label>Hobbies:</label>
+    <div class="checkbox-group" role="group" aria-labelledby="hobbies-label">
+      <input type="checkbox" id="reading" name="hobbies" value="reading" />
+      <label for="reading" class="inline-label">Reading</label>
+      <input type="checkbox" id="music" name="hobbies" value="music" />
+      <label for="music" class="inline-label">Music</label>
+      <input type="checkbox" id="travel" name="hobbies" value="travel" />
+      <label for="travel" class="inline-label">Travel</label>
+    </div>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+      <option value="">Select Country</option>
+      <option value="india">India</option>
+      <option value="usa">USA</option>
+      <option value="uk">UK</option>
+    </select>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" placeholder="Apna message yahan likhein"></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+</main>
+</body>
+</html>
