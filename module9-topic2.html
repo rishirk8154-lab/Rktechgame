@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Thread Creation in Java - Deep Explanation</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Thread Creation in Java - Detailed</h1>
+</header>
+
+<section>
+  <h2>Java me Threads ka Introduction</h2>
+  <p>
+    Threads Java me ek lightweight process hote hain jo program ke andar simultaneously multiple tasks perform karne ke liye use hote hain. Thread create karne ke do main tareeke hain:<br>
+    1. Thread class ko extend karke<br>
+    2. Runnable interface ko implement karke
+  </p>
+</section>
+
+<section>
+  <h2>1. Thread Class ko Extend Karna</h2>
+  <p>
+    Is approach me ek class banate hain jo <code>Thread</code> class ko extend karti hai aur <code>run()</code> method override karti hai jisme thread ka kaam define hota hai. Jab aap <code>start()</code> method call karte hain, to naya thread create hota hai aur <code>run()</code> method chalna shuru hota hai.
+  </p>
+  <pre><code>class MyThread extends Thread {
+  public void run() {
+    for (int i = 1; i &lt;= 5; i++) {
+      System.out.println(getName() + " is running: " + i);
+      try {
+        Thread.sleep(500);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+}
+
+public class ThreadExtendDemo {
+  public static void main(String[] args) {
+    MyThread t1 = new MyThread();
+    MyThread t2 = new MyThread();
+    t1.setName("Thread-1");
+    t2.setName("Thread-2");
+    t1.start();
+    t2.start();
+  }
+}</code></pre>
+  <p>
+    Isme do threads parallel chalte hain aur apne tasks perform karte hain.
+  </p>
+</section>
+
+<section>
+  <h2>2. Runnable Interface Implement Karna</h2>
+  <p>
+    Runnable approach me aap apni class ko <code>Runnable</code> interface implement karte hain aur <code>run()</code> method override karte hain. Fir Thread object banake Runnable object ko pass karte hain aur <code>start()</code> call karte hain. Ye flexible hai aur multiple inheritance allow karta hai.
+  </p>
+  <pre><code>class MyRunnable implements Runnable {
+  public void run() {
+    for (int i = 1; i &lt;= 5; i++) {
+      System.out.println(Thread.currentThread().getName() + " is running: " + i);
+      try {
+        Thread.sleep(500);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+}
+
+public class RunnableDemo {
+  public static void main(String[] args) {
+    Thread t1 = new Thread(new MyRunnable(), "Runnable-Thread-1");
+    Thread t2 = new Thread(new MyRunnable(), "Runnable-Thread-2");
+    t1.start();
+    t2.start();
+  }
+}</code></pre>
+  <p>
+    Yahaan bhi threads simultaneously apne operations kar rahe hain.
+  </p>
+</section>
+
+<section>
+  <h2>Thread Class vs Runnable Interface</h2>
+  <ul>
+    <li><strong>Thread class:</strong> Thread inherit karta hai, simple hai, par Java me multiple inheritance nahi hone ki wajah se flexibility kam hai.</li>
+    <li><strong>Runnable interface:</strong> Zyadatar recommended approach hai, kyunki aap apni class ko kisi aur class se bhi extend kar sakte hain.</li>
+    <li>Dono me start() method thread chalata hai, run() method thread ke code ko define karta hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Extra Tips</h2>
+  <ul>
+    <li>Thread start karne ke liye <code>start()</code> ko call karein; <code>run()</code> ko direct call karna sirf normal method call hoga, thread create nahi hoga.</li>
+    <li>Thread ko control karne ke liye <code>join()</code>, <code>sleep()</code>, <code>interrupt()</code> jaise methods important hain.</li>
+    <li>Agar JVM thread scheduler busy hai to thread thodi der ke liye wait ya block bhi ho sakta hai.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
