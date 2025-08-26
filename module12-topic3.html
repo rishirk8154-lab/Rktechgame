@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Reflection API Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java Reflection API Explained</h1>
+</header>
+
+<section>
+  <h2>Java Reflection API kya hai?</h2>
+  <p>
+    Reflection API Java me ek powerful feature hai jo runtime par classes, methods, fields, aur constructors ke baare me information prapt karne aur unhe manipulate karne deta hai.
+  </p>
+  <p>
+    Matlab program chalne ke dauraan bhi hum code ke structure ko samajh sakte hain, new objects bana sakte hain, methods call kar sakte hain bina compile time knowledge ke.
+  </p>
+</section>
+
+<section>
+  <h2>Reflection API ke Important Classes</h2>
+  <ul>
+    <li><b>Class:</b> Kisi bhi class ka runtime representation. Isse hum class ke naam, superclass, interfaces, fields, aur methods jayda sakte hain.</li>
+    <li><b>Method:</b> Kisi class ke method ka object representation, jisse method ki details aur invocation possible hoti hai.</li>
+    <li><b>Field:</b> Class ke variables ka runtime representation, jis se unhe access aur modify kia ja sakta hai.</li>
+    <li><b>Constructor:</b> Class ke constructors ko represent karta hai, jisse run time object create kar sakte hain.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Basic Reflection Example</h2>
+  <pre><code>import java.lang.reflect.Method;
+
+public class ReflectionDemo {
+    public static void main(String[] args) throws Exception {
+        // Class object prapt karna
+        Class&lt;String&gt; cls = String.class;
+
+        // Class ke methods ko prapt karna
+        Method[] methods = cls.getDeclaredMethods();
+
+        // Methods ke name print karna
+        for (Method method : methods) {
+            System.out.println("Method Name: " + method.getName());
+        }
+    }
+}
+</code></pre>
+  <p>Is example me humne String class ke methods ko runtime par list kiya hai.</p>
+</section>
+
+<section>
+  <h2>Private Fields aur Methods Access Karna</h2>
+  <p>Reflection se hum private fields ya methods ko bhi access kar sakte hain:</p>
+  <pre><code>import java.lang.reflect.Field;
+
+public class PrivateFieldAccess {
+    private String secret = "Hidden";
+
+    public static void main(String[] args) throws Exception {
+        PrivateFieldAccess obj = new PrivateFieldAccess();
+
+        // Class object
+        Class&lt;?&gt; cls = obj.getClass();
+
+        // Private field prapt karna
+        Field field = cls.getDeclaredField("secret");
+
+        // Field accessible banana
+        field.setAccessible(true);
+
+        // Field value lena
+        String value = (String) field.get(obj);
+        System.out.println("Secret Value: " + value);
+    }
+}
+</code></pre>
+</section>
+
+<section>
+  <h2>Methods Invoke Karna Reflection se</h2>
+  <pre><code>import java.lang.reflect.Method;
+
+public class MethodInvokeExample {
+    public void hello(String name) {
+        System.out.println("Hello, " + name);
+    }
+
+    public static void main(String[] args) throws Exception {
+        MethodInvokeExample obj = new MethodInvokeExample();
+
+        // Class object
+        Class&lt;?&gt; cls = obj.getClass();
+
+        // Method prapt karna
+        Method method = cls.getDeclaredMethod("hello", String.class);
+
+        // Method invoke karna
+        method.invoke(obj, "RKTechGame");
+    }
+}
+</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
