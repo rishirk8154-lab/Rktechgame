@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | JUnit Assertions and Test Suites</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul, pre {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | JUnit Assertions and Test Suites</h1>
+</header>
+
+<section>
+  <h2>JUnit Assertions kya hain?</h2>
+  <p>
+    Assertions JUnit ke test methods me wo checks hote hain jo verify karte hain ki expected aur actual results milte hain ya nahi. Agar assertion fail hota hai to test fail ho jata hai aur bug pakad me aata hai.
+  </p>
+</section>
+
+<section>
+  <h2>Common Assertions Types</h2>
+  <ul>
+    <li><code>assertEquals(expected, actual)</code> - Verify karta hai ki do values barabar hain.</li>
+    <li><code>assertTrue(condition)</code> - Verify karta hai ki condition true hai.</li>
+    <li><code>assertFalse(condition)</code> - Verify karta hai ki condition false hai.</li>
+    <li><code>assertNull(object)</code> - Verify karta hai ki object null hai.</li>
+    <li><code>assertNotNull(object)</code> - Verify karta hai ki object null nahi hai.</li>
+    <li><code>assertArrayEquals(expectedArray, actualArray)</code> - Arrays ki equality check karta hai.</li>
+    <li><code>assertThrows(exceptionClass, executable)</code> - Verify karta hai ki code block expected exception throw karta hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>JUnit Assertions Example</h2>
+  <pre><code>import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class AssertionsDemo {
+
+    @Test
+    public void testAssertions() {
+        assertEquals(10, 5 + 5);
+        assertTrue(3 < 4);
+        assertFalse(5 > 6);
+        assertNull(null);
+        assertNotNull("JUnit");
+        assertArrayEquals(new int[]{1, 2, 3}, new int[]{1, 2, 3});
+        assertThrows(ArithmeticException.class, () -> {
+            int x = 1 / 0;
+        });
+    }
+}
+</code></pre>
+</section>
+
+<section>
+  <h2>JUnit Test Suites kya hai?</h2>
+  <p>
+    Test suites me multiple test classes ko ek saath group karke ek run me chalaya jata hai. Isse bade projects ke tests organized aur manageable ho jate hain.
+  </p>
+</section>
+
+<section>
+  <h2>JUnit Test Suite Example (JUnit 4)</h2>
+  <pre><code>import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    TestClass1.class,
+    TestClass2.class,
+    TestClass3.class
+})
+public class AllTestsSuite {
+    // Yeh class khud me koi code nahi rakhti, sirf annotations se test classes ko group karti hai
+}
+</code></pre>
+  <p>Is example me <code>TestClass1</code>, <code>TestClass2</code> aur <code>TestClass3</code> ko ek suite me group kiya gaya hai.</p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
