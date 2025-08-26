@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Socket Programming Basics in Java</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    color: var(--kakashi-red);
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red), 0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin: 0 auto 36px auto;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul, pre {
+    font-size: 1rem;
+    margin: 12px 0;
+    color: var(--kakashi-dark);
+  }
+  ul {
+    margin-left: 30px;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 1.5px;
+    }
+    section {
+      padding: 20px 15px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 1.7rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 14px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Socket Programming Basics in Java</h1>
+</header>
+
+<section>
+  <h2>Socket Programming Introduction</h2>
+  <p>Socket programming ek technique hai jisme computers ya programs network ke zariye aapas me communicate karte hain. Java me <code>Socket</code> class client ko represent karti hai aur <code>ServerSocket</code> class server ko.</p>
+  <p>Ye TCP/IP protocol ke upar kaam karta hai jisme ek reliable two-way communication establish hoti hai.</p>
+</section>
+
+<section>
+  <h2>Basic Steps in Socket Programming</h2>
+  <ul>
+    <li>Server ek port par <code>ServerSocket</code> bana ke clients ke liye wait karta hai.</li>
+    <li>Client <code>Socket</code> bana kar server ke IP aur port se connect hota hai.</li>
+    <li>Connection established hone ke baad dono side streams se data read/write karte hain.</li>
+    <li>Kaam khatam hone ke baad connection close karte hain.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Example: Simple Socket Server</h2>
+  <pre><code>import java.net.*;
+import java.io.*;
+
+public class SimpleServer {
+    public static void main(String[] args) throws IOException {
+        int port = 5000;
+        ServerSocket server = new ServerSocket(port);
+        System.out.println("Server started at port " + port);
+        
+        try (Socket client = server.accept()) {
+            System.out.println("Client connected: " + client.getInetAddress());
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+
+            String line;
+            while ((line = in.readLine()) != null) {
+                System.out.println("Received from client: " + line);
+                out.println("Echo: " + line);  // Server echoes back the message
+                if ("exit".equalsIgnoreCase(line)) break;
+            }
+        }
+        System.out.println("Server closing...");
+        server.close();
+    }
+}</code></pre>
+</section>
+
+<section>
+  <h2>Example: Simple Socket Client</h2>
+  <pre><code>import java.net.*;
+import java.io.*;
+
+public class SimpleClient {
+    public static void main(String[] args) throws IOException {
+        String serverName = "localhost";
+        int port = 5000;
+        try (Socket socket = new Socket(serverName, port);
+             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+            System.out.println("Connected to server at " + serverName + ":" + port);
+
+            String userInput;
+            while ((userInput = console.readLine()) != null) {
+                out.println(userInput);  // send to server
+                System.out.println("Server response: " + in.readLine());  // read from server
+                if ("exit".equalsIgnoreCase(userInput)) break;
+            }
+        }
+    }
+}</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+
+</body>
+</html>
