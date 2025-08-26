@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | CSS Layout Techniques</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS Layout Techniques</h1>
+  
+  <p>CSS se web page ke elements ko position karne aur layout banane ke kai tareeke hain. Har technique ka apna use case aur advantages hote hain.</p>
+  
+  <h2>1. Flow Layout (Default)</h2>
+  <p>
+    Browser me jab koi CSS apply nahi hota, to elements naturally flow layout me arrange hote hain - block elements vertical stack hote hain aur inline elements horizontally flow karte hain.
+  </p>
+
+  <h2>2. Float Layout</h2>
+  <p>
+    Float property se elements ko left ya right me push karke text wrap ya multi-column effect create kiya jata tha. Ye purani technique hai par ab kam use hoti hai.
+  </p>
+  <pre><code>.box {
+  float: left;
+  width: 45%;
+  margin: 2.5%;
+}
+</code></pre>
+
+  <h2>3. Positioning</h2>
+  <p>
+    Position property se aap element ko static, relative, absolute, fixed, ya sticky position de sakte hain, jisse exact placement control hota hai.
+  </p>
+  <pre><code>.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+</code></pre>
+
+  <h2>4. Flexbox Layout</h2>
+  <p>
+    Flexible box layout responsive design aur complex alignment ke liye bahut powerful hai. Ye container ke andar elements ko horizontal ya vertical line me arrange karta hai.
+  </p>
+  <pre><code>.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</code></pre>
+
+  <h2>5. CSS Grid Layout</h2>
+  <p>
+    Grid layout se 2D grid banakar rows aur columns me content ko organize kar sakte hain. Ye modern layouts ke liye bahut useful hai.
+  </p>
+  <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+</code></pre>
+
+  <h2>6. Responsive Design</h2>
+  <p>
+    Media queries se alag screen sizes ke liye alag layouts design kar sakte hain jaise mobile, tablet, ya desktop ke liye.
+  </p>
+  <pre><code>@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+}
+</code></pre>
+
+  <h2>Summary</h2>
+  <p>
+    Aapko apne project ke hisab se sahi layout technique choose karni chahiye. Aajkal Flexbox aur Grid sabse effective hain responsive aur complex layouts ke liye.
+  </p>
+</main>
+</body>
+</html>
