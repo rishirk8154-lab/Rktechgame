@@ -13,6 +13,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
   <style>
+    /* Same CSS from your code */
     :root {
       --kakashi-blue: #546285;
       --kakashi-gray: #cfd2dc;
@@ -280,55 +281,30 @@
       flex-grow: 1;
       user-select: text;
     }
-    #contactForm {
-      display: flex;
-      flex-direction: column;
+    #contactInfo {
       max-width: 430px;
       margin: 0 auto;
-      gap: 14px;
-    }
-    #contactForm input,
-    #contactForm textarea {
-      padding: 14px 16px;
-      border: 2px solid #d0d4de;
-      border-radius: 10px 4px 10px 4px;
-      font-size: 1rem;
-      background: #f7f9fc;
-      color: #292a36;
-      resize: none;
-      font-family: inherit;
-      font-weight: 500;
-      box-shadow: inset 0 1px 3px #c0c6d0;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    #contactForm input:focus,
-    #contactForm textarea:focus {
-      outline: none;
-      border-color: var(--kakashi-red);
-      box-shadow: 0 0 8px var(--kakashi-red);
+      padding: 20px;
       background: #fff;
+      border-radius: 14px 32px 14px 32px;
+      box-shadow: 0 3px 14px #292a3670;
+      text-align: center;
     }
-    #contactForm button {
-      padding: 14px 0;
-      background: linear-gradient(
-        96deg,
-        var(--kakashi-blue) 60%,
-        var(--kakashi-red) 100%
-      );
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      box-shadow: 0 4px 12px #292a3622;
-      transition: background 0.25s ease;
-      cursor: pointer;
-      letter-spacing: 1.2px;
-      user-select: none;
-      text-transform: uppercase;
+    #contactInfo a {
+      color: var(--kakashi-red);
+      font-size: 1.7rem;
+      margin: 0 16px;
+      transition: color 0.3s ease;
+      text-decoration: none;
     }
-    #contactForm button:hover {
-      background: linear-gradient(96deg, var(--kakashi-red), var(--kakashi-blue));
+    #contactInfo a:hover {
+      color: var(--kakashi-blue);
+    }
+    #contactInfo p {
+      margin-top: 20px;
+      font-weight: 600;
+      user-select: text;
+      color: var(--kakashi-dark);
     }
     footer {
       text-align: center;
@@ -403,8 +379,14 @@
     <a href="#programming-course" id="linkStudyzone" role="link" tabindex="0"
       ><i class="fas fa-book"></i>STUDYZONE</a
     >
-    <a href="#contact" id="linkContact" role="link" tabindex="0"
+    <a href="contact.html" id="linkContact" role="link" tabindex="0"
       ><i class="fas fa-envelope"></i>CONTACT US</a
+    >
+    <a href="about.html" id="linkAbout" role="link" tabindex="0"
+      ><i class="fas fa-info-circle"></i>ABOUT US</a
+    >
+    <a href="privacy.html" id="linkPrivacy" role="link" tabindex="0"
+      ><i class="fas fa-user-secret"></i>PRIVACY POLICY</a
     >
   </nav>
 
@@ -473,20 +455,19 @@
     </div>
   </section>
 
-  <section class="section" id="contact" tabindex="-1" aria-labelledby="contact-title">
-    <h2 id="contact-title">Comment</h2>
-    <form id="contactForm" novalidate>
-      <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required />
-      <textarea name="message" placeholder="Your Message" aria-label="Your Message" required rows="4"></textarea>
-      <div style="display: flex; gap: 20px; margin-bottom: 12px;">
-        <a href="https://t.me/rktechgame" target="_blank" rel="noopener noreferrer" aria-label="Telegram" style="color: var(--kakashi-red); font-size: 1.7rem"><i class="fab fa-telegram"></i></a>
-        <a href="https://www.instagram.com/_satan_12.12?igsh=ODM4NjI4cG01djE4" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color: var(--kakashi-red); font-size: 1.7rem"><i class="fab fa-instagram"></i></a>
-      </div>
-      <button type="submit" aria-label="Send message">Send Message</button>
-    </form>
-    <p style="text-align: center; margin-top: 10px; font-weight: 600; user-select: text">Chatrapati Sambhajinagar 431001</p>
-    <div id="msgStatus" role="alert" aria-live="polite" style="min-height: 1.2em; margin-top: 10px; font-weight: 600;"></div>
+  <section class="section" id="contactInfo" tabindex="-1" aria-labelledby="contact-info-title">
+    <h2 id="contact-info-title">Contact Us</h2>
+    <p style="text-align: center; font-weight: 600;">
+      Get in touch with me via social platforms or email
+    </p>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="https://t.me/rishirk839" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/rishirk839" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" style="margin-left: 20px;"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:rishirk839@gmail.com" aria-label="Email" title="Email" style="margin-left: 20px;"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="margin-top: 20px; font-weight: 500; user-select: text;">
+      Email: <a href="mailto:rishirk839@gmail.com">rishirk839@gmail.com</a>
+    </p>
   </section>
 
   <footer>
@@ -506,39 +487,6 @@
     });
     document.getElementById("linkStudyzone").addEventListener("click", () => {
       document.getElementById("programming-course").scrollIntoView({ behavior: "smooth" });
-    });
-    document.getElementById("linkContact").addEventListener("click", () => {
-      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-    });
-
-    const contactForm = document.getElementById("contactForm");
-    const msgStatus = document.getElementById("msgStatus");
-
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      if (!contactForm.name.value.trim()) {
-        msgStatus.textContent = "Please enter your name.";
-        contactForm.name.focus();
-        return;
-      }
-      if (!contactForm.email.value.trim()) {
-        msgStatus.textContent = "Please enter your email.";
-        contactForm.email.focus();
-        return;
-      }
-      if (!contactForm.message.value.trim()) {
-        msgStatus.textContent = "Please enter your message.";
-        contactForm.message.focus();
-        return;
-      }
-
-      msgStatus.textContent = "Thanks! I'll respond with Kakashi-level speed!";
-
-      setTimeout(() => {
-        msgStatus.textContent = "";
-        contactForm.reset();
-      }, 3000);
     });
   </script>
 </body>
