@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Swing Layouts - Detailed Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.1rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    padding-left: 16px;
+    border-left: 6px solid var(--kakashi-red);
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  th, td {
+    border: 1px solid var(--kakashi-red);
+    padding: 10px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  th {
+    background-color: var(--kakashi-red);
+    color: white;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 25px 15px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    h2 {
+      font-size: 1.7rem;
+      padding-left: 10px;
+      border-left-width: 4px;
+    }
+    p, ul, table, th, td, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java Swing Layouts - Detailed Guide</h1>
+</header>
+
+<section>
+  <h2>Java Swing Layout Managers kya hain?</h2>
+  <p>Layout managers wo classes hoti hain jo Swing components ko container me arrange karti hain based on alag algorithms. Ye components ki positioning, sizing aur alignment control karti hain taaki GUI flexible aur user-friendly lage.</p>
+  <p>Swing me default layout managers provide kiye gaye hain, aur hum apni jarurat ke mutabik inhe set kar sakte hain:</p>
+</section>
+
+<section>
+  <h2>Common Swing Layout Managers</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Layout Manager</th>
+        <th>Description</th>
+        <th>Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FlowLayout</td>
+        <td>Components ko left se right flow karata hai, wrapping ke sath.</td>
+        <td>Simple panels jahan components horizontal line me lagen.</td>
+      </tr>
+      <tr>
+        <td>BorderLayout</td>
+        <td>Container ko North, South, East, West, Center me divide karta hai.</td>
+        <td>Frame ke main parts jaise header, footer, sidebar layout.</td>
+      </tr>
+      <tr>
+        <td>GridLayout</td>
+        <td>Equal size ke grid cells me components ko arrange karta hai.</td>
+        <td>Calculator buttons, badi forms.</td>
+      </tr>
+      <tr>
+        <td>BoxLayout</td>
+        <td>Components ko vertically ya horizontally stack karta hai.</td>
+        <td>Vertical menus, toolbar.</td>
+      </tr>
+      <tr>
+        <td>CardLayout</td>
+        <td>Ek container me multiple panels rakhta hai, ek samay me ek dikhata hai.</td>
+        <td>Wizard, tabbed interface.</td>
+      </tr>
+      <tr>
+        <td>GridBagLayout</td>
+        <td>Sabse flexible, grid me components ko spanning aur customizable sizing ke saath arrange karta hai.</td>
+        <td>Complex forms, interactive GUIs.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>FlowLayout Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class FlowLayoutExample {
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("FlowLayout Example");
+    frame.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 10));
+
+    for(int i = 1; i <= 4; i++) {
+      frame.add(new JButton("Button " + i));
+    }
+
+    frame.setSize(350, 150);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>BorderLayout Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class BorderLayoutExample {
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("BorderLayout Example");
+    frame.setLayout(new BorderLayout(10, 10));
+
+    frame.add(new JButton("North"), BorderLayout.NORTH);
+    frame.add(new JButton("South"), BorderLayout.SOUTH);
+    frame.add(new JButton("East"), BorderLayout.EAST);
+    frame.add(new JButton("West"), BorderLayout.WEST);
+    frame.add(new JButton("Center"), BorderLayout.CENTER);
+
+    frame.setSize(400, 300);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>GridLayout Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class GridLayoutExample {
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("GridLayout Example");
+    frame.setLayout(new GridLayout(2, 3, 5, 5)); // 2 rows, 3 cols
+
+    for(int i = 1; i <= 6; i++) {
+      frame.add(new JButton("Button " + i));
+    }
+
+    frame.setSize(400, 200);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>BoxLayout Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class BoxLayoutExample {
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("BoxLayout Example");
+    frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+
+    for(int i = 1; i <= 5; i++) {
+      JButton button = new JButton("Button " + i);
+      button.setAlignmentX(Component.CENTER_ALIGNMENT);
+      frame.add(button);
+    }
+
+    frame.setSize(200, 300);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>CardLayout Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class CardLayoutExample {
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("CardLayout Example");
+    CardLayout cardLayout = new CardLayout();
+    frame.setLayout(cardLayout);
+
+    JPanel panel1 = new JPanel();
+    panel1.add(new JLabel("Card 1"));
+
+    JPanel panel2 = new JPanel();
+    panel2.add(new JLabel("Card 2"));
+
+    frame.add(panel1, "Card1");
+    frame.add(panel2, "Card2");
+
+    frame.setSize(300, 200);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+
+    new Timer(3000, e -> cardLayout.show(frame.getContentPane(), "Card2")).start();
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>GridBagLayout Introduction</h2>
+  <p>
+    GridBagLayout sabse flexible layout hai jo grid-based hota hai. Isme har component ko grid cell ke specific position, size, aur spanning control kar sakte hain. Har component ke saath GridBagConstraints use karke layout customize karte hain.
+  </p>
+  <p>GridBagLayout ka example thoda complex hota hai, isliye aage ke advanced articles me ye cover karenge.</p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+
+</body>
+</html>
