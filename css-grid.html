@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | CSS Grid Layout</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .grid-item {
+    background-color: var(--kakashi-red);
+    color: white;
+    padding: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-align: center;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS Grid Layout kya hai?</h1>
+  <p>
+    CSS Grid layout 2D grid system provide karta hai jisme aap rows aur columns dono me elements ko organize kar sakte hain. Ye modern aur flexible web layouts ke liye bahut powerful tool hai.
+  </p>
+
+  <h2>Grid Container aur Grid Items</h2>
+  <p>
+    CSS Grid me ek parent element jisme <code>display: grid;</code> laga hota hai, use <strong>Grid Container</strong> kehte hain. Us container ke direct children <strong>Grid Items</strong> hote hain.
+  </p>
+
+  <h2>Basic Example</h2>
+  <div class="grid-container">
+    <div class="grid-item">Item 1</div>
+    <div class="grid-item">Item 2</div>
+    <div class="grid-item">Item 3</div>
+    <div class="grid-item">Item 4</div>
+    <div class="grid-item">Item 5</div>
+    <div class="grid-item">Item 6</div>
+  </div>
+  <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.grid-item {
+  background-color: #db1d29;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+</code></pre>
+
+  <h2>Important Grid Properties</h2>
+  <ul>
+    <li><code>grid-template-columns</code>: Columns ki number aur width define karta hai.</li>
+    <li><code>grid-template-rows</code>: Rows ki number aur height define karta hai.</li>
+    <li><code>grid-gap</code>: Rows aur columns ke beech ka gap set karta hai.</li>
+    <li><code>grid-column-start / grid-column-end</code>: Item ke grid me start aur end position batata hai.</li>
+    <li><code>grid-row-start / grid-row-end</code>: Item ke row me start aur end position batata hai.</li>
+    <li><code>justify-items</code> aur <code>align-items</code>: Items ko grid cells ke andar horizontally aur vertically align karta hai.</li>
+  </ul>
+
+  <h2>Summary</h2>
+  <p>
+    CSS Grid layout se complex aur responsive 2D layouts design karna bahut easy ho jata hai. Ye modern web development ka ek essential tool hai jo Flexbox ke saath milke best results deta hai.
+  </p>
+</main>
+</body>
+</html>
