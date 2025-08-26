@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Detailed Scanner & PrintWriter in Java</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Scanner & PrintWriter (Deep Explained)</h1>
+</header>
+
+<section id="scanner">
+  <h2>Scanner Class – User/Input Read karne ke Pro Tips!</h2>
+  <p><b>Scanner</b> class (<code>java.util</code> package) ka use ham mostly user se console input lene, ya file se data padhne ke liye karte hain. Ye kaafi flexible hai – alag alag data types ke liye instantly input read kar sakte ho!</p>
+  <h3>Key Features</h3>
+  <ul>
+    <li>Multiple sources se input: stdin, file, string, stream.</li>
+    <li>Int, Float, String, Double, Boolean... har tarah ke input easily le lo!</li>
+    <li>Whitespace delimiter se tokens extract karta hai. (next() sirf ek word, nextLine() poori line deta)</li>
+    <li>Methods: <code>nextInt()</code>, <code>nextLine()</code>, <code>nextDouble()</code>, <code>hasNext()</code></li>
+  </ul>
+  <h3>Common Use & Gotchas</h3>
+  <ul>
+    <li>Console input: <code>Scanner sc = new Scanner(System.in);</code></li>
+    <li>File input: <code>Scanner sc = new Scanner(new File("input.txt"));</code></li>
+    <li><code>nextInt()</code> ke baad agar <code>nextLine()</code> use karo toh blank line mil sakti hai (kyunki newline consume nahi hota).</li>
+    <li>Kabhi bhi ek program mein ek hi Scanner object use karo, warna exceptions aa sakte hain.</li>
+  </ul>
+  <h3>Example 1: Console se input</h3>
+  <pre><code>import java.util.Scanner;
+public class ScannerDemo {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Naam batao: ");
+    String name = sc.nextLine();
+
+    System.out.print("Umra batao: ");
+    int age = sc.nextInt();
+
+    System.out.println("Hello " + name + ", Age: " + age);
+    sc.close();
+  }
+}</code></pre>
+  <h3>Example 2: File se input</h3>
+  <pre><code>Scanner sc = new Scanner(new File("data.txt"));
+while(sc.hasNextLine()) {
+  String line = sc.nextLine();
+  System.out.println(line);
+}
+sc.close();</code></pre>
+  <h3>Advanced Tip</h3>
+  <ul>
+    <li>Scanner se CSV ya structured data line by line read kar sakte ho. <code>split()</code> ka use karo for more control.</li>
+  </ul>
+</section>
+
+<section id="printwriter">
+  <h2>PrintWriter Class – Powerful Writing/Output!</h2>
+  <p><b>PrintWriter</b> class (<code>java.io</code> package) ka use text files, console ya network streams mein formatted data likhne ke liye hota hai. Ye FileWriter ya OutputStream se zyada flexible hai.</p>
+  <h3>Key Features</h3>
+  <ul>
+    <li>Text data, numbers, objects – sab likho print(), println(), printf() se</li>
+    <li>Auto flush ka option hai: stream automatically flush ho jata hai after <code>println()</code> or <code>printf()</code></li>
+    <li>Exceptions suppress kar leta hai, checkError() se pata chalta hai koi problem hui ya nahi</li>
+    <li>Formatting C/C++ jaise: <code>printf("%s %d", name, age)</code></li>
+    <li>FileWriter, OutputStream, StringWriter sab wrap kar sakte ho</li>
+  </ul>
+  <h3>Example 1: File Me Text Write Karna</h3>
+  <pre><code>import java.io.*;
+public class PrintWriterDemo {
+  public static void main(String[] args) {
+    try {
+      PrintWriter pw = new PrintWriter(new FileWriter("output.txt"));
+      pw.println("Hello World!");
+      pw.printf("Name: %s Age: %d", "Amit", 22);
+      pw.close();
+      System.out.println("File written!");
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+}</code></pre>
+  <h3>Example 2: Direct Console Output</h3>
+  <pre><code>PrintWriter pw = new PrintWriter(System.out, true); // autoFlush on
+pw.println("Yeh console par print hoga!");
+pw.close();</code></pre>
+  <h3>Pro Tips & Limitations</h3>
+  <ul>
+    <li>BufferedWriter ka internal buffer milta hai – performance best rahti hai!</li>
+    <li>Always <code>close()</code> karo, nahi toh data file mein na jaye.</li>
+    <li>PrintWriter exceptions throw nahi karta – debugging me dikkat ho sakti hai, <code>checkError()</code> ka use karo.</li>
+  </ul>
+</section>
+
+<section id="combo">
+  <h2>Real-world Example: Scanner + PrintWriter Combo</h2>
+  <p>Competitive programming ya exams mein aksar user input le ke file me likhna padta hai. Scanner se input lo, PrintWriter se save karo, super easy:</p>
+  <pre><code>Scanner sc = new Scanner(System.in);
+PrintWriter pw = new PrintWriter(new FileWriter("log.txt"));
+while(sc.hasNextLine()) {
+  String line = sc.nextLine();
+  pw.println(line); // File me save
+}
+pw.close();
+sc.close();</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
