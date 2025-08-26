@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | JDBC Architecture Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    table-layout: fixed;
+  }
+  th, td {
+    border: 1px solid var(--kakashi-red);
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  th {
+    background-color: var(--kakashi-red);
+    color: white;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul {
+      font-size: 0.95rem;
+    }
+    .table-container {
+      padding: 15px;
+    }
+    table {
+      min-width: 500px;
+    }
+    th, td {
+      padding: 10px 12px;
+      white-space: normal;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | JDBC Architecture Explained</h1>
+</header>
+
+<section>
+  <h2>JDBC kya hai?</h2>
+  <p>
+    JDBC (Java Database Connectivity) Java ka ek API hai jo Java applications ko databases se connect karne deta hai. Iske through Java programs SQL queries run kar sakte hain, data fetch ya update kar sakte hain.
+  </p>
+</section>
+
+<section>
+  <h2>JDBC Architecture ke Main Components</h2>
+  <ul>
+    <li><strong>Application:</strong> Java program ya servlet jo database se interact karta hai.</li>
+    <li><strong>JDBC API:</strong> Java classes aur interfaces ka set jo database interaction ko standard banata hai. Isme Connection, Statement, ResultSet, DriverManager jaisi important interfaces hoti hain.</li>
+    <li><strong>DriverManager:</strong> JDBC drivers ko manage karta hai aur appropriate driver select kar ke database connection establish karta hai.</li>
+    <li><strong>JDBC Drivers:</strong> Database-specific drivers hote hain jo Java aur database ke beech communication ka bridge kaam karte hain.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>JDBC Architecture Diagram</h2>
+  <p>Typical JDBC architecture me layers kuch is prakar hoti hain:</p>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Application</th>
+          <th>JDBC API</th>
+          <th>DriverManager</th>
+          <th>JDBC Driver</th>
+          <th>Database</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User Java app (client)</td>
+          <td>Calls JDBC interfaces</td>
+          <td>Chooses suitable driver</td>
+          <td>Driver converts calls to DB protocol</td>
+          <td>Data source (MySQL, Oracle, etc.)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Two-tier vs Three-tier Architecture</h2>
+  <p>
+    <b>Two-tier:</b> Application directly database se connect hota hai via JDBC driver.<br>
+    <b>Three-tier:</b> Application pehle middleware server ko call karta hai, jo phir database se connected hota hai. JDBC driver middleware pe chal sakta hai.
+  </p>
+</section>
+
+<section>
+  <h2>JDBC Connection Process</h2>
+  <ol>
+    <li><strong>Driver Load Karna:</strong> Database specific driver ko load karna, jaise <code>Class.forName("com.mysql.jdbc.Driver")</code></li>
+    <li><strong>Connection Establish Karna:</strong> <code>DriverManager.getConnection()</code> method call kar ke database se connect hona</li>
+    <li><strong>Statement Create Karna:</strong> SQL queries execute karne ke liye Statement ya PreparedStatement banana</li>
+    <li><strong>Query Execute Karna:</strong> SQL statements ko run karna aur ResultSet se data lena</li>
+    <li><strong>Resources Close Karna:</strong> Connection, Statement close karke resources free karna</li>
+  </ol>
+</section>
+
+<section>
+  <h2>JDBC Driver Types</h2>
+  <ul>
+    <li>Type 1: JDBC-ODBC Bridge (deprecated)</li>
+    <li>Type 2: Native API driver (partly Java, partly native code)</li>
+    <li>Type 3: Network Protocol driver (pure Java)</li>
+    <li>Type 4: Thin Driver (pure Java, directly DB se connect)</li>
+  </ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
