@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Detailed Guide to Building GUI with Java Swing</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red), 0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 35px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 20px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+  }
+  p {
+    font-size: 1.1rem;
+    color: var(--kakashi-dark);
+    line-height: 1.5;
+    margin: 14px 0;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    overflow-x: auto;
+    margin-top: 18px;
+  }
+  ul {
+    margin-left: 30px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  ul li {
+    margin: 8px 0;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Detailed Guide to Building GUI with Java Swing</h1>
+</header>
+
+<section>
+  <h2>Java Swing GUI Application Introduction</h2>
+  <p>Java Swing ek lightweight graphic user interface (GUI) toolkit hai, jo Java Foundation Classes (JFC) ka part hai. Iska use kar ke aap windowed applications jaise dialog boxes, buttons, text fields, labels, aur menus create kar sakte hain.</p>
+  <p>Swing ke components pure Java me likhe gaye hain, isliye ye platform-independent aur highly customizable hain.</p>
+</section>
+
+<section>
+  <h2>Basic Components aur Frame Setup</h2>
+  <p>Ek simple GUI application me sabse important cheez JFrame hota hai jo window ka base frame provide karta hai. Iske andar hum buttons, labels aur anya components add karte hain.</p>
+  <p><b>Step-wise components:</b></p>
+  <ul>
+    <li><b>JFrame:</b> Window frame</li>
+    <li><b>JButton:</b> Button element</li>
+    <li><b>JLabel:</b> Text ya image display karne ke liye</li>
+    <li><b>Layout Manager:</b> Components ka position aur size manage karta hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Simple GUI Application Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class SimpleGUIApp extends JFrame {
+  private JButton clickBtn;
+  private JLabel infoLabel;
+
+  public SimpleGUIApp() {
+    setTitle("Simple Swing GUI Application");
+
+    // Layout set karte hain
+    setLayout(new FlowLayout());
+
+    // Button aur Label create karna
+    clickBtn = new JButton("Click Here");
+    infoLabel = new JLabel("Waiting for click...");
+
+    // Button ke liye action listener add karna
+    clickBtn.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        infoLabel.setText("Button Clicked!");
+      }
+    });
+
+    // Components ko frame me add karna
+    add(clickBtn);
+    add(infoLabel);
+
+    // Frame size aur close operation set karna
+    setSize(320, 150);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    // Frame ko center karna screen pe
+    setLocationRelativeTo(null);
+
+    // Frame visible karna
+    setVisible(true);
+  }
+
+  public static void main(String[] args) {
+    // EDT me GUI start karna best practice hai
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        new SimpleGUIApp();
+      }
+    });
+  }
+}
+</code></pre>
+  <p><b>Explanation:</b> Is code me ek JFrame banta hai jisme ek button aur ek label hota hai. Button dabane par label ka text change ho jata hai.</p>
+</section>
+
+<section>
+  <h2>Key Points</h2>
+  <ul>
+    <li>GUI banate waqt <code>setLayout()</code> method se layout manager set karein.</li>
+    <li>Event handling ke liye ActionListener jaise listeners use karte hain.</li>
+    <li>Components ko frame me <code>add()</code> se add karna hota hai.</li>
+    <li>Close operation me hamesha <code>setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)</code> likhna chahiye.</li>
+    <li>GUI operations hamesha Event Dispatch Thread (EDT) me run hone chahiye.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
