@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | HTML Tables Basics</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.6;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.6rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+  th, td {
+    border: 2px solid var(--kakashi-blue);
+    padding: 10px 12px;
+    text-align: left;
+  }
+  th {
+    background-color: var(--kakashi-red);
+    color: white;
+  }
+  code {
+    background: #dde4f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>HTML Tables Basics</h1>
+  <p>
+    Tables ka use data ko rows aur columns me arrange karne ke liye hota hai. Websites par data ko structured format me dikhane ke liye tables bahut kaam aate hain.
+  </p>
+  <h2>HTML Table banane ke liye essential tags</h2>
+  <ul>
+    <li><code>&lt;table&gt;</code> : Table create karta hai. Ye tag table ka container hota hai.</li>
+    <li><code>&lt;tr&gt;</code> : Table row define karta hai.</li>
+    <li><code>&lt;th&gt;</code> : Table header cell create karta hai. Ye by default bold aur center aligned hota hai.</li>
+    <li><code>&lt;td&gt;</code> : Table data cell create karta hai. Ye headers ke neeche actual data hota hai.</li>
+  </ul>
+  <h2>Basic Table Structure Example</h2>
+  <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+    &lt;th&gt;Country&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Rahul&lt;/td&gt;
+    &lt;td&gt;26&lt;/td&gt;
+    &lt;td&gt;India&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Anita&lt;/td&gt;
+    &lt;td&gt;22&lt;/td&gt;
+    &lt;td&gt;Nepal&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+  <h2>Table Output :</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Country</th>
+    </tr>
+    <tr>
+      <td>Rahul</td>
+      <td>26</td>
+      <td>India</td>
+    </tr>
+    <tr>
+      <td>Anita</td>
+      <td>22</td>
+      <td>Nepal</td>
+    </tr>
+  </table>
+
+  <h2>Additional Table Tags:</h2>
+  <ul>
+    <li><code>&lt;thead&gt;</code> : Table ke header section ko define karta hai.</li>
+    <li><code>&lt;tbody&gt;</code> : Table ke main content section ko define karta hai.</li>
+    <li><code>&lt;tfoot&gt;</code> : Table ke footer section ko define karta hai.</li>
+  </ul>
+
+  <h2>Rowspan aur Colspan Attributes</h2>
+  <p>Table cells ko multiple rows ya columns me span karne ke liye ye attributes use hote hain:</p>
+  <pre><code>&lt;td rowspan="2"&gt;Ye cell do rows me span karega.&lt;/td&gt;
+&lt;td colspan="3"&gt;Ye cell teen columns me span karega.&lt;/td&gt;
+</code></pre>
+  <p>Ye especially complex tables banane me kaam aate hain.</p>
+</main>
+</body>
+</html>
