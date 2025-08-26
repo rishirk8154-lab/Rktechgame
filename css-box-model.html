@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RKTechGame | CSS Box Model</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --kakashi-blue: #546285;
+      --kakashi-gray: #cfd2dc;
+      --kakashi-dark: #292a36;
+      --kakashi-red: #db1d29;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+      color: var(--kakashi-dark);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #f0f4faee;
+      border-radius: 21px;
+      box-shadow: 0 3px 18px #54628533;
+      padding: 30px 40px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: var(--kakashi-red);
+      font-size: 2.6rem;
+      border-left: 6px solid var(--kakashi-red);
+      padding-left: 18px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      color: var(--kakashi-blue);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    p, ul {
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    ul li {
+      margin-bottom: 12px;
+    }
+    pre {
+      background: #dde4f0;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    code {
+      background: #dde4f0;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    a {
+      color: var(--kakashi-red);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .box {
+      width: 300px;
+      padding: 20px;
+      border: 10px solid var(--kakashi-red);
+      margin: 25px;
+      background-color: #e7eaf3;
+      box-sizing: content-box; /* default */
+    }
+    .box-border {
+      box-sizing: border-box; /* border included in width */
+    }
+    @media (max-width: 768px) {
+      main {
+        padding: 25px 20px;
+      }
+      h1 {
+        font-size: 2.1rem;
+        padding-left: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>CSS Box Model kya hai?</h1>
+    <p>
+      CSS Box Model ek conceptual model hai jisme har HTML element ek rectangular box ke roop me treat hota hai.
+      Har box ke andar <strong>Content, Padding, Border,</strong> aur <strong>Margin</strong> hota hai.
+    </p>
+    <h2>Box Model ke Components</h2>
+    <ul>
+      <li><strong>Content:</strong> Element ka asli content, jaise text, image, etc.</li>
+      <li><strong>Padding:</strong> Content ke ird-gird ka wo space jo content ko border se door rakhta hai.</li>
+      <li><strong>Border:</strong> Padding ke bahar wali line ya boundary jo box ko define karti hai.</li>
+      <li><strong>Margin:</strong> Border ke bahar ka transparent space jo doosre elements se gap banata hai.</li>
+    </ul>
+    <h2>Example Box Model Code</h2>
+    <p>Yahaan ek example hai jo isi concept ko dikhata hai:</p>
+    <div class="box">
+      Ye box content hai, jiske upar padding, border, aur margin applied hain.
+    </div>
+
+    <h2>Box-sizing Property</h2>
+    <p>
+      Default me <code>box-sizing: content-box;</code> hota hai, matlab width aur height sirf content ke liye hoti hai.
+      Agar aap <code>box-sizing: border-box;</code> use karte hain, to padding aur border width ke andar include ho jata hai.
+    </p>
+    <div class="box box-border">
+      Is box me box-sizing border-box hai, toh pura box 300px wide hai, including padding aur border.
+    </div>
+
+    <h2>Total Width aur Height Calculation</h2>
+    <p>
+      Total width ya height calculate karne ke liye aapko content, padding, border, aur margin sabko jodna hota hai.
+    </p>
+    <pre><code>
+Total Width = margin-left + border-left + padding-left + width + padding-right + border-right + margin-right
+Total Height = margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom
+    </code></pre>
+
+    <h2>Summary</h2>
+    <p>
+      CSS Box Model samajhna bahut zaruri hai, kyunki ye aapko elements ko sahi se layout aur design karne me madad karta hai. Iske bina elements ki sizing samajhna mushkil hota hai.
+    </p>
+  </main>
+</body>
+</html>
