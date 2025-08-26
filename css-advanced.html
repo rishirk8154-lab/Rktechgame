@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Advanced CSS Topics</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Advanced CSS Topics</h1>
+  
+  <h2>1. CSS Variables (Custom Properties)</h2>
+  <p>CSS variables se aap ek jagah value define karke use baar-baar use kar sakte hain.</p>
+  <pre><code>:root {
+  --main-color: #db1d29;
+  --font-stack: 'Montserrat', sans-serif;
+}
+body {
+  color: var(--main-color);
+  font-family: var(--font-stack);
+}
+</code></pre>
+  
+  <h2>2. CSS Specificity</h2>
+  <p>Specificity decide karta hai ki agar multiple CSS rules same element me apply ho rahe hain to kaunsa rule apply hoga.</p>
+  
+  <h2>3. CSS Pseudo-classes & Pseudo-elements</h2>
+  <p>Pseudo-classes se elements ke special state ko target karte hain, jaise <code>:hover</code>, <code>:nth-child()</code>. Pseudo-elements se element ke kisi hissay ko style karte hain, jaise <code>::before</code>, <code>::after</code>.</p>
+  
+  <h2>4. CSS Calc()</h2>
+  <p>Calc() function se aap CSS me arithmetic kar sakte hain, jisme mixed units use kiye ja sakte hain.</p>
+  <pre><code>width: calc(100% - 50px);</code></pre>
+  
+  <h2>5. CSS Blend Modes</h2>
+  <p>Colors aur images ko mix karne ke liye blend modes use hote hain, jaise <code>multiply</code>, <code>screen</code>.</p>
+  
+  <h2>6. CSS Filter Effects</h2>
+  <p>Images aur elements par blur, grayscale, brightness jaise effects apply karte hain.</p>
+  
+  <h2>7. Advanced Selectors</h2>
+  <p>Attribute selectors, sibling selectors, group selectors jese complex selectors CSS ko powerful banate hain.</p>
+  
+  <h2>8. CSS Shorthand Properties</h2>
+  <p>Ek hi property me multiple related values dene ke liye shortcut syntax ka use karna.</p>
+  
+  <h2>9. Media Queries - Advanced Usage</h2>
+  <p>Screen size ke alawa orientation, resolution, environmental factors ke liye advanced responsive design create karna.</p>
+  
+  <h2>10. CSS Grid and Flexbox Advanced Features</h2>
+  <p>Auto placement, template areas, alignment aur layering jaise features ko achhi tarah samajhna aur use karna.</p>
+  
+  <h2>Summary</h2>
+  <p>
+    Advanced CSS topics aapko modern aur interactive websites banane me madad karte hain. Inhe seekhna aapke web development skills ko professional level par le jata hai.
+  </p>
+</main>
+</body>
+</html>
