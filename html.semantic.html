@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Semantic HTML5 Elements</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 20px 12px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 22px 24px;
+    line-height: 1.6;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.6rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  p, ul, table {
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 22px;
+  }
+  th, td {
+    border: 2px solid var(--kakashi-blue);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background-color: var(--kakashi-red);
+    color: white;
+  }
+  code {
+    background: #dde4f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 20px 15px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Semantic HTML5 Elements kya hain?</h1>
+  <p>
+    Semantic elements wo HTML tags hote hain jo apne content ke meaning aur context ko clearly define karte hain. Ye web developers ke liye page ko samajhna aasan banate hain aur search engines ya assistive technologies ke liye bhi useful hote hain.
+  </p>
+  <h2>Kuch Common Semantic Elements aur Unka Use</h2>
+  <table>
+    <tr>
+      <th>Element</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+    <tr>
+      <td><code>&lt;header&gt;</code></td>
+      <td>Page ya section ka header define karta hai</td>
+      <td>Logo, navigation links, heading etc.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;nav&gt;</code></td>
+      <td>Navigation ke block ko define karta hai</td>
+      <td>Menus, table of contents etc.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;main&gt;</code></td>
+      <td>Page ka main content</td>
+      <td>Blog post, article, landing page content</td>
+    </tr>
+    <tr>
+      <td><code>&lt;section&gt;</code></td>
+      <td>Document me ek general section hota hai</td>
+      <td>Content groups ya thematic grouping</td>
+    </tr>
+    <tr>
+      <td><code>&lt;article&gt;</code></td>
+      <td>Self-contained independent content</td>
+      <td>News article, blog post, commentary</td>
+    </tr>
+    <tr>
+      <td><code>&lt;aside&gt;</code></td>
+      <td>Primary content ke alawa side content</td>
+      <td>Sidebar, callout boxes</td>
+    </tr>
+    <tr>
+      <td><code>&lt;footer&gt;</code></td>
+      <td>Page ya section ka footer</td>
+      <td>Copyright info, contact links</td>
+    </tr>
+    <tr>
+      <td><code>&lt;figure&gt;</code></td>
+      <td>Self-contained content jaise image, diagram</td>
+      <td>Photos, illustrations</td>
+    </tr>
+    <tr>
+      <td><code>&lt;figcaption&gt;</code></td>
+      <td>Figure ka caption provide karta hai</td>
+      <td>Image ya diagram description</td>
+    </tr>
+  </table>
+
+  <h2>Simple Semantic HTML5 Structure Example</h2>
+  <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Semantic HTML5 Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;RKTechGame&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Latest Article&lt;/h2&gt;
+      &lt;p&gt;Ye ek semantic article ka udaharan hai.&lt;/p&gt;
+    &lt;/article&gt;
+    &lt;aside&gt;
+      &lt;h3&gt;Sidebar Content&lt;/h3&gt;
+      &lt;p&gt;Yahan extra information di ja sakti hai.&lt;/p&gt;
+    &lt;/aside&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&copy; 2025 RKTechGame&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+  <h2>Semantic Elements ke Fayde</h2>
+  <ul>
+    <li>Code ko zyada readable aur maintainable banate hain.</li>
+    <li>Search engines easily content samajh pate hain, jo SEO me madad karta hai.</li>
+    <li>Screen readers aur assistive devices ke liye accessibility badhta hai.</li>
+    <li>Consistent web standards follow karna asaan hota hai.</li>
+  </ul>
+</main>
+</body>
+</html>
