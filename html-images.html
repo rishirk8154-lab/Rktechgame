@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Images in HTML</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.6;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.6rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>HTML me Images ka Use</h1>
+  <p>
+    Websites me images ka use visual appeal ke liye bahut important hota hai. HTML me images display karne ke liye <code>&lt;img&gt;</code> tag ka use kiya jata hai.
+  </p>
+  <h2>&lt;img&gt; Tag kya hai?</h2>
+  <p>
+    <code>&lt;img&gt;</code> ek self-closing (empty) tag hota hai jo kisi image ko webpage me embed karta hai. Is tag ke do important attributes hote hain:
+  </p>
+  <ul>
+    <li><code>src</code>: Ye image ka source ya URL specify karta hai.</li>
+    <li><code>alt</code>: Agar image load nahi hota toh ye alternative text dikhta hai, aur screen readers ke liye useful hota hai.</li>
+  </ul>
+
+  <h2>Basic Syntax:</h2>
+  <pre><code>&lt;img src="image.jpg" alt="Image description" /&gt;</code></pre>
+
+  <h2>Example:</h2>
+  <pre><code>&lt;img src="https://www.example.com/images/logo.png" alt="Company Logo" width="200" height="100" /&gt;</code></pre>
+  <p>
+    Is example me image ko 200px width aur 100px height me display kiya gaya hai.
+  </p>
+
+  <h2>Important Attributes</h2>
+  <ul>
+    <li><code>width</code> aur <code>height</code>: Image ke size ko specify karte hain (pixels ya percentage me).</li>
+    <li><code>title</code>: Image par mouse hover karne par tooltip dikhata hai.</li>
+    <li><code>loading</code>: Image ke lazy loading ya normal loading ke liye use hota hai.</li>
+  </ul>
+
+  <h2>Image Ko Link Banana</h2>
+  <p>
+    Aap kisi image ko clickable bana kar hyperlink bhi kar sakte hain. Iske liye <code>&lt;img&gt;</code> tag ko <code>&lt;a&gt;</code> tag ke andar rakhte hain.
+  </p>
+  <pre><code>&lt;a href="https://www.example.com"&gt;
+  &lt;img src="logo.png" alt="Example Logo" /&gt;
+&lt;/a&gt;
+</code></pre>
+
+  <h2>Accessibility Importance</h2>
+  <p>
+    <code>alt</code> attribute dena zaruri hai taaki visually impaired users screen readers ka use karke samajh saken ki image me kya hai. Agar image important nahi hai toh <code>alt=""</code> bhi kar sakte hain.
+  </p>
+
+</main>
+</body>
+</html>
