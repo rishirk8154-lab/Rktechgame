@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Introduction to CSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+    margin-bottom: 18px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS ka Introduction</h1>
+  <p>
+    CSS ka full form hai <strong>Cascading Style Sheets</strong>. Ye ek language hai jo HTML pages ke look aur layout ko design karne ke liye use hoti hai.
+  </p>
+  <h2>CSS Kya Hai?</h2>
+  <p>
+    CSS aapko HTML documents ke elements ko visually style karne ka control deta hai, jaise colors, fonts, spacing, positioning, animations, aur responsive design banana.
+  </p>
+  <h2>CSS ka Importance</h2>
+  <ul>
+    <li>HTML sirf structure provide karta hai, jabki CSS us structure ki appearance define karta hai.</li>
+    <li>CSS se website ko attractive aur professional look mil sakta hai.</li>
+    <li>CSS alag stylesheet files me likha ja sakta hai jisse design ko ek jagah se manage karna asaan hota hai.</li>
+    <li>CSS responsive design me madad karta hai jisse website alag-alag devices pe acche se dikhai deta hai.</li>
+  </ul>
+  <h2>CSS kaise kaam karta hai?</h2>
+  <p>
+    CSS selectors aur properties ka use karke HTML elements ko style karta hai. Selector batata hai ki kis element ya elements ko style dena hai, aur properties jaise <code>color</code>, <code>font-size</code>, <code>margin</code>, etc. style define karte hain.
+  </p>
+  <h2>CSS likhne ke 3 tareeke</h2>
+  <ul>
+    <li><strong>Inline CSS:</strong> Direct HTML element ke andar style attribute me likhna.</li>
+    <li><strong>Internal CSS:</strong> HTML document ke <code>&lt;style&gt;</code> tag ke andar likhna.</li>
+    <li><strong>External CSS:</strong> Alag .css file banakar usko HTML me link karna.</li>
+  </ul>
+  <h2>Basic CSS Example</h2>
+  <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    p {
+      color: blue;
+      font-size: 18px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Yeh ek example paragraph hai.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+  <h2>CSS Selector Example</h2>
+  <p>
+    Is example me, selector <code>p</code> ka matlab hai ki page ke sabhi paragraph elements ko style dena hai.
+  </p>
+  <h2>Aap aur kya seekhenge?</h2>
+  <ul>
+    <li>CSS Box Model</li>
+    <li>Selectors, Classes, IDs</li>
+    <li>Layout Techniques (Flexbox, Grid)</li>
+    <li>Responsive Design with Media Queries</li>
+    <li>Transitions, Animations</li>
+  </ul>
+  <p>
+    CSS seekhkar aap apne webpages ko sundar aur user-friendly bana sakte hain.
+  </p>
+</main>
+</body>
+  </html>
+  
