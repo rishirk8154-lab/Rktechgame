@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Introduction to AWT and Swing in Java</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Introduction to AWT and Swing in Java</h1>
+</header>
+
+<section>
+  <h2>What is AWT (Abstract Window Toolkit)?</h2>
+  <p>
+    AWT Java ka ek purana GUI toolkit hai jisme platform-dependent components hote hain. Matlab ye components host operating system ke widgets par dependent hain. Isme buttons, labels, text fields jese basic GUI elements available hain.
+  </p>
+  <ul>
+    <li>It is part of <code>java.awt</code> package.</li>
+    <li>Components are heavyweight (native peers).</li>
+    <li>Platform dependent look and feel hota hai.</li>
+    <li>Less customizable aur thoda slow in execution compared to Swing.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>What is Swing?</h2>
+  <p>
+    Swing Java ke liye ek advanced lightweight GUI toolkit hai. Ye pure Java me likha gaya hai aur platform independent hi look and feel deta hai. Swing me advanced components jaise tables, trees, tabbed panes, dialogs etc hote hain.
+  </p>
+  <ul>
+    <li>Part of <code>javax.swing</code> package.</li>
+    <li>Lightweight components (no native peers).</li>
+    <li>Highly customizable with pluggable look and feel.</li>
+    <li>Supports MVC architecture for better design.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Difference Between AWT and Swing</h2>
+  <table border="1" cellpadding="7" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 900px; margin-top: 10px;">
+    <thead>
+      <tr style="background-color: #db1d29; color: white;">
+        <th>Feature</th>
+        <th>AWT</th>
+        <th>Swing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Package</td>
+        <td>java.awt</td>
+        <td>javax.swing</td>
+      </tr>
+      <tr>
+        <td>Component Type</td>
+        <td>Heavyweight (native peers)</td>
+        <td>Lightweight (Java-based)</td>
+      </tr>
+      <tr>
+        <td>Platform Dependency</td>
+        <td>Dependent on OS</td>
+        <td>Platform-independent</td>
+      </tr>
+      <tr>
+        <td>Look and Feel</td>
+        <td>Native OS look</td>
+        <td>Customizable, pluggable</td>
+      </tr>
+      <tr>
+        <td>Execution Speed</td>
+        <td>Relatively slower</td>
+        <td>Faster</td>
+      </tr>
+      <tr>
+        <td>MVC Support</td>
+        <td>No</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Advanced Components</td>
+        <td>Limited</td>
+        <td>Rich components like JTable, JTree, JTabbedPane</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Simple AWT Example</h2>
+  <pre><code>import java.awt.*;
+import java.awt.event.*;
+
+public class AWTExample extends Frame {
+  Label label;
+  TextField textField;
+  Button button;
+
+  public AWTExample() {
+    setLayout(new FlowLayout());
+
+    label = new Label("Name:");
+    textField = new TextField(20);
+    button = new Button("Submit");
+
+    add(label);
+    add(textField);
+    add(button);
+
+    button.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("AWT Button clicked! Input: " + textField.getText());
+      }
+    });
+
+    setTitle("AWT Example");
+    setSize(300, 150);
+    setVisible(true);
+  }
+
+  public static void main(String[] args) {
+    new AWTExample();
+  }
+}</code></pre>
+</section>
+
+<section>
+  <h2>Simple Swing Example</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class SwingExample extends JFrame {
+  JTextField textField;
+  JButton button;
+
+  public SwingExample() {
+    setLayout(new FlowLayout());
+
+    textField = new JTextField(20);
+    button = new JButton("Submit");
+
+    add(new JLabel("Name:"));
+    add(textField);
+    add(button);
+
+    button.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("Swing Button clicked! Input: " + textField.getText());
+      }
+    });
+
+    setTitle("Swing Example");
+    setSize(300, 150);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
+  }
+
+  public static void main(String[] args) {
+    new SwingExample();
+  }
+}</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
