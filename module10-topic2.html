@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Advanced Event Handling in Java Swing</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Advanced Event Handling in Java Swing</h1>
+</header>
+
+<section>
+  <h2>Event Handling - Concept & Architecture</h2>
+  <p>
+    Java Swing me user interactions ko capture karne aur handle karne ke liye event handling ka concept hota hai. Jab user kisi GUI component se interact karta hai, to ek event generate hota hai. Ye event ek listener object ke pass jata hai jo us event ko process karta hai.
+  </p>
+  <ul>
+    <li><b>Event Source:</b> Jo component interaction karta hai, jaise JButton.</li>
+    <li><b>Event Object:</b> Event ke baare me details deta hai, jaise ActionEvent.</li>
+    <li><b>Event Listener:</b> Interface jo event ko handle karta hai jaise ActionListener.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Commonly Used Event Listeners</h2>
+  <ul>
+    <li><b>ActionListener:</b> Button clicks aur menu selections ke liye</li>
+    <li><b>MouseListener:</b> Mouse clicks, enter, exit events ke liye</li>
+    <li><b>KeyListener:</b> Keyboard input track karne ke liye</li>
+    <li><b>WindowListener:</b> Window open, close, minimize events ke liye</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Event Handling Example with Multiple Listeners</h2>
+  <pre><code>import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class AdvancedEventHandlingDemo extends JFrame {
+  private JButton button;
+  private JTextField textField;
+  
+  public AdvancedEventHandlingDemo() {
+    setTitle("Advanced Event Handling Demo");
+    setSize(400, 200);
+    setLayout(new FlowLayout());
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    button = new JButton("Click Me");
+    textField = new JTextField(20);
+
+    add(button);
+    add(textField);
+
+    // ActionListener for button
+    button.addActionListener(e -> JOptionPane.showMessageDialog(null, "Button Clicked"));
+
+    // MouseListener for button
+    button.addMouseListener(new MouseAdapter() {
+      public void mouseEntered(MouseEvent e) {
+        button.setBackground(Color.GREEN);
+      }
+      public void mouseExited(MouseEvent e) {
+        button.setBackground(null);
+      }
+    });
+
+    // KeyListener for text field
+    textField.addKeyListener(new KeyAdapter() {
+      public void keyTyped(KeyEvent e) {
+        System.out.println("Key Typed: " + e.getKeyChar());
+      }
+    });
+  }
+
+  public static void main(String[] args) {
+    SwingUtilities.invokeLater(() -> {
+      new AdvancedEventHandlingDemo().setVisible(true);
+    });
+  }
+}</code></pre>
+  <p>
+    Is program me multiple event listeners use kiye gaye hain: button click, mouse enter/exit aur keyboard typing.
+  </p>
+</section>
+
+<section>
+  <h2>Event Dispatch Thread (EDT) ka Importance</h2>
+  <p>
+    Swing me GUI related code hamesha Event Dispatch Thread (EDT) par run karna chahiye. EDT GUI components ki thread-safe handling karta hai, isliye Swing applications me hamesha <code>SwingUtilities.invokeLater()</code> se GUI create karna best practice hai.
+  </p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+
+</body>
+</html>
