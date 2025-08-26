@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Responsive Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .box {
+    flex: 1 1 200px;
+    background: var(--kakashi-red);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Responsive Web Design kya hai?</h1>
+  <p>
+    Responsive design ka matlab hai website ko is tarah design karna ki wo alag-alag screen sizes (desktop, tablet, mobile) par sahi dikhe aur chaley.
+    Is design se user ko har device par accha experience milta hai.
+  </p>
+  <h2>Responsive Design ke Fundamental Components</h2>
+  <ul>
+    <li><strong>Viewport Meta Tag:</strong> Browser ko batata hai ki page ki width device ki screen width ke barabar honi chahiye.</li>
+    <li><strong>Fluid Layouts:</strong> Width fixed nahi hoti, percentage ya relative units se design flexible hota hai.</li>
+    <li><strong>Media Queries:</strong> CSS rules ko specific screen sizes par apply karne ke liye.</li>
+    <li><strong>Flexible Images:</strong> Images apne container ke size ke hisab se adjust ho jaati hain.</li>
+  </ul>
+
+  <h2>Viewport Meta Tag Example</h2>
+  <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+  <p>Ye tag har responsive website me zaruri hota hai.</p>
+
+  <h2>Media Queries Example</h2>
+  <pre><code>@media (max-width: 768px) {
+  body {
+    background-color: lightyellow;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .container {
+    flex-direction: column;
+  }
+}
+</code></pre>
+
+  <h2>Example Responsive Layout</h2>
+  <div class="container">
+    <div class="box">Box 1</div>
+    <div class="box">Box 2</div>
+    <div class="box">Box 3</div>
+  </div>
+
+  <p>
+    Is example me 3 boxes horizontally hain desktop screen par, aur chhoti screen par vertically stack ho jaayenge.
+  </p>
+
+  <h2>Summary</h2>
+  <p>
+    Responsive design se websites har device par acche se dikhai deti hain aur user experience improve hota hai. Aaj ke time me ye web development ka ek basic aur important hisa hai.
+  </p>
+</main>
+</body>
+</html>
