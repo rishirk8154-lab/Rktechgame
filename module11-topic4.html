@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | JDBC ResultSet Handling Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | JDBC ResultSet Handling Explained</h1>
+</header>
+
+<section>
+  <h2>JDBC ResultSet kya hai?</h2>
+  <p>
+    ResultSet ek object hai jo database query ka result hold karta hai. Ye ek cursor maintain karta hai jo current row ko point karta hai. Hum ResultSet me se data ko navigate aur access kar sakte hain, jaise next(), previous(), getString(), getInt() methods se.
+  </p>
+</section>
+
+<section>
+  <h2>ResultSet Navigation Methods</h2>
+  <ul>
+    <li><code>next()</code>: Cursor ko agle row par le jaata hai, agar available ho to true return karta hai.</li>
+    <li><code>previous()</code>: Cursor ko pichle row par le jaata hai.</li>
+    <li><code>first()</code>: Cursor ko first row par le aata hai.</li>
+    <li><code>last()</code>: Cursor ko last row par le aata hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ResultSet se Data kaise retrieve karen?</h2>
+  <p>Hum ResultSet se columns ke naam ya index se data fetch kar sakte hain:</p>
+  <ul>
+    <li>String data ke liye: <code>getString(columnName)</code> ya <code>getString(columnIndex)</code></li>
+    <li>Integer data ke liye: <code>getInt(columnName)</code> ya <code>getInt(columnIndex)</code></li>
+    <li>Double data ke liye: <code>getDouble(columnName)</code> etc.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ResultSet Handling Ka Example</h2>
+  <pre><code>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ResultSetExample {
+  public static void main(String[] args) {
+    String url = "jdbc:mysql://localhost:3306/mydatabase?serverTimezone=UTC";
+    String user = "root";
+    String password = "yourpassword";
+
+    try (Connection con = DriverManager.getConnection(url, user, password);
+         Statement stmt = con.createStatement();
+         ResultSet rs = stmt.executeQuery("SELECT id, name, salary FROM employees")) {
+
+      while (rs.next()) {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        double salary = rs.getDouble("salary");
+        System.out.println("ID: " + id + ", Name: " + name + ", Salary: " + salary);
+      }
+
+    } catch (SQLException e) {
+      System.err.println("Database error: " + e.getMessage());
+      e.printStackTrace();
+    }
+  }
+}
+</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
