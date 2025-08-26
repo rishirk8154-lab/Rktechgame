@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Java Thread Life Cycle - Detailed</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red), 0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Java Thread Life Cycle - Detailed</h1>
+</header>
+
+<section>
+  <h2>Thread Life Cycle kya hai?</h2>
+  <p>Java mein thread apni poori life mein kuch alag alag states mein se guzarta hai. Har state ka apna matlab hota hai aur ye batata hai ki thread abhi kya kar raha hai.</p>
+</section>
+
+<section>
+  <h2>Thread States kya kya hoti hain?</h2>
+  <ul>
+    <li><b>New:</b> Jab naya thread create hota hai lekin start() nahi hua hota.</li>
+    <li><b>Runnable:</b> Jab thread start() call ke baad execution ke liye ready hota hai.</li>
+    <li><b>Running:</b> Jab thread CPU lekar apna kaam kar raha hota hai.</li>
+    <li><b>Blocked:</b> Jab thread kisi resource ya lock ke liye wait kar raha ho.</li>
+    <li><b>Waiting:</b> Jab thread indefinitely dusre thread se kuch signal ya notification ka wait kar raha ho.</li>
+    <li><b>Timed Waiting:</b> Jab thread kisi fixed duration ke liye wait kar raha ho, jaise sleep() ya wait(timeout).</li>
+    <li><b>Terminated:</b> Jab thread apna kaam finish kar leta hai ya abort ho jata hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Thread Life Cycle State Transitions</h2>
+  <p>Thread apni life me different states se guzarta hai. Kuch example transitions hain:</p>
+  <ul>
+    <li><b>New → Runnable:</b> Jab start() call hota hai.</li>
+    <li><b>Runnable → Running:</b> Jab scheduler thread ko CPU allot karta hai.</li>
+    <li><b>Running → Waiting/Blocked:</b> Jab thread wait ya block hota hai kisi resource ke liye.</li>
+    <li><b>Waiting/Blocked → Runnable:</b> Jab resource milta hai ya notify hota hai.</li>
+    <li><b>Running → Terminated:</b> Jab run() method khatam ho jata hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Example: Java Thread Life Cycle Code</h2>
+  <pre><code>class MyThread extends Thread {
+  public MyThread(String name) {
+    super(name);
+    System.out.println("State: New (" + getName() + ")");
+  }
+  
+  public void run() {
+    System.out.println("State: Running (" + getName() + ")");
+    try {
+      Thread.sleep(1000);
+      System.out.println(getName() + " is working...");
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    System.out.println("State: Terminated (" + getName() + ")");
+  }
+  
+  public void startThread() {
+    System.out.println("State: Runnable (" + getName() + ")");
+    start();
+  }
+}
+
+public class ThreadLifeCycleDemo {
+  public static void main(String[] args) {
+    MyThread t1 = new MyThread("Thread-1");
+    MyThread t2 = new MyThread("Thread-2");
+    t1.startThread();
+    t2.startThread();
+  }
+}
+</code></pre>
+  <p><i>Output me thread ki har state print hoti hai jisse thread life cycle samajhna easy hota hai.</i></p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
