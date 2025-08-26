@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Connecting to Database with JDBC</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    color: var(--kakashi-red);
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red), 0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ol {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+  ol {
+    margin-left: 30px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ol, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Connecting to Database with JDBC</h1>
+</header>
+
+<section>
+  <h2>Database se Connection Karne ke Steps</h2>
+  <p>Java me JDBC API use karke database se connect karne ke liye kuch important steps hote hain, jinhe step-by-step yahan samjhaya gaya hai:</p>
+  <ol>
+    <li><strong>JDBC Package Import Karna:</strong> Java code me JDBC related classes import karna hota hai, jaise <code>java.sql.*</code>.</li>
+    <li><strong>JDBC Driver Load Karna:</strong> JDBC driver ko load karna, jo Java ke liye database connection establish karta hai. Example:<br />
+      <code>Class.forName("com.mysql.cj.jdbc.Driver");</code> (MySQL ke liye)</li>
+    <li><strong>Database se Connection establish karna:</strong> <code>DriverManager.getConnection()</code> method call karke connection banana. Yahan URL, username, password dena hota hai.<br />
+      Example URL: <code>jdbc:mysql://localhost:3306/mydatabase?serverTimezone=UTC</code></li>
+    <li><strong>SQL Statement create karna:</strong> Connection object se <code>createStatement()</code> ya <code>prepareStatement()</code> call karna.</li>
+    <li><strong>Query execute karna:</strong> SQL query ko <code>executeQuery()</code> ya <code>executeUpdate()</code> se chalana aur ResultSet me data lena.</li>
+    <li><strong>Resources close karna:</strong> Connection, Statement, ResultSet objects ko close karke resources release karna bahut important hota hai.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Simple JDBC Connection Example Code</h2>
+  <pre><code>import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DatabaseConnect {
+    public static void main(String[] args) {
+        // Database URL, username, password
+        String url = "jdbc:mysql://localhost:3306/mydatabase?serverTimezone=UTC";
+        String username = "root";
+        String password = "yourpassword";
+
+        try {
+            // Step 1: Load JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Step 2: Establish connection
+            Connection con = DriverManager.getConnection(url, username, password);
+            System.out.println("Database connected successfully.");
+
+            // Step 3: Create statement
+            Statement stmt = con.createStatement();
+
+            // Step 4: Execute query
+            String sql = "SELECT id, name, email FROM users";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // Step 5: Process result
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email);
+            }
+
+            // Step 6: Close resources
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (ClassNotFoundException e) {
+            System.err.println("JDBC Driver not found.");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Database error:");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+  <p>Is example me basic JDBC connection establish karna, query run karna aur result print karna dikhaaya gaya hai.</p>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
