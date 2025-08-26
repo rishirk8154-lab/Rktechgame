@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Serialization & Deserialization in Java</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Serialization & Deserialization in Java</h1>
+</header>
+
+<section id="intro">
+  <h2>Serialization & Deserialization - Kya Hai?</h2>
+  <p>
+    Serialization ka matlab hota hai Java object ko byte stream mein convert karna, taaki usko file me save kiya ja sake ya network pe bheja ja sake.<br>
+    Deserialization process mein byte stream se wapas object banaya jata hai.
+  </p>
+  <p>Yeh process object ko persistent banata hai aur distributed applications mein bohot useful hota hai.</p>
+</section>
+
+<section id="how-it-works">
+  <h2>Kaise Kaam Karta Hai?</h2>
+  <ul>
+    <li>Kisi class ko serializable banane ke liye <code>implements Serializable</code> lagana hota hai.</li>
+    <li>Serialization ke liye <code>ObjectOutputStream</code> aur deserialization ke liye <code>ObjectInputStream</code> use karte hain.</li>
+  </ul>
+  <h3>Serialization Example</h3>
+  <pre><code>import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+class Person implements Serializable {
+  private static final long serialVersionUID = 1L;
+  String name;
+  int age;
+  Person(String name, int age){
+    this.name = name;
+    this.age = age;
+  }
+}
+
+public class SerializeDemo {
+  public static void main(String[] args) {
+    Person p = new Person("Amit", 25);
+    try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.ser"))) {
+      oos.writeObject(p);
+      System.out.println("Serialization successful");
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+}</code></pre>
+
+  <h3>Deserialization Example</h3>
+  <pre><code>import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
+try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.ser"))) {
+  Person p2 = (Person) ois.readObject();
+  System.out.println("Deserialized Person: " + p2.name + ", " + p2.age);
+} catch(Exception e) {
+  e.printStackTrace();
+}</code></pre>
+</section>
+
+<section id="advanced">
+  <h2>Advanced Concepts</h2>
+  <h3>1. serialVersionUID</h3>
+  <p>
+    Ye ek unique long value hoti hai jo JVM ko batati hai object ka version.
+    Agar class definition change hogi aur serialVersionUID mismatch hua toh deserialization fail ho jayegi.
+  </p>
+
+  <h3>2. transient Keyword</h3>
+  <p>Jo fields transient hoti hain wo serialize nahi hoti. Usually sensitive info ya temporary data ke liye use kiya jata hai.</p>
+
+  <h3>3. static Fields</h3>
+  <p>Static fields serialize nahi hoti kyunki ye class level hoti hain na ki instance level.</p>
+
+  <h3>4. Custom Serialization</h3>
+  <p>Aap apni class mein `writeObject` aur `readObject` methods define karke serialization process customize kar sakte hain.</p>
+
+  <h3>Example: transient & static</h3>
+  <pre><code>import java.io.*;
+
+class Emp implements Serializable {
+  private static final long serialVersionUID = 1L;
+  String name;
+  transient String password;
+  static int companyCode = 1001;
+  int age;
+
+  public Emp(String name, String password, int age) {
+    this.name = name;
+    this.password = password;
+    this.age = age;
+  }
+}
+
+public class AdvSerializationDemo {
+  public static void main(String[] args) {
+    Emp emp = new Emp("Amit", "secret", 30);
+    try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("emp.ser"))) {
+      out.writeObject(emp);
+      System.out.println("Object Serialized");
+    } catch(Exception e) { e.printStackTrace(); }
+
+    emp = null;
+
+    try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("emp.ser"))) {
+      emp = (Emp) in.readObject();
+      System.out.println("Deserialized Emp: " + emp.name + ", " + emp.password + ", " + emp.age);
+      System.out.println("Static field companyCode: " + Emp.companyCode);
+    } catch(Exception e) { e.printStackTrace(); }
+  }
+}</code></pre>
+  <p>
+    Output me dekhenge ki `password` null rahega kyunki wo transient tha, aur `companyCode` static hone ki wajah se serialize nahi hua.
+  </p>
+</section>
+
+<section id="tips-security">
+  <h2>Important Tips & Security</h2>
+  <ul>
+    <li>Serialization me object states save karna convenient hai, lekin serialized data ko handle karte waqt security risks (jaise deserialization attack) samajhna zaruri hai.</li>
+    <li>Validation aur input checking zaruri hai jab remote se serialized objects le rahe hain.</li>
+    <li>Backward compatibility maintain karne ke liye humesha serialVersionUID declare karein.</li>
+    <li>Custom serialization se aap sensitive info ko encrypt kar sakte hain.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
