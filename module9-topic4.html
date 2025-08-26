@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Thread Communication & Deadlocks in Java</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    color: var(--kakashi-red);
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42, 0, 0.58, 1) both;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  h3 {
+    color: var(--kakashi-red);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: var(--kakashi-dark);
+    font-size: 1rem;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    color: #2d3a67;
+    margin-top: 10px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(90px);
+      opacity: 0;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px 0;
+    font-size: 1.1rem;
+    color: #333a4d88;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 770px) {
+    body {
+      padding: 20px 15px;
+    }
+    section {
+      padding: 20px 25px;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Thread Communication & Deadlocks in Java</h1>
+</header>
+
+<section>
+  <h2>Thread Communication (Inter-Thread Communication) kya hai?</h2>
+  <p>
+    Jab multiple threads ek doosre ke sath coordinate karte hain aur data share karte hain, tab thread communication kehte hain. Java me ye achieved hota hai <code>wait()</code>, <code>notify()</code>, aur <code>notifyAll()</code> methods ke through.
+  </p>
+  <ul>
+    <li><code>wait()</code>: Current thread ko release karke usko wait state me daal deta hai jab tak dusra thread notify na kare.</li>
+    <li><code>notify()</code>: Kisi waiting thread ko jagata hai jo us object pe wait kar raha hai.</li>
+    <li><code>notifyAll()</code>: Saare waiting threads ko jagata hai.</li>
+  </ul>
+  <p>Ye sab methods object class ke hain aur synchronized context me hi use kiye jaate hain.</p>
+</section>
+
+<section>
+  <h2>Inter-Thread Communication ka Example</h2>
+  <pre><code>class Chat {
+  boolean flag = false;
+
+  public synchronized void Question(String msg) {
+    if (flag) {
+      try { wait(); } catch (InterruptedException e) { e.printStackTrace(); }
+    }
+    System.out.println(msg);
+    flag = true;
+    notify();
+  }
+
+  public synchronized void Answer(String msg) {
+    if (!flag) {
+      try { wait(); } catch (InterruptedException e) { e.printStackTrace(); }
+    }
+    System.out.println(msg);
+    flag = false;
+    notify();
+  }
+}
+
+class T1 implements Runnable {
+  Chat m;
+  String[] s1 = { "Hi", "How are you?", "I am fine" };
+  public T1(Chat m1) {
+    this.m = m1;
+    new Thread(this, "Question").start();
+  }
+  public void run() {
+    for (int i = 0; i < s1.length; i++) {
+      m.Question(s1[i]);
+    }
+  }
+}
+
+class T2 implements Runnable {
+  Chat m;
+  String[] s2 = { "Hi", "I am good, thanks", "Great!" };
+  public T2(Chat m2) {
+    this.m = m2;
+    new Thread(this, "Answer").start();
+  }
+  public void run() {
+    for (int i = 0; i < s2.length; i++) {
+      m.Answer(s2[i]);
+    }
+  }
+}
+
+public class ThreadCommDemo {
+  public static void main(String[] args) {
+    Chat m = new Chat();
+    new T1(m);
+    new T2(m);
+  }
+}</code></pre>
+  <p>Output:</p>
+  <p>Hi<br>Hi<br>How are you?<br>I am good, thanks<br>I am fine<br>Great!</p>
+</section>
+
+<section>
+  <h2>Deadlock kya hai?</h2>
+  <p>
+    Deadlock ek situation hai jab do ya usse zyada threads ek dusre ke resources ka intezaar karte rahte hain bina kabhi release kiye, jiski wajah se saare threads permanently block ho jate hain.
+  </p>
+  <ul>
+    <li>Deadlock mein sabhi threads wait kar rahe hote hain dusre threads ke release karne ke liye resource.</li>
+    <li>Resource acquisition ke different order deadlock create karte hain.</li>
+    <li>Programming me deadlock avoid karna bahut important hota hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Deadlock ka Simple Example</h2>
+  <pre><code>class Resource {
+  synchronized void foo(Resource r) {
+    String name = Thread.currentThread().getName();
+    System.out.println(name + " entered foo()");
+    try { Thread.sleep(100); } catch (InterruptedException e) {}
+    System.out.println(name + " trying to call bar()");
+    r.bar(this);
+  }
+  synchronized void bar(Resource r) {
+    String name = Thread.currentThread().getName();
+    System.out.println(name + " entered bar()");
+  }
+}
+
+public class DeadlockDemo {
+  public static void main(String[] args) {
+    final Resource r1 = new Resource();
+    final Resource r2 = new Resource();
+
+    Thread t1 = new Thread(() -> r1.foo(r2), "Thread-1");
+    Thread t2 = new Thread(() -> r2.foo(r1), "Thread-2");
+
+    t1.start();
+    t2.start();
+  }
+}</code></pre>
+
+<p>
+  Output dekhenge ki Thread-1 aur Thread-2 ek doosre ke lock ka wait kar rahe hain aur program hang ho jata hai (deadlock).
+</p>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
+  
