@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | CSS Colors, Fonts and Styling</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .color-box {
+    width: 150px;
+    height: 50px;
+    margin: 10px 0;
+    border-radius: 8px;
+  }
+  .font-sample {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    margin: 12px 0;
+    color: var(--kakashi-red);
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS Colors, Fonts aur Styling</h1>
+
+  <h2>Colors in CSS</h2>
+  <p>CSS me colors set karne ke kai tareeke hote hain jaise:</p>
+  <ul>
+    <li><strong>Named Colors:</strong> Jaise <code>red</code>, <code>blue</code>, <code>green</code>.</li>
+    <li><strong>Hexadecimal Colors:</strong> Jaise <code>#ff0000</code>, <code>#00ff00</code>.</li>
+    <li><strong>RGB Colors:</strong> Jaise <code>rgb(255, 0, 0)</code>.</li>
+    <li><strong>RGBA Colors (opacity ke saath):</strong> Jaise <code>rgba(255, 0, 0, 0.5)</code>.</li>
+    <li><strong>HSL Colors:</strong> <code>hsl(120, 100%, 50%)</code>.</li>
+  </ul>
+  <div class="color-box" style="background-color: red;">red</div>
+  <div class="color-box" style="background-color: #00aaff;">#00aaff</div>
+  <div class="color-box" style="background-color: rgb(255, 200, 0);">rgb(255,200,0)</div>
+  <div class="color-box" style="background-color: rgba(255, 0, 0, 0.5);">rgba(255,0,0,0.5)</div>
+  <div class="color-box" style="background-color: hsl(240, 100%, 50%);">hsl(240,100%,50%)</div>
+
+  <h2>Fonts in CSS</h2>
+  <p>Fonts ka use text ko attractive aur readable banane ke liye hota hai. CSS me font family, size, weight aur style define kiye ja sakte hain.</p>
+  <ul>
+    <li><strong>font-family:</strong> Text ka font select karta hai. Jaise <code>Arial</code>, <code>Verdana</code>, <code>Georgia</code>, ya custom fonts.</li>
+    <li><strong>font-size:</strong> Text ka size set karta hai. Jaise <code>16px</code>, <code>1.2rem</code>.</li>
+    <li><strong>font-weight:</strong> Text ki motai ko control karta hai. Jaise <code>normal</code>, <code>bold</code>, <code>700</code>.</li>
+    <li><strong>font-style:</strong> Text ko italic ya normal banata hai.</li>
+  </ul>
+  <p class="font-sample" style="font-family: Arial, sans-serif;">Arial font sample text</p>
+  <p class="font-sample" style="font-family: 'Courier New', monospace;">Courier New font sample text</p>
+  <p class="font-sample" style="font-family: Georgia, serif;">Georgia font sample text</p>
+
+  <h2>Text Styling Properties</h2>
+  <ul>
+    <li><strong>color:</strong> Text ka color set karta hai.</li>
+    <li><strong>text-align:</strong> Text ko left, center ya right align karta hai.</li>
+    <li><strong>text-decoration:</strong> Text par underline, overline, line-through ya none apply karta hai.</li>
+    <li><strong>text-transform:</strong> Text ko uppercase, lowercase ya capitalize karta hai.</li>
+    <li><strong>letter-spacing:</strong> Letters ke beech space badhata hai.</li>
+    <li><strong>line-height:</strong> Lines ke beech height control karta hai.</li>
+  </ul>
+  
+  <pre><code>p {
+  color: #db1d29;
+  text-align: center;
+  text-decoration: underline;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.6;
+}
+</code></pre>
+
+  <p>
+    In properties ko samajhkar aap apne website ko sundar aur professional look de sakte hain.
+  </p>
+</main>
+</body>
+</html>
