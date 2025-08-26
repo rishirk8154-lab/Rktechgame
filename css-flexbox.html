@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | CSS Flexbox</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.7;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.8rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  code {
+    background: #dde4f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .flex-container {
+    display: flex;
+    background-color: #ccc;
+    padding: 10px;
+    gap: 12px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  .flex-item {
+    background-color: var(--kakashi-red);
+    color: white;
+    padding: 15px 25px;
+    font-weight: 700;
+    border-radius: 8px;
+    flex: 1 1 150px;
+    text-align: center;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>CSS Flexbox kya hai?</h1>
+  <p>
+    Flexbox ek CSS layout model hai jo container ke andar items ko efficiently align aur distribute karne me madad karta hai.
+    Ye 1-dimensional layout provide karta hai, jisme items row ya column me arrange hote hain.
+  </p>
+  <h2>Flex Container aur Flex Items</h2>
+  <p>
+    Flexbox me do main parts hote hain:
+  </p>
+  <ul>
+    <li><strong>Flex Container:</strong> Wo parent element jisme <code>display: flex;</code> apply kiya jata hai.</li>
+    <li><strong>Flex Items:</strong> Container ke andar ke direct child elements jo flexbox ke rules ko follow karte hain.</li>
+  </ul>
+  <h2>Basic Example</h2>
+  <div class="flex-container">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
+    <div class="flex-item">Item 4</div>
+  </div>
+  <pre><code>&lt;div style="display:flex;"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+  &lt;div&gt;Item 4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+  <h2>Flexbox ke Important Properties</h2>
+  <ul>
+    <li><code>flex-direction</code>: Items ko row ya column me arrange karta hai. Values: <code>row</code>, <code>column</code>, <code>row-reverse</code>, <code>column-reverse</code>.</li>
+    <li><code>justify-content</code>: Main axis pe items ko align karta hai. Values: <code>flex-start</code>, <code>center</code>, <code>space-between</code>, <code>space-around</code>.</li>
+    <li><code>align-items</code>: Cross axis (perpendicular) pe single line items ko align karta hai. Values: <code>stretch</code>, <code>center</code>, <code>flex-start</code>, <code>flex-end</code>.</li>
+    <li><code>flex-wrap</code>: Items ko wrap hone deta hai agar container me space kam ho. Values: <code>nowrap</code>, <code>wrap</code>.</li>
+    <li><code>order</code>: Items ka sequence change karta hai.</li>
+  </ul>
+
+  <h2>Flex Items ki Properties</h2>
+  <ul>
+    <li><code>flex-grow</code>: Extra space lena chahiye ya nahi.</li>
+    <li><code>flex-shrink</code>: Shrink hone ki capability.</li>
+    <li><code>flex-basis</code>: Initial size set karta hai.</li>
+    <li><code>align-self</code>: Individual item ke alignment ko override karta hai.</li>
+  </ul>
+  <h2>Summary</h2>
+  <p>
+    Flexbox aaj ke time me responsive aur complex layouts banane ke liye bahut popular aur powerful tool hai. Isse aap easily flexible aur aligned designs bana sakte hain bina float ya positioning ke jhanjhat ke.
+  </p>
+</main>
+</body>
+                                                              </html>
+          
