@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Lambda Expressions and Stream API in Java</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul, pre {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-top: 15px;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width:768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Lambda Expressions and Stream API in Java</h1>
+</header>
+
+<section>
+  <h2>Lambda Expressions kya hai?</h2>
+  <p>
+    Lambda expression Java 8 me introduce hua ek anonymous function hai jo ek short block of code hai jisme parameters ho sakte hain aur ek expression ya statements ka block ho sakta hai. Ye functional interfaces ka implementation hota hai bina explicit class banaye.
+  </p>
+</section>
+
+<section>
+  <h2>Lambda Expression Syntax</h2>
+  <pre><code>// Basic syntax
+(parameters) -&gt; expression;
+
+// Example
+(int a, int b) -&gt; a + b;
+</code></pre>
+</section>
+
+<section>
+  <h2>Lambda Expressions ka Example</h2>
+  <pre><code>import java.util.ArrayList;
+
+public class LambdaDemo {
+    public static void main(String[] args) {
+        ArrayList&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();
+        numbers.add(5);
+        numbers.add(9);
+        numbers.add(8);
+        numbers.add(1);
+
+        // Lambda expression with forEach to print elements
+        numbers.forEach(n -&gt; System.out.println(n));
+
+        // Lambda expression with condition
+        numbers.forEach(n -&gt; {
+            if (n % 2 == 0) System.out.println("Even: " + n);
+        });
+    }
+}
+</code></pre>
+</section>
+
+<section>
+  <h2>Stream API kya hai?</h2>
+  <p>
+    Stream API bhi Java 8 me aaya jo collection ke objects par functional-style operations allow karta hai jaise filter, map, reduce, sort etc bina collection ko modify kiye. Streams lazy evaluation aur parallel processing bhi support karte hain.
+  </p>
+</section>
+
+<section>
+  <h2>Stream API ka Example</h2>
+  <pre><code>import java.util.Arrays;
+import java.util.List;
+
+public class StreamDemo {
+    public static void main(String[] args) {
+        List&lt;String&gt; names = Arrays.asList("Amit", "Neha", "Ravi", "Priya");
+
+        // Stream to filter names starting with 'R' and print them
+        names.stream()
+             .filter(name -&gt; name.startsWith("R"))
+             .forEach(System.out::println);
+    }
+}
+</code></pre>
+</section>
+
+<section>
+  <h2>Lambda Expressions aur Streams ke Fayde</h2>
+  <ul>
+    <li>Code concise aur readable banta hai.</li>
+    <li>Functional programming ka support milta hai.</li>
+    <li>Parallel processing se performance improve ho sakti hai.</li>
+    <li>Collection operations easily chain kiye ja sakte hain.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
