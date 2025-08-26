@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Hyperlinks aur Navigation in HTML</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.6;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.6rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  p, ul {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  code {
+    background: #dde4f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>HTML me Hyperlinks aur Navigation</h1>
+  <p>
+    Hyperlink ka matlab hota hai ek aisa link jo ek webpage se doosre webpage ya website ko connect karta hai. Jab aap hyperlink par click karte hain, to aap kisi dusri jagah ya page par pahunch jaate hain.
+  </p>
+  <h2>Anchor Tag (&lt;a&gt;)</h2>
+  <p>
+    HTML me hyperlink banane ke liye <code>&lt;a&gt;</code> tag ka use hota hai. Iske sath <code>href</code> attribute diya jata hai jisme link ki destination URL hoti hai.
+  </p>
+  <h2>Simplest Hyperlink Example:</h2>
+  <pre><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code></pre>
+  <p>
+    Jab koi user "Google" par click karega, tab browser usko Google ki website par le jayega.
+  </p>
+
+
+
+  <h2>Hyperlink ke Prakar</h2>
+  <ul>
+    <li><strong>Absolute URL:</strong> Puri website address ke sath link, jaise <code>https://www.google.com</code>.</li>
+    <li><strong>Relative URL:</strong> Apne website ke andar kisi dusre page ka path, jaise <code>about.html</code> ya <code>folder/contact.html</code>.</li>
+    <li><strong>Anchor Link:</strong> Ek hi page ke kisi particular section par jana, jisme <code>id</code> attribute ka use hota hai. Jaise <code>&lt;a href="#section1"&gt;Section 1&lt;/a&gt;</code>.</li>
+    <li><strong>Email Link:</strong> Email client ko kholne ke liye <code>mailto:</code> use hota hai. Jaise <code>&lt;a href="mailto:example@example.com"&gt;Email bhejein&lt;/a&gt;</code>.</li>
+  </ul>
+
+  <h2>Example : Different Types of Links</h2>
+  <pre><code>&lt;!-- Absolute URL --&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;Google&lt;/a&gt;
+
+&lt;!-- Relative URL --&gt;
+&lt;a href="about.html"&gt;About Us&lt;/a&gt;
+
+&lt;!-- Anchor Link --&gt;
+&lt;a href="#section1"&gt;Jump to Section 1&lt;/a&gt;
+
+&lt;!-- Email Link --&gt;
+&lt;a href="mailto:someone@example.com"&gt;Send Email&lt;/a&gt;
+</code></pre>
+  <h2>Navigation ke liye Anchor Links</h2>
+  <p>
+    Aap web pages me alag-alag sections ko <code>id</code> attribute dekar anchor links bana sakte hain jise click karke user turant us section pe ja sake.
+  </p>
+  <pre><code>&lt;!-- Page ke kisi section me --&gt;
+&lt;h2 id="section1"&gt;Section 1&lt;/h2&gt;
+
+&lt;!-- Link jo us section me jaye --&gt;
+&lt;a href="#section1"&gt;Section 1 par jao&lt;/a&gt;
+</code></pre>
+  <h2>Link ka Target Attribute</h2>
+  <p>
+    <code>target</code> attribute specify karta hai ki link ka page kahan open hoga — current tab me ya nayi tab me. Example:
+  </p>
+  <pre><code>&lt;a href="https://www.google.com" target="_blank"&gt;Google new tab me khulega&lt;/a&gt;</code></pre>
+  <h2>Important Link Attributes</h2>
+  <ul>
+    <li><code>href</code> – link destination specify karta hai.</li>
+    <li><code>target</code> – jahan link open hoga wo specify karta hai (e.g., <code>_blank</code> nayi tab ke liye).</li>
+    <li><code>title</code> – link ka tooltip (extra info) dikhata hai jab mouse upar hota hai.</li>
+    <li><code>rel</code> – link aur current page ke sambandh ko define karta hai, jaise <code>nofollow</code> ya <code>noopener</code>.</li>
+  </ul>
+  <h2>Images Ko Link Banana</h2>
+  <p>
+    Aap kisi image ko bhi hyperlink bana sakte hain. Iske liye <code>&lt;img&gt;</code> tag ko <code>&lt;a&gt;</code> tag ke andar rakhen:
+  </p>
+  <pre><code>&lt;a href="https://www.example.com"&gt;
+  &lt;img src="image.jpg" alt="Example Image" /&gt;
+&lt;/a&gt;
+</code></pre>
+</main>
+</body>
+</html>
