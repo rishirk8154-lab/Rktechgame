@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Client-Server Architecture in Java</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow:
+      0 0 8px var(--kakashi-red),
+      0 0 14px var(--kakashi-red),
+      0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  pre {
+    background: #dde4f0;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+  }
+  @keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(90px);}
+    80% {opacity: 0.6;}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.8rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul, pre {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Client-Server Architecture in Java</h1>
+</header>
+
+<section>
+  <h2>Client-Server Architecture kya hai?</h2>
+  <p>Client-server architecture ek design model hai jisme do alag-alag programs (client aur server) network ke zariye communicate karte hain.</p>
+  <p>Is model me:</p>
+  <ul>
+    <li><b>Client:</b> Wo program ya device jo server se service ya resource request karta hai.</li>
+    <li><b>Server:</b> Wo powerful system ya program jo client ke requests ko process karke response deta hai.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Client-Server Architecture ke Key Components</h2>
+  <ul>
+    <li><b>Client Application:</b> User interface ya application jo server se data ya service mantaa hai.</li>
+    <li><b>Server Application:</b> Data management, processing aur business logic perform karta hai.</li>
+    <li><b>Network:</b> Communication channel jo clients aur servers ko connect karta hai.</li>
+    <li><b>Protocols:</b> Communication ke rules jise dono parties follow karti hain (jaise HTTP, TCP/IP).</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Java me Client-Server Interaction Steps</h2>
+  <ul>
+    <li>Server ek port pe <code>ServerSocket</code> start karta hai aur clients ke liye listen karta hai.</li>
+    <li>Client <code>Socket</code> bana kar server ke IP address aur port se connect hota hai.</li>
+    <li>Dono end pe input/output streams se messages ya data exchange hota hai.</li>
+    <li>Kaam complete hone pe sockets close kar diye jate hain.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Client Example Code (Basic)</h2>
+  <pre><code>import java.net.*;
+import java.io.*;
+
+public class Client {
+    public static void main(String[] args) {
+        String serverIP = "127.0.0.1";
+        int port = 5000;
+
+        try (Socket socket = new Socket(serverIP, port);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
+
+            String inputUser;
+            System.out.println("Connected to server: " + serverIP + ":" + port);
+
+            while ((inputUser = console.readLine()) != null) {
+                out.println(inputUser);
+                String response = in.readLine();
+                System.out.println("Server: " + response);
+
+                if ("bye".equalsIgnoreCase(inputUser)) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+</section>
+
+<section>
+  <h2>Server Example Code (Basic)</h2>
+  <pre><code>import java.net.*;
+import java.io.*;
+
+public class Server {
+    public static void main(String[] args) {
+        int port = 5000;
+
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server listening on port " + port);
+
+            try (Socket clientSocket = serverSocket.accept();
+                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+
+                System.out.println("Client connected: " + clientSocket.getInetAddress());
+
+                String clientInput;
+                while ((clientInput = in.readLine()) != null) {
+                    System.out.println("Client: " + clientInput);
+                    out.println("Echo: " + clientInput);
+
+                    if ("bye".equalsIgnoreCase(clientInput)) {
+                        break;
+                    }
+                }
+            }
+            System.out.println("Client disconnected.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+
+</body>
+</html>
