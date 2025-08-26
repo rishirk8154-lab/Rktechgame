@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Embedded Media in HTML</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f0f4faee;
+    border-radius: 21px;
+    box-shadow: 0 3px 18px #54628533;
+    padding: 30px 40px;
+    line-height: 1.6;
+  }
+  h1 {
+    color: var(--kakashi-red);
+    font-size: 2.6rem;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 18px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    color: var(--kakashi-blue);
+    margin-top: 24px;
+    margin-bottom: 14px;
+  }
+  p {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+  pre {
+    background: #dde4f0;
+    padding: 18px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+  iframe, video, audio, embed {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+  }
+  a {
+    color: var(--kakashi-red);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      padding: 25px 20px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      padding-left: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>HTML me Embedded Media</h1>
+  <p>
+    Webpages me media content jaise audio, video, PDF ya doosre webpages ko embed karna important hota hai. HTML5 ne iske liye kai tags provide kiye hain jinse ye kaafi asaan ho gaya hai.
+  </p>
+
+  <h2>&lt;video&gt; Tag</h2>
+  <p>HTML5 me video files embed karne ke liye &lt;video&gt; tag ka use hota hai. Isme aap multiple source de sakte hain aur controls automatic milte hain.</p>
+  <video width="480" controls>
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm" />
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <pre><code>&lt;video width="480" controls&gt;
+  &lt;source src="flower.webm" type="video/webm"&gt;
+  &lt;source src="flower.mp4" type="video/mp4"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+</code></pre>
+
+  <h2>&lt;audio&gt; Tag</h2>
+  <p>Audio files ko embed karne ke liye &lt;audio&gt; tag ka use hota hai. Isme bhi multiple sources aur controls hota hai.</p>
+  <audio controls>
+    <source src="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  <pre><code>&lt;audio controls&gt;
+  &lt;source src="roar.mp3" type="audio/mpeg"&gt;
+  Your browser does not support the audio element.
+&lt;/audio&gt;
+</code></pre>
+
+  <h2>&lt;embed&gt; Tag</h2>
+  <p>&lt;embed&gt; tag se aap external content embed kar sakte hain jaise PDF, Flash, ya koi bhi plugin-based content.</p>
+  <embed src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" type="application/pdf" width="100%" height="400px" />
+  <pre><code>&lt;embed src="document.pdf" type="application/pdf" width="100%" height="400px" /&gt;</code></pre>
+
+  <h2>&lt;iframe&gt; Tag</h2>
+  <p>Iframe aapko ek dusre webpage ko apne webpage ke andar dikhane ka moka deta hai.</p>
+  <iframe src="https://www.google.com" width="600" height="400" title="Google"></iframe>
+  <pre><code>&lt;iframe src="https://www.google.com" width="600" height="400" title="Google"&gt;&lt;/iframe&gt;</code></pre>
+
+  <h2>Summary</h2>
+  <p>
+    HTML5 ke ye tags embedded media ko asani se webpage me dikhane ka tarika dete hain, bina kisi third-party plugin ke zarurat ke. Video, audio, documents, ya external pages sab asani se embed kiye ja sakte hain.
+  </p>
+</main>
+</body>
+</html>
