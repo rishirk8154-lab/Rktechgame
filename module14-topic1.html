@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKTechGame | Introduction to Maven and Gradle</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --kakashi-blue: #546285;
+    --kakashi-gray: #cfd2dc;
+    --kakashi-dark: #292a36;
+    --kakashi-red: #db1d29;
+    --kakashi-shadow: #42516f;
+    --tagline-color: #000000;
+    --tagline-shadow: #444444aa;
+    --link-hover: #ff3a3a;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
+    color: var(--kakashi-dark);
+    padding: 40px 20px;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: var(--kakashi-red);
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red), 0 0 24px var(--kakashi-red);
+  }
+  section {
+    max-width: 900px;
+    background: #f0f4faee;
+    border-radius: 21px;
+    padding: 30px 40px;
+    margin-bottom: 36px;
+    box-shadow: 0 3px 18px #54628533;
+    animation: fadeInUp 1.3s cubic-bezier(0.42,0,0.58,1) both;
+  }
+  h2 {
+    font-size: 2.2rem;
+    color: var(--kakashi-blue);
+    margin-bottom: 16px;
+    border-left: 6px solid var(--kakashi-red);
+    padding-left: 16px;
+  }
+  p, ul {
+    font-size: 1rem;
+    color: var(--kakashi-dark);
+    margin: 12px 0;
+  }
+  ul {
+    margin-left: 30px;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  th, td {
+    border: 1px solid var(--kakashi-red);
+    padding: 12px 16px;
+    text-align: left;
+  }
+  th {
+    background-color: var(--kakashi-red);
+    color: white;
+  }
+  @keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(90px);}
+    80% {opacity: 0.6;}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+  footer {
+    text-align: center;
+    margin: 64px 0 36px;
+    color: #333a4d88;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+    body {
+      padding: 30px 15px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+    }
+    section {
+      padding: 25px 20px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      padding-left: 12px;
+      border-left-width: 4px;
+      margin-bottom: 16px;
+    }
+    p, ul {
+      font-size: 0.95rem;
+    }
+    table, th, td {
+      font-size: 0.9rem;
+      padding: 10px 12px;
+    }
+    tbody td, thead th {
+      word-break: break-word;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>RKTechGame | Introduction to Maven and Gradle</h1>
+</header>
+
+<section>
+  <h2>Maven kya hai?</h2>
+  <p>
+    Apache Maven ek popular build automation aur project management tool hai jo Java projects ke liye bahut use hota hai. Maven project configuration ke liye XML file (pom.xml) use karta hai jisme dependencies, plugins, build lifecycle, aur reports define ki jati hain.
+  </p>
+  <p>
+    Maven dependency management ko simplify karta hai by downloading libraries from central repositories automatically. Ye consistent build process aur project structure enforce karta hai.
+  </p>
+</section>
+
+<section>
+  <h2>Gradle kya hai?</h2>
+  <p>
+    Gradle ek modern build tool hai jo Groovy ya Kotlin DSL (Domain Specific Language) ka use karta hai project configuration ke liye. Ye Maven aur Ant ki best features combine karta hai aur zyada customization aur performance optimization provide karta hai, jaise incremental builds.
+  </p>
+  <p>
+    Gradle Android development ke liye official build tool hai aur complex multi-module projects ko efficiently handle karta hai.
+  </p>
+</section>
+
+<section>
+  <h2>Maven aur Gradle me mukhya antar</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Features</th>
+        <th>Maven</th>
+        <th>Gradle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Configuration Language</td>
+        <td>XML (pom.xml)</td>
+        <td>Groovy/Kotlin DSL (build.gradle)</td>
+      </tr>
+      <tr>
+        <td>Performance</td>
+        <td>Slow compared to Gradle</td>
+        <td>Fast with incremental and parallel builds</td>
+      </tr>
+      <tr>
+        <td>Dependency Management</td>
+        <td>Automatic from Maven Central</td>
+        <td>Supports Maven and Ivy repositories</td>
+      </tr>
+      <tr>
+        <td>Extensibility</td>
+        <td>Plugin based, many plugins available</td>
+        <td>Highly customizable with scripts and plugins</td>
+      </tr>
+      <tr>
+        <td>Community</td>
+        <td>Mature and widely used</td>
+        <td>Growing rapidly, especially in Android</td>
+      </tr>
+      <tr>
+        <td>Learning Curve</td>
+        <td>Simple for beginners</td>
+        <td>Steeper but powerful</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Example Basic Maven pom.xml</h2>
+  <pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;groupId&gt;com.example&lt;/groupId&gt;
+  &lt;artifactId&gt;MyProject&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;4.13.2&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+</section>
+
+<section>
+  <h2>Example Basic Gradle build.gradle</h2>
+  <pre><code>plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}</code></pre>
+</section>
+
+<footer>
+  <b>&copy; 2025 RKTechGame | All rights reserved</b>
+</footer>
+</body>
+</html>
