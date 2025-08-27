@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stack Operations & Implementation | RKTechGame</title>
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    a {
+      color: #f05454;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Stack Operations & Implementation</h1>
+
+<p>The stack is a linear data structure which follows the Last In First Out (LIFO) principle, where the last element added is the first one to be removed.</p>
+
+<h2>Core Operations:</h2>
+<ul>
+  <li><strong>Push()</strong>: Add an element to the top of the stack.</li>
+  <li><strong>Pop()</strong>: Remove the top element from the stack.</li>
+  <li><strong>Peek() / Top()</strong>: View the top element without removing it.</li>
+  <li><strong>isEmpty()</strong>: Check if the stack is empty.</li>
+  <li><strong>isFull()</strong>: (For fixed size stacks) Check if the stack is full.</li>
+</ul>
+
+<h2>Example Stack Implementation Using Array in Python:</h2>
+<pre><code>class Stack:
+    def __init__(self, capacity):
+        self.stack = [None] * capacity
+        self.top = -1
+        self.capacity = capacity
+
+    def is_empty(self):
+        return self.top == -1
+
+    def is_full(self):
+        return self.top == self.capacity - 1
+
+    def push(self, data):
+        if self.is_full():
+            print("Stack Overflow")
+            return
+        self.top += 1
+        self.stack[self.top] = data
+
+    def pop(self):
+        if self.is_empty():
+            print("Stack Underflow")
+            return None
+        data = self.stack[self.top]
+        self.top -= 1
+        return data
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.stack[self.top]
+
+# Usage example:
+s = Stack(5)
+s.push(10)
+s.push(20)
+s.push(30)
+print("Top element:", s.peek())
+print("Popped element:", s.pop())
+print("Top element after pop:", s.peek())
+</code></pre>
+
+<h2>Advantages of Stack:</h2>
+<ul>
+  <li>Simple and useful for managing data that follows LIFO order.</li>
+  <li>Used in function call management in programming languages.</li>
+  <li>Helpful in backtracking algorithms.</li>
+  <li>Used for expression evaluation and syntax parsing.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
