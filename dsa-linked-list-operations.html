@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linked List Operations | RKTechGame</title>
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    a {
+      color: #f05454;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Linked List Operations</h1>
+
+<p>Linked Lists allow us to add, remove, and traverse nodes efficiently without fixed-size limitations like arrays. Here are the three main operations:</p>
+
+<h2>Traversal</h2>
+<p>Traversing means visiting each node one by one from the head till the end (where next is null).</p>
+<pre><code>def traverse(head):
+    current = head
+    while current:
+        print(current.data, end=" -> ")
+        current = current.next
+    print("None")
+</code></pre>
+
+<h2>Insertion</h2>
+<p>Adding a new node either at the beginning, end, or at a particular position involves pointing links correctly to keep the list connected.</p>
+<pre><code># Insert at beginning
+def insert_at_head(head, data):
+    new_node = Node(data)
+    new_node.next = head
+    return new_node
+
+# Insert at end
+def insert_at_end(head, data):
+    new_node = Node(data)
+    if not head:
+        return new_node
+    temp = head
+    while temp.next:
+        temp = temp.next
+    temp.next = new_node
+    return head
+</code></pre>
+
+<h2>Deletion</h2>
+<p>Removing a node requires finding it and changing the previous node's pointer to skip over the deleted node.</p>
+<pre><code>def delete_node(head, key):
+    temp = head
+    prev = None
+
+    if temp and temp.data == key:
+        return temp.next
+
+    while temp and temp.data != key:
+        prev = temp
+        temp = temp.next
+
+    if not temp:
+        return head
+
+    prev.next = temp.next
+    return head
+</code></pre>
+
+<h2>Example Node Class for Python</h2>
+<pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+</code></pre>
+
+<p>With these basic operations, you can create, modify, and traverse linked lists efficiently in your programs.</p>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
