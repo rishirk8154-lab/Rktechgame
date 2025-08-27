@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heap & Priority Queue | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn about Heap data structure and Priority Queue, their types, operations like insertion and deletion, and applications with Python code and concepts explained." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-heap-priority-queue.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Heap & Priority Queue</h1>
+
+<h2>Heap Data Structure</h2>
+<p>A <strong>Heap</strong> is a complete binary tree that satisfies the heap property:</p>
+<ul>
+  <li><strong>Max-Heap:</strong> The value of each node is greater than or equal to the values of its children.</li>
+  <li><strong>Min-Heap:</strong> The value of each node is less than or equal to the values of its children.</li>
+</ul>
+<p>Heaps are used to implement priority queues, where insertion, deletion, and access to the highest (or lowest) priority element are efficient.</p>
+
+<h3>Key Operations</h3>
+<ul>
+  <li><strong>Insertion:</strong> Add an element to the heap and restore heap property by “bubbling up”.</li>
+  <li><strong>Deletion:</strong> Remove the root element and restore heap property by “heapifying” down.</li>
+</ul>
+
+<h3>Python Example: Max-Heap Insertion & Deletion</h3>
+<pre><code>def heapify(arr, n, i):
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and arr[l] > arr[largest]:
+        largest = l
+
+    if r < n and arr[r] > arr[largest]:
+        largest = r
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def insert(arr, newNum):
+    arr.append(newNum)
+    current = len(arr) - 1
+    while current > 0:
+        parent = (current - 1) // 2
+        if arr[current] > arr[parent]:
+            arr[current], arr[parent] = arr[parent], arr[current]
+            current = parent
+        else:
+            break
+
+def deleteNode(arr, num):
+    size = len(arr)
+    i = 0
+    for i in range(size):
+        if arr[i] == num:
+            break
+    arr[i], arr[-1] = arr[-1], arr[i]
+    arr.pop()
+    if i < len(arr):
+        heapify(arr, len(arr), i)
+
+# Usage
+arr = []
+insert(arr, 3)
+insert(arr, 4)
+insert(arr, 9)
+insert(arr, 5)
+insert(arr, 2)
+
+print("Max-Heap array:", arr)
+
+deleteNode(arr, 4)
+print("After deleting an element:", arr)
+</code></pre>
+
+<h2>Priority Queue</h2>
+<p>A <strong>Priority Queue</strong> is an abstract data structure where each element is associated with a priority. Elements with higher priority are served before those with lower priority.</p>
+<p>Heaps are commonly used to implement priority queues efficiently.</p>
+
+<h3>Python Example using <code>heapq</code> module</h3>
+<pre><code>import heapq
+
+class PriorityQueue:
+    def __init__(self):
+        self.heap = []
+
+    def push(self, item, priority):
+        heapq.heappush(self.heap, (priority, item))
+
+    def pop(self):
+        if self.heap:
+            return heapq.heappop(self.heap)[1]
+        else:
+            return None
+
+    def peek(self):
+        if self.heap:
+            return self.heap[0][1]
+        else:
+            return None
+
+# Usage Example
+pq = PriorityQueue()
+pq.push("task1", 3)
+pq.push("task2", 1)
+pq.push("task3", 2)
+
+print(pq.pop())  # Outputs: task2 (highest priority)
+print(pq.peek()) # Outputs: task3
+</code></pre>
+
+<h2>Applications</h2>
+<ul>
+  <li>Task Scheduling in operating systems.</li>
+  <li>Dijkstra's shortest path algorithm uses priority queues.</li>
+  <li>CPU scheduling and bandwidth management.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
