@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memoization & Tabulation | Dynamic Programming | RKTechGame</title>
+  <meta name="description" content="Understand Memoization and Tabulation techniques in Dynamic Programming with clear explanations, differences, advantages, and Python code examples like Fibonacci." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-memoization-tabulation.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    table {
+      width: 900px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      color: #ddd;
+    }
+    th, td {
+      border: 1px solid #f05454;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f05454;
+      color: #101820;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre, table {
+        font-size: 1rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Memoization & Tabulation in Dynamic Programming</h1>
+
+<h2>What is Dynamic Programming?</h2>
+<p>Dynamic Programming (DP) is an algorithmic technique to solve problems by breaking them down into overlapping subproblems and storing results to avoid redundant computations.</p>
+
+<h2>Memoization (Top-Down Approach)</h2>
+<p>Memoization is a technique where you store (cache) the results of expensive function calls and return the cached result when the same inputs occur again.</p>
+<ul>
+  <li>Implemented with recursion.</li>
+  <li>Solves problems "top-down", solving the original problem by recursive calls moving toward base cases.</li>
+  <li>Uses extra memory to store intermediate results, typically in a hash map or array.</li>
+</ul>
+
+<h3>Example: Fibonacci using Memoization</h3>
+<pre><code>def fib_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
+    return memo[n]
+
+print(fib_memo(10))  # Output: 55
+</code></pre>
+
+<h2>Tabulation (Bottom-Up Approach)</h2>
+<p>Tabulation solves the problem "bottom-up" by solving all related subproblems first, typically using iteration and filling up a table (often an array).</p>
+<ul>
+  <li>Implemented with iteration.</li>
+  <li>Builds the solution from base cases up toward the original problem.</li>
+  <li>Generally more space-efficient since it avoids recursion stack overhead.</li>
+</ul>
+
+<h3>Example: Fibonacci using Tabulation</h3>
+<pre><code>def fib_tab(n):
+    if n <= 1:
+        return n
+    dp = [0] * (n + 1)
+    dp[1] = 1
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+    return dp[n]
+
+print(fib_tab(10))  # Output: 55
+</code></pre>
+
+<h2>Key Differences Between Memoization and Tabulation</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Memoization</th>
+      <th>Tabulation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Approach</td>
+      <td>Top-down (recursive)</td>
+      <td>Bottom-up (iterative)</td>
+    </tr>
+    <tr>
+      <td>Implementation</td>
+      <td>Recursion with caching</td>
+      <td>Iterative loop filling DP table</td>
+    </tr>
+    <tr>
+      <td>Performance</td>
+      <td>Slower due to recursion overhead</td>
+      <td>Usually faster, no recursion overhead</td>
+    </tr>
+    <tr>
+      <td>Memory</td>
+      <td>Extra memory for recursion stack and memo table</td>
+      <td>Memory for DP table only</td>
+    </tr>
+    <tr>
+      <td>Execution order</td>
+      <td>Computes only needed states (on demand)</td>
+      <td>Computes all states systematically</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>When to Use?</h2>
+<ul>
+  <li>Use memoization when the problem is easier to conceptualize recursively and some subproblems may not need calculation.</li>
+  <li>Use tabulation when iterative solutions are simpler or recursion depth is a concern.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
