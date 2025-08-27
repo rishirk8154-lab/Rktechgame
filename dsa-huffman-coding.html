@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Huffman Coding | Lossless Data Compression | RKTechGame</title>
+  <meta name="description" content="Learn Huffman coding, a lossless data compression algorithm, with detailed explanation, how Huffman tree is built, and Python code example." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-huffman-coding.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Huffman Coding Algorithm</h1>
+
+<h2>What is Huffman Coding?</h2>
+<p>Huffman Coding is a lossless data compression algorithm that assigns variable-length codes to input characters, with shorter codes assigned to more frequent characters. It is widely used in data compression systems.</p>
+
+<h2>How Huffman Coding Works</h2>
+<ul>
+  <li>Calculate frequency of each character in the input data.</li>
+  <li>Create leaf nodes for each character with its frequency.</li>
+  <li>Build a min-heap (priority queue) of all leaf nodes.</li>
+  <li>While there is more than one node in the heap:</li>
+  <ul>
+    <li>Extract two nodes with minimum frequency.</li>
+    <li>Create a new internal node with frequency equal to the sum of the two nodes.</li>
+    <li>Make the two extracted nodes as left and right children of the new node.</li>
+    <li>Insert the new node back into the min-heap.</li>
+  </ul>
+  <li>The remaining node is the root of the Huffman Tree.</li>
+  <li>Assign binary codes to characters by traversing the tree (left edge 0, right edge 1).</li>
+</ul>
+
+<h2>Python Code Example</h2>
+<pre><code>import heapq
+
+class Node:
+    def __init__(self, freq, char=None, left=None, right=None):
+        self.freq = freq
+        self.char = char
+        self.left = left
+        self.right = right
+
+    # For priority queue comparison
+    def __lt__(self, other):
+        return self.freq < other.freq
+
+def build_huffman_tree(freq_map):
+    heap = [Node(freq, char) for char, freq in freq_map.items()]
+    heapq.heapify(heap)
+
+    while len(heap) > 1:
+        node1 = heapq.heappop(heap)
+        node2 = heapq.heappop(heap)
+        merged = Node(node1.freq + node2.freq, None, node1, node2)
+        heapq.heappush(heap, merged)
+
+    return heap[0]
+
+def generate_codes(node, prefix="", code_map=None):
+    if code_map is None:
+        code_map = {}
+    if node.char is not None:
+        code_map[node.char] = prefix
+    else:
+        generate_codes(node.left, prefix + "0", code_map)
+        generate_codes(node.right, prefix + "1", code_map)
+    return code_map
+
+# Example usage
+data = "huffman coding algorithm"
+freq_map = {}
+for ch in data:
+    freq_map[ch] = freq_map.get(ch, 0) + 1
+
+root = build_huffman_tree(freq_map)
+codes = generate_codes(root)
+print("Character codes:")
+for ch in codes:
+    print(f"{ch}: {codes[ch]}")
+</code></pre>
+
+<h2>Applications</h2>
+<ul>
+  <li>File compression formats like ZIP, GZIP</li>
+  <li>Multimedia codecs like JPEG, MP3</li>
+  <li>Used in network protocols to reduce data upload/download size</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
