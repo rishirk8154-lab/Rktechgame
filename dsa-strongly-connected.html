@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Strongly Connected Components & Bridges in Graphs | RKTechGame</title>
+  <meta name="description" content="Learn about Strongly Connected Components (SCC) and Bridges in graphs with detailed explanation and Python implementations of Kosaraju's algorithm and bridge-finding using DFS." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-scc-bridges.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, pre, ul {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, pre, ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Strongly Connected Components (SCC) & Bridges in Graphs</h1>
+
+<h2>Strongly Connected Components (SCC)</h2>
+<p>A Strongly Connected Component of a directed graph is a maximal group of vertices where each vertex is reachable from any other vertex in the same group.</p>
+
+<h3>Kosaraju's Algorithm for SCC</h3>
+<ul>
+  <li>Perform a DFS to get vertices in finishing time order.</li>
+  <li>Transpose the graph (reverse direction of edges).</li>
+  <li>Perform DFS in order of decreasing finishing times on transposed graph, each DFS produces one SCC.</li>
+  <li>Time complexity: O(V + E).</li>
+</ul>
+
+<h3>Python Code for SCC (Kosaraju's Algorithm)</h3>
+<pre><code>from collections import defaultdict
+
+class Graph:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+
+    def dfs(self, v, visited, stack=None):
+        visited[v] = True
+        if stack is not None:
+            stack.append(v)
+        for neighbor in self.graph[v]:
+            if not visited[neighbor]:
+                self.dfs(neighbor, visited, stack)
+
+    def fill_order(self, v, visited, stack):
+        visited[v] = True
+        for neighbor in self.graph[v]:
+            if not visited[neighbor]:
+                self.fill_order(neighbor, visited, stack)
+        stack.append(v)
+
+    def transpose(self):
+        g = Graph(self.V)
+        for v in self.graph:
+            for neighbor in self.graph[v]:
+                g.add_edge(neighbor, v)
+        return g
+
+    def print_scc(self):
+        stack = []
+        visited = [False] * self.V
+
+        for i in range(self.V):
+            if not visited[i]:
+                self.fill_order(i, visited, stack)
+
+        transpose_graph = self.transpose()
+        visited = [False] * self.V
+
+        print("Strongly Connected Components:")
+        while stack:
+            v = stack.pop()
+            if not visited[v]:
+                scc_stack = []
+                transpose_graph.dfs(v, visited, scc_stack)
+                print(scc_stack)
+
+# Usage
+g = Graph(8)
+edges = [(0,1),(1,2),(2,3),(2,4),(3,0),(4,5),(5,6),(6,4),(6,7)]
+for u, v in edges:
+    g.add_edge(u, v)
+g.print_scc()
+</code></pre>
+
+<h2>Bridges in Graphs</h2>
+<p>A bridge (or cut-edge) in an undirected graph is an edge which, when removed, increases the number of connected components.</p>
+
+<h3>Finding Bridges using DFS</h3>
+<ul>
+  <li>Use DFS traversal recording discovery time and lowest reachable vertex.</li>
+  <li>If there is no back edge from the adjacent vertices, then the edge is a bridge.</li>
+  <li>Time complexity: O(V + E).</li>
+</ul>
+
+<h3>Python Code to Find Bridges</h3>
+<pre><code>def dfs_bridges(u, visited, parent, disc, low, time, graph, bridges):
+    visited[u] = True
+    disc[u] = low[u] = time[0]
+    time[0] += 1
+
+    for v in graph[u]:
+        if not visited[v]:
+            parent[v] = u
+            dfs_bridges(v, visited, parent, disc, low, time, graph, bridges)
+            low[u] = min(low[u], low[v])
+
+            if low[v] &gt; disc[u]:
+                bridges.append((u, v))
+        elif v != parent[u]:
+            low[u] = min(low[u], disc[v])
+
+def find_bridges(V, edges):
+    graph = [[] for _ in range(V)]
+    for u,v in edges:
+        graph[u].append(v)
+        graph[v].append(u)  # undirected
+
+    visited = [False] * V
+    disc = [float('inf')] * V
+    low = [float('inf')] * V
+    parent = [-1] * V
+    time = [0]
+    bridges = []
+
+    for i in range(V):
+        if not visited[i]:
+            dfs_bridges(i, visited, parent, disc, low, time, graph, bridges)
+
+    return bridges
+
+# Usage
+V = 5
+edges = [(1, 0), (0, 2), (2, 1), (0, 3), (3, 4)]
+print("Bridges in graph:", find_bridges(V, edges))
+</code></pre>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
