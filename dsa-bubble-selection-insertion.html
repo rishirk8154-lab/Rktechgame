@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bubble Sort, Selection Sort & Insertion Sort | DSA | RKTechGame</title>
+  <meta name="description" content="Understand basic sorting algorithms: Bubble Sort, Selection Sort, and Insertion Sort with step-by-step explanation, time complexities, and Python code examples." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-sorting-basics.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+      margin-bottom: 2rem;
+    }
+    table {
+      margin-left: auto;
+      margin-right: auto;
+      border-collapse: collapse;
+      width: 900px;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border: 1px solid #f05454;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #f05454;
+      color: #101820;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre, table {
+        font-size: 1rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Bubble Sort, Selection Sort & Insertion Sort</h1>
+
+<p>Ye teeno sorting algorithms simple aur beginners ke liye useful hain, jo chhoti datasets ke liye acha kaam karte hain. Inka samajhna kisi bhi programming ya data structure course ke liye zaruri hai.</p>
+
+<h2>1. Bubble Sort</h2>
+<p><strong>Bubble Sort</strong> repeatedly adjacent elements ko compare karta hai aur swap karta hai agar order galat ho. Har pass ke baad largest element apni correct jagah par pahunch jata hai.</p>
+<pre><code>def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break  # Stop if array is already sorted
+</code></pre>
+
+<h2>2. Selection Sort</h2>
+<p><strong>Selection Sort</strong> har pass me unsorted part me minimum element dhundh kar, usse current position par swap karta hai.</p>
+<pre><code>def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+</code></pre>
+
+<h2>3. Insertion Sort</h2>
+<p><strong>Insertion Sort</strong> left se sorted subarray banata hai aur har step pe new element ko uske sahi position par insert karta hai.</p>
+<pre><code>def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+</code></pre>
+
+<h2>Algorithm Comparison</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Time Complexity (Best)</th>
+      <th>Time Complexity (Average/Worst)</th>
+      <th>Space Complexity</th>
+      <th>Stability</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bubble Sort</td>
+      <td>O(n)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>Stable</td>
+      <td>Simple and small datasets</td>
+    </tr>
+    <tr>
+      <td>Selection Sort</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>Unstable</td>
+      <td>Small datasets, memory constrained</td>
+    </tr>
+    <tr>
+      <td>Insertion Sort</td>
+      <td>O(n)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>Stable</td>
+      <td>Nearly sorted datasets</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
