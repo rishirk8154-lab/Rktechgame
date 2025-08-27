@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N-Queens & Sudoku Problem | Backtracking Examples | RKTechGame</title>
+  <meta name="description" content="Learn example problems like N-Queens and Sudoku solved using backtracking with detailed explanations, step-by-step approach, and full Python implementations." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-nqueens-sudoku.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Backtracking Example Problems: N-Queens & Sudoku</h1>
+
+<h2>Problem 1: N-Queens</h2>
+<p>The N-Queens problem is about placing N chess queens on an N×N chessboard such that no two queens threaten each other. This means no two queens share the same row, column, or diagonal.</p>
+
+<h3>Approach</h3>
+<ul>
+  <li>Use backtracking to place queens row by row.</li>
+  <li>Check if a position is safe by verifying columns and diagonals.</li>
+  <li>If safe, place the queen and move to the next row.</li>
+  <li>If no position is safe, backtrack to previous row.</li>
+</ul>
+
+<h3>Python Code for N-Queens</h3>
+<pre><code>def is_safe(board, row, col, n):
+    for i in range(row):
+        if board[i] == col or \
+           abs(board[i] - col) == abs(i - row):
+            return False
+    return True
+
+def solve_n_queens(n, row=0, board=None, solutions=None):
+    if board is None:
+        board = [-1] * n
+    if solutions is None:
+        solutions = []
+
+    if row == n:
+        solutions.append(board[:])
+        return
+
+    for col in range(n):
+        if is_safe(board, row, col, n):
+            board[row] = col
+            solve_n_queens(n, row + 1, board, solutions)
+            board[row] = -1  # backtrack
+
+# Usage example
+solutions = []
+solve_n_queens(4, solutions=solutions)
+print("Total solutions:", len(solutions))
+for solution in solutions:
+    print(solution)
+</code></pre>
+
+<h2>Problem 2: Sudoku Solver</h2>
+<p>Sudoku is a 9x9 grid where each row, column, and 3x3 sub-grid must contain numbers from 1 to 9 without repetition. The goal is to fill empty cells according to these constraints.</p>
+
+<h3>Approach</h3>
+<ul>
+  <li>Find empty cell in the grid.</li>
+  <li>Try numbers 1-9 in the empty cell.</li>
+  <li>Check if the number is valid in row, column, and sub-grid.</li>
+  <li>If valid, place the number and recurse to next empty cell.</li>
+  <li>If no number works, backtrack and change previous entries.</li>
+</ul>
+
+<h3>Python Code for Sudoku Solver</h3>
+<pre><code>def is_valid_sudoku(board, row, col, num):
+    # Check row and column
+    for i in range(9):
+        if board[row][i] == num or board[i][col] == num:
+            return False
+    # Check 3x3 sub-grid
+    start_row, start_col = 3 * (row // 3), 3 * (col // 3)
+    for i in range(3):
+        for j in range(3):
+            if board[start_row + i][start_col + j] == num:
+                return False
+    return True
+
+def solve_sudoku(board):
+    for row in range(9):
+        for col in range(9):
+            if board[row][col] == 0:  # Empty cell
+                for num in range(1, 10):
+                    if is_valid_sudoku(board, row, col, num):
+                        board[row][col] = num
+                        if solve_sudoku(board):
+                            return True
+                        board[row][col] = 0  # backtrack
+                return False
+    return True
+
+# Example Sudoku puzzle (0 means empty)
+board = [
+    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+]
+
+if solve_sudoku(board):
+    for row in board:
+        print(row)
+else:
+    print("No solution exists")
+</code></pre>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
