@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greedy Method | Algorithm Optimization Technique | RKTechGame</title>
+  <meta name="description" content="Learn the Greedy Method in algorithms, how it works, its properties, and examples like Fractional Knapsack and Dijkstra's shortest path with Python code." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-greedy-method.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Greedy Method in Algorithm Design</h1>
+
+<h2>What is the Greedy Method?</h2>
+<p>The greedy method is an algorithmic paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most immediate benefit or looks best at the moment. It does not look back or reconsider choices once made.</p>
+
+<h2>Properties of Greedy Algorithms</h2>
+<ul>
+  <li><strong>Greedy Choice Property:</strong> A global optimal solution can be arrived at by choosing a local optimum.</li>
+  <li><strong>Optimal Substructure:</strong> The problem can be broken down into subproblems which have optimal solutions that contribute to the overall solution.</li>
+  <li>Greedy algorithms do not always provide the optimal solution for all problems but are efficient for many.</li>
+</ul>
+
+<h2>Example 1: Fractional Knapsack Problem</h2>
+<p>This problem allows taking fractions of items to maximize total value in a knapsack with limited capacity.</p>
+<pre><code>def fractional_knapsack(values, weights, capacity):
+    index = list(range(len(values)))
+    ratio = [v / w for v, w in zip(values, weights)]
+    index.sort(key=lambda i: ratio[i], reverse=True)
+
+    max_value = 0
+    for i in index:
+        if weights[i] <= capacity:
+            capacity -= weights[i]
+            max_value += values[i]
+        else:
+            fraction = capacity / weights[i]
+            max_value += values[i] * fraction
+            break
+    return max_value
+
+values = [60, 100, 120]
+weights = [10, 20, 30]
+capacity = 50
+print("Max value in Knapsack =", fractional_knapsack(values, weights, capacity))  # Output: 240.0
+</code></pre>
+
+<h2>Example 2: Dijkstra’s Shortest Path Algorithm</h2>
+<p>Dijkstra’s algorithm finds the shortest path from a source node to all other nodes in a weighted graph by greedily choosing the next closest node.</p>
+<pre><code>import heapq
+
+def dijkstra(graph, start):
+    queue = [(0, start)]
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+
+    while queue:
+        curr_distance, curr_node = heapq.heappop(queue)
+        if curr_distance > distances[curr_node]:
+            continue
+        for neighbor, weight in graph[curr_node].items():
+            distance = curr_distance + weight
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(queue, (distance, neighbor))
+    return distances
+
+graph = {
+    'A': {'B': 10, 'C': 5},
+    'B': {'C': 2, 'D': 1},
+    'C': {'B': 3, 'D': 9, 'E': 2},
+    'D': {'E': 4},
+    'E': {'D': 6, 'A': 7}
+}
+
+print(dijkstra(graph, 'A'))
+</code></pre>
+
+<h2>When to Use Greedy Algorithms?</h2>
+<ul>
+  <li>When the problem has the greedy choice property and optimal substructure.</li>
+  <li>To develop fast algorithms with lower time complexity.</li>
+  <li>When an approximate or near-optimal solution is acceptable.</li>
+</ul>
+
+<h2>Advantages and Disadvantages</h2>
+<ul>
+  <li><strong>Advantages:</strong> Simple implementation, fast execution, often uses less memory.</li>
+  <li><strong>Disadvantages:</strong> May not always give optimal solutions for complex problems.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
