@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Counting Sort & Radix Sort | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn Counting Sort and Radix Sort algorithms with detailed working, use-cases, and Python code examples. Understand non-comparison sorting for integers and multi-digit numbers." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-counting-radix-sort.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+      margin-bottom: 2rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Counting Sort & Radix Sort</h1>
+
+<h2>Counting Sort</h2>
+<p><strong>Counting Sort</strong> is a non-comparison based sorting algorithm suitable for sorting integers within a limited range. It counts the occurrences of each element to determine their positions in the sorted output.</p>
+
+<h3>How Counting Sort Works</h3>
+<ul>
+  <li>Find the maximum element in the input array.</li>
+  <li>Create a count array of size max+1 and initialize with zeros.</li>
+  <li>Count the frequency of each element in the input array.</li>
+  <li>Calculate the cumulative sum of counts to determine element positions.</li>
+  <li>Place the elements at their correct positions in the output array.</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>def counting_sort(arr):
+    max_val = max(arr)
+    count = [0] * (max_val + 1)
+    output = [0] * len(arr)
+
+    for num in arr:
+        count[num] += 1
+
+    for i in range(1, len(count)):
+        count[i] += count[i - 1]
+
+    for num in reversed(arr):
+        output[count[num] - 1] = num
+        count[num] -= 1
+
+    return output
+
+# Usage Example
+arr = [4, 2, 2, 8, 3, 3, 1]
+sorted_arr = counting_sort(arr)
+print(sorted_arr)
+</code></pre>
+
+<h2>Radix Sort</h2>
+<p><strong>Radix Sort</strong> is a non-comparison sorting algorithm that sorts numbers digit by digit starting from the least significant digit to the most significant, using a stable sorting algorithm like Counting Sort on each digit.</p>
+
+<h3>How Radix Sort Works</h3>
+<ul>
+  <li>Determine the maximum number to know the number of digits.</li>
+  <li>Sort the array based on each digit (starting from least significant digit) using Counting Sort.</li>
+  <li>Repeat for all digits until the array is fully sorted.</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>def counting_sort_for_radix(arr, exp):
+    n = len(arr)
+    output = [0] * n
+    count = [0] * 10
+
+    for i in range(n):
+        index = (arr[i] // exp) % 10
+        count[index] += 1
+
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    for i in range(n - 1, -1, -1):
+        index = (arr[i] // exp) % 10
+        output[count[index] - 1] = arr[i]
+        count[index] -= 1
+
+    for i in range(n):
+        arr[i] = output[i]
+
+def radix_sort(arr):
+    max_val = max(arr)
+    exp = 1
+    while max_val // exp > 0:
+        counting_sort_for_radix(arr, exp)
+        exp *= 10
+
+# Usage Example
+arr = [170, 45, 75, 90, 802, 24, 2, 66]
+radix_sort(arr)
+print(arr)
+</code></pre>
+
+<h2>Applications</h2>
+<ul>
+  <li>Counting Sort is efficient for small ranges of integers where comparisons are expensive.</li>
+  <li>Radix Sort is suitable for sorting large numbers and strings (by representing them as integers).</li>
+  <li>Used in scenarios needing linear-time sort complexities.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
