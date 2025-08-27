@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basics of Arrays | Data Structures - RKTechGame</title>
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    a {
+      color: #f05454;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Basics of Arrays</h1>
+
+<p>An <strong>array</strong> is a linear data structure that stores multiple elements of the same type in contiguous memory locations. Arrays allow efficient indexed access to their elements.</p>
+
+<h2>Key Properties of Arrays:</h2>
+<ul>
+  <li>Elements are stored in contiguous memory locations.</li>
+  <li>All elements are of the same data type.</li>
+  <li>Indexed starting from 0 (zero-based indexing).</li>
+  <li>Fixed size (static arrays) or dynamic size (in some languages).</li>
+  <li>Access to elements is fast: O(1) time complexity.</li>
+</ul>
+
+<h2>Array Representation:</h2>
+<p>Arrays are visualized as buckets or boxes storing elements, each with an index starting from 0. For example, an array of 5 elements has indices from 0 to 4.</p>
+
+<h2>Common Operations on Arrays:</h2>
+<ul>
+  <li><strong>Traversal:</strong> Visiting each element sequentially.</li>
+  <li><strong>Insertion:</strong> Adding an element at a specific index.</li>
+  <li><strong>Deletion:</strong> Removing an element from a specific index.</li>
+  <li><strong>Searching:</strong> Finding an element by value or index.</li>
+  <li><strong>Update:</strong> Changing the value of an element at a specific index.</li>
+</ul>
+
+<h2>Example in Python:</h2>
+<pre><code>my_array = [10, 20, 30, 40, 50]
+print(my_array[0])  # Outputs: 10
+
+# Traversing to print all elements
+for element in my_array:
+    print(element)
+</code></pre>
+
+<h2>Insertion Example:</h2>
+<p>Inserting an element at index 2 (third position):</p>
+<pre><code>index = 2
+value = 25
+my_array = [10, 20, 30, 40, 50]
+my_array.insert(index, value)
+print(my_array)  # Outputs: [10, 20, 25, 30, 40, 50]
+</code></pre>
+
+<h2>Why Arrays?</h2>
+<p>Arrays provide a way to store related data efficiently and access elements quickly by index. They are widely used in many algorithms and fundamental programming constructs.</p>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
