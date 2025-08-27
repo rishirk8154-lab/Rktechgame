@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Topological Sorting | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn Topological Sorting for Directed Acyclic Graphs (DAGs) with DFS and BFS approaches, step-by-step explanations, algorithm details, and Python code examples." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-topological-sorting.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+      margin-bottom: 2rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Topological Sorting of Directed Acyclic Graphs (DAGs)</h1>
+
+<p>Topological sorting is a linear ordering of vertices in a Directed Acyclic Graph (DAG) such that for every directed edge u -> v, vertex u comes before v in the ordering.</p>
+
+<h2>Key Concepts</h2>
+<ul>
+  <li>Only DAGs can have valid topological orderings.</li>
+  <li>Commonly used in task scheduling, course prerequisite ordering, and build systems.</li>
+</ul>
+
+<h2>Approaches to Topological Sorting</h2>
+
+<h3>1. DFS Based Topological Sort</h3>
+<p>Use depth-first search to recursively visit nodes and add them to the ordering after exploring their adjacent vertices.</p>
+
+<pre><code>def topological_sort_dfs(graph):
+    visited = set()
+    stack = []
+
+    def dfs(node):
+        visited.add(node)
+        for neighbor in graph.get(node, []):
+            if neighbor not in visited:
+                dfs(neighbor)
+        stack.append(node)
+
+    for vertex in graph:
+        if vertex not in visited:
+            dfs(vertex)
+    stack.reverse()
+    return stack
+
+# Usage Example
+graph = {
+    5: [2, 0],
+    4: [0, 1],
+    2: [3],
+    3: [1],
+    0: [],
+    1: []
+}
+
+print(topological_sort_dfs(graph))
+</code></pre>
+
+<h3>2. BFS (Kahn’s Algorithm) Based Topological Sort</h3>
+<p>Maintain the indegree of all vertices and repeatedly remove vertices with indegree 0, thereby building the ordering.</p>
+
+<pre><code>from collections import deque
+
+def topological_sort_bfs(graph):
+    indegree = {u: 0 for u in graph}
+    for u in graph:
+        for v in graph[u]:
+            indegree[v] += 1
+
+    queue = deque([u for u in graph if indegree[u] == 0])
+    topo_order = []
+
+    while queue:
+        u = queue.popleft()
+        topo_order.append(u)
+        for v in graph[u]:
+            indegree[v] -= 1
+            if indegree[v] == 0:
+                queue.append(v)
+
+    if len(topo_order) == len(graph):
+        return topo_order
+    else:
+        raise ValueError("Graph has at least one cycle, topological sort not possible")
+
+# Usage Example
+print(topological_sort_bfs(graph))
+</code></pre>
+
+<h2>Applications</h2>
+<ul>
+  <li>Task scheduling with dependencies.</li>
+  <li>Compilation order of source files.</li>
+  <li>Data serialization.</li>
+  <li>Prerequisite ordering in course registration.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
