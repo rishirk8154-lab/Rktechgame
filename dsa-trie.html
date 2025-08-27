@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trie Data Structure | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn about Trie data structure (Prefix Tree), its operations like insertion, search, deletion, and practical applications with code examples and explanations." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-trie.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Trie Data Structure (Prefix Tree)</h1>
+
+<p>A <strong>Trie</strong>, also known as a prefix tree, is a tree-like data structure that stores a dynamic set or associative array where keys are usually strings. It is highly efficient for retrieval operations especially for prefix-based searches.</p>
+
+<h2>Core Operations</h2>
+
+<h3>Insertion</h3>
+<p>Insert words letter by letter, branching out nodes as required.</p>
+<pre><code>class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
+</code></pre>
+
+<h3>Search</h3>
+<p>Check if a word or prefix exists by traversing through the node chain.</p>
+<pre><code>    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end_of_word
+</code></pre>
+
+<h3>Deletion</h3>
+<p>Deletion involves removing words and possibly pruning unnecessary nodes, done recursively.</p>
+<pre><code>    def _delete(self, node, word, depth):
+        if depth == len(word):
+            if not node.is_end_of_word:
+                return False
+            node.is_end_of_word = False
+            return len(node.children) == 0
+        char = word[depth]
+        if char not in node.children:
+            return False
+        should_delete_child = self._delete(node.children[char], word, depth + 1)
+        if should_delete_child:
+            del node.children[char]
+            return len(node.children) == 0 and not node.is_end_of_word
+        return False
+
+    def delete(self, word):
+        self._delete(self.root, word, 0)
+</code></pre>
+
+<h2>Applications of Trie</h2>
+<ul>
+  <li>Autocomplete and spell checking systems.</li>
+  <li>IP routing (longest prefix matching).</li>
+  <li>Storing dictionaries for text processing.</li>
+  <li>Efficient prefix matching in search engines.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
