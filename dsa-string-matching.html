@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>String Matching Algorithms: KMP & Rabin-Karp | RKTechGame</title>
+  <meta name="description" content="Learn string matching algorithms including Knuth-Morris-Pratt (KMP) and Rabin-Karp with detailed explanation and Python implementations for efficient pattern searching." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-string-matching.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>String Matching Algorithms: KMP & Rabin-Karp</h1>
+
+<h2>1. Knuth-Morris-Pratt (KMP) Algorithm</h2>
+<p>KMP algorithm improves pattern searching by avoiding unnecessary re-comparisons after a mismatch using a preprocessing table called Longest Prefix Suffix (LPS).</p>
+
+<h3>KMP Algorithm Steps:</h3>
+<ul>
+  <li>Compute the LPS array that represents the longest proper prefix which is also a suffix for every prefix of the pattern.</li>
+  <li>Use the LPS array during the search to skip characters and avoid re-checking matched characters.</li>
+  <li>Achieves O(n + m) time complexity, where n is text length and m is pattern length.</li>
+</ul>
+
+<h3>Python Implementation of KMP</h3>
+<pre><code>def compute_lps(pattern):
+    lps = [0] * len(pattern)
+    length = 0  # length of previous longest prefix suffix
+    i = 1
+    while i &lt; len(pattern):
+        if pattern[i] == pattern[length]:
+            length += 1
+            lps[i] = length
+            i += 1
+        else:
+            if length != 0:
+                length = lps[length - 1]
+            else:
+                lps[i] = 0
+                i += 1
+    return lps
+
+def kmp_search(text, pattern):
+    lps = compute_lps(pattern)
+    i = j = 0  # index for text[], pattern[]
+    occurrences = []
+    while i &lt; len(text):
+        if pattern[j] == text[i]:
+            i += 1
+            j += 1
+            if j == len(pattern):
+                occurrences.append(i - j)
+                j = lps[j - 1]
+        else:
+            if j != 0:
+                j = lps[j - 1]
+            else:
+                i += 1
+    return occurrences
+
+# Usage example
+text = "abxabcabcaby"
+pattern = "abcaby"
+print("Pattern found at indices:", kmp_search(text, pattern))
+</code></pre>
+
+<h2>2. Rabin-Karp Algorithm</h2>
+<p>Rabin-Karp uses hashing to find any one of a set of pattern strings in a text. It calculates hash values of the pattern and substrings of the text and compares the hash values to detect potential matches.</p>
+
+<h3>Rabin-Karp Steps:</h3>
+<ul>
+  <li>Calculate hash of the pattern and first substring of text of the same length.</li>
+  <li>Slide the window over text, updating hash value efficiently.</li>
+  <li>When hash of substring matches the pattern hash, compare characters to confirm match.</li>
+  <li>Average time complexity: O(n + m), but worst case can degrade due to hash collisions.</li>
+</ul>
+
+<h3>Python Implementation of Rabin-Karp</h3>
+<pre><code>def rabin_karp(text, pattern, prime=101):
+    n, m = len(text), len(pattern)
+    d = 256  # number of chars in input alphabet
+    h = pow(d, m-1) % prime
+    p = 0  # hash value for pattern
+    t = 0  # hash value for text window
+    result = []
+
+    for i in range(m):
+        p = (d * p + ord(pattern[i])) % prime
+        t = (d * t + ord(text[i])) % prime
+
+    for s in range(n - m + 1):
+        if p == t:
+            if text[s:s+m] == pattern:
+                result.append(s)
+        if s < n - m:
+            t = (d*(t - ord(text[s]) * h) + ord(text[s+m])) % prime
+            if t < 0:
+                t += prime
+
+    return result
+
+# Usage example
+text = "abxabcabcaby"
+pattern = "abcaby"
+print("Pattern found at indices:", rabin_karp(text, pattern))
+</code></pre>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
