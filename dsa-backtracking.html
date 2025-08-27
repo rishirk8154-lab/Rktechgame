@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backtracking Algorithms | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn backtracking algorithms, their working principles, and Python examples like N-Queens and maze solving. Understand recursive problem solving with backtrack." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-backtracking.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Backtracking Algorithms</h1>
+
+<h2>What is Backtracking?</h2>
+<p>Backtracking is an algorithmic technique for solving problems incrementally, trying partial solutions and then abandoning them if they do not lead to a valid solution. It is often used in constraint satisfaction problems like puzzles, combinatorial problems, and pathfinding.</p>
+
+<h2>How Backtracking Works</h2>
+<ul>
+  <li>Start with an initial candidate solution.</li>
+  <li>Attempt to extend this candidate solution step-by-step.</li>
+  <li>If at any point the candidate solution cannot be extended further (dead end), backtrack to the previous step and try a different path.</li>
+  <li>Continue this process until a valid solution is found or all possibilities are exhausted.</li>
+</ul>
+
+<h2>Example 1: N-Queens Problem</h2>
+<p>Place N queens on an N×N chessboard so that no two queens threaten each other.</p>
+<pre><code>def is_safe(board, row, col):
+    for i in range(row):
+        if board[i] == col or \
+           abs(board[i] - col) == abs(i - row):
+            return False
+    return True
+
+def solve_n_queens(n, row=0, board=None, solutions=None):
+    if board is None:
+        board = [-1] * n
+    if solutions is None:
+        solutions = []
+
+    if row == n:
+        solutions.append(["." * c + "Q" + "." * (n - c - 1) for c in board])
+        return
+
+    for col in range(n):
+        if is_safe(board, row, col):
+            board[row] = col
+            solve_n_queens(n, row + 1, board, solutions)
+            board[row] = -1  # backtrack
+
+# Usage example
+solutions = []
+solve_n_queens(4, solutions=solutions)
+for sol in solutions:
+    for row in sol:
+        print(row)
+    print()
+</code></pre>
+
+<h2>Example 2: Maze Solving</h2>
+<p>Find a path through a maze represented by a 2D grid.</p>
+<pre><code>def solve_maze(maze, x, y, path):
+    n = len(maze)
+    if x == n - 1 and y == n - 1:
+        path[x][y] = 1
+        return True
+    if 0 <= x < n and 0 <= y < n and maze[x][y] == 1 and path[x][y] == 0:
+        path[x][y] = 1
+        if solve_maze(maze, x + 1, y, path):
+            return True
+        if solve_maze(maze, x, y + 1, path):
+            return True
+        path[x][y] = 0  # backtrack
+    return False
+
+# Usage example
+n = 4
+maze = [
+    [1, 0, 0, 0],
+    [1, 1, 0, 1],
+    [0, 1, 0, 0],
+    [1, 1, 1, 1]
+]
+path = [[0]*n for _ in range(n)]
+if solve_maze(maze, 0, 0, path):
+    for row in path:
+        print(row)
+else:
+    print("No path found")
+</code></pre>
+
+<h2>Applications of Backtracking</h2>
+<ul>
+  <li>Sudoku solver</li>
+  <li>Permutation and combination problems</li>
+  <li>Graph coloring</li>
+  <li>Constraint satisfaction problems</li>
+  <li>Pathfinding in games and robotics</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
