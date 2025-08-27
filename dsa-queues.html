@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Queue Operations & Implementation | RKTechGame</title>
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    a {
+      color: #f05454;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Queue Operations & Implementation</h1>
+
+<p>A Queue is a linear data structure that follows the First In First Out (FIFO) principle, where the first element added is the first to be removed.</p>
+
+<h2>Core Operations:</h2>
+<ul>
+  <li><strong>Enqueue()</strong>: Add an element to the rear (end) of the queue.</li>
+  <li><strong>Dequeue()</strong>: Remove an element from the front of the queue.</li>
+  <li><strong>Peek()</strong>: Access the front element without removing it.</li>
+  <li><strong>isEmpty()</strong>: Check if the queue is empty.</li>
+  <li><strong>isFull()</strong>: (For fixed-size queues) Check if the queue is full.</li>
+</ul>
+
+<h2>Example Queue Implementation Using Python List:</h2>
+<pre><code>class Queue:
+    def __init__(self, capacity):
+        self.queue = [None] * capacity
+        self.front = 0
+        self.rear = -1
+        self.capacity = capacity
+        self.size = 0
+
+    def is_empty(self):
+        return self.size == 0
+
+    def is_full(self):
+        return self.size == self.capacity
+
+    def enqueue(self, data):
+        if self.is_full():
+            print("Queue Overflow")
+            return
+        self.rear = (self.rear + 1) % self.capacity
+        self.queue[self.rear] = data
+        self.size += 1
+
+    def dequeue(self):
+        if self.is_empty():
+            print("Queue Underflow")
+            return None
+        data = self.queue[self.front]
+        self.front = (self.front + 1) % self.capacity
+        self.size -= 1
+        return data
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.queue[self.front]
+
+# Usage example:
+q = Queue(5)
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+print("Front element:", q.peek())
+print("Dequeued:", q.dequeue())
+print("Front element after dequeue:", q.peek())
+</code></pre>
+
+<h2>Advantages of Queue:</h2>
+<ul>
+  <li>Provides a fair order for processing items in FIFO manner.</li>
+  <li>Used in breadth-first search (BFS) algorithms.</li>
+  <li>Manages resources like printers, CPU scheduling, task scheduling.</li>
+  <li>Helps in asynchronous data transfer (buffers).</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
