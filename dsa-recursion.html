@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recursion Concepts | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Understand recursion in programming, including base case, recursive case, termination condition, and Python code examples for factorial and Fibonacci sequences." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-recursion.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Recursion Concepts in Programming</h1>
+
+<p><strong>Recursion</strong> is a programming technique where a function calls itself to solve smaller instances of the same problem until it reaches a base case.</p>
+
+<h2>Key Concepts of Recursion</h2>
+<ul>
+  <li><strong>Base Case (Termination Condition):</strong> The simplest instance of the problem which can be solved directly, stopping further recursive calls.</li>
+  <li><strong>Recursive Case:</strong> The part where the function calls itself to work on smaller subproblems.</li>
+  <li><strong>Termination:</strong> Every recursive function must ensure it approaches the base case and terminates to avoid infinite recursion.</li>
+  <li><strong>Call Stack:</strong> Each recursive call adds a stack frame that holds state until the base case is reached and the calls start returning.</li>
+</ul>
+
+<h2>Example 1: Factorial Calculation</h2>
+<p>Factorial of a number <code>n</code> (written as <code>n!</code>) is the product of all positive integers up to <code>n</code>.</p>
+<pre><code>def factorial(n):
+    if n == 0 or n == 1:  # Base case
+        return 1
+    else:
+        return n * factorial(n - 1)  # Recursive case
+
+print(factorial(5))  # Output: 120
+</code></pre>
+
+<h2>Example 2: Fibonacci Sequence</h2>
+<p>The Fibonacci sequence is defined such that each number is the sum of the two preceding ones, starting from 0 and 1.</p>
+<pre><code>def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(7))  # Output: 13
+</code></pre>
+
+<h2>How to Understand Recursion?</h2>
+<ul>
+  <li>Each recursive call solves a smaller part of the problem.</li>
+  <li>When the base case is hit, the function returns and the calls unravel in reverse order.</li>
+  <li>Recursion can be visualized as a sequence of function calls stacked on top of each other.</li>
+</ul>
+
+<h2>Advantages and Disadvantages of Recursion</h2>
+<ul>
+  <li><strong>Advantages:</strong> Simplifies code, makes some complex problems easier to solve, and is elegant.</li>
+  <li><strong>Disadvantages:</strong> Can cause stack overflow if base case is missing or for very deep recursion; sometimes less efficient due to function call overhead.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
