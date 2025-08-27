@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merge Sort, Quick Sort & Heap Sort | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Detailed explanation of Merge Sort, Quick Sort, and Heap Sort algorithms with step-by-step working, comparisons, and Python code examples for efficient sorting." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-advanced-sorting.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+      margin-bottom: 2rem;
+    }
+    table {
+      margin-left: auto;
+      margin-right: auto;
+      border-collapse: collapse;
+      width: 900px;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border: 1px solid #f05454;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #f05454;
+      color: #101820;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre, table {
+        font-size: 1rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Merge Sort, Quick Sort & Heap Sort</h1>
+
+<h2>1. Merge Sort</h2>
+<p>Merge Sort is a classic divide-and-conquer sorting algorithm that divides the array into halves, recursively sorts them, and then merges the sorted halves.</p>
+
+<h3>How Merge Sort Works</h3>
+<ul>
+  <li>Divide the array into two halves.</li>
+  <li>Recursively sort each half.</li>
+  <li>Merge the two sorted halves to produce a fully sorted array.</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i &lt; len(left) and j &lt; len(right):
+        if left[i] &lt; right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def merge_sort(arr):
+    if len(arr) &lt;= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    return merge(left, right)
+</code></pre>
+
+<h2>2. Quick Sort</h2>
+<p>Quick Sort is an efficient in-place sorting algorithm that uses partitioning to divide the array and recursively sort the partitions.</p>
+
+<h3>How Quick Sort Works</h3>
+<ul>
+  <li>Select a pivot element.</li>
+  <li>Partition the array such that elements less than pivot come before it, and greater after it.</li>
+  <li>Recursively apply quick sort on the partitions.</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+
+    for j in range(low, high):
+        if arr[j] &lt;= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+def quick_sort(arr, low, high):
+    if low &lt; high:
+        pi = partition(arr, low, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+</code></pre>
+
+<h2>3. Heap Sort</h2>
+<p>Heap Sort uses a binary heap data structure to efficiently sort an array by repeatedly extracting the maximum element.</p>
+
+<h3>How Heap Sort Works</h3>
+<ul>
+  <li>Build a max heap from the input data.</li>
+  <li>Extract the maximum element from the heap and move it to the end of the array.</li>
+  <li>Reduce the heap size and heapify the root again.</li>
+  <li>Repeat until the heap size becomes one.</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>def heapify(arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    if left &lt; n and arr[left] &gt; arr[largest]:
+        largest = left
+
+    if right &lt; n and arr[right] &gt; arr[largest]:
+        largest = right
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, i, 0)
+</code></pre>
+
+<h2>Comparison of Merge Sort, Quick Sort & Heap Sort</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Time Complexity (Best)</th>
+      <th>Time Complexity (Average)</th>
+      <th>Time Complexity (Worst)</th>
+      <th>Space Complexity</th>
+      <th>Stability</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Merge Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n)</td>
+      <td>Stable</td>
+      <td>Linked lists, stable sorting</td>
+    </tr>
+    <tr>
+      <td>Quick Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n²)</td>
+      <td>O(log n) recursive stack</td>
+      <td>Not stable</td>
+      <td>General-purpose in-memory sort</td>
+    </tr>
+    <tr>
+      <td>Heap Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(1)</td>
+      <td>Not stable</td>
+      <td>Memory constrained environments</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
