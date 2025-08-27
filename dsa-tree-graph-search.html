@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search in Trees & Graphs | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Explore search techniques in trees and graphs including Depth-First Search (DFS), Breadth-First Search (BFS), and graph search strategies with Python code examples and applications." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-search-trees-graphs.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Search in Trees & Graphs</h1>
+
+<h2>Introduction</h2>
+<p>Searching in trees and graphs is a fundamental operation used in many applications such as pathfinding, network analysis, and hierarchical data processing. The most common search techniques include Depth-First Search (DFS) and Breadth-First Search (BFS).</p>
+
+<h2>Depth-First Search (DFS)</h2>
+<p>DFS explores as far as possible along each branch before backtracking, which is suitable for pathfinding and connectivity checking.</p>
+
+<h3>DFS Algorithm</h3>
+<ul>
+  <li>Start from the root or any arbitrary node.</li>
+  <li>Mark the node as visited and explore each unvisited adjacent node recursively.</li>
+  <li>Backtrack when no unvisited adjacent nodes remain.</li>
+</ul>
+
+<h3>DFS Python Code Example</h3>
+<pre><code>def dfs(graph, node, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(node)
+    print(node, end=' ')
+    for neighbor in graph.get(node, []):
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+# Usage
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+
+dfs(graph, 'A')
+</code></pre>
+
+<h2>Breadth-First Search (BFS)</h2>
+<p>BFS explores neighbor nodes at the current depth before moving on to nodes at the next depth level, useful for shortest path finding in unweighted graphs.</p>
+
+<h3>BFS Algorithm</h3>
+<ul>
+  <li>Initialize a queue and mark the start node as visited.</li>
+  <li>Dequeue a node and enqueue all its unvisited neighbors.</li>
+  <li>Repeat until the queue is empty.</li>
+</ul>
+
+<h3>BFS Python Code Example</h3>
+<pre><code>from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
+
+    while queue:
+        node = queue.popleft()
+        print(node, end=' ')
+
+        for neighbor in graph.get(node, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+# Usage
+bfs(graph, 'A')
+</code></pre>
+
+<h2>Graph Search Strategies</h2>
+<p>Graph search algorithms differ from tree search as they handle cycles and repeated states by maintaining visited or explored sets to avoid infinite loops and redundant processing.</p>
+<ul>
+  <li>Graph Search keeps track of all explored nodes to prevent re-expansion.</li>
+  <li>Tree-Like Search may revisit nodes multiple times due to multiple paths.</li>
+  <li>Appropriate use of visited sets optimizes performance in complex graphs.</li>
+</ul>
+
+<h2>Applications</h2>
+<ul>
+  <li>Pathfinding in maps and games.</li>
+  <li>Network connectivity and flow analysis.</li>
+  <li>Detecting cycles or dependencies.</li>
+  <li>Solving puzzles and exploring state spaces.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
