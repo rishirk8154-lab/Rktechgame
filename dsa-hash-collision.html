@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collision Resolution Techniques in Hashing | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Understand collision resolution techniques in hashing including separate chaining, open addressing (linear probing, quadratic probing, double hashing) with examples and Python implementation." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-collision-resolution.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Collision Resolution Techniques in Hashing</h1>
+
+<h2>What is a Collision?</h2>
+<p>In hashing, a collision occurs when two or more keys are hashed to the same index in the hash table, causing a conflict in storing the data.</p>
+
+<h2>Common Collision Resolution Techniques</h2>
+
+<h3>1. Separate Chaining</h3>
+<p>In separate chaining, each index of the hash table points to a linked list (or similar data structure) that contains all the elements hashed to that index.</p>
+<ul>
+  <li>Simple to implement.</li>
+  <li>Insertion and deletion are efficient, as they just modify a linked list.</li>
+  <li>Needs extra memory to store pointers.</li>
+</ul>
+
+<h3>2. Open Addressing</h3>
+<p>In open addressing, when a collision occurs, the algorithm probes the hash table in a sequence to find an empty slot.</p>
+<ul>
+  <li><strong>Linear Probing:</strong> Check the next slot linearly until an empty one is found.</li>
+  <li><strong>Quadratic Probing:</strong> Use quadratic function to find next slots to reduce clustering.</li>
+  <li><strong>Double Hashing:</strong> Use a secondary hash function to calculate probe intervals, reducing clustering further.</li>
+</ul>
+
+<h2>Python Example: Separate Chaining</h2>
+<pre><code>class HashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.table = [[] for _ in range(size)]
+
+    def hash_function(self, key):
+        return sum(ord(c) for c in key) % self.size
+
+    def insert(self, key, value):
+        index = self.hash_function(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                pair[1] = value
+                return
+        self.table[index].append([key, value])
+
+    def search(self, key):
+        index = self.hash_function(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                return pair[1]
+        return None
+
+# Usage
+ht = HashTable()
+ht.insert('Alice', 25)
+ht.insert('Bob', 30)
+ht.insert('Eve', 22)
+
+print(ht.search('Alice'))  # Output: 25
+print(ht.search('Bob'))    # Output: 30
+print(ht.search('Charlie'))  # Output: None
+</code></pre>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
