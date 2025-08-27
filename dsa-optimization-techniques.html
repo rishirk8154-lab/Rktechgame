@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Optimization Techniques in Algorithms | Dynamic Programming | RKTechGame</title>
+  <meta name="description" content="Learn key optimization techniques in algorithms like Dynamic Programming, including memoization and tabulation with examples and explanations to improve efficiency." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-optimization-techniques.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre, table {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    table {
+      width: 900px;
+      border-collapse: collapse;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border: 1px solid #f05454;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f05454;
+      color: #101820;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre, table {
+        font-size: 1rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Optimization Techniques in Algorithms: Dynamic Programming</h1>
+
+<h2>What is Optimization in Algorithms?</h2>
+<p>Optimization techniques help improve the efficiency of algorithms by reducing time and space complexity while maintaining correctness of results.</p>
+
+<h2>Dynamic Programming (DP)</h2>
+<p>DP is a powerful optimization approach designed to solve problems exhibiting overlapping subproblems and optimal substructure by storing intermediate results to avoid redundant computations.</p>
+
+<h2>Two Primary Techniques of Dynamic Programming</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Technique</th>
+      <th>Description</th>
+      <th>Approach</th>
+      <th>Strength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Memoization</td>
+      <td>Top-down recursion with caching of intermediate results.</td>
+      <td>Recursive</td>
+      <td>Simple implementation when recursion is natural.</td>
+    </tr>
+    <tr>
+      <td>Tabulation</td>
+      <td>Bottom-up iterative filling of a DP table.</td>
+      <td>Iterative</td>
+      <td>Often more efficient, no recursion overhead.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Example: Fibonacci Number using Memoization</h2>
+<pre><code>def fib_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
+    return memo[n]
+
+print(fib_memo(10))  # Output: 55
+</code></pre>
+
+<h2>Example: Fibonacci Number using Tabulation</h2>
+<pre><code>def fib_tab(n):
+    dp = [0] * (n + 1)
+    dp[1] = 1
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+    return dp[n]
+
+print(fib_tab(10))  # Output: 55
+</code></pre>
+
+<h2>When to Use Optimization Techniques?</h2>
+<ul>
+  <li>Use when naive or recursive solutions have exponential time.</li>
+  <li>Problems exhibiting overlapping subproblems and optimal substructure.</li>
+  <li>To transform exponential solutions into polynomial-time algorithms.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
