@@ -14,7 +14,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="RErV1Aiv7reLz9H-zmZ8cMa-0We_J0qUWKd9xNWN_SE" />
-  <title>RKTechGame</title>
+  <title>RKTechGame - Gaming & StudyZone with Programming Courses</title>
+  <meta name="description" content="RKTechGame offers fun and educational casual games plus comprehensive programming courses in Python, Java, HTML, CSS, and Data Structures & Algorithms for learners." />
+  <meta name="keywords" content="Games, Typing Speed, Tic Tac Toe, Number Puzzle, Python Course, Java Course, HTML Course, CSS Course, DSA Course, StudyZone, Coding Tutorials, Programming Learning" />
+  <meta name="author" content="RKTechGame" />
+  <link rel="canonical" href="https://rktechgame.fun/" />
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap"
     rel="stylesheet"
@@ -24,9 +28,8 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    /* Your existing CSS styles unchanged */
+    html {scroll-behavior: smooth;}
     :root {
       --kakashi-blue: #546285;
       --kakashi-gray: #cfd2dc;
@@ -40,11 +43,7 @@
     body {
       margin: 0;
       font-family: "Montserrat", Arial, sans-serif;
-      background: linear-gradient(
-        120deg,
-        var(--kakashi-blue) 20%,
-        var(--kakashi-gray) 100%
-      );
+      background: linear-gradient(120deg, var(--kakashi-blue) 20%, var(--kakashi-gray) 100%);
       color: var(--kakashi-dark);
       transition: background 0.6s;
       min-height: 100vh;
@@ -56,11 +55,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      background: linear-gradient(
-        120deg,
-        var(--kakashi-dark) 70%,
-        var(--kakashi-blue) 100%
-      );
+      background: linear-gradient(120deg, var(--kakashi-dark) 70%, var(--kakashi-blue) 100%);
       min-height: 220px;
       box-shadow: 0 6px 30px #292a3688;
       border-bottom-left-radius: 38px;
@@ -74,10 +69,7 @@
       width: 110px;
       height: 110px;
       border-radius: 50%;
-      background: url(
-        "https://api.dicebear.com/7.x/adventurer/svg?seed=Kakashi&skinColor=variant05&hairColor=gray&backgroundColor=white&hair=shortFlat&mouth=smirk&eyes=wink&eyebrows=variant06"
-      )
-        center/cover no-repeat;
+      background: url("https://api.dicebear.com/7.x/adventurer/svg?seed=Kakashi&skinColor=variant05&hairColor=gray&backgroundColor=white&hair=shortFlat&mouth=smirk&eyes=wink&eyebrows=variant06") center/cover no-repeat;
       box-shadow: 0 2px 19px #292a3640;
       border: 5px solid var(--kakashi-blue);
       position: relative;
@@ -89,24 +81,15 @@
       justify-content: center;
     }
     @keyframes maskUp {
-      0% {
-        margin-top: 120px;
-        opacity: 0;
-      }
-      70% {
-        opacity: 0.5;
-      }
-      100% {
-        margin-top: 74px;
-        opacity: 1;
-      }
+      0% { margin-top: 120px; opacity: 0; }
+      70% { opacity: 0.5; }
+      100% { margin-top: 74px; opacity: 1; }
     }
     header h1 {
       color: var(--kakashi-red);
       font-size: 2.5rem;
       margin: 7px 0 0 0;
-      text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red),
-        0 0 24px var(--kakashi-red);
+      text-shadow: 0 0 8px var(--kakashi-red), 0 0 14px var(--kakashi-red), 0 0 24px var(--kakashi-red);
       letter-spacing: 3px;
       font-weight: 900;
       cursor: default;
@@ -354,11 +337,7 @@
 </head>
 <body>
   <header role="banner">
-    <div
-      class="kakashi-face"
-      role="img"
-      aria-label="Kakashi styled avatar"
-    ></div>
+    <div class="kakashi-face" role="img" aria-label="Kakashi styled avatar"></div>
     <h1 id="headerName">RKTechGame</h1>
   </header>
 
@@ -367,16 +346,7 @@
     aria-live="polite"
     role="region"
     aria-label="Website tagline"
-    style="
-      text-align: center;
-      color: var(--tagline-color);
-      text-shadow: 0 0 12px var(--tagline-shadow);
-      font-weight: 600;
-      font-size: 1.2rem;
-      max-width: 450px;
-      margin: 8px auto 8px auto;
-      user-select: none;
-    "
+    style="text-align: center; color: var(--tagline-color); text-shadow: 0 0 12px var(--tagline-shadow); font-weight: 600; font-size: 1.2rem; max-width: 450px; margin: 8px auto 8px auto; user-select: none;"
   >
     Passionate about Gaming & StudyZone Innovation
   </div>
@@ -461,14 +431,10 @@
         <h3><i class="fas fa-code"></i> CSS Course</h3>
         <p>Master CSS styling and responsive designs for modern webpages.</p>
       </a>
-
-      <!-- Added Data Structures & Algorithms Course Section -->
       <a href="dsa-topics.html" tabindex="0" aria-label="Data Structures and Algorithms Course">
         <h3><i class="fas fa-code"></i> Data Structures & Algorithms Course</h3>
         <p>Master core DSA concepts with examples, practice problems, and projects.</p>
       </a>
-      <!-- End of DSA Section -->
-
     </div>
   </section>
 
@@ -507,4 +473,5 @@
     });
   </script>
 </body>
-</html>
+  </html>
+  
