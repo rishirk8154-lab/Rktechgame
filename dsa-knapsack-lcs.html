@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Classic DP Problems: Knapsack & LCS | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn about classic dynamic programming problems: 0/1 Knapsack and Longest Common Subsequence (LCS) with explanations, approaches, and complete Python implementations." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-knapsack-lcs.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Classic DP Problems: Knapsack & Longest Common Subsequence (LCS)</h1>
+
+<h2>1. 0/1 Knapsack Problem</h2>
+<p>Given items each with weight and value, and a knapsack with capacity W, select items to maximize value without exceeding capacity.</p>
+
+<h3>Approach</h3>
+<ul>
+  <li>Use dynamic programming to explore including or excluding each item.</li>
+  <li>Create a DP table where dp[i][w] represents max value using first i items with capacity w.</li>
+  <li>Transition: <code>dp[i][w] = max(dp[i-1][w], dp[i-1][w-weight[i]] + value[i])</code> if weight[i] ≤ w; else exclude item.</li>
+</ul>
+
+<h3>Python Code (Bottom-Up DP)</h3>
+<pre><code>def knapsack(weights, values, W):
+    n = len(weights)
+    dp = [[0 for _ in range(W+1)] for _ in range(n+1)]
+
+    for i in range(1, n+1):
+        for w in range(1, W+1):
+            if weights[i-1] <= w:
+                dp[i][w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]] + values[i-1])
+            else:
+                dp[i][w] = dp[i-1][w]
+    return dp[n][W]
+
+weights = [1, 3, 4, 5]
+values = [1, 4, 5, 7]
+W = 7
+print("Max value in Knapsack:", knapsack(weights, values, W))  # Output: 9
+</code></pre>
+
+<h2>2. Longest Common Subsequence (LCS)</h2>
+<p>Find the longest subsequence common to two sequences, which may not be contiguous but maintains order.</p>
+
+<h3>Approach</h3>
+<ul>
+  <li>Use dynamic programming with a 2D table dp where <code>dp[i][j]</code> stores LCS length for first <code>i</code> chars of string 1 and first <code>j</code> chars of string 2.</li>
+  <li>If characters match: <code>dp[i][j] = 1 + dp[i-1][j-1]</code></li>
+  <li>If not match: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code></li>
+</ul>
+
+<h3>Python Code (Bottom-Up DP)</h3>
+<pre><code>def lcs(X, Y):
+    m, n = len(X), len(Y)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if X[i - 1] == Y[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    
+    return dp[m][n]
+
+X = "AGGTAB"
+Y = "GXTXAYB"
+print("Length of LCS:", lcs(X, Y))  # Output: 4
+</code></pre>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
