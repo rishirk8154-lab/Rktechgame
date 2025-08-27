@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Disjoint Set Union (Union-Find) | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn Disjoint Set Union (DSU) or Union-Find data structure, including union, find operations, optimizations like path compression and union by size with Python implementation." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-disjoint-set-union.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media(max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Disjoint Set Union (Union-Find) Data Structure</h1>
+
+<h2>What is Disjoint Set Union (DSU)?</h2>
+<p>DSU, also known as Union-Find, is a data structure that keeps track of a partition of a set into disjoint subsets. It supports two useful operations efficiently:</p>
+<ul>
+  <li><strong>Find:</strong> Determine which subset a particular element belongs to. This can be used to check if two elements are in the same subset.</li>
+  <li><strong>Union:</strong> Join two subsets into a single subset.</li>
+</ul>
+
+<h2>Key Concepts and Optimizations</h2>
+<ul>
+  <li><strong>Path Compression:</strong> During the <code>find</code> operation, make each node point directly to the root, flattening the structure and speeding up subsequent queries.</li>
+  <li><strong>Union by Size/Rank:</strong> Attach the smaller tree under the root of the larger tree to keep the tree shallow, ensuring near-constant time operations.</li>
+</ul>
+
+<h2>Python Implementation</h2>
+<pre><code>class DisjointSetUnion:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])  # Path compression
+        return self.parent[x]
+
+    def union(self, a, b):
+        rootA = self.find(a)
+        rootB = self.find(b)
+
+        if rootA != rootB:
+            # Union by size
+            if self.size[rootA] < self.size[rootB]:
+                rootA, rootB = rootB, rootA
+            self.parent[rootB] = rootA
+            self.size[rootA] += self.size[rootB]
+
+# Usage Example
+dsu = DisjointSetUnion(5)  # create 5 elements (0 to 4)
+dsu.union(0, 1)
+dsu.union(1, 2)
+dsu.union(3, 4)
+print("Parent array:", dsu.parent)
+print("Are 0 and 2 connected?", dsu.find(0) == dsu.find(2))  # True
+print("Are 0 and 4 connected?", dsu.find(0) == dsu.find(4))  # False
+</code></pre>
+
+<h2>Applications</h2>
+<ul>
+  <li>Kruskal’s Minimum Spanning Tree algorithm</li>
+  <li>Detecting cycles in undirected graphs</li>
+  <li>Network connectivity and dynamic connectivity problems</li>
+  <li>Image processing for grouping pixels</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
