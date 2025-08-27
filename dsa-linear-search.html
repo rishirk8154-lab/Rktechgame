@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linear Search Algorithm | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn Linear Search algorithm with clear explanation, step-by-step working, time complexity analysis, and Python code implementation with examples." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-linear-search.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Linear Search Algorithm</h1>
+
+<p>Linear Search, also known as sequential search, is the simplest searching algorithm. It checks every element in the list sequentially until the desired element is found or the list ends.</p>
+
+<h2>Working of Linear Search</h2>
+<ul>
+  <li>Start from the first element.</li>
+  <li>Compare the current element with the target element.</li>
+  <li>If it matches, return the index.</li>
+  <li>If not, move to the next element and repeat.</li>
+  <li>If the end is reached without a match, the element is not in the list.</li>
+</ul>
+
+<h2>Algorithm/Pseudocode</h2>
+<p><strong>Pseudocode:</strong></p>
+<pre><code>procedure linear_search(arr, x)
+    for i = 0 to length(arr) - 1 do
+        if arr[i] = x then
+            return i
+    return -1
+</code></pre>
+
+<h2>Time Complexity</h2>
+<ul>
+  <li><strong>Best Case:</strong> O(1) when the element is present at the first position.</li>
+  <li><strong>Average Case:</strong> O(n)</li>
+  <li><strong>Worst Case:</strong> O(n) when the element is not present or at the last position.</li>
+</ul>
+
+<h2>Python Code Example</h2>
+<pre><code>def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return -1
+
+# Usage Example
+arr = [10, 23, 45, 70, 11, 15]
+target = 70
+
+result = linear_search(arr, target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found in the list")
+</code></pre>
+
+<h2>Applications</h2>
+<ul>
+  <li>Useful for small or unsorted data.</li>
+  <li>Finding an element when simple and straightforward coding is needed.</li>
+  <li>Suitable for unsorted or small arrays where implementing more complex search algorithms is unnecessary.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
