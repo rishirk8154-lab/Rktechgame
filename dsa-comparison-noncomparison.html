@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparison vs Non-Comparison Sorting | DSA | RKTechGame</title>
+  <meta name="description" content="Understand the differences between comparison-based and non-comparison-based sorting algorithms with examples, use-cases, complexities, and pros & cons." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-sort-comparison.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, table {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 1.5rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 900px;
+    }
+    th, td {
+      border: 1px solid #f05454;
+      padding: 10px 15px;
+      text-align: center;
+    }
+    th {
+      background-color: #f05454;
+      color: #101820;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, table {
+        font-size: 1rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Comparison vs Non-Comparison Sorting Algorithms</h1>
+
+<p>Sorting algorithms can be broadly classified into two categories based on how they sort elements:</p>
+
+<h2>Comparison-Based Sorting Algorithms</h2>
+<p>In comparison-based algorithms, elements are compared with each other to determine their order. Examples include Quick Sort, Merge Sort, Heap Sort, Bubble Sort, Selection Sort, and Insertion Sort.</p>
+<ul>
+  <li>These algorithms generally have a lower bound time complexity of O(n log n).</li>
+  <li>They work with a wide range of data types and ordering conditions.</li>
+  <li>Can be either in-place or require additional memory.</li>
+  <li>May or may not be stable, depending on algorithm.</li>
+</ul>
+
+<h2>Non-Comparison-Based Sorting Algorithms</h2>
+<p>These algorithms do not compare elements directly. Instead, they leverage the properties of keys, often integers, to sort in linear or near-linear time. Examples include Counting Sort, Radix Sort, and Bucket Sort.</p>
+<ul>
+  <li>They usually achieve linear time complexity O(n) under certain conditions.</li>
+  <li>Applicable mostly to integers or data that can be mapped to integers.</li>
+  <li>Require additional memory space, typically O(n).</li>
+  <li>Considered stable sorting algorithms.</li>
+</ul>
+
+<h2>Key Differences</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Comparison-Based Sorting</th>
+      <th>Non-Comparison-Based Sorting</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Approach</td>
+      <td>Compare elements pairwise.</td>
+      <td>Use key properties, counting, or distribution.</td>
+    </tr>
+    <tr>
+      <td>Time Complexity</td>
+      <td>Best O(n log n), worst O(n²).</td>
+      <td>Often O(n), depends on input constraints.</td>
+    </tr>
+    <tr>
+      <td>Applicability</td>
+      <td>General purpose, any comparable data.</td>
+      <td>Mostly integer keys or mapped values.</td>
+    </tr>
+    <tr>
+      <td>Space Complexity</td>
+      <td>Can be in-place (O(1))</td>
+      <td>Extra space required (O(n)).</td>
+    </tr>
+    <tr>
+      <td>Stability</td>
+      <td>Varies (stable or unstable)</td>
+      <td>Usually stable.</td>
+    </tr>
+    <tr>
+      <td>Examples</td>
+      <td>Quick Sort, Merge Sort, Heap Sort, etc.</td>
+      <td>Counting Sort, Radix Sort, Bucket Sort.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Conclusion</h2>
+<p>Comparison-based sorting algorithms are versatile and widely applicable, making them suitable for a broad range of problems. However, non-comparison sorting algorithms provide faster, often linear-time sorting when conditions (like integer keys) permit. Choosing between them depends on the data, constraints, and performance needs.</p>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
