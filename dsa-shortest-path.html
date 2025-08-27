@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shortest Path: Dijkstra & Bellman-Ford Algorithms | DSA | RKTechGame</title>
+  <meta name="description" content="Learn shortest path algorithms Dijkstra and Bellman-Ford with detailed explanations, use-cases, and Python code samples. Understand their differences and when to use each." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-shortest-path.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 0 0 1.5rem 0;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+      margin-bottom: 2rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Shortest Path Algorithms: Dijkstra & Bellman-Ford</h1>
+
+<h2>Dijkstra's Algorithm</h2>
+<p>Dijkstra’s algorithm finds the shortest path from a single source vertex to all other vertices in a weighted graph with non-negative weights.</p>
+
+<h3>How It Works</h3>
+<ul>
+  <li>Start with the source vertex, assign initial distances: 0 for the source and infinity for others.</li>
+  <li>Select the unvisited vertex with the smallest tentative distance.</li>
+  <li>Update neighbors' distances if shorter paths are found via the current vertex.</li>
+  <li>Mark the current vertex as visited and repeat until all vertices are visited.</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>import heapq
+
+def dijkstra(graph, start):
+    distances = {vertex: float('infinity') for vertex in graph}
+    distances[start] = 0
+    priority_queue = [(0, start)]
+
+    while priority_queue:
+        current_distance, current_vertex = heapq.heappop(priority_queue)
+
+        if current_distance > distances[current_vertex]:
+            continue
+
+        for neighbor, weight in graph[current_vertex].items():
+            distance = current_distance + weight
+
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(priority_queue, (distance, neighbor))
+
+    return distances
+
+# Usage example
+graph = {
+    'A': {'B': 4, 'C': 2},
+    'B': {'C': 3, 'D': 2, 'E': 3},
+    'C': {'B': 1, 'D': 4, 'E': 5},
+    'D': {},
+    'E': {'D': 1}
+}
+
+distances = dijkstra(graph, 'A')
+print(distances)
+</code></pre>
+
+<h2>Bellman-Ford Algorithm</h2>
+<p>Bellman-Ford algorithm finds the shortest paths from a single source vertex to all other vertices in a graph, and it can handle graphs with some edges having negative weights.</p>
+
+<h3>How It Works</h3>
+<ul>
+  <li>Initialize distances from source to all vertices as infinity, except source which is 0.</li>
+  <li>Relax all edges V-1 times (V = number of vertices).</li>
+  <li>Check for negative weight cycles (if further relaxation is possible, negative cycle exists).</li>
+</ul>
+
+<h3>Python Code Example</h3>
+<pre><code>def bellman_ford(graph, start):
+    distance = {vertex: float('infinity') for vertex in graph}
+    distance[start] = 0
+
+    for _ in range(len(graph) - 1):
+        for vertex in graph:
+            for neighbor, weight in graph[vertex].items():
+                if distance[vertex] + weight < distance[neighbor]:
+                    distance[neighbor] = distance[vertex] + weight
+
+    # Check for negative weight cycles
+    for vertex in graph:
+        for neighbor, weight in graph[vertex].items():
+            if distance[vertex] + weight < distance[neighbor]:
+                raise ValueError("Graph contains a negative weight cycle")
+
+    return distance
+
+# Usage example
+graph = {
+    'A': {'B': -1, 'C': 4},
+    'B': {'C': 3, 'D': 2, 'E': 2},
+    'C': {},
+    'D': {'B': 1, 'C': 5},
+    'E': {'D': -3}
+}
+
+distances = bellman_ford(graph, 'A')
+print(distances)
+</code></pre>
+
+<h2>Key Differences</h2>
+<ul>
+  <li>Dijkstra works only with non-negative edge weights; Bellman-Ford works with negative weights but no negative cycles.</li>
+  <li>Dijkstra is generally faster (using priority queues), Bellman-Ford is simpler but slower.</li>
+  <li>Both algorithms solve the single-source shortest path problem.</li>
+</ul>
+
+<h2>Applications</h2>
+<ul>
+  <li>Network routing protocols.</li>
+  <li>Optimal pathfinding in maps and games.</li>
+  <li>Detecting negative cycles in financial models.</li>
+</ul>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
