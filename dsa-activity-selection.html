@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activity Selection Problem | Greedy Algorithm | RKTechGame</title>
+  <meta name="description" content="Learn Activity Selection Problem solved by Greedy Algorithm with clear explanation, approach, and Python code implementation for maximum set of non-overlapping activities." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-activity-selection.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul, pre {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul, pre {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Activity Selection Problem</h1>
+
+<h2>Overview</h2>
+<p>The Activity Selection Problem is a classic example of a greedy algorithm where you have to select the maximum number of activities that don't overlap in time from a given set of activities with start and finish times.</p>
+
+<h2>Problem Statement</h2>
+<p>You are given N activities with their start and finish times. You need to select the maximum number of activities that can be performed by a single person, assuming that only one activity can be done at a time.</p>
+
+<h2>Approach (Greedy Algorithm)</h2>
+<ul>
+  <li>Sort all activities based on their finishing times in ascending order.</li>
+  <li>Select the first activity and add it to the result.</li>
+  <li>For every next activity, select it if the start time is greater than or equal to the finish time of the previously selected activity.</li>
+  <li>Repeat until all activities are checked.</li>
+</ul>
+
+<h2>Python Code Implementation</h2>
+<pre><code>def activity_selection(start, finish):
+    n = len(start)
+    activities = sorted(zip(start, finish), key=lambda x: x[1])
+
+    selected = [activities[0]]
+    last_finish = activities[0][1]
+
+    for i in range(1, n):
+        if activities[i][0] >= last_finish:
+            selected.append(activities[i])
+            last_finish = activities[i][1]
+
+    return selected
+
+start = [1, 3, 0, 5, 8, 5]
+finish = [2, 4, 6, 7, 9, 9]
+
+result = activity_selection(start, finish)
+print("Selected activities (start, finish):")
+for s, f in result:
+    print(f"({s}, {f})")
+</code></pre>
+
+<h2>Example</h2>
+<p>Input: start[] = {1, 3, 0, 5, 8, 5}, finish[] = {2, 4, 6, 7, 9, 9}</p>
+<p>Output: Selected activities (start, finish): (1, 2), (3, 4), (5, 7), (8, 9)</p>
+
+<h2>Time Complexity</h2>
+<p>The time complexity is O(n log n) due to sorting; selection takes O(n).</p>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
