@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binary Trees & Traversal | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn about binary trees in data structures, their types, and traversal methods including inorder, preorder, postorder, and level order traversal with examples and code snippets." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-binary-trees.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Binary Trees & Traversal</h1>
+
+<p>A <strong>Binary Tree</strong> is a hierarchical data structure in which each node has at most two children, referred to as the left child and the right child. Binary trees are widely used in computer science for searching, sorting, expression parsing, and more.</p>
+
+<h2>Types of Binary Tree Traversal</h2>
+
+<p>Tree traversal means visiting all the nodes in a tree in a specific order. The most common binary tree traversal methods are:</p>
+
+<h3>1. Inorder Traversal (Left, Root, Right)</h3>
+<p>First visit the left subtree, then the root node, and finally the right subtree.</p>
+<p>This traversal returns the nodes in a sorted order for binary search trees (BST).</p>
+<pre><code>def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=" ")
+        inorder(root.right)
+</code></pre>
+
+<h3>2. Preorder Traversal (Root, Left, Right)</h3>
+<p>Visit the root node first, then traverse the left subtree followed by the right subtree.</p>
+<p>Used to create a copy of the tree or to get prefix expression of an expression tree.</p>
+<pre><code>def preorder(root):
+    if root:
+        print(root.data, end=" ")
+        preorder(root.left)
+        preorder(root.right)
+</code></pre>
+
+<h3>3. Postorder Traversal (Left, Right, Root)</h3>
+<p>Traverse the left subtree, then right subtree, and visit the root node last.</p>
+<p>Used to delete the tree or get the postfix expression of an expression tree.</p>
+<pre><code>def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.data, end=" ")
+</code></pre>
+
+<h3>4. Level Order Traversal (Breadth-First)</h3>
+<p>Visit nodes level by level starting from the root using a queue data structure.</p>
+<pre><code>from collections import deque
+
+def level_order(root):
+    if not root:
+        return
+    queue = deque([root])
+    while queue:
+        node = queue.popleft()
+        print(node.data, end=" ")
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+</code></pre>
+
+<h2>Binary Tree Node Definition</h2>
+<pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+</code></pre>
+
+<p>To use these traversal functions, you first create nodes and link them as a tree.</p>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
