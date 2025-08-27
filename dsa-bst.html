@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binary Search Tree (BST) | Data Structures & Algorithms | RKTechGame</title>
+  <meta name="description" content="Learn about Binary Search Tree (BST) data structure, its properties, insertion, deletion, search operations, and traversal methods with code examples in Python." />
+  <link rel="canonical" href="https://rktechgame.fun/dsa-bst.html" />
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    h1, h2, h3 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1.5rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.8rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p, ul {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Binary Search Tree (BST)</h1>
+
+<p>A <strong>Binary Search Tree (BST)</strong> is a specialized binary tree data structure that maintains sorted data and allows fast insertion, deletion, and search operations.</p>
+
+<h2>Properties of BST</h2>
+<ul>
+  <li>Each node has at most two children: left and right.</li>
+  <li>The left subtree of a node contains only nodes with keys less than the node’s key.</li>
+  <li>The right subtree of a node contains only nodes with keys greater than the node’s key.</li>
+  <li>Both left and right subtrees must also be BSTs.</li>
+</ul>
+
+<h2>Basic Operations</h2>
+
+<h3>Insertion</h3>
+<p>Insert a new key by traversing the tree and placing it at the correct position to maintain BST properties.</p>
+<pre><code>def insert(node, key):
+    if node is None:
+        return Node(key)
+    if key < node.key:
+        node.left = insert(node.left, key)
+    else:
+        node.right = insert(node.right, key)
+    return node
+</code></pre>
+
+<h3>Search</h3>
+<p>Search a key by traversing either to the left or the right subtree depending on the comparison with the current node’s key.</p>
+<pre><code>def search(node, key):
+    if node is None or node.key == key:
+        return node
+    if key < node.key:
+        return search(node.left, key)
+    else:
+        return search(node.right, key)
+</code></pre>
+
+<h3>Deletion</h3>
+<p>Delete a node while maintaining BST properties:</p>
+<ul>
+  <li>If the node has no children, remove it directly.</li>
+  <li>If the node has one child, replace it with that child.</li>
+  <li>If the node has two children, replace its value with its in-order successor's value and delete the successor.</li>
+</ul>
+<pre><code>def minValueNode(node):
+    current = node
+    while current.left is not None:
+        current = current.left
+    return current
+
+def deleteNode(root, key):
+    if root is None:
+        return root
+    if key < root.key:
+        root.left = deleteNode(root.left, key)
+    elif key > root.key:
+        root.right = deleteNode(root.right, key)
+    else:
+        # Node with one or no child
+        if root.left is None:
+            temp = root.right
+            root = None
+            return temp
+        elif root.right is None:
+            temp = root.left
+            root = None
+            return temp
+        
+        # Node with two children
+        temp = minValueNode(root.right)
+        root.key = temp.key
+        root.right = deleteNode(root.right, temp.key)
+    return root
+</code></pre>
+
+<h2>Inorder Traversal (Sorted Order)</h2>
+<pre><code>def inorder(root):
+    if root is not None:
+        inorder(root.left)
+        print(root.key, end=" -> ")
+        inorder(root.right)
+</code></pre>
+
+<h2>Node Definition</h2>
+<pre><code>class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+</code></pre>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
