@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multi-Dimensional Arrays | Data Structures - RKTechGame</title>
+  <style>
+    body {
+      background-color: #101820;
+      color: #e1e1e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem 3rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1, h2 {
+      color: #f05454;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+    }
+    p, ul {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+    pre {
+      background: #1a273b;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 1rem auto 2rem auto;
+      font-family: 'Courier New', Courier, monospace;
+      color: #f05454;
+    }
+    a {
+      color: #f05454;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f05454;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Multi-Dimensional Arrays</h1>
+
+<p>A multi-dimensional array is an extension of a regular array that allows storing data in multiple dimensions—such as rows and columns, or more.</p>
+
+<h2>What is a Multi-Dimensional Array?</h2>
+<p>It is essentially an array of arrays. For example, a two-dimensional array can be thought of as a table with rows and columns.</p>
+
+<h2>Key Characteristics:</h2>
+<ul>
+  <li>Multidimensional arrays have two or more dimensions (2D, 3D, etc.).</li>
+  <li>Each element in one dimension is itself an array in the next dimension.</li>
+  <li>Useful for representing matrices, grids, and complex tabular data.</li>
+</ul>
+
+<h2>Example of a Two-Dimensional Array in Python:</h2>
+<pre><code>matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+
+# Access element in 2nd row, 3rd column (indexing starts at 0)
+print(matrix[1][2])  # Output: 6
+</code></pre>
+
+<h2>Example of a Two-Dimensional Array in Java:</h2>
+<pre><code>// Declare and initialize 2D array
+int[][] matrix = {
+  {1, 2, 3},
+  {4, 5, 6},
+  {7, 8, 9}
+};
+
+// Access element at row 1, column 2
+System.out.println(matrix[1][2]);  // Output: 6
+</code></pre>
+
+<h2>Applications of Multi-Dimensional Arrays:</h2>
+<ul>
+  <li>Matrices in math and engineering</li>
+  <li>Game boards and grids</li>
+  <li>Tabular data in databases</li>
+  <li>Image processing (pixels in rows and columns)</li>
+</ul>
+
+<p>Multidimensional arrays are powerful tools for organizing complex data structures in efficient ways and form a critical foundation for many algorithms.</p>
+
+<footer>&copy; 2025 RKTechGame. All rights reserved.</footer>
+
+</body>
+</html>
