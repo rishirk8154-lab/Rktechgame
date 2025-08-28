@@ -330,6 +330,47 @@
         font-size: 1rem;
       }
     }
+    /* Compiler link box styling */
+    #compiler-list a {
+      background: linear-gradient(120deg, #cfd2dc 82%, #a6b0cd 100%);
+      width: calc((100% / 3) - 24px);
+      min-width: 260px;
+      border-radius: 14px 32px 14px 32px;
+      padding: 22px 20px 18px 20px;
+      box-shadow: 0 3px 14px #292a3670;
+      margin-bottom: 20px;
+      color: #db1d29; /* Red color text as requested */
+      position: relative;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-sizing: border-box;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    #compiler-list a:hover {
+      transform: scale(1.05) rotate(-1.5deg);
+      box-shadow: 0 7px 18px var(--kakashi-shadow);
+      background: linear-gradient(110deg, #e7eaf3 66%, #db1d2911 100%);
+      color: #23243a;
+    }
+    #compiler-list a h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 7px 0;
+      font-size: 1.20rem;
+    }
+    #compiler-list a h3 i {
+      color: var(--kakashi-red);
+      font-size: 1.5rem;
+    }
+    #compiler-list a p {
+      margin: 0;
+      font-size: 1rem;
+      user-select: text;
+    }
   </style>
 </head>
 <body>
@@ -431,6 +472,16 @@
       <a href="dsa-topics.html" tabindex="0" aria-label="Data Structures and Algorithms Course">
         <h3><i class="fas fa-code"></i> Data Structures & Algorithms Course</h3>
         <p>Master core DSA concepts with examples, practice problems, and projects.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="compiler" tabindex="-1" aria-labelledby="compiler-title">
+    <h2 id="compiler-title">Compiler</h2>
+    <div class="skills-list" id="compiler-list">
+      <a href="online-compiler.html" tabindex="0" aria-label="Online Compiler">
+        <h3 style="color: var(--kakashi-red);"><i class="fas fa-code"></i> Online Compiler</h3>
+        <p>Run and test your code online for HTML, CSS, JavaScript and Python.</p>
       </a>
     </div>
   </section>
