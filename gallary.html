@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gallery - Hotel Avon International</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f9fc;
+    margin: 2rem auto;
+    max-width: 1000px;
+    color: #333;
+  }
+  h1, h2 {
+    color: #005c97;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  .gallery-item {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: calc(33.333% - 10px);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .gallery-item img:hover {
+    transform: scale(1.05);
+  }
+  .desc {
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #005c97;
+    text-align: center;
+  }
+  @media (max-width: 800px) {
+    .gallery-item {
+      width: calc(50% - 10px);
+    }
+  }
+  @media (max-width: 500px) {
+    .gallery-item {
+      width: 100%;
+    }
+  }
+  a.back-link {
+    display: block;
+    text-align: center;
+    margin: 2rem 0;
+    color: #005c97;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  a.back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<h1>Gallery - Aurangabad Attractions & Hotel Avon International</h1>
+
+<h2>Aurangabad Tourist Spots</h2>
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1600498405020-08d6e647a4a7?auto=format&fit=crop&w=600&q=80" alt="Ajanta Caves" />
+    <div class="desc">Ajanta Caves</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1505041341877-9763be2a185b?auto=format&fit=crop&w=600&q=80" alt="Ellora Caves" />
+    <div class="desc">Ellora Caves</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Bibi_Ka_Maqbara_Aurangabad.jpg/600px-Bibi_Ka_Maqbara_Aurangabad.jpg" alt="Bibi Ka Maqbara" />
+    <div class="desc">Bibi Ka Maqbara</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Daulatabad_Fort_view_from_nearby_bridge.jpg/600px-Daulatabad_Fort_view_from_nearby_bridge.jpg" alt="Daulatabad Fort" />
+    <div class="desc">Daulatabad Fort</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80" alt="Aurangabad City" />
+    <div class="desc">Aurangabad City</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://images.unsplash.com/photo-1505691723518-34d17a39b3a7?auto=format&fit=crop&w=600&q=80" alt="Grishneshwar Temple" />
+    <div class="desc">Grishneshwar Temple</div>
+  </div>
+</div>
+
+<h2>Hotel Avon International</h2>
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="https://cdn.pixabay.com/photo/2016/11/29/10/07/hotel-1869816_960_720.jpg" alt="Hotel Front View" />
+    <div class="desc">Hotel Front View</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://cdn.pixabay.com/photo/2017/06/26/21/30/lobby-2449531_960_720.jpg" alt="Hotel Lobby" />
+    <div class="desc">Hotel Lobby</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://cdn.pixabay.com/photo/2017/08/10/02/34/hotel-room-2618286_960_720.jpg" alt="Hotel Room" />
+    <div class="desc">Hotel Room</div>
+  </div>
+  <div class="gallery-item">
+    <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/restaurant-1837158_960_720.jpg" alt="Hotel Restaurant" />
+    <div class="desc">Hotel Restaurant</div>
+  </div>
+</div>
+
+<a href="index.html" class="back-link">&larr; Back to Home</a>
+
+</body>
+</html>
