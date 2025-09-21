@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Room Booking Form - Hotel Avon International, Aurangabad</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e3f2fd;
+    margin: 0; padding: 2rem;
+  }
+  h1 {
+    color: #005c97;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 12px 24px rgba(0, 92, 151, 0.15);
+  }
+  label {
+    font-weight: 600;
+    display: block;
+    margin: 1rem 0 0.25rem;
+    color: #005c97;
+  }
+  input[type="text"], input[type="tel"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus, input[type="tel"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+    border-color: #005c97;
+    outline: none;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  #nights {
+    background: #f0f0f0;
+  }
+  button {
+    margin-top: 1.5rem;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: #005c97;
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background: #363795;
+  }
+</style>
+</head>
+<body>
+
+<h1>Hotel Avon International, Aurangabad</h1>
+<h2>Room Booking Form</h2>
+<form id="bookingForm" onsubmit="return validateAndSubmit(event)">
+  <label for="name">Full Name*</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="mobile">Mobile Number*</label>
+  <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="10 digit mobile no." required />
+
+  <label for="category">Category of Room*</label>
+  <select id="category" name="category" required>
+    <option value="" disabled selected>Select Room Category</option>
+    <option value="Standard Room">Standard Room</option>
+    <option value="Deluxe Room">Deluxe Room</option>
+    <option value="Suite Room">Suite Room</option>
+    <option value="Presidential Suite">Presidential Suite</option>
+  </select>
+
+  <label for="checkin">Check-In Date*</label>
+  <input type="date" id="checkin" name="checkin" required />
+
+  <label for="checkout">Check-Out Date*</label>
+  <input type="date" id="checkout" name="checkout" required />
+
+  <label for="nights">Number of Nights</label>
+  <input type="text" id="nights" name="nights" readonly />
+
+  <label for="persons">Number of Persons*</label>
+  <select id="persons" name="persons" required>
+    <option value="" disabled selected>Select Number of Persons</option>
+    <option value="1">1 Person</option>
+    <option value="2">2 Persons</option>
+    <option value="3">3 Persons</option>
+    <option value="4">4 Persons</option>
+    <option value="5">5 Persons</option>
+    <option value="6">6 Persons</option>
+    <option value="7">7 Persons</option>
+    <option value="8">8 Persons</option>
+    <option value="9">9 Persons</option>
+    <option value="10">10 Persons</option>
+  </select>
+
+  <label for="children">Number of Children</label>
+  <select id="children" name="children">
+    <option value="0" selected>0 Children</option>
+    <option value="1">1 Child</option>
+    <option value="2">2 Children</option>
+    <option value="3">3 Children</option>
+  </select>
+
+  <label for="remarks">Remarks</label>
+  <textarea id="remarks" name="remarks" placeholder="Any special requests or comments"></textarea>
+
+  <button type="submit">Submit Booking</button>
+</form>
+
+<script>
+  const todayStr = new Date().toISOString().split('T')[0];
+  document.getElementById('checkin').setAttribute('min', todayStr);
+  document.getElementById('checkout').setAttribute('min', todayStr);
+
+  function calculateNights() {
+    const checkin = new Date(document.getElementById('checkin').value);
+    const checkout = new Date(document.getElementById('checkout').value);
+    if (checkout > checkin) {
+      const diffTime = checkout - checkin;
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      document.getElementById('nights').value = diffDays;
+    } else {
+      document.getElementById('nights').value = '';
+    }
+  }
+
+  document.getElementById('checkin').addEventListener('change', () => {
+    const checkinVal = document.getElementById('checkin').value;
+    if (checkinVal) {
+      document.getElementById('checkout').setAttribute('min', checkinVal);
+      if (document.getElementById('checkout').value < checkinVal) {
+        document.getElementById('checkout').value = '';
+      }
+    }
+    calculateNights();
+  });
+
+  document.getElementById('checkout').addEventListener('change', calculateNights);
+
+  function validateAndSubmit(event) {
+    event.preventDefault();
+    const checkin = document.getElementById('checkin').value;
+    const checkout = document.getElementById('checkout').value;
+    if (checkout <= checkin) {
+      alert('Check-Out date must be after Check-In date.');
+      return false;
+    }
+
+    alert('Booking request received. Integration with backend needed for processing.');
+    return true;
+  }
+</script>
+
+</body>
+</html>
+  
