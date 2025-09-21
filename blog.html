@@ -106,6 +106,8 @@
     line-height: 1.5;
     color: #444;
     font-size: 1.05rem;
+    max-width: 900px;
+    margin: 2rem auto 3rem auto;
   }
   .intro:hover, .booking-form:hover, .facilities:hover {
     box-shadow: 0 20px 40px rgba(0, 92, 151, 0.25);
@@ -116,7 +118,6 @@
   }
 
   .booking-form {
-    margin: 2rem auto 3rem;
     display: flex;
     gap: 1.2rem;
     flex-wrap: wrap;
@@ -223,9 +224,9 @@
   <a href="#about">About Us</a>
   <a href="#rooms">Rooms with Tariff</a>
   <a href="#facilities">Facilities</a>
-  <a href="#tour-package">Tour Package</a>
+  <a href="tour-package.html">Tour Package</a>
   <a href="#contact">Contact Us</a>
-  <a href="#booking">Book Now</a>
+  <a href="booking-form.html">Reservation</a>
   <a href="gallery.html">Gallery</a>
 </nav>
 
@@ -248,29 +249,11 @@
 </section>
 
 <section class="section" id="booking">
-  <h2>Book Your Stay</h2>
-  <form class="booking-form" onsubmit="return handleBooking(event)">
-    <div>
-      <label for="checkin">Check-In</label>
-      <input type="date" id="checkin" name="checkin" required min="" />
-    </div>
-    <div>
-      <label for="checkout">Check-Out</label>
-      <input type="date" id="checkout" name="checkout" required min="" />
-    </div>
-    <div>
-      <label for="guests">Guests</label>
-      <select id="guests" name="guests" required>
-        <option value="1">1 Guest</option>
-        <option value="2" selected>2 Guests</option>
-        <option value="3">3 Guests</option>
-        <option value="4">4 Guests</option>
-      </select>
-    </div>
-    <div>
-      <button type="submit">Check Availability</button>
-    </div>
-  </form>
+  <h2>Reservation</h2>
+  <div class="intro reservation-section">
+    <p>Ready to book your stay? Click the button below to reserve your room with us.</p>
+    <button class="reservation-btn" onclick="location.href='booking-form.html'">Reserve Now</button>
+  </div>
 </section>
 
 <section class="section" id="rooms">
@@ -310,13 +293,6 @@
       <li>Fitness Center (Project in Progress)</li>
       <li>All Quilts are made of best fabrics for great comfort.</li>
     </ul>
-  </div>
-</section>
-
-<section class="section" id="tour-package">
-  <h2>Tour Package</h2>
-  <div class="intro">
-    <p>Explore the beautiful attractions of Aurangabad with our specially curated tour packages. Contact our travel desk for customized deals and bookings.</p>
   </div>
 </section>
 
@@ -381,5 +357,4 @@
 </script>
 
 </body>
-  </html>
-  
+</html>
