@@ -9,14 +9,12 @@
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
-
   body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f9fc;
     color: #333;
     scroll-behavior: smooth;
   }
-
   header {
     background: linear-gradient(90deg, #005c97, #363795);
     color: #fff;
@@ -35,7 +33,6 @@
     letter-spacing: 1px;
     color: #c1d4f9;
   }
-
   nav {
     display: flex;
     justify-content: center;
@@ -56,7 +53,6 @@
   nav a:hover {
     background: #004a99;
   }
-
   .hero {
     position: relative;
     height: 450px;
@@ -70,7 +66,7 @@
   }
   .hero-background {
     position: absolute;
-    top:0; left:0; right:0; bottom:0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-size: cover;
     background-position: center center;
     filter: brightness(0.55);
@@ -88,7 +84,7 @@
   .hero h1 {
     font-size: 3.5rem;
     font-weight: 900;
-    text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
   }
   .hero p {
     margin-top: 1rem;
@@ -96,8 +92,7 @@
     font-weight: 500;
     letter-spacing: 1.1px;
   }
-
-  .intro, .booking-form, .facilities {
+  .intro, .booking-form, .facilities, .reservation-section {
     background: linear-gradient(135deg, #e3f2fd, #ffffff);
     box-shadow: 0 12px 24px rgba(0, 92, 151, 0.15);
     border-radius: 20px;
@@ -108,16 +103,33 @@
     font-size: 1.05rem;
     max-width: 900px;
     margin: 2rem auto 3rem auto;
+    text-align: center;
   }
-  .intro:hover, .booking-form:hover, .facilities:hover {
+  .intro:hover, .booking-form:hover, .facilities:hover, .reservation-section:hover {
     box-shadow: 0 20px 40px rgba(0, 92, 151, 0.25);
   }
   .intro strong {
     font-weight: 700;
     color: #005c97;
   }
-
+  button.reservation-btn {
+    margin-top: 1.5rem;
+    background: #005c97;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 0.75rem 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+  }
+  button.reservation-btn:hover {
+    background: #363795;
+  }
   .booking-form {
+    margin: 2rem auto 3rem;
     display: flex;
     gap: 1.2rem;
     flex-wrap: wrap;
@@ -163,7 +175,6 @@
     background: #363795;
     box-shadow: 0 10px 20px rgba(54,55,149,0.6);
   }
-
   .section {
     max-width: 1100px;
     margin: 4rem auto 4rem;
@@ -177,8 +188,6 @@
     font-size: 2rem;
     text-align: center;
   }
-
-  /* Facilities grid */
   .facilities ul {
     margin-top: 1rem;
     padding-left: 1.2rem;
@@ -187,7 +196,6 @@
   .facilities ul li {
     margin-bottom: 0.7rem;
   }
-
   footer {
     background: #005c97;
     color: white;
@@ -195,8 +203,6 @@
     padding: 1rem 2rem;
     font-weight: 600;
   }
-
-  /* Responsive */
   @media(max-width: 768px) {
     .booking-form {
       flex-direction: column;
@@ -214,7 +220,6 @@
 </style>
 </head>
 <body>
-
 <header>
   Hotel Avon International
   <div id="sub-header">Enjoy 5 star luxury @ 3 star rates</div>
@@ -229,33 +234,27 @@
   <a href="booking-form.html">Reservation</a>
   <a href="gallery.html">Gallery</a>
 </nav>
-
 <section class="hero" id="hero">
-  <div class="hero-background active"></div>
-  <div class="hero-background"></div>
-  <div class="hero-background"></div>
-  <div class="hero-background"></div>
+  <div class="hero-background active" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1367&q=80');"></div>
+  <div class="hero-background" style="background-image:url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1367&q=80');"></div>
+  <div class="hero-background" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1367&q=80');"></div>
+  <div class="hero-background" style="background-image:url('https://images.unsplash.com/photo-1505691723518-34d17a39b3a7?auto=format&fit=crop&w=1367&q=80');"></div>
   <div class="hero-content">
     <h1>Experience Luxury & Comfort</h1>
     <p>Your perfect stay in the heart of the city</p>
   </div>
 </section>
-
+<section class="reservation-section">
+  <h2>Reservation</h2>
+  <p>Ready to book your stay? Click the button below to reserve your room with us.</p>
+  <button class="reservation-btn" onclick="location.href='booking-form.html'">Reserve Now</button>
+</section>
 <section class="intro" id="about">
   <p>Welcome to <strong>Hotel Avon International</strong></p>
   <p><strong>Hotel Avon International</strong> is a value for money hotel. The rooms are of 5 star quality, which are offered at reasonable rates.</p>
   <p>All rooms are equipped with LED T.V.’s along with DTH, Voltas split a.c. Many rooms have 9” comfortable coire mattress & latest furniture range in the rooms.</p>
   <p>Comfort and care of guests are the main objectives of <strong>Hotel Avon</strong> and the rooms rightly reflect this attitude. The <strong>Hotel Avon International</strong> in Aurangabad captures special attention among the entire 3 star Luxury Hotels.</p>
 </section>
-
-<section class="section" id="booking">
-  <h2>Reservation</h2>
-  <div class="intro reservation-section">
-    <p>Ready to book your stay? Click the button below to reserve your room with us.</p>
-    <button class="reservation-btn" onclick="location.href='booking-form.html'">Reserve Now</button>
-  </div>
-</section>
-
 <section class="section" id="rooms">
   <h2>Rooms with Tariff</h2>
   <div class="intro">
@@ -268,7 +267,6 @@
     </ul>
   </div>
 </section>
-
 <section class="section" id="facilities">
   <h2>Facilities Available @ Avon International</h2>
   <div class="facilities">
@@ -295,7 +293,6 @@
     </ul>
   </div>
 </section>
-
 <section class="section" id="contact">
   <h2>Contact Us</h2>
   <div class="intro">
@@ -307,11 +304,9 @@
     </ul>
   </div>
 </section>
-
 <footer>
   &copy; 2025 Hotel Avon International. All rights reserved.
 </footer>
-
 <script>
   // Set min date for date inputs dynamically
   const today = new Date().toISOString().split('T')[0];
@@ -355,6 +350,5 @@
     return true;
   }
 </script>
-
 </body>
 </html>
