@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSS Fundamentals | Web Design Course | RKTechGame.fun</title>
+<meta name="description" content="Detailed notes on CSS fundamentals covering syntax, selectors, properties, box model, and styling techniques in English and Hinglish. Learn CSS basics for web design.">
+<meta name="keywords" content="CSS basics, CSS fundamentals notes, CSS selectors, CSS box model, web design CSS, beginner CSS tutorial, RKTechGame">
+<meta name="author" content="RKTechGame.fun"/>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 {
+    color: #00adee;
+    margin-bottom: 5px;
+  }
+  #language-toggle {
+    margin-top: 10px;
+  }
+  button.lang-btn {
+    background-color: #222;
+    color: #eee;
+    border: 2px solid #00adee;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button.lang-btn.active {
+    background-color: #00adee;
+    color: #121212;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #222;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #00adeeaa;
+  }
+  h2 {
+    color: #00adee;
+    margin-top: 25px;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  pre {
+    background: #111;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 16px;
+    color: #0f0;
+  }
+  ul {
+    margin-left: 20px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #444;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #00adee;
+    color: #121212;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CSS Fundamentals</h1>
+  <div id="language-toggle" role="group" aria-label="Language toggle">
+    <button class="lang-btn active" id="btn-english" aria-pressed="true">English</button>
+    <button class="lang-btn" id="btn-hinglish" aria-pressed="false">Hindi</button>
+  </div>
+</header>
+
+<main>
+  <section id="english-content">
+    <h2>What is CSS?</h2>
+    <p>CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation of a document written in HTML or XML. It controls the layout, colors, fonts, spacing, and overall visual appearance of web pages. CSS enables separation of content from design, making web pages easier to maintain and aesthetically pleasing.</p>
+
+    <h2>CSS Syntax</h2>
+    <p>A CSS rule set consists of a selector and a declaration block:</p>
+    <pre>selector {
+  property: value;
+  property2: value2;
+}</pre>
+    <p>Example:</p>
+    <pre>h1 {
+  color: blue;
+  font-size: 24px;
+}</pre>
+
+    <h2>CSS Selectors</h2>
+    <p>Select elements to apply styles to:</p>
+    <ul>
+      <li><strong>Element Selector:</strong> Targets all elements of a type. (e.g., <code>p {}</code>)</li>
+      <li><strong>Class Selector:</strong> Targets elements with a class attribute, denoted by a dot. (e.g., <code>.menu {}</code>)</li>
+      <li><strong>ID Selector:</strong> Targets a unique element with an ID, denoted by a hash. (e.g., <code>#header {}</code>)</li>
+      <li><strong>Attribute Selector:</strong> Targets elements with specific attributes. (e.g., <code>a[href^="https"] {}</code>)</li>
+      <li><strong>Descendant Selector:</strong> Targets elements inside another element. (e.g., <code>nav ul li {}</code>)</li>
+    </ul>
+
+    <h2>CSS Properties</h2>
+    <p>Common CSS properties include:</p>
+    <table>
+      <tr><th>Property</th><th>Description</th></tr>
+      <tr><td>color</td><td>Text color</td></tr>
+      <tr><td>background-color</td><td>Background color of elements</td></tr>
+      <tr><td>font-size</td><td>Size of text</td></tr>
+      <tr><td>margin</td><td>Space outside an element's border</td></tr>
+      <tr><td>padding</td><td>Space inside an element's border</td></tr>
+      <tr><td>border</td><td>Border around an element</td></tr>
+      <tr><td>width, height</td><td>Dimensions of an element</td></tr>
+      <tr><td>display</td><td>How an element is displayed (block, inline, etc.)</td></tr>
+    </table>
+
+    <h2>The CSS Box Model</h2>
+    <p>Every HTML element is considered a rectangular box and CSS controls its dimensions through the box model, which consists of:</p>
+    <ul>
+      <li><strong>Content:</strong> The actual content like text or images.</li>
+      <li><strong>Padding:</strong> Space between content and border.</li>
+      <li><strong>Border:</strong> Surrounds the padding and content.</li>
+      <li><strong>Margin:</strong> Space outside the border, separating elements.</li>
+    </ul>
+
+    <h2>Why Use CSS?</h2>
+    <p>CSS allows you to separate content and presentation, reuse styles efficiently across your site, and create responsive layouts for different devices. It provides control over typography, color schemes, layout, and interactive effects.</p>
+
+    <h2>Summary</h2>
+    <p>Understanding CSS fundamentals is essential for designing beautiful and functional web pages. Practice writing CSS rules, experimenting with selectors and box model to gain expertise.</p>
+  </section>
+
+  <section id="hinglish-content" style="display:none;">
+    <h2>CSS Kya Hai?</h2>
+    <p>CSS (Cascading Style Sheets) ek stylesheet language hai jo HTML ya XML document ke presentation ko control karti hai. Yeh web page ke layout, rang, fonts, spacing aur poore visual appearance ko define karti hai. CSS content aur design ko alag karta hai jisse website maintain karna aasan aur acchi dikhti hai.</p>
+
+    <h2>CSS Syntax</h2>
+    <p>CSS rule set mein selector aur declaration block hota hai:</p>
+    <pre>selector {
+  property: value;
+  property2: value2;
+}</pre>
+    <p>Udaharan:</p>
+    <pre>h1 {
+  color: blue;
+  font-size: 24px;
+}</pre>
+
+    <h2>CSS Selectors</h2>
+    <p>Elements ko style dene ke liye selectors ka istamaal hota hai:</p>
+    <ul>
+      <li><strong>Element Selector:</strong> Sabhi elements ko target karta hai. (Jaise <code>p {}</code>)</li>
+      <li><strong>Class Selector:</strong> Un elements ko jinke paas class attribute hota hai target karta hai, dot ke sath likha jata hai. (Jaise <code>.menu {}</code>)</li>
+      <li><strong>ID Selector:</strong> Unique element jiska ID hota hai, hash ke sath likha jata hai. (Jaise <code>#header {}</code>)</li>
+      <li><strong>Attribute Selector:</strong> Un elements ko target karta hai jinke paas specific attribute hota hai. (Jaise <code>a[href^="https"] {}</code>)</li>
+      <li><strong>Descendant Selector:</strong> Jo elements doosre element ke andar hote hain unko target karta hai. (Jaise <code>nav ul li {}</code>)</li>
+    </ul>
+
+    <h2>CSS Properties</h2>
+    <p>Kuch common CSS properties:</p>
+    <table>
+      <tr><th>Property</th><th>Description</th></tr>
+      <tr><td>color</td><td>Text ka rang</td></tr>
+      <tr><td>background-color</td><td>Element ki background ka rang</td></tr>
+      <tr><td>font-size</td><td>Text ka size</td></tr>
+      <tr><td>margin</td><td>Element ki border ke bahar ki jagah</td></tr>
+      <tr><td>padding</td><td>Element ke andar content aur border ke beech ki jagah</td></tr>
+      <tr><td>border</td><td>Element ke charo taraf border</td></tr>
+      <tr><td>width, height</td><td>Element ki lambai aur chaudai</td></tr>
+      <tr><td>display</td><td>Element ka display style (block, inline, etc.)</td></tr>
+    </table>
+
+    <h2>CSS Box Model</h2>
+    <p>Har HTML element ek rectangle box hota hai jiska size aur space CSS ke box model se control hota hai, jis mein shamil hain:</p>
+    <ul>
+      <li><strong>Content:</strong> Actual text ya image jo dikhaya jata hai.</li>
+      <li><strong>Padding:</strong> Content aur border ke beech ki jagah.</li>
+      <li><strong>Border:</strong> Padding aur content ke chaaro taraf border.</li>
+      <li><strong>Margin:</strong> Border ke bahar ki jagah jo elements ke beech gap deti hai.</li>
+    </ul>
+
+    <h2>CSS Kyun Use Karein?</h2>
+    <p>CSS se aap content aur presentation ko alag kar sakte hain, jo styles ko baar baar reuse karna aasan banata hai, aur alag-alag devices ke liye responsive layout create karta hai. Yeh typography, color scheme, layout aur interactivity ko control karta hai.</p>
+
+    <h2>Samapan</h2>
+    <p>CSS ke moolbhoot tatvon ko samajhna zaroori hai achhi aur functional web pages banane ke liye. CSS likhne ki practice karein, different selectors aur box model ko samjhein taaki aap expert ban saken.</p>
+  </section>
+</main>
+
+<script>
+  const btnEnglish = document.getElementById('btn-english');
+  const btnHinglish = document.getElementById('btn-hinglish');
+  const englishContent = document.getElementById('english-content');
+  const hinglishContent = document.getElementById('hinglish-content');
+
+  function setLanguage(lang) {
+    if (lang === 'english') {
+      englishContent.style.display = 'block';
+      hinglishContent.style.display = 'none';
+      btnEnglish.classList.add('active');
+      btnEnglish.setAttribute('aria-pressed', 'true');
+      btnHinglish.classList.remove('active');
+      btnHinglish.setAttribute('aria-pressed', 'false');
+      localStorage.setItem('cssFundamentalsLang', 'english');
+    } else {
+      englishContent.style.display = 'none';
+      hinglishContent.style.display = 'block';
+      btnEnglish.classList.remove('active');
+      btnEnglish.setAttribute('aria-pressed', 'false');
+      btnHinglish.classList.add('active');
+      btnHinglish.setAttribute('aria-pressed', 'true');
+      localStorage.setItem('cssFundamentalsLang', 'hinglish');
+    }
+  }
+
+  btnEnglish.addEventListener('click', () => setLanguage('english'));
+  btnHinglish.addEventListener('click', () => setLanguage('hinglish'));
+
+  // Load language preference from localStorage or default English
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('cssFundamentalsLang') || 'english';
+    setLanguage(savedLang);
+  });
+</script>
+
+</body>
+</html>
