@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Web Design, UX/UI & Unit Testing Course</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #00adee;
+  }
+  .course-container {
+    max-width: 700px;
+    margin: 20px auto;
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #00adeeaa;
+  }
+  h2 {
+    color: #00adee;
+    border-bottom: 2px solid #00adee;
+    padding-bottom: 5px;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul li {
+    background: #333;
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  ul li:hover {
+    background: #00adee;
+    color: #121212;
+  }
+  .chapter-detail {
+    margin-top: 15px;
+    font-style: italic;
+    color: #bbb;
+    min-height: 40px;
+  }
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+  }
+  select {
+    display: block;
+    margin: 0 auto 20px auto;
+    font-size: 16px;
+    background: #222;
+    color: #eee;
+    border: 2px solid #00adee;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  a.chapter-link {
+    color: #eee;
+    text-decoration: none;
+  }
+  a.chapter-link:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<h1>Web Design, UX/UI & Unit Testing Course</h1>
+
+<select id="language-select" aria-label="Select language">
+  <option value="english">English</option>
+  <option value="hinglish">Hindi</option>
+</select>
+
+<div class="course-container" id="course-container">
+  <!-- Chapters will be populated here by JS -->
+</div>
+
+<footer>
+  <p>© 2025 Rktechgame.fun All rights reserved</p>
+</footer>
+
+<script>
+  const courseContent = {
+    english: {
+      "Web Design Basics": [
+        {title: "1. <a href='#intro-webdesign' class='chapter-link'>Introduction to Web Design</a>", detail: "Introduction to fundamental concepts of web design and its importance."},
+        {title: "2. <a href='#html-structure' class='chapter-link'>Understanding HTML Structure</a>", detail: "Learn the structure and elements of HTML."},
+        {title: "3. <a href='#css-fundamentals' class='chapter-link'>CSS Fundamentals and Styling</a>", detail: "Basics of CSS for styling web pages."},
+        {title: "4. <a href='#responsive-webdesign' class='chapter-link'>Responsive Web Design Concepts</a>", detail: "Techniques to make web pages responsive across devices."}
+      ],
+      "UX (User Experience) Basics": [
+        {title: "5. <a href='#what-is-ux' class='chapter-link'>What is UX Design?</a>", detail: "Overview of User Experience and why it matters."},
+        {title: "6. <a href='#user-research' class='chapter-link'>User Research and Personas</a>", detail: "How to conduct user research and create personas."},
+        {title: "7. <a href='#wireframing' class='chapter-link'>Wireframing and Prototyping</a>", detail: "Creating wireframes and prototypes for design testing."},
+        {title: "8. <a href='#usability-testing' class='chapter-link'>Usability Testing Basics</a>", detail: "Basics of usability testing in design."}
+      ],
+      "UI (User Interface) Basics": [
+        {title: "9. <a href='#ui-principles' class='chapter-link'>UI Design Principles</a>", detail: "Principles that guide good user interface design."},
+        {title: "10. <a href='#typography-color' class='chapter-link'>Typography and Color Theory</a>", detail: "Working with typography and colors for UI."},
+        {title: "11. <a href='#interactive-elements' class='chapter-link'>Designing Interactive Elements</a>", detail: "Designing buttons, forms, and other interactive elements."},
+        {title: "12. <a href='#ui-tools' class='chapter-link'>UI Design Tools Overview</a>", detail: "Overview of popular UI design tools."}
+      ],
+      "Unit Testing Basics in Software": [
+        {title: "13. <a href='#intro-unit-testing' class='chapter-link'>Introduction to Unit Testing</a>", detail: "Understanding the purpose of unit testing in development."},
+        {title: "14. <a href='#importance-testing' class='chapter-link'>Importance of Testing in Web Development</a>", detail: "Why testing is critical for web projects."},
+        {title: "15. <a href='#writing-unit-tests' class='chapter-link'>Writing Simple Unit Tests</a>", detail: "Writing simple JavaScript unit test examples."},
+        {title: "16. <a href='#testing-tools' class='chapter-link'>Tools for Unit Testing</a>", detail: "Popular tools and frameworks for testing JavaScript."}
+      ]
+    },
+    hinglish: {
+      "Web Design Basics": [
+        {title: "1. <a href='#intro-webdesign' class='chapter-link'>Web Design Ka Parichay</a>", detail: "Web design ke basic concepts aur iska importance."},
+        {title: "2. <a href='#html-structure' class='chapter-link'>HTML Structure Samajhna</a>", detail: "HTML ke structure aur elements seekhna."},
+        {title: "3. <a href='#css-fundamentals' class='chapter-link'>CSS Fundamentals aur Styling</a>", detail: "Web pages ko style karne ke liye CSS ka use."},
+        {title: "4. <a href='#responsive-webdesign' class='chapter-link'>Responsive Web Design Concepts</a>", detail: "Pages ko har device pe achha dikhane ke tarike."}
+      ],
+      "UX (User Experience) Basics": [
+        {title: "5. <a href='#what-is-ux' class='chapter-link'>UX Design Kya Hai?</a>", detail: "User experience aur uska importance samajhna."},
+        {title: "6. <a href='#user-research' class='chapter-link'>User Research aur Personas</a>", detail: "User research kaise karein aur personas banayein."},
+        {title: "7. <a href='#wireframing' class='chapter-link'>Wireframing aur Prototyping</a>", detail: "Design ke liye wireframes aur prototypes banane ka tareeka."},
+        {title: "8. <a href='#usability-testing' class='chapter-link'>Usability Testing Basics</a>", detail: "Design test karne ke basic tarike."}
+      ],
+      "UI (User Interface) Basics": [
+        {title: "9. <a href='#ui-principles' class='chapter-link'>UI Design Ke Principles</a>", detail: "Achhi UI design ke basic principles."},
+        {title: "10. <a href='#typography-color' class='chapter-link'>Typography aur Color Theory</a>", detail: "UI ke liye typography aur colors ka use."},
+        {title: "11. <a href='#interactive-elements' class='chapter-link'>Interactive Elements Design Karna</a>", detail: "Buttons, forms, aur doosre interactive parts design karna."},
+        {title: "12. <a href='#ui-tools' class='chapter-link'>UI Design Tools Ka Overview</a>", detail: "Popular UI design tools ka overview."}
+      ],
+      "Unit Testing Basics in Software": [
+        {title: "13. <a href='#intro-unit-testing' class='chapter-link'>Unit Testing Ka Parichay</a>", detail: "Development mein unit testing ka maqsad samajhna."},
+        {title: "14. <a href='#importance-testing' class='chapter-link'>Web Development Mein Testing Ki Zarurat</a>", detail: "Web development ke liye testing kyun zaruri hai."},
+        {title: "15. <a href='#writing-unit-tests' class='chapter-link'>Simple Unit Tests Kaise Likhe</a>", detail: "JavaScript mein simple unit tests kaise likhen."},
+        {title: "16. <a href='#testing-tools' class='chapter-link'>Unit Testing Tools</a>", detail: "JavaScript testing ke liye popular tools aur frameworks."}
+      ]
+    }
+  };
+
+  const container = document.getElementById('course-container');
+  const languageSelect = document.getElementById('language-select');
+
+  function renderCourse(language) {
+    container.innerHTML = ''; 
+    const course = courseContent[language];
+    for (const section in course) {
+      const sectionTitle = document.createElement('h2');
+      sectionTitle.innerHTML = section;
+      container.appendChild(sectionTitle);
+
+      const ul = document.createElement('ul');
+      ul.setAttribute('role', 'list');
+      course[section].forEach(chapter => {
+        const li = document.createElement('li');
+        li.innerHTML = chapter.title;
+        li.tabIndex = 0;
+        li.setAttribute('aria-label', chapter.title.replace(/<[^>]+>/g, "") + ", click to see details");
+        li.style.backgroundColor = '#333';
+        li.style.margin = '10px 0';
+        li.style.padding = '12px 15px';
+        li.style.borderRadius = '5px';
+        li.style.cursor = 'pointer';
+
+        li.addEventListener('mouseenter', () => {
+          li.style.backgroundColor = '#00adee';
+          li.style.color = '#121212';
+        });
+        li.addEventListener('mouseleave', () => {
+          li.style.backgroundColor = '#333';
+          li.style.color = '#eee';
+        });
+        li.addEventListener('click', () => {
+          detailBox.textContent = chapter.detail;
+        });
+        li.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            detailBox.textContent = chapter.detail;
+          }
+        });
+        ul.appendChild(li);
+      });
+      container.appendChild(ul);
+    }
+
+    // detail box
+    if (!document.getElementById('chapter-detail')) {
+      const detailP = document.createElement('p');
+      detailP.className = 'chapter-detail';
+      detailP.id = 'chapter-detail';
+      container.appendChild(detailP);
+    }
+  }
+  
+  languageSelect.addEventListener('change', (e) => {
+    renderCourse(e.target.value);
+    detailBox.textContent = '';
+  });
+
+  const detailBox = document.getElementById('chapter-detail') || document.createElement('p');
+  if (!document.getElementById('chapter-detail')) {
+    detailBox.className = 'chapter-detail';
+    detailBox.id = 'chapter-detail';
+    container.appendChild(detailBox);
+  }
+
+  // Initial render in English
+  renderCourse('english');
+</script>
+
+</body>
+  </html>
