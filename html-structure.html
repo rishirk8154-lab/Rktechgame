@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HTML Structure | Web Design Course | RKTechGame.fun</title>
+<meta name="description" content="Detailed notes on HTML structure covering document tags, elements, and basic syntax in English and Hinglish. Learn HTML structure for web design beginners.">
+<meta name="keywords" content="HTML structure notes, HTML document structure, web design HTML, HTML basics, beginner HTML tutorial, RKTechGame">
+<meta name="author" content="RKTechGame.fun"/>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 {
+    color: #00adee;
+    margin-bottom: 5px;
+  }
+  #language-toggle {
+    margin-top: 10px;
+  }
+  button.lang-btn {
+    background-color: #222;
+    color: #eee;
+    border: 2px solid #00adee;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button.lang-btn.active {
+    background-color: #00adee;
+    color: #121212;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #222;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #00adeeaa;
+  }
+  h2 {
+    color: #00adee;
+    margin-top: 25px;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  pre {
+    background: #111;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 16px;
+    color: #0f0;
+  }
+  ul {
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>HTML Structure</h1>
+  <div id="language-toggle" role="group" aria-label="Language toggle">
+    <button class="lang-btn active" id="btn-english" aria-pressed="true">English</button>
+    <button class="lang-btn" id="btn-hinglish" aria-pressed="false">Hindi</button>
+  </div>
+</header>
+
+<main>
+  <section id="english-content">
+    <h2>What is HTML?</h2>
+    <p>HTML (HyperText Markup Language) is the standard language used to create and structure content on the web. It provides the basic building blocks of web pages by using elements (tags) to define different parts of the content such as headings, paragraphs, links, images, and other multimedia.</p>
+
+    <h2>Basic Structure of an HTML Document</h2>
+    <p>Every HTML document follows a structure that browsers understand to render the webpage correctly. The typical structure contains the following main parts:</p>
+    <ul>
+      <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong>: Declares the document type and version of HTML.</li>
+      <li><strong><code>&lt;html&gt;</code></strong>: The root element that contains all other HTML elements.</li>
+      <li><strong><code>&lt;head&gt;</code></strong>: Contains metadata about the document, such as its title, character encoding, and links to CSS or scripts.</li>
+      <li><strong><code>&lt;title&gt;</code></strong>: Specifies the title of the webpage shown in the browser tab.</li>
+      <li><strong><code>&lt;body&gt;</code></strong>: Contains the visible content of the web page including text, images, links, etc.</li>
+    </ul>
+
+    <h2>Example of a Basic HTML Document</h2>
+    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First HTML Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to Web Design!&lt;/h1&gt;
+    &lt;p&gt;This is a basic example of an HTML document structure.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+    <h2>HTML Elements and Tags</h2>
+    <p>An <em>HTML element</em> usually consists of a start tag, some content, and an end tag. For example:</p>
+    <pre>&lt;p&gt;This is a paragraph.&lt;/p&gt;</pre>
+    <p>Some elements like <code>&lt;br&gt;</code> (line break) do not have an end tag and are called self-closing or void elements.</p>
+
+    <h2>Common HTML Tags</h2>
+    <ul>
+      <li><code>&lt;h1&gt; to &lt;h6&gt;</code>: Headings with six levels of importance.</li>
+      <li><code>&lt;p&gt;</code>: Paragraphs of text.</li>
+      <li><code>&lt;a&gt;</code>: Hyperlinks to other pages or locations.</li>
+      <li><code>&lt;img&gt;</code>: Embeds images.</li>
+      <li><code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code>: Unordered and ordered lists.</li>
+      <li><code>&lt;div&gt;</code> and <code>&lt;span&gt;</code>: Generic container elements for grouping content.</li>
+    </ul>
+
+    <h2>Role of the Head Section</h2>
+    <p>The <code>&lt;head&gt;</code> section is crucial as it contains information that is not displayed directly on the page but helps browsers understand how to render the content. This includes character encoding, page title, stylesheets, scripts, and SEO metadata.</p>
+
+    <h2>Conclusion</h2>
+    <p>Understanding the HTML structure is fundamental for every web developer and designer. It forms the skeleton that holds all web content. Mastering the structure allows you to build accessible, well-organized, and functional websites.</p>
+  </section>
+
+  <section id="hinglish-content" style="display:none;">
+    <h2>HTML Kya Hai?</h2>
+    <p>HTML (HyperText Markup Language) ek standard bhaasha hai jo web par content banane aur uske structure ko tayyar karne ke liye istemal hoti hai. Ye web pages ke basic building blocks provide karti hai jo alag-alag tags ke jariye headings, paragraphs, links, images aur multimedia define karte hain.</p>
+
+    <h2>HTML Document Ka Basic Structure</h2>
+    <p>Har HTML document ka ek aisa structure hota hai jise browser samajh kar webpage sahi tarah dikhata hai. Is structure ke mukhya hisson mein ye shamil hain:</p>
+    <ul>
+      <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong>: Document type aur HTML version declare karta hai.</li>
+      <li><strong><code>&lt;html&gt;</code></strong>: Root element jo sabhi HTML elements ko contain karta hai.</li>
+      <li><strong><code>&lt;head&gt;</code></strong>: Metadata rakhta hai, jaise page title, encoding, CSS, scripts ke links.</li>
+      <li><strong><code>&lt;title&gt;</code></strong>: Webpage ka title set karta hai jo browser tab mein dikhai deta hai.</li>
+      <li><strong><code>&lt;body&gt;</code></strong>: Page ka woh hissa jisme visible content jese text, images, links hota hai.</li>
+    </ul>
+
+    <h2>Basic HTML Document Ka Udaharan</h2>
+    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mera Pehla HTML Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Web Design Mein Aapka Swagat Hai!&lt;/h1&gt;
+    &lt;p&gt;Yeh ek basic example hai HTML document structure ka.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+    <h2>HTML Elements aur Tags</h2>
+    <p>Ek <em>HTML element</em> aam taur par start tag, content aur end tag se banta hai. Jaise:</p>
+    <pre>&lt;p&gt;Yeh ek paragraph hai.&lt;/p&gt;</pre>
+    <p>Kuch elements jaise <code>&lt;br&gt;</code> (line break) ka end tag nahi hota, ise self-closing ya void elements kaha jata hai.</p>
+
+    <h2>Aam HTML Tags</h2>
+    <ul>
+      <li><code>&lt;h1&gt; to &lt;h6&gt;</code>: Heading ke chhe star ke tags.</li>
+      <li><code>&lt;p&gt;</code>: Paragraph ke liye.</li>
+      <li><code>&lt;a&gt;</code>: Hyperlink ke liye.</li>
+      <li><code>&lt;img&gt;</code>: Image ko embed karne ke liye.</li>
+      <li><code>&lt;ul&gt;</code> aur <code>&lt;ol&gt;</code>: List banane ke liye.</li>
+      <li><code>&lt;div&gt;</code> aur <code>&lt;span&gt;</code>: Generic containers.</li>
+    </ul>
+
+    <h2>Head Section Ka Role</h2>
+    <p><code>&lt;head&gt;</code> section page ka aisa hissa hai jo directly dikhayi nahi deta lekin browser ko batata hai ki page kaise dikhana hai. Isme character encoding, title, stylesheets, scripts aur SEO metadata shamil hote hain.</p>
+
+    <h2>Samapan</h2>
+    <p>HTML structure ko samajhna har web developer aur designer ke liye bahut jaruri hai. Yeh website ka backbone hai. Is structure ko seekhkar aap organized, functional aur accessible websites create kar sakte hain.</p>
+  </section>
+</main>
+
+<script>
+  const btnEnglish = document.getElementById('btn-english');
+  const btnHinglish = document.getElementById('btn-hinglish');
+  const englishContent = document.getElementById('english-content');
+  const hinglishContent = document.getElementById('hinglish-content');
+
+  function setLanguage(lang) {
+    if (lang === 'english') {
+      englishContent.style.display = 'block';
+      hinglishContent.style.display = 'none';
+      btnEnglish.classList.add('active');
+      btnEnglish.setAttribute('aria-pressed', 'true');
+      btnHinglish.classList.remove('active');
+      btnHinglish.setAttribute('aria-pressed', 'false');
+      localStorage.setItem('htmlStructureLang', 'english');
+    } else {
+      englishContent.style.display = 'none';
+      hinglishContent.style.display = 'block';
+      btnEnglish.classList.remove('active');
+      btnEnglish.setAttribute('aria-pressed', 'false');
+      btnHinglish.classList.add('active');
+      btnHinglish.setAttribute('aria-pressed', 'true');
+      localStorage.setItem('htmlStructureLang', 'hinglish');
+    }
+  }
+
+  btnEnglish.addEventListener('click', () => setLanguage('english'));
+  btnHinglish.addEventListener('click', () => setLanguage('hinglish'));
+
+  // Load language preference from localStorage or default English
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('htmlStructureLang') || 'english';
+    setLanguage(savedLang);
+  });
+</script>
+
+</body>
+</html>
