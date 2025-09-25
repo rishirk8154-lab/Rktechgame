@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Responsive Web Design | Web Design Course | RKTechGame.fun</title>
+<meta name="description" content="Detailed notes on Responsive Web Design covering concepts, techniques like media queries, flexible grids, fluid images in English and Hinglish for beginners.">
+<meta name="keywords" content="responsive web design notes, media queries, flexible grid, fluid images, web design responsive, mobile friendly design, RKTechGame">
+<meta name="author" content="RKTechGame.fun"/>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 {
+    color: #00adee;
+    margin-bottom: 5px;
+  }
+  #language-toggle {
+    margin-top: 10px;
+  }
+  button.lang-btn {
+    background-color: #222;
+    color: #eee;
+    border: 2px solid #00adee;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button.lang-btn.active {
+    background-color: #00adee;
+    color: #121212;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #222;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #00adeeaa;
+  }
+  h2 {
+    color: #00adee;
+    margin-top: 25px;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  pre {
+    background: #111;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 16px;
+    color: #0f0;
+  }
+  ul {
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Responsive Web Design</h1>
+  <div id="language-toggle" role="group" aria-label="Language toggle">
+    <button class="lang-btn active" id="btn-english" aria-pressed="true">English</button>
+    <button class="lang-btn" id="btn-hinglish" aria-pressed="false">Hindi</button>
+  </div>
+</header>
+
+<main>
+  <section id="english-content">
+    <h2>What is Responsive Web Design?</h2>
+    <p>Responsive Web Design (RWD) is an approach to designing and coding websites so that they provide an optimal viewing and interaction experience across a wide range of devices – from large desktop monitors to small mobile screens.</p>
+
+    <h2>Importance of Responsive Design</h2>
+    <p>With the variety of screen sizes and device types, a responsive site adapts to the user's environment, improving usability and satisfaction. It saves time and resources by maintaining a single site that works well everywhere rather than separate versions for desktop and mobile.</p>
+
+    <h2>Core Techniques for Responsive Design</h2>
+    <ul>
+      <li><strong>Flexible Grid Layouts:</strong> Using relative units like percentages instead of fixed pixels for widths, allowing content to resize fluidly.</li>
+      <li><strong>Flexible Images and Media:</strong> Making images scale within their containing elements using CSS properties like <code>max-width: 100%</code>.</li>
+      <li><strong>Media Queries:</strong> CSS techniques to apply different style rules depending on device characteristics like screen width, resolution, or orientation.</li>
+    </ul>
+
+    <h2>Example of a Media Query</h2>
+    <pre>@media (max-width: 768px) {
+  body {
+    background-color: lightgrey;
+  }
+  nav {
+    display: none;
+  }
+}</pre>
+    <p>This CSS rule applies when the screen width is 768 pixels or less, changing the page background and hiding the navigation bar.</p>
+
+    <h2>Additional Responsive Considerations</h2>
+    <ul>
+      <li><strong>Touchscreen Adaptations:</strong> Buttons and links should be large enough and well spaced on touch devices.</li>
+      <li><strong>Font Sizes:</strong> Use relative units like <code>em</code> or <code>rem</code> to improve readability across devices.</li>
+      <li><strong>Performance:</strong> Optimize images and reduce loading times to improve user experience on mobile connections.</li>
+    </ul>
+
+    <h2>Benefits of Responsive Web Design</h2>
+    <ul>
+      <li>Improves SEO since Google prefers mobile-friendly sites.</li>
+      <li>Reduces development and maintenance costs.</li>
+      <li>Provides consistent user experience across devices.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Responsive Web Design is essential in modern web development to meet the demands of a multi-device world. Learning and applying flexible grids, fluid media, and media queries will help create websites accessible to the broadest audience possible.</p>
+  </section>
+
+  <section id="hinglish-content" style="display:none;">
+    <h2>Responsive Web Design Kya Hai?</h2>
+    <p>Responsive Web Design (RWD) ek approach hai jisme websites aise design aur code ki jati hain ki wo har tarah ke devices—bade desktop monitor se lekar chhote mobile screen tak—par acche se dikhai den aur sahi se kaam karein.</p>
+
+    <h2>Responsive Design Ki Mahatta</h2>
+    <p>Jab duniya mein anek screen sizes aur devices hain, to ek responsive site user ke device ke hisaab se apne aap adjust ho jati hai jisse use karne mein asaani hoti hai aur satisfaction badhta hai. Isse alag-alag desktop aur mobile sites banane ke bajay ek hi site maintain karna asaan hota hai.</p>
+
+    <h2>Responsive Design Ke Mukhya Techniques</h2>
+    <ul>
+      <li><strong>Flexible Grid Layouts:</strong> Pixel ki jagah relative units (percentages) ka use karna jisse content fluidly resize ho sake.</li>
+      <li><strong>Flexible Images aur Media:</strong> CSS jaise <code>max-width: 100%</code> ka use kar ke images apne container ke hisaab se scale ho jayein.</li>
+      <li><strong>Media Queries:</strong> CSS techniques jisme device ke screen width, resolution ya orientation ke hisaab se alag style rules apply hote hain.</li>
+    </ul>
+
+    <h2>Ek Media Query Ka Example</h2>
+    <pre>@media (max-width: 768px) {
+  body {
+    background-color: lightgrey;
+  }
+  nav {
+    display: none;
+  }
+}</pre>
+    <p>Yeh CSS rules tab apply hote hain jab screen width 768 pixels ya usse kam ho, jisme page ka background color change hota hai aur navigation bar chhupa diya jata hai.</p>
+
+    <h2>Responsive Design Mein Aur Dhyan Dene Wali Baatein</h2>
+    <ul>
+      <li><strong>Touchscreen Ke Liye Adaptations:</strong> Buttons aur links ko bada aur spaced banana taaki touch devices mein aasaani se click ho sake.</li>
+      <li><strong>Font Sizes:</strong> <code>em</code> ya <code>rem</code> jaise relative units ka upyog readability badhane ke liye.</li>
+      <li><strong>Performance:</strong> Images ko optimize karna aur loading time kam karna, taaki mobile connections par accha anubhav ho.</li>
+    </ul>
+
+    <h2>Responsive Web Design Ke Fayde</h2>
+    <ul>
+      <li>SEO improve karta hai kyunki Google mobile-friendly sites ko pasand karta hai.</li>
+      <li>Development aur maintenance ka kharcha kam karta hai.</li>
+      <li>Har device par consistent user experience provide karta hai.</li>
+    </ul>
+
+    <h2>Samapan</h2>
+    <p>Aaj ke multi-device yug mein Responsive Web Design bahut zaroori hai. Flexible grids, fluid media aur media queries seekhkar aap aisi websites bana sakte hain jo sabhi log use kar saken.</p>
+  </section>
+</main>
+
+<script>
+  const btnEnglish = document.getElementById('btn-english');
+  const btnHinglish = document.getElementById('btn-hinglish');
+  const englishContent = document.getElementById('english-content');
+  const hinglishContent = document.getElementById('hinglish-content');
+
+  function setLanguage(lang) {
+    if (lang === 'english') {
+      englishContent.style.display = 'block';
+      hinglishContent.style.display = 'none';
+      btnEnglish.classList.add('active');
+      btnEnglish.setAttribute('aria-pressed', 'true');
+      btnHinglish.classList.remove('active');
+      btnHinglish.setAttribute('aria-pressed', 'false');
+      localStorage.setItem('responsiveWebDesignLang', 'english');
+    } else {
+      englishContent.style.display = 'none';
+      hinglishContent.style.display = 'block';
+      btnEnglish.classList.remove('active');
+      btnEnglish.setAttribute('aria-pressed', 'false');
+      btnHinglish.classList.add('active');
+      btnHinglish.setAttribute('aria-pressed', 'true');
+      localStorage.setItem('responsiveWebDesignLang', 'hinglish');
+    }
+  }
+
+  btnEnglish.addEventListener('click', () => setLanguage('english'));
+  btnHinglish.addEventListener('click', () => setLanguage('hinglish'));
+
+  // Load language preference from localStorage or default English
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('responsiveWebDesignLang') || 'english';
+    setLanguage(savedLang);
+  });
+</script>
+
+</body>
+</html>
