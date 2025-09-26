@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Writing Simple Unit Tests | Software Testing Basics | RKTechGame.fun</title>
+<meta name="description" content="Learn how to write simple unit tests effectively with step-by-step guides, code examples, and best practices. English and Hinglish notes included for beginners.">
+<meta name="keywords" content="writing unit tests, simple unit test examples, test-driven development, software testing basics, unittest guide, RKTechGame" />
+<meta name="author" content="RKTechGame.fun" />
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 {
+    color: #00adee;
+    margin-bottom: 15px;
+  }
+  #language-toggle {
+    margin-top: 15px;
+    text-align: center;
+  }
+  button.lang-btn {
+    background-color: #222;
+    color: #eee;
+    border: 2px solid #00adee;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin: 0 12px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  button.lang-btn.active {
+    background-color: #00adee;
+    color: #121212;
+  }
+  main {
+    max-width: 900px;
+    margin: auto;
+    background-color: #222;
+    padding: 33px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00adeeaa;
+  }
+  h2, h3 {
+    color: #00adee;
+    margin-top: 30px;
+  }
+  p, li {
+    font-size: 19px;
+    line-height: 1.75;
+  }
+  ul, ol {
+    padding-left: 30px;
+  }
+  pre {
+    background-color: #111;
+    padding: 12px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  strong {
+    color: #67d1fb;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Writing Simple Unit Tests</h1>
+  <div id="language-toggle" role="group" aria-label="Choose Language">
+    <button class="lang-btn active" id="btn-english" aria-pressed="true">English</button>
+    <button class="lang-btn" id="btn-hinglish" aria-pressed="false">Hindi</button>
+  </div>
+</header>
+
+<main>
+<section id="english-content">
+  <h2>Introduction</h2>
+  <p>Unit tests are small pieces of code written to verify that a specific function or method works correctly. Writing simple unit tests helps catch bugs early and makes code more maintainable.</p>
+
+  <h2>Why Write Unit Tests?</h2>
+  <ul>
+    <li>Ensure individual functions work as intended.</li>
+    <li>Catch errors early in development.</li>
+    <li>Provide documentation of expected behavior.</li>
+    <li>Support safe refactoring and future enhancements.</li>
+  </ul>
+
+  <h2>Steps to Write Simple Unit Tests</h2>
+  <ol>
+    <li><strong>Identify the Unit:</strong> Choose the smallest testable part of your code (e.g., a function or method).</li>
+    <li><strong>Write Test Function:</strong> Create a test function/method that calls the unit with test inputs.</li>
+    <li><strong>Assert Expected Results:</strong> Use assertions to verify output matches the expected result.</li>
+    <li><strong>Run Tests:</strong> Execute tests with a testing framework to see if they pass or fail.</li>
+    <li><strong>Debug & Refine:</strong> Fix bugs found and refine tests for better coverage.</li>
+  </ol>
+
+  <h2>Example: Simple Calculator Unit Test (Python)</h2>
+  <pre><code>class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+
+import unittest
+
+class TestCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = Calculator()
+
+    def test_add(self):
+        self.assertEqual(self.calc.add(3, 4), 7)
+        self.assertEqual(self.calc.add(-1, 1), 0)
+
+    def test_subtract(self):
+        self.assertEqual(self.calc.subtract(10, 4), 6)
+        self.assertEqual(self.calc.subtract(0, 5), -5)
+
+if __name__ == '__main__':
+    unittest.main()</code></pre>
+
+  <h2>Tips for Effective Unit Tests</h2>
+  <ul>
+    <li>Keep tests simple and focused on one behavior.</li>
+    <li>Use clear and descriptive names for tests.</li>
+    <li>Test positive, negative, and boundary cases.</li>
+    <li>Run tests frequently to catch regressions early.</li>
+    <li>Mock external dependencies to isolate tested units.</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+  <p>Writing simple unit tests is a foundational skill for developers. It improves code reliability and helps maintain a bug-free codebase by ensuring each part works correctly.</p>
+</section>
+
+<section id="hinglish-content" style="display:none;">
+  <h2>Parichay</h2>
+  <p>Unit tests chhote code ke tukde hote hain jo ye verify karte hain ki kisi specific function ya method kaam sahi karta hai. Simple unit tests likhne se bugs jaldi milte hain aur code maintain karna asaan hota hai.</p>
+
+  <h2>Unit Tests Kyun Likhein?</h2>
+  <ul>
+    <li>Har function ka sahi kaam karna confirm karen.</li>
+    <li>Development ke shuruaat me hi error pakadna.</li>
+    <li>Kod ka expected behavior document karna.</li>
+    <li>Refactor karna aur naye features safely add karna.</li>
+  </ul>
+
+  <h2>Simple Unit Test Likhnay Ke Steps</h2>
+  <ol>
+    <li><strong>Unit Ko Pehchanein:</strong> Code ke sabse chhote test karne jogh hissa (jaise function ya method) chunein.</li>
+    <li><strong>Test Function Banayein:</strong> Aisa function likhein jo test input ke sath unit ko call kare.</li>
+    <li><strong>Expected Result Ko Assert Karein:</strong> Dekhein ki output expected result ke barabar hai ya nahi.</li>
+    <li><strong>Tests Chalayein:</strong> Testing framework se tests run karein aur pass/fail dekhein.</li>
+    <li><strong>Debug Karein:</strong> Agar bugs milen to fix karen aur tests ko behtar banayein.</li>
+  </ol>
+
+  <h2>Example: Simple Calculator Unit Test (Python)</h2>
+  <pre><code>class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+
+import unittest
+
+class TestCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = Calculator()
+
+    def test_add(self):
+        self.assertEqual(self.calc.add(3, 4), 7)
+        self.assertEqual(self.calc.add(-1, 1), 0)
+
+    def test_subtract(self):
+        self.assertEqual(self.calc.subtract(10, 4), 6)
+        self.assertEqual(self.calc.subtract(0, 5), -5)
+
+if __name__ == '__main__':
+    unittest.main()</code></pre>
+
+  <h2>Asar Daar Unit Tests Ke Tips</h2>
+  <ul>
+    <li>Tests ko simple aur ek behavior par kendrit rakhein.</li>
+    <li>Tests ke naam clearly samajne waley hon.</li>
+    <li>Positive, negative, aur boundary cases test karein.</li>
+    <li>Tests ko baar baar chalayein taaki regressions jaldi milein.</li>
+    <li>Dependencies ko mock karen taki unit isolated rahe.</li>
+  </ul>
+
+  <h2>Samapan</h2>
+  <p>Simple unit test likhna developer ke liye ek mool skills hai. Yeh reliability badhata hai aur ensure karta hai ki code ka har hissa sahi tarah se kaam kar raha hai.</p>
+</section>
+</main>
+
+<script>
+  const btnEnglish = document.getElementById('btn-english');
+  const btnHinglish = document.getElementById('btn-hinglish');
+  const englishContent = document.getElementById('english-content');
+  const hinglishContent = document.getElementById('hinglish-content');
+
+  function setLanguage(lang) {
+    if(lang === 'english'){
+      englishContent.style.display = 'block';
+      hinglishContent.style.display = 'none';
+      btnEnglish.classList.add('active');
+      btnEnglish.setAttribute('aria-pressed', 'true');
+      btnHinglish.classList.remove('active');
+      btnHinglish.setAttribute('aria-pressed', 'false');
+      localStorage.setItem('simpleUnitTestsLang', 'english');
+    } else {
+      englishContent.style.display = 'none';
+      hinglishContent.style.display = 'block';
+      btnEnglish.classList.remove('active');
+      btnEnglish.setAttribute('aria-pressed', 'false');
+      btnHinglish.classList.add('active');
+      btnHinglish.setAttribute('aria-pressed', 'true');
+      localStorage.setItem('simpleUnitTestsLang', 'hinglish');
+    }
+  }
+
+  btnEnglish.addEventListener('click', () => setLanguage('english'));
+  btnHinglish.addEventListener('click', () => setLanguage('hinglish'));
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('simpleUnitTestsLang') || 'english';
+    setLanguage(savedLang);
+  });
+</script>
+
+</body>
+</html>
